@@ -1,30 +1,27 @@
 #include <iostream>
 #include <string>
+#include "../C100/Lab5/other.h"
 
 using namespace std;
 
 int main () {
 
-    int value;
+	const int N = 5;
+	int ar1[] = { 1, 2, 3, 4, 5 };
+	int ar2[] = { 10, 5, 8, 2, 7 };
 
-    do {
-        std::cout << "¬ведите целое значение: ";
-        std::cin >> value;
+	PrintArray(ar1, N);
+	PrintArray(ar2, N);
+	int min1 = Min(ar1, N);
+	int min2 = Min(ar2, N);
 
+	std::cout << "Min in ar1: " << min1 << std::endl;
+	std::cout << "Min in ar2: " << min2 << std::endl;
 
-    } while (!(value >= 10 && (value & 1) == 0));
-
-    std::cout << "¬ведено корректное значение: " << value << std::endl;
-
-    int x_2 = 0;
-    double sum_1 = 0.0;
-
-    while (sum_1 <= 1.7) {
-        x_2 = x_2 + 1;
-        sum_1 = sum_1 + 1.0 / x_2;
-    }
-
-    std::cout << "«начение x, при котором sum > 1.7: " << x_2 << std::endl;
+	const char* str1 = "Hello";
+	const char* str2 = "World";
+	int cmpResult = MyStrCmp(str1, str2);
+	std::cout << "Comparison result: " << cmpResult << std::endl;
 
 return 0;
 }

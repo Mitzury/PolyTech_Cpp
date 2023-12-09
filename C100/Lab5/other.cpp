@@ -1,5 +1,8 @@
 //#include "other.h"
 #include <iostream>
+double variable = 0.0;
+double& ref1 = variable;
+
 void IncByValue(int value) {
 	value++;
 }
@@ -50,19 +53,20 @@ int MyStrCmp(const char* str1, const char* str2) {
 		}
 		else if (*str1 < *str2) {
 			return -1;
+
+			++str1;
+			++str2;
 		}
-		++str1;
-		++str2;
-	}
 
-	if (*str1 == '\0' && *str2 != '\0') {
-		return -1;
-	}
-	else if (*str1 != '\0' && *str2 == '\0') {
-		return 1;
-	}
+		if (*str1 == '\0' && *str2 != '\0') {
+			return -1;
+		}
+		else if (*str1 != '\0' && *str2 == '\0') {
+			return 1;
+		}
 
-	return 0;
+		return 0;
+	}
 }
 
 const char* NameOfMonth(int month) {
@@ -93,9 +97,11 @@ int* MyMin(int* array, int size) {
 
 	return minElement;
 }
-int square(int x) {
+
+int square(const int& x) {
 	return x * x;
 }
+
 
 ///////////////////////////////////////////////////
 

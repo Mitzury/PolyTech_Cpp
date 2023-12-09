@@ -22,7 +22,7 @@ int _tmain()
 	// 1.1. Объявите ссылку на тип double. Посредством ссылки измените значение
 
 	double x = 3.14;
-	double& ref = x;
+	double ref = x;
 	ref = 2.71;
 
 
@@ -31,12 +31,12 @@ int _tmain()
 	// Подсказка: ref - это внешняя по отношению к данному файлу ссылка!
 	//Подумайте, где надо объявить эту внешнюю ссылку, а где ее определить.
 	
-	extern int ref; // Объявляем внешнюю ссылку
-	//ref++;
+	extern double& ref1; // Объявляем внешнюю ссылку
+	ref1++;
 
 	// 1.3. Раскомментируйте следующую строку. 
 	//Что следует сделать, чтобы компилятор не выдавал ошибки 
-	//int& ref1 = x; // Ошибка: не может ссылаться на временное значение
+	const int& ref2 = 1; // Ошибка: не может ссылаться на временное значение
 
 
 	// 1.4. Задан указатель:
@@ -62,8 +62,9 @@ int _tmain()
 	// в задании заготовлены файлы other.cpp и other.h. 
 	//Эти файлы можно использовать для размещения  Ваших функций.
 	{
-		int x = 10;
-		int res1 = square(x);
+		int xc = 10;
+		int x = 5;
+		int res1 = square(xc);
 		int res2 = square(5);
 	}
 		stop
@@ -93,9 +94,6 @@ int _tmain()
 	IncByReference(val); // Значение переменной val увеличится на 1
 	std::cout << "After IncByReference: " << val << std::endl;
 
-
-	int val = 1;//значение этой переменной должно быть увеличено с помощью
-				//каждой из функций на единицу
 
 	stop
 
@@ -138,9 +136,11 @@ int _tmain()
 	std::cout << "Min in ar1: " << min1 << std::endl;
 	std::cout << "Min in ar2: " << min2 << std::endl;
 	
-	const char* str1 = "Hello";
-	const char* str2 = "World";
-	int cmpResult = MyStrCmp(str1, str2);
+	const char* str1 = "111";
+	const char* str2 = "2222";
+	int cmpResult = MyStrCmp(str1, str1);
+	int cmpResult2 = MyStrCmp(str1, str2);
+	int cmpResult3 = MyStrCmp(str2, str1);
 	std::cout << "Comparison result: " << cmpResult << std::endl;
 
 		stop

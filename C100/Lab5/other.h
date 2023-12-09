@@ -1,6 +1,4 @@
 //Прототипы используемых в данном задании функций:
-
-//Прототипы используемых в данном задании функций:
 void IncByValue(int value);
 void IncByPointer(int* pValue);
 void IncByReference(int& refValue);
@@ -11,6 +9,6 @@ int Min(int arr[], int size);
 int MyStrCmp(const char* str1, const char* str2);
 const char* NameOfMonth(int month);
 int* MyMin(int* array, int size);
-int square(int x);
+int square(const int& x);
 
 

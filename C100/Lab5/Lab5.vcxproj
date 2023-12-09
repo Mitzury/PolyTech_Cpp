@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="external.cpp" />
     <ClCompile Include="lab5_2023.cpp" />
     <ClCompile Include="other.cpp" />
   </ItemGroup>

@@ -16,6 +16,8 @@
 #include "2.h"
 #endif
 
+#define LENGTH(r) (2.0 * M_PI * (r))
+
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -103,6 +105,7 @@ int _tmain()
 	//для того, чтобы результат был равен 0? 1? 2?
 #define NNN
 #define MMM
+#define LENGTH(r) (2.0 * M_PI * (r))
 
 	int iNN;
 #if defined NNN && defined MMM

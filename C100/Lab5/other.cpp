@@ -93,6 +93,9 @@ int* MyMin(int* array, int size) {
 
 	return minElement;
 }
+int square(int x) {
+	return x * x;
+}
 
 ///////////////////////////////////////////////////
 

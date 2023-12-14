@@ -17,12 +17,9 @@
 
 using namespace std;
 
-const int rows = 5;
-const int cols = 10;
-
-
 int main()
 {
+#if 1
 	setlocale(LC_ALL, "Russian");
 	///////////////////////////////////////////////////////////////
 	//			Встроенные  многомерные массивы                               //
@@ -66,7 +63,7 @@ int main()
 		}
 		cout << '\n';
 	}
-	
+#endif
 	
 	
 	//б) объявите трехмерный N*M*K неинициализированный массив, 
@@ -94,45 +91,53 @@ int main()
 	//Или выведите содержимое массива на печать.
 	// Удобно выводить построчно каждый слой  массива и
 	//после каждого слоя пропускать строку для того, чтобы отделить один слой от другого
-	
-	const int X = 4;
-	const int Y = 3;
-	const int Z = 5;
-	int arrayB[Z][Y][X];
-	for (int i = 0; i < Z; ++i) {
-		for (int j = 0; j < Y; ++j) {
-			for (int k = 0; k < X; ++k) {
-				arrayB[i][j][k] = i + 1;
+	{
+		const int X = 4;
+		const int Y = 3;
+		const int Z = 5;
+		int arrayB[Z][Y][X];
+		for (int i = 0; i < Z; ++i) {
+			for (int j = 0; j < Y; ++j) {
+				for (int k = 0; k < X; ++k) {
+					arrayB[i][j][k] = i + 1;
+				}
 			}
 		}
-	}
 
-	for (int i = 0; i < Z; ++i) {
-		for (int j = 0; j < Y; ++j) {
-			for (int k = 0; k < X; ++k) {
-				cout << arrayB[i][j][k] << ' ';
+		for (int i = 0; i < Z; ++i) {
+			for (int j = 0; j < Y; ++j) {
+				for (int k = 0; k < X; ++k) {
+					cout << arrayB[i][j][k] << ' ';
+				}
+				cout << '\n';
 			}
 			cout << '\n';
 		}
-		cout << '\n';
-	}
 
 
-	//в) найдите сумму элементов массива, объявленного в пункте б) 
-	//Подумайте, как это сделать эффективно.
+		//в) найдите сумму элементов массива, объявленного в пункте 
+		//б) Подумайте, как это сделать эффективно.
 
-	int sum = 0;
-	for (int i = 0; i < Z; ++i) {
-		for (int j = 0; j < Y; ++j) {
-			for (int k = 0; k < X; ++k) {
-				sum += arrayB[i][j][k];
+		int sum = 0;
+		int* p = &arrayB[0][0][0];
+		for (size_t i = 0; i < (X*Y*Z); i++)
+		{
+			sum += p[i];
+
+		}
+
+		
+		for (int i = 0; i < Z; ++i) {
+			for (int j = 0; j < Y; ++j) {
+				for (int k = 0; k < X; ++k) {
+					sum += arrayB[i][j][k];
+				}
 			}
 		}
+
+		cout << "Sum of elements: " << sum << '\n';
+
 	}
-
-	cout << "Sum of elements: " << sum << '\n';
-
-
 
 	//г) объявите трехмерный N*M*K  массив и проинициализируйте его при определении:
 	//				     |--------|
@@ -145,7 +150,7 @@ int main()
 	//			  | 0  0  0 | /
 	//			  |_________|
 	
-	
+	{
 		const int X = 3;
 		const int Y = 3;
 		const int Z = 3;
@@ -164,13 +169,13 @@ int main()
 			}
 			cout << '\n';
 		}
-
+	}
 	//д) Инициализация массивов строковыми литералами:
 	//Объявите и проинициализируйте строковыми литералами два массива:
 	//двумерный массив символов и одномерный массив указателей на char. 
 	//Поясните разницу в использовании элементов таких массивов.
 	// Двумерный массив символов
-	const char charArray[][6] = { "Hello", "World" };
+	char charArray[][6] = { "Hello", "World" };
 	
 	// Одномерный массив указателей на char
 	const char* charPointerArray[] = { "Hello", "World" };
@@ -255,16 +260,12 @@ int main()
 				cout << "Ввод строк завершен.\n";
 				break;
 			}
-
 			//Присвойте элементу массива cPointers с индексом nIndex
             //указатель на строку с номером nIndex в массиве cBuffer
 			cPointers[nIndex] = cBuffer[nIndex];
 			++nIndex;
-
 		}
 
-	
-		
 		//Распечатайте содержимое массива
 		cout << "\nИсходный массив:\n";
 		for (int i = 0; i < nIndex; ++i) {
@@ -276,7 +277,8 @@ int main()
 		//порядке возрастания кода первого символа
 		for (int i = 0; i < nIndex - 1; ++i) {
 			for (int j = 0; j < nIndex - i - 1; ++j) {
-				if (strcmp(cPointers[j], cPointers[j + 1]) > 0) {
+				//if (strcmp(cPointers[j], cPointers[j + 1]) > 0) { // (лексико графическая сортировка по алфавиту) 
+				if (cPointers[j][0] > cPointers[j + 1][0]) { // по коду символа
 					char* temp = cPointers[j];
 					cPointers[j] = cPointers[j + 1];
 					cPointers[j + 1] = temp;
@@ -297,8 +299,9 @@ int main()
 	// массивы. Проинициализируйте трехмерный массив
 
 	const size_t N_2 = 4, M_2 = 3, K_2 = 4;
-	double dArray[N_2][M_2][K_2]; //так, как показано на рисунке и напишите фрагмент
-	// 
+	double dArray[N_2][M_2][K_2]; 
+	
+	//так, как показано на рисунке и напишите фрагмент
 	//кода, который меняет местами значения элементов четных
 	//и нечетных слоев:
 	//	было:
@@ -344,6 +347,7 @@ int main()
 
 	}
 	*/
+#if 0
 	double value = 1.0;
 	for (size_t i = 0; i < N_2; ++i) {
 		for (size_t j = 0; j < M_2; ++j) {
@@ -368,8 +372,8 @@ int main()
 
 	for (size_t i = 0; i < N_2 - 1; i += 2) {
 
-		double (*evenLayer)[M_2][K_2] = &dArray[i];
-		double (*oddLayer)[M_2][K_2] = &dArray[i + 1];
+		//double (*evenLayer)[M_2][K_2] = dArray[i]; 
+		//double (*oddLayer)[M_2][K_2] = dArray[i + 1];
 		
 		for (size_t j = 0; j < M_2; ++j) {
 			for (size_t k = 0; k < K_2; ++k) {
@@ -391,7 +395,7 @@ int main()
 		}
 		cout << "\n";
 	}
-
+#endif
 	///////////////////////////////////////////////////////////////////////////
 	/*
 	//Задание 4
@@ -424,33 +428,13 @@ int main()
 	//и распечатайте массив по строкам - "постройте распределение"
 
 	*/
-	char charArray_2[rows][cols];
-	
-	srand(static_cast<unsigned int>(time(0)));
-	
-	for (int i = 0; i < rows; ++i) {
-		for (int j = 0; j < cols; ++j) {
-			charArray_2[i][j] = (rand() % 2 == 0) ? '*' : '_';
-		}
-	}
+	const int rows = 5;
+	const int cols = 10;
 
-	for (int i = 0; i < rows; ++i) {
-		int starsCount = 0;
-		for (int j = 0; j < cols; ++j) {
-			if (charArray[i][j] == '*') {
-				iter_swap(&charArray[i][j], &charArray[i][starsCount]);
-				++starsCount;
-			}
-		}
-	}
+	char charArray_2[rows][cols];
+	srand(unsigned(time(0)));
+
 	
-	cout << "Массив после сдвига звездочек в начало строк:\n";
-	for (int i = 0; i < rows; ++i) {
-		for (int j = 0; j < cols; ++j) {
-			cout << charArray[i][j] << " ";
-		}
-		cout << endl;
-	}
 
 	// б) Модифицируйте предыдущее задание следующим способом:
 	//После заполнения массива с помощью генератора случайных чисел
@@ -541,7 +525,7 @@ int main()
 	}
 	
 	for (int i = 0; i < N_4; ++i) {
-		sort(dynamicArray[i], dynamicArray[i] + M_4, greater<int>());
+		sort(dynamicArray[i], dynamicArray[i] + M_4, greater<int>()); //-
 	}
 	cout << "Массив после сортировки каждой строки:\n";
 	for (int i = 0; i < N_4; ++i) {

@@ -101,18 +101,21 @@ int main()
 	// Удобно выводить построчно каждый слой  массива и
 	//после каждого слоя пропускать строку для того, чтобы отделить один слой от другого
 	
-	int arrayB[N][M][K];
-	for (int i = 0; i < N; ++i) {
-		for (int j = 0; j < M; ++j) {
-			for (int k = 0; k < K; ++k) {
+	const int X = 4;
+	const int Y = 3;
+	const int Z = 5;
+	int arrayB[Z][Y][X];
+	for (int i = 0; i < Z; ++i) {
+		for (int j = 0; j < Y; ++j) {
+			for (int k = 0; k < X; ++k) {
 				arrayB[i][j][k] = i + 1;
 			}
 		}
 	}
-	
-	for (int i = 0; i < N; ++i) {
-		for (int j = 0; j < M; ++j) {
-			for (int k = 0; k < K; ++k) {
+
+	for (int i = 0; i < Z; ++i) {
+		for (int j = 0; j < Y; ++j) {
+			for (int k = 0; k < X; ++k) {
 				cout << arrayB[i][j][k] << ' ';
 			}
 			cout << '\n';
@@ -123,15 +126,16 @@ int main()
 
 	//в) найдите сумму элементов массива, объявленного в пункте б) 
 	//Подумайте, как это сделать эффективно.
+
 	int sum = 0;
-	for (int i = 0; i < N; ++i) {
-		for (int j = 0; j < M; ++j) {
-			for (int k = 0; k < K; ++k) {
+	for (int i = 0; i < Z; ++i) {
+		for (int j = 0; j < Y; ++j) {
+			for (int k = 0; k < X; ++k) {
 				sum += arrayB[i][j][k];
 			}
 		}
 	}
-	
+
 	cout << "Sum of elements: " << sum << '\n';
 
 
@@ -147,21 +151,25 @@ int main()
 	//			  | 0  0  0 | /
 	//			  |_________|
 	
-	int arrayC[N][M][K] = {
-		{ {3, 0, 0}, {0, 0, 0}, {0, 0, 0} },
-		{ {2, 0, 0}, {0, 0, 0}, {0, 0, 0} },
-		{ {1, 0, 0}, {0, 0, 0}, {0, 0, 0} }
-	};
 	
-	for (int i = 0; i < N; ++i) {
-		for (int j = 0; j < M; ++j) {
-			for (int k = 0; k < K; ++k) {
-				cout << arrayC[i][j][k] << ' ';
+		const int X = 3;
+		const int Y = 3;
+		const int Z = 3;
+		int arrayC[Z][Y][X] = {
+			{{3}},
+			{{2}},
+			{{1}}
+		};
+
+		for (int i = 0; i < Z; ++i) {
+			for (int j = 0; j < Y; ++j) {
+				for (int k = 0; k < X; ++k) {
+					cout << arrayC[i][j][k] << ' ';
+				}
+				cout << '\n';
 			}
 			cout << '\n';
 		}
-		cout << '\n';
-	}
 
 	//д) Инициализация массивов строковыми литералами:
 	//Объявите и проинициализируйте строковыми литералами два массива:

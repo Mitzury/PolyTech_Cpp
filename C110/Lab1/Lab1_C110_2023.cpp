@@ -11,25 +11,21 @@
 #include <cstdlib>
 #include <cstring>
 
-
-
-
 #define N 4
 #define M 4
 #define K 3
+
+using namespace std;
 
 const char STOP_STRING[] = "*";
 const int M_1 = 80;
 const int N_1 = 10;
 
-
 const size_t N_2 = 4, M_2 = 3, K_2 = 4;
-
 
 const int rows = 5;
 const int cols = 10;
 
-using namespace std;
 
 int main()
 {

@@ -631,19 +631,19 @@ int main()
 
 	cout << "Введите количество строк: ";
 	cin >> nStringNumber;
-	
-	char** dynamicArray_1 = new char*[nStringNumber];
-	
+
+	char** dynamicArray_1 = new char* [nStringNumber];
+
 	for (int i = 0; i < nStringNumber; ++i) {
-		char buffer[256]; 
+		char buffer[256];
 		cout << "Введите строку " << i + 1 << ": ";
-		cin.ignore(); 
+		cin.ignore();
 		cin.getline(buffer, sizeof(buffer));
-		
+
 		dynamicArray_1[i] = new char[strlen(buffer) + 1];
 		strncpy(dynamicArray_1[i], buffer, strlen(buffer) + 1);
 	}
-	
+
 	for (int i = 0; i < nStringNumber - 1; ++i) {
 		for (int j = 0; j < nStringNumber - i - 1; ++j) {
 			if (strcmp(dynamicArray_1[j], dynamicArray_1[j + 1]) > 0) {
@@ -653,17 +653,17 @@ int main()
 			}
 		}
 	}
-	
+
 	cout << "\nОтсортированные строки:\n";
 	for (int i = 0; i < nStringNumber; ++i) {
-		cout << dynamicArray[i] << endl;
+		cout << dynamicArray_1[i] << endl;
 	}
-	
+
 	for (int i = 0; i < nStringNumber; ++i) {
-		delete[] dynamicArray[i];
+		delete[] dynamicArray_1[i];
 	}
-	delete[] dynamicArray;
-	
+	delete[] dynamicArray_1;
+
 
 	return 0;
 }

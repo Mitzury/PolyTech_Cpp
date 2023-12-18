@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cstring>
+#include <clocale>
 
 #define N 4
 #define M 4
@@ -20,8 +21,12 @@ using namespace std;
 int main()
 {
 setlocale(LC_ALL, "Russian");
+
+//comment
+int x;
+int yyy;
+
 #if 0
-	
 	///////////////////////////////////////////////////////////////
 	//			Встроенные  многомерные массивы                  //
 	///////////////////////////////////////////////////////////////
@@ -351,7 +356,8 @@ setlocale(LC_ALL, "Russian");
 	*/
 
 #if 0
-	double value = 1.0;
+
+		double value = 1.0;
 	for (size_t i = 0; i < N_2; ++i) {
 		for (size_t j = 0; j < M_2; ++j) {
 			for (size_t k = 0; k < K_2; ++k) {
@@ -359,7 +365,7 @@ setlocale(LC_ALL, "Russian");
 			}
 		}
 	}
-	
+
 
 	cout << "Исходный массив:\n";
 	for (size_t i = 0; i < N_2; ++i) {
@@ -371,22 +377,17 @@ setlocale(LC_ALL, "Russian");
 		}
 		cout << "\n";
 	}
-	
+
 
 	for (size_t i = 0; i < N_2 - 1; i += 2) {
-
-		double (*evenLayer)[M_2][K_2] = &dArray[i]; 
-		double (*oddLayer)[M_2][K_2] = &dArray[i + 1];
-		
 		for (size_t j = 0; j < M_2; ++j) {
 			for (size_t k = 0; k < K_2; ++k) {
-				double temp = (*evenLayer)[j][k];
-				(*evenLayer)[j][k] = (*oddLayer)[j][k];
-				(*oddLayer)[j][k] = temp;
+				double temp = dArray[i][j][k];
+				dArray[i][j][k] = dArray[i + 1][j][k];
+				dArray[i + 1][j][k] = temp;
 			}
 		}
 	}
-	
 
 	cout << "\nМассив после обмена:\n";
 	for (size_t i = 0; i < N_2; ++i) {
@@ -398,9 +399,10 @@ setlocale(LC_ALL, "Russian");
 		}
 		cout << "\n";
 	}
+
 #endif
 
-#if 1
+#if 0
 	///////////////////////////////////////////////////////////////////////////
 	/*
 	//Задание 4
@@ -531,64 +533,65 @@ setlocale(LC_ALL, "Russian");
 		//Подсказка - не забудьте освободить память!
 		
 	// Задание 5а: Создание динамического двухмерного массива
-	int N_4, M_4;
-	cout << "Введите размерности массива (N M): ";
-	cin >> N_4 >> M_4;
-	
-	int** dynamicArray = new int*[N_4];
-	for (int i = 0; i < N_4; ++i) {
-		dynamicArray[i] = new int[M_4];
-	}
-	
-	srand(static_cast<unsigned int>(time(0)));
-	for (int i = 0; i < N_4; ++i) {
-		for (int j = 0; j < M_4; ++j) {
-			dynamicArray[i][j] = rand() % 100;
-		}
-	}
-	
-	cout << "Изначальный массив:\n";
-	for (int i = 0; i < N_4; ++i) {
-		for (int j = 0; j < M_4; ++j) {
-			cout << dynamicArray[i][j] << " ";
-		}
-		cout << "\n";
-	}
-	
-	for (int i = 0; i < N_4; ++i) {
-		sort(dynamicArray[i], dynamicArray[i] + M_4, greater<int>()); //-
-	}
-	cout << "Массив после сортировки каждой строки:\n";
-	for (int i = 0; i < N_4; ++i) {
-		for (int j = 0; j < M_4; ++j) {
-			cout << dynamicArray[i][j] << " ";
-		}
-		cout << "\n";
-	}
-	
+	{
+		int N_4, M_4;
+		cout << "Введите размерности массива (N M): ";
+		cin >> N_4 >> M_4;
 
-	int* averageArray = new int[N_4];
-	for (int i = 0; i < N_4; ++i) {
-		int sum = 0;
-		for (int j = 0; j < M_4; ++j) {
-			sum += dynamicArray[i][j];
+		int** dynamicArray = new int* [N_4];
+		for (int i = 0; i < N_4; ++i) {
+			dynamicArray[i] = new int[M_4];
 		}
-		averageArray[i] = sum / M_4;
-	}
-	
-	cout << "Одномерный массив средних значений:\n";
-	for (int i = 0; i < N_4; ++i) {
-		cout << averageArray[i] << " ";
-	}
-	
-	for (int i = 0; i < N_4; ++i) {
-		delete[] dynamicArray[i];
-	}
-	delete[] dynamicArray;
-	delete[] averageArray;
 
+		srand(static_cast<unsigned int>(time(0)));
+		for (int i = 0; i < N_4; ++i) {
+			for (int j = 0; j < M_4; ++j) {
+				dynamicArray[i][j] = rand() % 100;
+			}
+		}
+
+		cout << "Изначальный массив:\n";
+		for (int i = 0; i < N_4; ++i) {
+			for (int j = 0; j < M_4; ++j) {
+				cout << dynamicArray[i][j] << " ";
+			}
+			cout << "\n";
+		}
+
+		for (int i = 0; i < N_4; ++i) {
+			sort(dynamicArray[i], dynamicArray[i] + M_4, greater<int>()); //-
+		}
+		cout << "Массив после сортировки каждой строки:\n";
+		for (int i = 0; i < N_4; ++i) {
+			for (int j = 0; j < M_4; ++j) {
+				cout << dynamicArray[i][j] << " ";
+			}
+			cout << "\n";
+		}
+
+
+		int* averageArray = new int[N_4];
+		for (int i = 0; i < N_4; ++i) {
+			int sum = 0;
+			for (int j = 0; j < M_4; ++j) {
+				sum += dynamicArray[i][j];
+			}
+			averageArray[i] = sum / M_4;
+		}
+
+		cout << "Одномерный массив средних значений:\n";
+		for (int i = 0; i < N_4; ++i) {
+			cout << averageArray[i] << " ";
+		}
+
+		for (int i = 0; i < N_4; ++i) {
+			delete[] dynamicArray[i];
+		}
+		delete[] dynamicArray;
+		delete[] averageArray;
+	}
 #endif
-#if 0
+#if 1
 	/////////////////////////////////////////////////////////////////////////////
 	//Задание 6. 
 		//Реализуйте задание 2, используя не встроенные, а ДИНАМИЧЕСКИЕ массивы (массив?).

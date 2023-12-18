@@ -21,7 +21,7 @@ int countDigits(int number) {
     }
 }
 
-// 1.3
+// 1.3 const char*
 void reversePrint(const std::string &str) {
     if (str.empty()) {
         return;

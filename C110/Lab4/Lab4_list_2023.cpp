@@ -17,23 +17,22 @@ void main()
 //Задание 1:	
 //Рекурсивные функции.
 	//1.1.Написать рекурсивную функцию вычисления суммы первых N натуральных чисел. 
-	//1.2.Написать рекурсивную функцию вычисления количества цифр 10-чного натурального числа 
-	//1.3.Написать рекурсивную функцию для вывода на экран строки в обратном порядке. 
-	//1.4.Написать рекурсивную функцию для вывода на экран строки в прямом (!) порядке.
-//Замечание:
-	// Прототипы функций поместите в заголовочный файл functions.h, а реализации - в файл functions.cpp
-	
 	std::cout << "Sum of first 5 natural numbers: " << sumOfFirstN(5) << std::endl;
+	//1.2.Написать рекурсивную функцию вычисления количества цифр 10-чного натурального числа
 	std::cout << "Number of digits in 12345: " << countDigits(12345) << std::endl;
-	
+	//1.3.Написать рекурсивную функцию для вывода на экран строки в обратном порядке. 
 	std::string str = "Hello, World!";
 	std::cout << "Reverse print: ";
 	reversePrint(str);
 	std::cout << std::endl;
-	
+	//1.4.Написать рекурсивную функцию для вывода на экран строки в прямом (!) порядке.
 	std::cout << "Forward print: ";
 	forwardPrint(str);
 	std::cout << std::endl;
+//Замечание:
+	// Прототипы функций поместите в заголовочный файл functions.h, а реализации - в файл functions.cpp
+	
+	
 //----------------------------------------------------------------------------------------------------------
 //Задание 2:	
 	//ПОДСКАЗКИ: в файле "Односвязный список (процедурный подход, подсказки)_2022.pdf" 
@@ -99,53 +98,36 @@ void main()
 //----------------------------------------------------------------------------------------------------------
 //Задание 3:	
 	//3.1. "Создайте" пустой односвязный список, задав указатель на его "голову"
-	
+	Node* myList_1 = nullptr;
 
 	//3.2. Заполните список значениями
-	
+	myList_1 = addToBeginning(myList, 3);
+	myList_1 = addToBeginning(myList, 2);
+	myList_1 = addToBeginning(myList, 1);
 	//3.3. Выведите список на консоль 
-	
+	std::cout << "List: ";
+	printList(myList_1);
 	//3.4. Выведите список на консоль в порядке заполнения (рекурсивная функция)
-	
+	std::cout << "List in original order: ";
+	printListReverse(myList_1);
+	std::cout << std::endl;
 	//3.5. Удалите из списка заданное значение. Предусмотрите проверку, когда: 
+	int valueToRemove = 2;
+	if (removeFromList(myList_1, valueToRemove)) {
+		std::cout << "Element " << valueToRemove << " removed. Updated List: ";
+	}
+	else {
+		std::cout << "Element " << valueToRemove << " not found in the list.\n";
+	}
 	// - удаляемый элемент является "головой"
 	// - удаляемый элемент не является "головой"
 	// - элемент в списке не найден 
 	//
 	//3.6. Выведите список на консоль 
-	//  
-	//3.7. Не забудьте освободить динамическую память.
-	
-	// 3.1
-	Node* myList_1 = nullptr;
-	
-	// 3.2
-	myList_1 = addToBeginning(myList, 3);
-	myList_1 = addToBeginning(myList, 2);
-	myList_1 = addToBeginning(myList, 1);
-	
-	// 3.3
-	std::cout << "List: ";
-	printList(myList_1);
-	
-	// 3.4
-	std::cout << "List in original order: ";
-	printListReverse(myList_1);
-	std::cout << std::endl;
-	
-	// 3.5
-	int valueToRemove = 2;
-	if (removeFromList(myList_1, valueToRemove)) {
-		std::cout << "Element " << valueToRemove << " removed. Updated List: ";
-	} else {
-		std::cout << "Element " << valueToRemove << " not found in the list.\n";
-	}
-	
-	// 3.6
 	std::cout << "Updated List: ";
 	printList(myList_1);
-	
-	// 3.7
+
+	//3.7. Не забудьте освободить динамическую память.
 	while (myList != nullptr) {
 		Node* temp = myList_1;
 		myList_1 = myList_1->next;

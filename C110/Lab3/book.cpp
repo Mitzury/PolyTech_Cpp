@@ -1,5 +1,5 @@
 // File: book.cpp
-
+#define _CRT_SECURE_NO_WARNINGS
 #include "book.h"
 
 void printBookInfo(const struct BOOK *book) {

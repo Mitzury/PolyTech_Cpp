@@ -1,5 +1,5 @@
 /*************************************************************
-Практическое занятие №3-курс-С110. Структуры
+	Практическое занятие №3-курс-С110. Структуры
 //динамический массив структур
 //поиск
 //сортировка
@@ -7,12 +7,18 @@
 //чтение из файла
 *************************************************************/
 
+#include <iostream>
+
 #include "book.h"
 #include "card_index.h"
 
+#define	  stop __asm nop	
+
+using namespace std;
 
 void main()
 {
+	setlocale(LC_ALL, "Russian");
 	//Тема. Структуры С.	
 //Задание 1.1 Объявите структуру BOOK, описывающую книгу
 //(автор, заглавие, год издания, цена, категория…).
@@ -23,20 +29,20 @@ void main()
 	//Задание 1.2. Создайте разными способами экземпляры (объекты) типа BOOK 
 
 	//a) глобальный объект типа BOOK создайте без инициализации
-
+	struct BOOK globalBook;
 	//б) динамический объект типа BOOK создайте также без инициализации
-
+	struct BOOK* dynamicBook = new struct BOOK;
 	//в) локальный объект типа BOOK создайте без инициализации, но позднее заполните вручную поля структуры некоторыми значениями
+	struct BOOK localBook;
 
 	//г) статический объект типа BOOK создайте  и проинициализируйте при определении с помощью списка инициализации.
+	struct BOOK staticBook = { "John Doe", "Introduction to Programming", 2020, 29.99, "Education" };
 
 	//Используйте структуру BOOK, созданную в предыдущем задании.
 	//Для этого достаточно переписать и подключить к проекту файлы book.h и book.cpp
-
 	//Определите - сколько памяти отводит компилятор под каждый такой объект. 
 	//Подумайте: от чего зависит объем выделяемой памяти?
 
-	
 	//Задание 1.3.1 Напишите функцию, выводящую на экран реквизиты книги. 
 	//Прототип функции поместите в файл "book.h", а реализацию - в "book.cpp"
 	//Подумайте: как эффективнее передавать экземпляр BOOK в функцию.
@@ -44,6 +50,8 @@ void main()
 
 	//Задание 1.3.2
 	//С помощью разработанной функции выведите на консоль информацию о книгах, созданных в п.1.2 (кроме динамической)
+
+	printBookInfo(&staticBook);
 
 	//Задание 1.4.1 Напишите функцию для формирования полей структуры.
 	//Прототип функции поместите в файл "book.h", а реализацию - в "book.cpp"
@@ -58,37 +66,13 @@ void main()
 	//Используйте разработанную функцию для заполнения полей динамически созданного экземпляра книги 
 	//распечатайте содержимое этой книги с помощью функции, соданной в п.1.3.1 
 	//
-	
-	// Задание 1.2.a
-	struct BOOK globalBook;
-	
-	// Задание 1.2.b
-	struct BOOK *dynamicBook = new struct BOOK;
-	
-	// Задание 1.2.c
-	struct BOOK localBook;
-	fillBookFields(&localBook);
-	
-	// Задание 1.2.d
-	struct BOOK staticBook = {"John Doe", "Introduction to Programming", 2020, 29.99, "Education"};
-	
-	// Вывод информации о книгах
-	printBookInfo(&globalBook);
-	printBookInfo(dynamicBook);
-	printBookInfo(&localBook);
-	printBookInfo(&staticBook);
-	
-	// Задание 1.4.2
 	fillBookFields(dynamicBook);
 	printBookInfo(dynamicBook);
-	
-	// Освобождение памяти, выделенной под динамическую структуру
-	delete dynamicBook;
 
-	
+
 //----------------------------------------------------------------------------------------------------------------
 	//Задание 2.1 Создаем "картотеку".
-	
+
 	//Пользователь должен иметь возможность по своему желанию выполнять
 	//разные действия с картотекой => нужно такую возможность ему
 	//предоставить: это может выглядеть как вывод "меню" (перечень
@@ -108,7 +92,7 @@ void main()
 	// ПОДРОБНЫЕ ПОДСКАЗКИ к работе над картотекой описаны в файле  "Картотека_2021.pdf"
 
 	//Реализуйте посредством функций разные возможности работы с картотекой
-	
+
 	// Упрощения:
 	//1. пусть автор и заглавие книги состоят из одного слова
 	//2. все строки можно задавать латинскими буквами. 
@@ -118,45 +102,20 @@ void main()
 	//   а) пользоваться расширенными функциями ввода/вывода - wprintf(), wscanf()
 	//   б) хранить строки как расширенные - wchar_t
 	//   в) установить кодировку для ввода русских символов - setlocale(LC_CTYPE, ".866");
-	
+	// 
+
 	struct CARD_INDEX cardIndex;
 	cardIndex.capacity = 10;
 	cardIndex.count = 0;
 	cardIndex.books = new struct BOOK[cardIndex.capacity];
-	
 	int choice;
-	do {
-		printMenu();
-		printf("Enter your choice: ");
-		scanf("%d", &choice);
-		
-		switch (choice) {
-			case 1:
-				printCardIndex(&cardIndex);
-				break;
-			case 2:
-				addBook(&cardIndex);
-				break;
-			case 3:
-				deleteBook(&cardIndex);
-				break;
-			case 4:
-				saveToFile(&cardIndex, "card_index.txt");
-				break;
-			case 5:
-				loadFromFile(&cardIndex, "card_index.txt");
-				break;
-			case 6:
-				printf("Exiting the program.\n");
-				break;
-			default:
-				printf("Invalid choice. Try again.\n");
-		}
-	} while (choice != 6);
-	
-	delete[] cardIndex.books;
 
-	
+	printCardIndex(&cardIndex);
+
+
+
+
+
 //----------------------------------------------------------------------------------------------------------------
 	//Задание 2.2 (*) Дорабатываем "картотеку".	
 
@@ -189,46 +148,14 @@ void main()
 
 	//Замечание: признак - "по какому полю сортируем" можно ввести с помощью
 	//перечисления.
-	cardIndex.capacity = 10;
-	cardIndex.count = 0;
-	cardIndex.books = new struct BOOK[cardIndex.capacity];
-	
-	int choice_1;
-	do {
-		printMenu();
-		printf("Enter your choice: ");
-		scanf("%d", &choice);
-		
-		switch (choice) {
-			case 1:
-				printCardIndex(&cardIndex);
-				break;
-			case 2:
-				addBook(&cardIndex);
-				break;
-			case 3:
-				deleteBook(&cardIndex);
-				break;
-			case 4:
-				saveToFile(&cardIndex, "card_index.txt");
-				break;
-			case 5:
-				loadFromFile(&cardIndex, "card_index.txt");
-				break;
-			case 6:
-				bubbleSort(&cardIndex, AUTHOR);
-				printf("Card Index sorted by author.\n");
-				break;
-			case 7:
-				printf("Exiting the program.\n");
-				break;
-			default:
-				printf("Invalid choice. Try again.\n");
-		}
-	} while (choice_1 != 7);
-	
-	delete[] cardIndex.books;
 
-	//При завершении программы пребуется очистить динамическую память. Не забудьте это сделать
+
+//При завершении программы пребуется очистить динамическую память. Не забудьте это сделать
+//*********************   Дополнительное задание   ****************************************************
+//Задание 4 (*)  
+// Выполните задание 9 по курсовой работе 
+// описание задания находится в файле "Задание (игра Змейка)_9 (структуры)_3.docx" 
+//*****************************************************************************************************
+
 
 }

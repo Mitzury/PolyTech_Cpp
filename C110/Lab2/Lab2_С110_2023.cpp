@@ -231,93 +231,78 @@ int _tmain()
 		//>0 - первый элемент больше, чем второй
 		/*
 			int nAr[]=...	//массив для сортировки
-
-			//Печать исходного массива
-
-			//Вызов сортировки
-			int nTotal=...			//количество элементов в массиве
-			Sort(reinterpret_cast<char*>(&nAr[0]), nTotal, sizeof(int), SwapInt, CmpInt);
-
-			//Печать результатов сортировки
-
-			stop
 		*/
+			int nAr[] = { 4, 2, 8, 1, 6 };
+			//Печать исходного массива
+			std::cout << "Original array: ";
+			for (int num : nAr) {
+				std::cout << num << " ";
+			}
+			std::cout << std::endl;
+			//Вызов сортировки
+			Sort(reinterpret_cast<char*>(&nAr[0]), 5, sizeof(int), SwapInt, CmpInt);
+			//Печать результатов сортировки
+			std::cout << "Sorted array: ";
+			for (int num : nAr) {
+				std::cout << num << " ";
+			}
+			std::cout << std::endl;
+
 		/*
 		//Задание 6б. По аналогии с 6а создайте вспомогательные
 		//функции - SwapDouble и CmpDouble и вызовите функцию Sort
 		//для сортировки массива вещественных значений.
 		*/
+			double dAr[] = { 4.2, 2.1, 8.5, 1.7, 6.3 };
+
+
+			std::cout << "\nOriginal double array: ";
+			for (double num : dAr) {
+				std::cout << num << " ";
+			}
+			std::cout << std::endl;
+
+
+			Sort(reinterpret_cast<char*>(&dAr[0]), 5, sizeof(double), SwapDouble, CmpDouble);
+
+
+			std::cout << "Sorted double array: ";
+			for (double num : dAr) {
+				std::cout << num << " ";
+			}
+			std::cout << std::endl;
+
 
 		/*
 		//Задание 6в*. По аналогии с 6а создайте вспомогательные
 		//функции - SwapStr и CmpStr и вызовите функцию Sort
 		//для сортировки массива указателей на строки.
-
+		*/
 		const char* arStr[] = { "QQQ", "SDF", "ABC","Abba", "ENFR","En",. . . };
+
+		const char* arStr[] = { "QQQ", "SDF", "ABC", "Abba", "ENFR", "En" };
+		std::cout << "\nOriginal string array: ";
+		for (const char* str : arStr) {
+			std::cout << str << " ";
+		}
+		std::cout << std::endl;
+
+
+		Sort(reinterpret_cast<char*>(&arStr[0]), 6, sizeof(const char*), SwapStr, CmpStr);
+
+
+		std::cout << "Sorted string array: ";
+		for (const char* str : arStr) {
+			std::cout << str << " ";
+		}
+		std::cout << std::endl;
+
 
 		//Замечание:
 
 		//в массиве линейно лежат АДРЕСА строк, надо передать АДРЕС массива,
-			Sort(reinterpret_cast<char*>(&arStr[0])), nTotal, sizeof(???), SwapStr, CmpStr);
-		*/
-
-	int nAr[] = { 4, 2, 8, 1, 6 };
-	std::cout << "Original array: ";
-	for (int num : nAr) {
-		std::cout << num << " ";
-	}
-	std::cout << std::endl;
-
-
-	Sort(reinterpret_cast<char*>(&nAr[0]), 5, sizeof(int), SwapInt, CmpInt);
-
-
-	std::cout << "Sorted array: ";
-	for (int num : nAr) {
-		std::cout << num << " ";
-	}
-	std::cout << std::endl;
-
-
-	double dAr[] = { 4.2, 2.1, 8.5, 1.7, 6.3 };
-
-
-	std::cout << "\nOriginal double array: ";
-	for (double num : dAr) {
-		std::cout << num << " ";
-	}
-	std::cout << std::endl;
-
-
-	Sort(reinterpret_cast<char*>(&dAr[0]), 5, sizeof(double), SwapDouble, CmpDouble);
-
-
-	std::cout << "Sorted double array: ";
-	for (double num : dAr) {
-		std::cout << num << " ";
-	}
-	std::cout << std::endl;
-
-
-	const char* arStr[] = { "QQQ", "SDF", "ABC", "Abba", "ENFR", "En" };
-
-
-	std::cout << "\nOriginal string array: ";
-	for (const char* str : arStr) {
-		std::cout << str << " ";
-	}
-	std::cout << std::endl;
-
-
-	Sort(reinterpret_cast<char*>(&arStr[0]), 6, sizeof(const char*), SwapStr, CmpStr);
-
-
-	std::cout << "Sorted string array: ";
-	for (const char* str : arStr) {
-		std::cout << str << " ";
-	}
-	std::cout << std::endl;
-
+		//	Sort(reinterpret_cast<char*>(&arStr[0])), nTotal, sizeof(???), SwapStr, CmpStr);
+		
 #endif;
 #if 1;
 	///////////////////////////////////////////////////////////////////

@@ -22,10 +22,6 @@ int main()
 {
 setlocale(LC_ALL, "Russian");
 
-//comment
-int x;
-int yyy;
-
 #if 0
 	///////////////////////////////////////////////////////////////
 	//			Встроенные  многомерные массивы                  //
@@ -300,6 +296,7 @@ int yyy;
 
 	}
 #endif
+#if 0
 	//////////////////////////////////////////////////////////////////////////////
 
 	//Задание 3*. Объявление и использование указателей на многомерные
@@ -355,9 +352,7 @@ int yyy;
 	}
 	*/
 
-#if 0
-
-		double value = 1.0;
+	double value = 1.0;
 	for (size_t i = 0; i < N_2; ++i) {
 		for (size_t j = 0; j < M_2; ++j) {
 			for (size_t k = 0; k < K_2; ++k) {
@@ -402,7 +397,7 @@ int yyy;
 
 #endif
 
-#if 0
+#if 1
 	///////////////////////////////////////////////////////////////////////////
 	/*
 	//Задание 4
@@ -451,36 +446,34 @@ int yyy;
 		int starsCount = 0;
 		for (int j = 0; j < cols; ++j) {
 			if (charArray_2[i][j] == '*') {
-				iter_swap(&charArray_2[i][j], &charArray_2[i][starsCount]);
+				char temp = charArray_2[i][j];
+				charArray_2[i][j] = charArray_2[i][starsCount];
+				charArray_2[i][starsCount] = temp;
 				++starsCount;
 			}
 		}
 	}
 
-	cout << "Массив после сдвига звездочек в начало строк:\n";
+	cout << "Left Aray:\n";
 	for (int i = 0; i < rows; ++i) {
 		for (int j = 0; j < cols; ++j) {
 			cout << charArray_2[i][j] << " ";
 		}
 		cout << endl;
 	}
-
 	
-
 	// б) Модифицируйте предыдущее задание следующим способом:
 	//После заполнения массива с помощью генератора случайных чисел
 	//"сдвиньте" звездочки по столбцам вниз и распечатайте полученное
 	//"распределение"
 	char charArray_3[rows][cols];
-	srand(static_cast<unsigned int>(time(0)));
-
 	for (int i = 0; i < rows; ++i) {
 		for (int j = 0; j < cols; ++j) {
 			charArray_3[i][j] = (rand() % 2 == 0) ? '*' : '_';
 		}
 	}
 
-	cout << "Исходный массив:\n";
+	cout << "\nMain Array:\n";
 	for (int i = 0; i < rows; ++i) {
 		for (int j = 0; j < cols; ++j) {
 			cout << charArray_3[i][j] << " ";
@@ -495,12 +488,13 @@ int yyy;
 				++emptyCount;
 			}
 			else if (emptyCount > 0) {
-				iter_swap(&charArray_3[i][j], &charArray_3[i + emptyCount][j]);
+				charArray_3[i + emptyCount][j] = charArray_3[i][j];
+				charArray_3[i][j] = '_';
 			}
 		}
 	}
 
-	cout << "\nМассив после сдвига звездочек вниз по столбцам:\n";
+	cout << "\nDown Array:\n";
 	for (int i = 0; i < rows; ++i) {
 		for (int j = 0; j < cols; ++j) {
 			cout << charArray_3[i][j] << " ";

@@ -142,7 +142,7 @@ int _tmain()
 
 
 #endif;
-#if 1;
+#if 0;
 	///////////////////////////////////////////////////////////////////
 	//Тема Указатели на функции
 
@@ -322,7 +322,7 @@ int _tmain()
 	std::cout << std::endl;
 
 #endif;
-#if 0;
+#if 1;
 	///////////////////////////////////////////////////////////////////
 		/*
 		//Задание 7. Массивы указателей на функцию.
@@ -332,7 +332,8 @@ int _tmain()
 		//const char* GetString3();
 		//const char* GetString4();
 		//const char* GetString5();
-
+		*/
+	
 		//		...., каждая из функций возвращает указатель на свою строку
 		//(подумайте - какой адрес Вы имеете право возвращать из функции)
 
@@ -345,26 +346,15 @@ int _tmain()
 		//GetString1,GetString2...
 		//Введите номер функции, которую Вы хотите вызвать:
 			int n;
-
-
-
 		//Вызовите функцию
-
-
-
 		//Распечатайте результат
-
-
-		*/
-
-
-	StringFunction stringFunctions[] = {
-		GetString1,
-		GetString2,
-		GetString3,
-		GetString4,
-		GetString5
-	};
+		StringFunction stringFunctions[] = {
+			GetString1,
+			GetString2,
+			GetString3,
+			GetString4,
+			GetString5
+		};
 
 
 	std::cout << "Enter the number of the function you want to call (1-5): ";

@@ -67,7 +67,3 @@ const char* GetString4();
 const char* GetString5();
 
 #endif
-
-
-
-

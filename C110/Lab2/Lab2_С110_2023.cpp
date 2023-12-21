@@ -104,7 +104,7 @@ int _tmain()
 	std::cout << "Day of Month: " << resultDay << ", Month: " << resultMonth << std::endl;
 
 #endif;
-#if 1;
+#if 0;
 	/////////////////////////////////////////////////////////////////////////////
 		//Задание 3.
 		//Задание 3а. Функции с переменным числом параметров.
@@ -319,7 +319,7 @@ int _tmain()
 	std::cout << std::endl;
 
 #endif;
-#if 0;
+#if 1;
 	///////////////////////////////////////////////////////////////////
 		/*
 		//Задание 7. Массивы указателей на функцию.
@@ -355,7 +355,6 @@ int _tmain()
 
 
 	std::cout << "Enter the number of the function you want to call (1-5): ";
-	int n;
 	std::cin >> n;
 
 

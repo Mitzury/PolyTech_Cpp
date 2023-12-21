@@ -1,19 +1,17 @@
-// File: book.h
-
 #ifndef BOOK_H
 #define BOOK_H
 
-#include <stdio.h>
+#include <string>
 
 struct BOOK {
-    char author[100];
-    char title[100];
+    std::string author;
+    std::string title;
     int year;
     float price;
-    char category[50];
+    std::string category;
 };
 
-void printBookInfo(const struct BOOK *book);
-void fillBookFields(struct BOOK *book);
+void printBookInfo(const BOOK& book);
+void fillBookFields(BOOK& book);
 
 #endif // BOOK_H

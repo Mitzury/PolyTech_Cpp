@@ -1,28 +1,34 @@
-// File: book.cpp
-#define _CRT_SECURE_NO_WARNINGS
 #include "book.h"
+#include <iostream>
 
-void printBookInfo(const struct BOOK *book) {
-    printf("Author: %s\n", book->author);
-    printf("Title: %s\n", book->title);
-    printf("Year: %d\n", book->year);
-    printf("Price: %.2f\n", book->price);
-    printf("Category: %s\n", book->category);
+void printBookInfo(const BOOK& book) {
+    std::cout << "Author: " << book.author << std::endl;
+    std::cout << "Title: " << book.title << std::endl;
+    std::cout << "Year: " << book.year << std::endl;
+    std::cout << "Price: " << book.price << std::endl;
+    std::cout << "Category: " << book.category << std::endl;
 }
 
-void fillBookFields(struct BOOK *book) {
-    printf("Enter author: ");
-    scanf("%99s", book->author);
-    
-    printf("Enter title: ");
-    scanf("%99s", book->title);
-    
-    printf("Enter year: ");
-    scanf("%d", &book->year);
-    
-    printf("Enter price: ");
-    scanf("%f", &book->price);
-    
-    printf("Enter category: ");
-    scanf("%49s", book->category);
+void fillBookFields(BOOK& book) {
+    std::cout << "Enter author: ";
+    std::getline(std::cin, book.author);
+
+    std::cout << "Enter title: ";
+    std::getline(std::cin, book.title);
+
+    std::cout << "Enter year: ";
+    std::cin >> book.year;
+
+    std::cout << "Enter price: ";
+    std::cin >> book.price;
+
+    // Дополнительная проверка на отрицательную цену
+    while (book.price < 0) {
+        std::cout << "Price cannot be negative. Please enter a valid price: ";
+        std::cin >> book.price;
+    }
+
+    std::cin.ignore(); // Очистить буфер после ввода числа
+    std::cout << "Enter category: ";
+    std::getline(std::cin, book.category);
 }

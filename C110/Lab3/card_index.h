@@ -1,4 +1,4 @@
-// File: card_index.h
+// Файл "card_index.h"
 
 #ifndef CARD_INDEX_H
 #define CARD_INDEX_H
@@ -14,17 +14,19 @@ enum SortField {
 };
 
 struct CARD_INDEX {
-    struct BOOK *books;
-    int capacity;
-    int count;
+    BOOK* books; // указатель на массив структур BOOK
+    int capacity; // емкость массива
+    int count; // текущее количество книг в массиве
 };
 
+void initializeCardIndex(CARD_INDEX& cardIndex, int initialCapacity);
 void printMenu();
-void printCardIndex(const struct CARD_INDEX *cardIndex);
-void addBook(struct CARD_INDEX *cardIndex);
-void deleteBook(struct CARD_INDEX *cardIndex);
-void saveToFile(const struct CARD_INDEX *cardIndex, const char *filename);
-void loadFromFile(struct CARD_INDEX *cardIndex, const char *filename);
-void bubbleSort(struct CARD_INDEX *cardIndex, enum SortField sortField);
+void printCardIndex(const CARD_INDEX& cardIndex);
+void addBook(CARD_INDEX& cardIndex);
+void removeBook(CARD_INDEX& cardIndex);
+void saveToFile(const CARD_INDEX& cardIndex, const char* fileName);
+void loadFromFile(CARD_INDEX& cardIndex, const char* fileName);
+void sortBooks(CARD_INDEX& cardIndex, SortField sortField);
+void cleanUp(CARD_INDEX& cardIndex);
 
 #endif // CARD_INDEX_H

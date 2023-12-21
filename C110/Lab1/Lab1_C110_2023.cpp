@@ -628,60 +628,60 @@ setlocale(LC_ALL, "Russian");
 	//порядке возрастания кода первого символа int nStringNumber;
 #define STOP_STRING "*"
 #define buf 10
+
 	int nStringNumber;
 
-	std::cout << "Enter count of string: ";
+	cout << "enter count lines: ";
 	cin >> nStringNumber;
-	// Выделение памяти для массива указателей и буфера строк
+	cin.ignore();
+
+
 	char** cPointers = new char* [nStringNumber];
-	char** cBuffer = new char* [nStringNumber];
 	for (int i = 0; i < nStringNumber; ++i) {
-		cBuffer[i] = new char[buf];
-		cPointers[i] = cBuffer[i];
+		cPointers[i] = new char[buf];
 	}
 
-	std::cout << "Enter string (EOL '*'):\n";
+	cout << "Enter string (EOL '*'):\n";
+
 	int nIndex = 0;
 	while (nIndex < nStringNumber) {
-		std::cout << "String " << nIndex << ": ";
-		cin.getline(cBuffer[nIndex], buf);
+		cout << "String " << nIndex + 1 << ": ";
+		cin.getline(cPointers[nIndex], buf);
 
-		if (strcmp(cBuffer[nIndex], STOP_STRING) == 0) {
-			std::cout << "End of enter.\n";
+		if (strcmp(cPointers[nIndex], STOP_STRING) == 0) {
+			cout << "Close enter.\n";
 			break;
 		}
 
-		nIndex++;
+		size_t strLength = strlen(cPointers[nIndex]);
+		cout << "String length: " << strLength << " symbol\n";
+
+		++nIndex;
 	}
 
-	std::cout << "\nИсходный массив:\n";
+	cout << "\nMain Array:\n";
 	for (int i = 0; i < nIndex; ++i) {
-		std::cout << cPointers[i] << '\n';
+		cout << cPointers[i] << '\n';
 	}
 
-	// Сортировка строк методом "всплывающего пузырька"
+
 	for (int i = 0; i < nIndex - 1; ++i) {
 		for (int j = 0; j < nIndex - i - 1; ++j) {
 			if (strcmp(cPointers[j], cPointers[j + 1]) > 0) {
-				char* temp = cPointers[j];
-				cPointers[j] = cPointers[j + 1];
-				cPointers[j + 1] = temp;
+				swap(cPointers[j], cPointers[j + 1]);
 			}
 		}
 	}
 
-	std::cout << "\nОтсортированный массив:\n";
+	cout << "\nSort Array:\n";
 	for (int i = 0; i < nIndex; ++i) {
-		std::cout << cPointers[i] << '\n';
+		cout << cPointers[i] << '\n';
 	}
 
-	// Освобождение выделенной памяти
 	for (int i = 0; i < nStringNumber; ++i) {
-		delete[] cBuffer[i];
+		delete[] cPointers[i];
 	}
-	delete[] cBuffer;
 	delete[] cPointers;
-
 
 #endif
 	return 0;

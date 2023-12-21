@@ -13,7 +13,8 @@
 
 void main()
 {
-	setlocale(LC_CTYPE, ".1251"); // Установка кодировки для вывода русских символов
+
+#if 0;
 	//Тема. Структуры С.	
 //Задание 1.1 Объявите структуру BOOK, описывающую книгу
 //(автор, заглавие, год издания, цена, категория…).
@@ -25,11 +26,19 @@ void main()
 
 	//a) глобальный объект типа BOOK создайте без инициализации
 
+	BOOK globalBook;
+
 	//б) динамический объект типа BOOK создайте также без инициализации
+
+	BOOK* dynamicBook = new BOOK;
 
 	//в) локальный объект типа BOOK создайте без инициализации, но позднее заполните вручную поля структуры некоторыми значениями
 
+	BOOK localBook;
+
 	//г) статический объект типа BOOK создайте  и проинициализируйте при определении с помощью списка инициализации.
+
+	BOOK staticBook = { "John Doe", "The Book", 2020, 25.99, "Fiction" };
 
 	//Используйте структуру BOOK, созданную в предыдущем задании.
 	//Для этого достаточно переписать и подключить к проекту файлы book.h и book.cpp
@@ -43,12 +52,19 @@ void main()
 	//Подумайте: как эффективнее передавать экземпляр BOOK в функцию.
 	//Для вывода на консоль используйте функцию стандартной библиотеки printf
 
+	printBookInfo(staticBook);
+
 	//Задание 1.3.2
 	//С помощью разработанной функции выведите на консоль информацию о книгах, созданных в п.1.2 (кроме динамической)
+
+	printBookInfo(globalBook);
+	printBookInfo(localBook);
 
 	//Задание 1.4.1 Напишите функцию для формирования полей структуры.
 	//Прототип функции поместите в файл "book.h", а реализацию - в "book.cpp"
 	//Для ввода используйте функцию стандартной библиотеки scanf
+
+	fillBookFields(*dynamicBook);
 
 	//Замечание: неплохо заложить в такую функцию возможность проверки
 	//корректности введенного значения, например, год издания не может быть
@@ -59,35 +75,14 @@ void main()
 	//Используйте разработанную функцию для заполнения полей динамически созданного экземпляра книги 
 	//распечатайте содержимое этой книги с помощью функции, соданной в п.1.3.1 
 	//
-
-
-	BOOK globalBook;
-
-
-	BOOK* dynamicBook = new BOOK;
-
-
-	BOOK localBook;
-	fillBookFields(localBook);
-
-
-	BOOK staticBook = { "John Doe", "The Book", 2020, 25.99, "Fiction" };
-
-
-	printBookInfo(globalBook);
 	printBookInfo(*dynamicBook);
-	printBookInfo(localBook);
-	printBookInfo(staticBook);
 
-
-	fillBookFields(*dynamicBook);
-	printBookInfo(*dynamicBook);
 
 
 	delete dynamicBook;
 
-
-
+#endif;
+#if 1;
 	//----------------------------------------------------------------------------------------------------------------
 		//Задание 2.1 Создаем "картотеку".
 
@@ -121,10 +116,39 @@ void main()
 		//   б) хранить строки как расширенные - wchar_t
 		//   в) установить кодировку для ввода русских символов - setlocale(LC_CTYPE, ".866");
 
+	setlocale(LC_CTYPE, ".1251"); // Установка кодировки для вывода русских символов
+
 	CARD_INDEX cardIndex;
 	initializeCardIndex(cardIndex, 5); // Начальная емкость массива - 5
 
+	int choice;
+	do {
+		printMenu();
+		std::cout << "Enter your choice: ";
+		std::cin >> choice;
 
+		switch (choice) {
+		case 1:
+			printCardIndex(cardIndex);
+			break;
+		case 2:
+			addBook(cardIndex);
+			break;
+		case 3:
+			removeBook(cardIndex);
+			break;
+		case 4:
+			std::cout << "Exiting program.\n";
+			break;
+		default:
+			std::cout << "Invalid choice. Please try again.\n";
+		}
+	} while (choice != 4);
+
+	cleanUp(cardIndex); // Освобождение выделенной памяти
+
+#endif;
+#if 1;
 	//----------------------------------------------------------------------------------------------------------------
 		//Задание 2.2 (*) Дорабатываем "картотеку".	
 
@@ -148,27 +172,32 @@ void main()
 		//в) считали данные из файла в массив
 		//}
 
-	int choice;
+	setlocale(LC_CTYPE, ".1251"); // Установка кодировки для вывода русских символов
+
+	CARD_INDEX cardIndex_1;
+	initializeCardIndex(cardIndex, 5); // Начальная емкость массива - 5
+
+	int choice_1;
 	do {
 		printMenu();
 		std::cout << "Enter your choice: ";
-		std::cin >> choice;
+		std::cin >> choice_1;
 
-		switch (choice) {
+		switch (choice_1) {
 		case 1:
-			printCardIndex(cardIndex);
+			printCardIndex(cardIndex_1);
 			break;
 		case 2:
-			addBook(cardIndex);
+			addBook(cardIndex_1);
 			break;
 		case 3:
-			removeBook(cardIndex);
+			removeBook(cardIndex_1);
 			break;
 		case 4:
-			saveToFile(cardIndex, "card_index.txt");
+			saveToFile(cardIndex_1, "card_index.txt");
 			break;
 		case 5:
-			loadFromFile(cardIndex, "card_index.txt");
+			loadFromFile(cardIndex_1, "card_index.txt");
 			break;
 		case 6:
 			std::cout << "Exiting program.\n";
@@ -176,10 +205,12 @@ void main()
 		default:
 			std::cout << "Invalid choice. Please try again.\n";
 		}
-	} while (choice != 6);
+	} while (choice_1 != 6);
 
-	cleanUp(cardIndex); // Освобождение выделенной памяти
+	cleanUp(cardIndex_1); // Освобождение выделенной памяти
 
+#endif;
+#if 0;
 	//----------------------------------------------------------------------------------------------------------------
 	//Задание 3 (*). Предоставьте пользователю возможность выводить перечень книг
 	//в определенном порядке => напишите функцию (функции) сортировки массива
@@ -194,30 +225,30 @@ void main()
 
 	setlocale(LC_CTYPE, ".1251"); // Установка кодировки для вывода русских символов
 
-	CARD_INDEX cardIndex;
-	initializeCardIndex(cardIndex, 5); // Начальная емкость массива - 5
+	CARD_INDEX cardIndex_2;
+	initializeCardIndex(cardIndex_2, 5); // Начальная емкость массива - 5
 
-	int choice;
+	int choice_2;
 	do {
 		printMenu();
 		std::cout << "Enter your choice: ";
-		std::cin >> choice;
+		std::cin >> choice_2;
 
-		switch (choice) {
+		switch (choice_2) {
 		case 1:
-			printCardIndex(cardIndex);
+			printCardIndex(cardIndex_2);
 			break;
 		case 2:
-			addBook(cardIndex);
+			addBook(cardIndex_2);
 			break;
 		case 3:
-			removeBook(cardIndex);
+			removeBook(cardIndex_2);
 			break;
 		case 4:
-			saveToFile(cardIndex, "card_index.txt");
+			saveToFile(cardIndex_2, "card_index.txt");
 			break;
 		case 5:
-			loadFromFile(cardIndex, "card_index.txt");
+			loadFromFile(cardIndex_2, "card_index.txt");
 			break;
 		case 6: {
 			int sortField;
@@ -231,7 +262,7 @@ void main()
 			std::cin >> sortField;
 
 			if (sortField >= 1 && sortField <= 5) {
-				sortBooks(cardIndex, static_cast<SortField>(sortField - 1));
+				sortBooks(cardIndex_2, static_cast<SortField>(sortField - 1));
 			}
 			else {
 				std::cout << "Invalid choice. Sorting aborted.\n";
@@ -244,7 +275,9 @@ void main()
 		default:
 			std::cout << "Invalid choice. Please try again.\n";
 		}
-	} while (choice != 7);
+	} while (choice_2 != 7);
 
-	cleanUp(cardIndex); // Освобождение выделенной памяти
+	cleanUp(cardIndex_2); // Освобождение выделенной памяти
+#endif;
+
 }

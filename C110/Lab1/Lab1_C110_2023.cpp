@@ -397,7 +397,7 @@ setlocale(LC_ALL, "Russian");
 
 #endif
 
-#if 1
+#if 0
 	///////////////////////////////////////////////////////////////////////////
 	/*
 	//Задание 4
@@ -433,7 +433,7 @@ setlocale(LC_ALL, "Russian");
 	const int rows = 5;
 	const int cols = 10;
 
-	srand(unsigned(time(0)));
+	srand((time(0)));
 	char charArray_2[rows][cols];
 
 	for (int i = 0; i < rows; ++i) {
@@ -586,6 +586,7 @@ setlocale(LC_ALL, "Russian");
 	}
 #endif
 #if 1
+	
 	/////////////////////////////////////////////////////////////////////////////
 	//Задание 6. 
 		//Реализуйте задание 2, используя не встроенные, а ДИНАМИЧЕСКИЕ массивы (массив?).
@@ -597,10 +598,7 @@ setlocale(LC_ALL, "Russian");
 		//функцией strlen 
 		//size_t strlen(char const* _Str);
 
-		//При этом значение количества строк сформируйте с помощью потока ввода
-	int nStringNumber;
-
-
+	//При этом значение количества строк сформируйте с помощью потока ввода
 	//Цикл ввода строк:
 
 	// Для ввода строки нужно использовать буфер "достаточного" размера. 
@@ -627,43 +625,63 @@ setlocale(LC_ALL, "Russian");
 
 
 	//Цикл сортировки строк по методу "всплывающего пузырька" в
-	//порядке возрастания кода первого символа
+	//порядке возрастания кода первого символа int nStringNumber;
+#define STOP_STRING "*"
+#define buf 10
+	int nStringNumber;
 
-
-	cout << "Введите количество строк: ";
+	std::cout << "Enter count of string: ";
 	cin >> nStringNumber;
-
-	char** dynamicArray_1 = new char* [nStringNumber];
-
+	// Выделение памяти для массива указателей и буфера строк
+	char** cPointers = new char* [nStringNumber];
+	char** cBuffer = new char* [nStringNumber];
 	for (int i = 0; i < nStringNumber; ++i) {
-		char buffer[256];
-		cout << "Введите строку " << i + 1 << ": ";
-		cin.ignore();
-		cin.getline(buffer, sizeof(buffer));
-
-		dynamicArray_1[i] = new char[strlen(buffer) + 1];
-		strncpy(dynamicArray_1[i], buffer, strlen(buffer) + 1);
+		cBuffer[i] = new char[buf];
+		cPointers[i] = cBuffer[i];
 	}
 
-	for (int i = 0; i < nStringNumber - 1; ++i) {
-		for (int j = 0; j < nStringNumber - i - 1; ++j) {
-			if (strcmp(dynamicArray_1[j], dynamicArray_1[j + 1]) > 0) {
-				char* temp = dynamicArray_1[j];
-				dynamicArray_1[j] = dynamicArray_1[j + 1];
-				dynamicArray_1[j + 1] = temp;
+	std::cout << "Enter string (EOL '*'):\n";
+	int nIndex = 0;
+	while (nIndex < nStringNumber) {
+		std::cout << "String " << nIndex << ": ";
+		cin.getline(cBuffer[nIndex], buf);
+
+		if (strcmp(cBuffer[nIndex], STOP_STRING) == 0) {
+			std::cout << "End of enter.\n";
+			break;
+		}
+
+		nIndex++;
+	}
+
+	std::cout << "\nИсходный массив:\n";
+	for (int i = 0; i < nIndex; ++i) {
+		std::cout << cPointers[i] << '\n';
+	}
+
+	// Сортировка строк методом "всплывающего пузырька"
+	for (int i = 0; i < nIndex - 1; ++i) {
+		for (int j = 0; j < nIndex - i - 1; ++j) {
+			if (strcmp(cPointers[j], cPointers[j + 1]) > 0) {
+				char* temp = cPointers[j];
+				cPointers[j] = cPointers[j + 1];
+				cPointers[j + 1] = temp;
 			}
 		}
 	}
 
-	cout << "\nОтсортированные строки:\n";
-	for (int i = 0; i < nStringNumber; ++i) {
-		cout << dynamicArray_1[i] << endl;
+	std::cout << "\nОтсортированный массив:\n";
+	for (int i = 0; i < nIndex; ++i) {
+		std::cout << cPointers[i] << '\n';
 	}
 
+	// Освобождение выделенной памяти
 	for (int i = 0; i < nStringNumber; ++i) {
-		delete[] dynamicArray_1[i];
+		delete[] cBuffer[i];
 	}
-	delete[] dynamicArray_1;
+	delete[] cBuffer;
+	delete[] cPointers;
+
 
 #endif
 	return 0;

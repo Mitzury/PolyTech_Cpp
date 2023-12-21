@@ -553,8 +553,17 @@ setlocale(LC_ALL, "Russian");
 		}
 
 		for (int i = 0; i < N_4; ++i) {
-			sort(dynamicArray[i], dynamicArray[i] + M_4, greater<int>()); //-
+			for (int j = 0; j < M_4 - 1; ++j) {
+				for (int k = 0; k < M_4 - j - 1; ++k) {
+					if (dynamicArray[i][k] > dynamicArray[i][k + 1]) {
+						int temp = dynamicArray[i][k];
+						dynamicArray[i][k] = dynamicArray[i][k + 1];
+						dynamicArray[i][k + 1] = temp;
+					}
+				}
+			}
 		}
+
 		cout << "Массив после сортировки каждой строки:\n";
 		for (int i = 0; i < N_4; ++i) {
 			for (int j = 0; j < M_4; ++j) {

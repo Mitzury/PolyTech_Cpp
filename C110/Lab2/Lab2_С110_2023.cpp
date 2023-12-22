@@ -236,15 +236,15 @@ int _tmain()
 			int nAr[]=...	//массив для сортировки
 		*/
 			int nAr[] = { 4, 2, 8, 1, 6, 5 };
-			size_t nIndex = sizeof(*nAr);
+			int nArSize = sizeof(nAr) / sizeof(nAr[0]);
 			//Печать исходного массива
 			std::cout << "Original array: ";
-			for (int num : nAr) {
-				std::cout << num << " ";
+			for (int i = 0; i < nArSize; ++i) {
+				std::cout << nAr[i] << " ";
 			}
 			std::cout << std::endl;
 			//Вызов сортировки
-			Sort(reinterpret_cast<char*>(&nAr[0]), nIndex, sizeof(int), SwapInt, CmpInt);
+			Sort(reinterpret_cast<char*>(&nAr[0]), nArSize, sizeof(int), SwapInt, CmpInt);
 			//Печать результатов сортировки
 			std::cout << "Sorted array: ";
 			for (int num : nAr) {

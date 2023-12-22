@@ -640,52 +640,57 @@ setlocale(LC_ALL, "Russian");
 	char buff[256];
 	int Size = 0;
 
-	const char stop_str[] = "*";
+	const char stop_str[] = { "*" };
 
-	std::cout << "Enter count: ";
+	std::cout << "Enter a number of string:";
 	std::cin >> nStringNumber;
 	char** cPointers = new char* [nStringNumber];
 
-	std::cout << "For EOL enter '*'\n";
-	for (int i = 0; i < nStringNumber; i++) {
-		std::cout << "String " << i + 1 << ": ";
+	std::cout << "For EOL'*'\n";
+	for (int i = 0; i < nStringNumber; i++)
+	{
+		cout << "String " << i + 1 << ": ";
 		std::cin >> buff;
+		Size = 0;
 		Size = strlen(buff);
-
-
-		cPointers[i] = new char[Size + 1];
-		strncpy(cPointers[i], buff, Size);
-		cPointers[i][Size] = '\0';
-
-
-		if (strncmp(cPointers[i], stop_str, sizeof(stop_str)) == 0) {
-			std::cout << "\nEntered stop word\n";
+		cPointers[i] = new char[Size];
+		strcpy(cPointers[i], buff);
+		if (strcmp(cPointers[i], stop_str) == 0)
+		{
+			std::cout << "\nYou Have entered stop word\n";
 			break;
+
 		}
 		nIndex = i + 1;
 	}
-
-
-	for (int i = 0; i < nIndex; i++) {
-		for (int j = 0; j < nIndex - 1; j++) {
-			if (strcmp(cPointers[j], cPointers[j + 1]) > 0) {
+	for (int i = 0; i < nIndex; i++)
+	{
+		std::cout << cPointers[i];
+		std::cout << '\n';
+	}
+	for (int i = 0; i < nIndex; i++)
+	{
+		for (int j = 0; j < nIndex - 1; j++)
+		{
+			if ((strcmp(cPointers[j], cPointers[j + 1])) > 0)
+			{
 				char* temp = cPointers[j];
 				cPointers[j] = cPointers[j + 1];
 				cPointers[j + 1] = temp;
 			}
 		}
 	}
-
-
 	std::cout << '\n';
-	for (int i = 0; i < nIndex; i++) {
-		std::cout << cPointers[i] << " Size: " << strlen(cPointers[i]) << '\n';
+	for (int i = 0; i < nIndex; i++)
+	{
+		std::cout << cPointers[i] << " Size: " << strlen(cPointers[i]);
+		std::cout << '\n';
 	}
 
-	// Освобождение памяти
-	for (int i = 0; i < nIndex; i++) {
-		delete[] cPointers[i];
-	}
+	//for (int i = 0; i < nIndex; i++) {
+	//	delete[] cPointers[i];
+	//}
+
 	delete[] cPointers;
 
 #endif

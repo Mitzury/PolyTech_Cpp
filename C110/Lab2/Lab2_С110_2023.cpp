@@ -235,7 +235,7 @@ int _tmain()
 		/*
 			int nAr[]=...	//массив для сортировки
 		*/
-			int nAr[] = { 4, 2, 8, 1, 6, 5 };
+			int nAr[] = { 4, 2, 8, 1, 66, 5 };
 			int nArSize = sizeof(nAr) / sizeof(nAr[0]);
 			//Печать исходного массива
 			std::cout << "Original array: ";
@@ -247,8 +247,8 @@ int _tmain()
 			Sort(reinterpret_cast<char*>(&nAr[0]), nArSize, sizeof(int), SwapInt, CmpInt);
 			//Печать результатов сортировки
 			std::cout << "Sorted array: ";
-			for (int num : nAr) {
-				std::cout << num << " ";
+			for (int i = 0; i < nArSize; ++i) {
+				std::cout << nAr[i] << " ";
 			}
 			std::cout << std::endl;
 
@@ -258,21 +258,21 @@ int _tmain()
 		//для сортировки массива вещественных значений.
 		*/
 			double dAr[] = { 4.2, 2.1, 8.5, 1.7, 6.3 };
-
+			int dArSize = sizeof(dAr) / sizeof(dAr[0]);
 
 			std::cout << "\nOriginal double array: ";
-			for (double num : dAr) {
-				std::cout << num << " ";
+			for (int i = 0; i < dArSize; ++i) {
+				std::cout << dAr[i] << " ";
 			}
 			std::cout << std::endl;
 
 
-			Sort(reinterpret_cast<char*>(&dAr[0]), 5, sizeof(double), SwapDouble, CmpDouble);
+			Sort(reinterpret_cast<char*>(&dAr[0]), dArSize, sizeof(double), SwapDouble, CmpDouble);
 
 
 			std::cout << "Sorted double array: ";
-			for (double num : dAr) {
-				std::cout << num << " ";
+			for (int i = 0; i < dArSize; ++i) {
+				std::cout << dAr[i] << " ";
 			}
 			std::cout << std::endl;
 

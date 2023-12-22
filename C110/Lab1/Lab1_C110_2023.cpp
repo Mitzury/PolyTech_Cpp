@@ -504,7 +504,7 @@ setlocale(LC_ALL, "Russian");
 
 
 #endif
-#if 0
+#if 1
 	///////////////////////////////////////////////////////////////
 	//			Динамическое выделение памяти                    //
 	///////////////////////////////////////////////////////////////
@@ -544,27 +544,32 @@ setlocale(LC_ALL, "Russian");
 			}
 		}
 
-		cout << "Изначальный массив:\n";
+		cout << "Original Array:\n";
 		for (int i = 0; i < N_4; ++i) {
 			for (int j = 0; j < M_4; ++j) {
 				cout << dynamicArray[i][j] << " ";
 			}
 			cout << "\n";
 		}
-
+		// Сортировка выбором
 		for (int i = 0; i < N_4; ++i) {
 			for (int j = 0; j < M_4 - 1; ++j) {
-				for (int k = 0; k < M_4 - j - 1; ++k) {
-					if (dynamicArray[i][k] > dynamicArray[i][k + 1]) {
-						int temp = dynamicArray[i][k];
-						dynamicArray[i][k] = dynamicArray[i][k + 1];
-						dynamicArray[i][k + 1] = temp;
+				int maxIndex = j;
+				for (int k = j + 1; k < M_4; ++k) {
+					if (dynamicArray[i][k] > dynamicArray[i][maxIndex]) {
+						maxIndex = k;
 					}
+				}
+
+				if (maxIndex != j) {
+					int temp = dynamicArray[i][j];
+					dynamicArray[i][j] = dynamicArray[i][maxIndex];
+					dynamicArray[i][maxIndex] = temp;
 				}
 			}
 		}
 
-		cout << "Массив после сортировки каждой строки:\n";
+		cout << "Sort string:\n";
 		for (int i = 0; i < N_4; ++i) {
 			for (int j = 0; j < M_4; ++j) {
 				cout << dynamicArray[i][j] << " ";
@@ -582,7 +587,7 @@ setlocale(LC_ALL, "Russian");
 			averageArray[i] = sum / M_4;
 		}
 
-		cout << "Одномерный массив средних значений:\n";
+		cout << "Avg:\n";
 		for (int i = 0; i < N_4; ++i) {
 			cout << averageArray[i] << " ";
 		}
@@ -594,7 +599,7 @@ setlocale(LC_ALL, "Russian");
 		delete[] averageArray;
 	}
 #endif
-#if 1
+#if 0
 	
 	/////////////////////////////////////////////////////////////////////////////
 	//Задание 6. 
@@ -649,11 +654,11 @@ setlocale(LC_ALL, "Russian");
 	std::cout << "For EOL'*'\n";
 	for (int i = 0; i < nStringNumber; i++)
 	{
-		cout << "String " << i + 1 << ": ";
+		std::cout << "String " << i + 1 << ": ";
 		std::cin >> buff;
 		Size = 0;
 		Size = strlen(buff);
-		cPointers[i] = new char[Size + 1];
+		cPointers[i] = new char[Size +1];
 		strcpy(cPointers[i], buff);
 		if (strcmp(cPointers[i], stop_str) == 0)
 		{

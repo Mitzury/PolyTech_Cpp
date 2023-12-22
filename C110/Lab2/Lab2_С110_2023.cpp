@@ -211,7 +211,7 @@ int _tmain()
 
 
 #endif;
-#if 0;
+#if 1;
 	///////////////////////////////////////////////////////////////////
 		//Задание 6. Указатель на функцию в качестве аргумента.
 		//Дана заготовка функции сортировки любых объектов - Sort.
@@ -236,6 +236,7 @@ int _tmain()
 			int nAr[]=...	//массив для сортировки
 		*/
 			int nAr[] = { 4, 2, 8, 1, 6 };
+			size_t nIndex = sizeof(*nAr);
 			//Печать исходного массива
 			std::cout << "Original array: ";
 			for (int num : nAr) {
@@ -243,7 +244,7 @@ int _tmain()
 			}
 			std::cout << std::endl;
 			//Вызов сортировки
-			Sort(reinterpret_cast<char*>(&nAr[0]), 5, sizeof(int), SwapInt, CmpInt);
+			Sort(reinterpret_cast<char*>(&nAr[0]), nIndex, sizeof(int), SwapInt, CmpInt);
 			//Печать результатов сортировки
 			std::cout << "Sorted array: ";
 			for (int num : nAr) {
@@ -281,7 +282,6 @@ int _tmain()
 		//функции - SwapStr и CmpStr и вызовите функцию Sort
 		//для сортировки массива указателей на строки.
 		*/
-		const char* arStr[] = { "QQQ", "SDF", "ABC","Abba", "ENFR","En",. . . };
 
 		const char* arStr[] = { "QQQ", "SDF", "ABC", "Abba", "ENFR", "En" };
 		std::cout << "\nOriginal string array: ";

@@ -235,7 +235,7 @@ int _tmain()
 		/*
 			int nAr[]=...	//массив дл€ сортировки
 		*/
-			int nAr[] = { 4, 2, 8, 1, 6 };
+			int nAr[] = { 4, 2, 8, 1, 6, 5 };
 			size_t nIndex = sizeof(*nAr);
 			//ѕечать исходного массива
 			std::cout << "Original array: ";

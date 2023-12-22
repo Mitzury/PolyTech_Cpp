@@ -540,7 +540,7 @@ setlocale(LC_ALL, "Russian");
 		srand(static_cast<unsigned int>(time(0)));
 		for (int i = 0; i < N_4; ++i) {
 			for (int j = 0; j < M_4; ++j) {
-				dynamicArray[i][j] = rand() % 100;
+				dynamicArray[i][j] = rand() % 10;
 			}
 		}
 
@@ -653,7 +653,7 @@ setlocale(LC_ALL, "Russian");
 		std::cin >> buff;
 		Size = 0;
 		Size = strlen(buff);
-		cPointers[i] = new char[Size];
+		cPointers[i] = new char[Size + 1];
 		strcpy(cPointers[i], buff);
 		if (strcmp(cPointers[i], stop_str) == 0)
 		{
@@ -687,9 +687,9 @@ setlocale(LC_ALL, "Russian");
 		std::cout << '\n';
 	}
 
-	//for (int i = 0; i < nIndex; i++) {
-	//	delete[] cPointers[i];
-	//}
+	for (int i = 0; i < nIndex; i++) {
+		delete[] cPointers[i];
+	}
 
 	delete[] cPointers;
 

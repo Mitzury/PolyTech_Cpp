@@ -53,21 +53,16 @@ void DayOfMonth(size_t numDay, size_t year, size_t& day, size_t& month, const in
 void VarArgs(int arg1, ...) {
     va_list args;
     va_start(args, arg1);
-
     std::cout << "Number of arguments: ";
-
     int count = 0;
     int value = arg1;
-
     while (value != 0) {
         ++count;
         std::cout << value << " ";
 
         value = va_arg(args, int);
     }
-
     std::cout << std::endl;
-
     va_end(args);
 }
 

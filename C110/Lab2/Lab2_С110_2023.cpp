@@ -142,7 +142,7 @@ int _tmain()
 
 
 #endif;
-#if 0;
+#if 1;
 	///////////////////////////////////////////////////////////////////
 	//Тема Указатели на функции
 
@@ -171,6 +171,9 @@ int _tmain()
 	double operand1, operand2;
 	double result;
 
+
+	double (*operationFunction)(double, double) = nullptr;
+
 	do {
 		std::cout << "Enter two values and an operation (+, -, *, /, ^): ";
 		std::cin >> operand1 >> operand2 >> operation;
@@ -178,19 +181,19 @@ int _tmain()
 
 		switch (operation) {
 		case '+':
-			result = Sum(operand1, operand2);
+			operationFunction = &Sum;
 			break;
 		case '-':
-			result = Sub(operand1, operand2);
+			operationFunction = &Sub;
 			break;
 		case '*':
-			result = Mul(operand1, operand2);
+			operationFunction = &Mul;
 			break;
 		case '/':
-			result = Div(operand1, operand2);
+			operationFunction = &Div;
 			break;
 		case '^':
-			result = Power(operand1, operand2);
+			operationFunction = &Power;
 			break;
 		default:
 			std::cout << "Invalid operation. Try again." << std::endl;
@@ -198,16 +201,17 @@ int _tmain()
 		}
 
 
-		std::cout << "Result: " << result << std::endl;
+		result = operationFunction(operand1, operand2);
 
+		std::cout << "Result: " << result << std::endl;
 
 		std::cout << "Do you want to continue? (y/n): ";
 		char choice;
 		std::cin >> choice;
 		if (choice != 'y' && choice != 'Y') {
 			break;
-		}
-	} while (true);
+  }
+ } while (true);
 
 
 #endif;
@@ -305,7 +309,7 @@ int _tmain()
 		//	Sort(reinterpret_cast<char*>(&arStr[0])), nTotal, sizeof(???), SwapStr, CmpStr);
 		
 #endif;
-#if 1;
+#if 0;
 	///////////////////////////////////////////////////////////////////
 		/*
 		//Задание 7. Массивы указателей на функцию.

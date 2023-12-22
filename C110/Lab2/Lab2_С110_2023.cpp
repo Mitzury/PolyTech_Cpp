@@ -266,9 +266,7 @@ int _tmain()
 			}
 			std::cout << std::endl;
 
-
 			Sort(reinterpret_cast<char*>(&dAr[0]), dArSize, sizeof(double), SwapDouble, CmpDouble);
-
 
 			std::cout << "Sorted double array: ";
 			for (int i = 0; i < dArSize; ++i) {

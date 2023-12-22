@@ -635,61 +635,60 @@ setlocale(LC_ALL, "Russian");
 
 	//Цикл сортировки строк по методу "всплывающего пузырька" в
 	//порядке возрастания кода первого символа int nStringNumber;
-#define STOP_STRING "*"
-#define buf 10
+
 
 	int nStringNumber;
+	int nIndex;
+	char buff[256];
+	int Size = 0;
 
-	cout << "enter count lines: ";
-	cin >> nStringNumber;
-	cin.ignore();
+	const char stop_str[] = { "*" };
 
-
+	std::cout << "Enter a number of string:";
+	std::cin >> nStringNumber;
 	char** cPointers = new char* [nStringNumber];
-	for (int i = 0; i < nStringNumber; ++i) {
-		cPointers[i] = new char[buf];
-	}
 
-	cout << "Enter string (EOL '*'):\n";
-
-	int nIndex = 0;
-	while (nIndex < nStringNumber) {
-		cout << "String " << nIndex + 1 << ": ";
-		cin.getline(cPointers[nIndex], buf);
-
-		if (strcmp(cPointers[nIndex], STOP_STRING) == 0) {
-			cout << "Close enter.\n";
+	std::cout << "For EOL'*'\n";
+	for (int i = 0; i < nStringNumber; i++)
+	{
+		cout << "String " << i + 1 << ": ";
+		std::cin >> buff;
+		Size = 0;
+		Size = strlen(buff);
+		cPointers[i] = new char[Size];
+		strcpy(cPointers[i], buff);
+		if (strcmp(cPointers[i], stop_str) == 0)
+		{
+			std::cout << "\nYou Have entered stop word\n";
 			break;
+
 		}
-
-		size_t strLength = strlen(cPointers[nIndex]);
-		cout << "String length: " << strLength << " symbol\n";
-
-		++nIndex;
+		nIndex = i + 1;
 	}
-
-	cout << "\nMain Array:\n";
-	for (int i = 0; i < nIndex; ++i) {
-		cout << cPointers[i] << '\n';
+	for (int i = 0; i < nIndex; i++)
+	{
+		std::cout << cPointers[i];
+		std::cout << '\n';
 	}
-
-
-	for (int i = 0; i < nIndex - 1; ++i) {
-		for (int j = 0; j < nIndex - i - 1; ++j) {
-			if (strcmp(cPointers[j], cPointers[j + 1]) > 0) {
-				swap(cPointers[j], cPointers[j + 1]);
+	for (int i = 0; i < nIndex; i++)
+	{
+		for (int j = 0; j < nIndex - 1; j++)
+		{
+			if ((strcmp(cPointers[j], cPointers[j + 1])) > 0)
+			{
+				char* temp = cPointers[j];
+				cPointers[j] = cPointers[j + 1];
+				cPointers[j + 1] = temp;
 			}
 		}
 	}
-
-	cout << "\nSort Array:\n";
-	for (int i = 0; i < nIndex; ++i) {
-		cout << cPointers[i] << '\n';
+	std::cout << '\n';
+	for (int i = 0; i < nIndex; i++)
+	{
+		std::cout << cPointers[i] << " Size: " << strlen(cPointers[i]);
+		std::cout << '\n';
 	}
 
-	for (int i = 0; i < nStringNumber; ++i) {
-		delete[] cPointers[i];
-	}
 	delete[] cPointers;
 
 #endif

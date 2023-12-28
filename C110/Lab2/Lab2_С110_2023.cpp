@@ -15,7 +15,7 @@ typedef const char* (*StringFunction)();
 
 int _tmain()
 {
-#if 0;
+#if 0
 	//Задание 1. 
 	//массивы в качестве аргументов функции.
 	//Напишите два варианта функции печати элементов
@@ -63,8 +63,8 @@ int _tmain()
 	}
 	delete[] dynamicArray;
 
-#endif;
-#if 0;
+#endif
+#if 0
 
 	/////////////////////////////////////////////////////////////////////////////
 		//Задание 2.
@@ -106,8 +106,8 @@ int _tmain()
 	DayOfMonth(numDay, year, resultDay, resultMonth, nDayTab);
 	std::cout << "Day of Month: " << resultDay << ", Month: " << resultMonth << std::endl;
 
-#endif;
-#if 1;
+#endif
+#if 1
 	/////////////////////////////////////////////////////////////////////////////
 //Задание 3.
 	//Задание 3а. Функции с переменным числом параметров.
@@ -129,8 +129,8 @@ int _tmain()
 
 	VarArgs_1(nN1, nN2, nN3, nN4, nN5, 0);
 
-#endif;
-#if 0;
+#endif
+#if 0
 	///////////////////////////////////////////////////////////////////
 	//Тема "Старые" потоковые функции стандартной библиотеки
 	//Задание 4.1 С помощью функции scanf сформирйуте три коэффициента: A,B,C
@@ -148,8 +148,8 @@ int _tmain()
 	printTable(A, B, C);
 
 
-#endif;
-#if 1;
+#endif
+#if 1
 	///////////////////////////////////////////////////////////////////
 	//Тема Указатели на функции
 
@@ -221,8 +221,8 @@ int _tmain()
 	} while (true);
 
 
-#endif;
-#if 1;
+#endif
+#if 1
 	///////////////////////////////////////////////////////////////////
 		//Задание 6. Указатель на функцию в качестве аргумента.
 		//Дана заготовка функции сортировки любых объектов - Sort.
@@ -315,8 +315,8 @@ int _tmain()
 		//в массиве линейно лежат АДРЕСА строк, надо передать АДРЕС массива,
 		//	Sort(reinterpret_cast<char*>(&arStr[0])), nTotal, sizeof(???), SwapStr, CmpStr);
 		
-#endif;
-#if 0;
+#endif
+#if 1
 	///////////////////////////////////////////////////////////////////
 		/*
 		//Задание 7. Массивы указателей на функцию.
@@ -342,17 +342,17 @@ int _tmain()
 			int n;
 		//Вызовите функцию
 		//Распечатайте результат
-		StringFunction stringFunctions[] = {
-			GetString1,
-			GetString2,
-			GetString3,
-			GetString4,
-			GetString5
-		};
+			const char* (*stringFunctions[])() = {
+					GetString1,
+					GetString2,
+					GetString3,
+					GetString4,
+					GetString5
+			};
 
 
-	std::cout << "Enter the number of the function you want to call (1-5): ";
-	std::cin >> n;
+		std::cout << "Enter the number of the function you want to call (1-5): ";
+		std::cin >> n;
 
 
 	if (n < 1 || n > 5) {
@@ -360,12 +360,10 @@ int _tmain()
 		return 1;
 	}
 
+	//const char* result = stringFunctions[n]();
+	std::cout << "Result: " << stringFunctions[n - 1]() << std::endl;
 
-	const char* result = stringFunctions[n - 1]();
 
-
-	std::cout << "Result: " << result << std::endl;
-
-#endif;
+#endif
 	return 0;
 }

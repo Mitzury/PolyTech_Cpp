@@ -154,22 +154,31 @@ int CmpStr(const void* a, const void* b) {
     return std::strcmp(*static_cast<const char* const*>(a), *static_cast<const char* const*>(b));
 }
 
-const char* GetString1() {
-    return "This is String 1";
+const char* GetString1()
+{
+    return "Hello";
 }
 
-const char* GetString2() {
-    return "String 2 is here";
+const char* GetString2()
+{
+    const char* str = "Book";
+    return str;
 }
 
-const char* GetString3() {
-    return "The third string is ready";
+const char* GetString3()
+{
+    char str[] = "Little";
+    return str;
 }
 
-const char* GetString4() {
-    return "String 4 reporting in";
+const char* GetString4()
+{
+    static char str[] = "world";
+    return str;
 }
 
-const char* GetString5() {
-    return "String 5 at your service";
+const char* GetString5()
+{
+    char* str = new char[strlen("time") + 1];
+    return str;
 }

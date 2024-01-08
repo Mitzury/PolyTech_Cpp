@@ -361,10 +361,10 @@ int _tmain()
 		if (n >= 1 && n <= 5) {
 			const char* result = stringFunctions[n - 1]();
 
-			std::cout << "Результат вызова функции: " << result << std::endl;
+			std::cout << "Result: " << result << std::endl;
 		}
 		else {
-			std::cout << "Некорректный номер функции." << std::endl;
+			std::cout << "Incorrect number." << std::endl;
 		}
 
 

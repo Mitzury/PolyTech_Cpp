@@ -107,7 +107,7 @@ int _tmain()
 	std::cout << "Day of Month: " << resultDay << ", Month: " << resultMonth << std::endl;
 
 #endif
-#if 1
+#if 0
 	/////////////////////////////////////////////////////////////////////////////
 //Задание 3.
 	//Задание 3а. Функции с переменным числом параметров.
@@ -149,7 +149,7 @@ int _tmain()
 
 
 #endif
-#if 1
+#if 0
 	///////////////////////////////////////////////////////////////////
 	//Тема Указатели на функции
 
@@ -293,19 +293,21 @@ int _tmain()
 		*/
 
 		const char* arStr[] = { "QQQ", "SDF", "ABC", "Abba", "ENFR", "En" };
-		std::cout << "\nOriginal string array: ";
-		for (const char* str : arStr) {
-			std::cout << str << " ";
-		}
-		std::cout << std::endl;
+		int nTotal = sizeof(arStr) / sizeof(arStr[0]);
+
+	std::cout << "\nOriginal string array: ";
+	for (int i = 0; i < nTotal; ++i) {
+		std::cout << arStr[i] << " ";
+	}
+	std::cout << std::endl;
 
 
 		Sort(reinterpret_cast<char*>(&arStr[0]), 6, sizeof(const char*), SwapStr, CmpStr);
 
 
 		std::cout << "Sorted string array: ";
-		for (const char* str : arStr) {
-			std::cout << str << " ";
+		for (int i = 0; i < nTotal; ++i) {
+			std::cout << arStr[i] << " ";
 		}
 		std::cout << std::endl;
 
@@ -355,13 +357,15 @@ int _tmain()
 		std::cin >> n;
 
 
-	if (n < 1 || n > 5) {
-		std::cout << "Invalid input. Exiting." << std::endl;
-		return 1;
-	}
 
-	//const char* result = stringFunctions[n]();
-	std::cout << "Result: " << stringFunctions[n - 1]() << std::endl;
+		if (n >= 1 && n <= 5) {
+			const char* result = stringFunctions[n - 1]();
+
+			std::cout << "Результат вызова функции: " << result << std::endl;
+		}
+		else {
+			std::cout << "Некорректный номер функции." << std::endl;
+		}
 
 
 #endif

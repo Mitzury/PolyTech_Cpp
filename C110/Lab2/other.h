@@ -22,6 +22,8 @@ void DayOfMonth(size_t numDay, size_t year, size_t& day, size_t& month, const in
 
 
 void VarArgs(int arg1, ...);
+void VarArgs_1(int arg1, ...);
+
 
 template<typename T>
 void PrintArgs(T value) {
@@ -31,12 +33,6 @@ void PrintArgs(T value) {
 template<typename T, typename... Args>
 void PrintArgs(T value, Args... args) {
     std::cout << value << " ";
-    PrintArgs(args...);
-}
-
-template<typename... Args>
-void VarArgs_1(Args... args) {
-    std::cout << "Number of arguments: ";
     PrintArgs(args...);
 }
 

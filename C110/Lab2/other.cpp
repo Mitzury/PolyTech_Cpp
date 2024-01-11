@@ -53,7 +53,7 @@ void DayOfMonth(size_t numDay, size_t year, size_t& day, size_t& month, const in
 void VarArgs(int arg1, ...) {
     va_list args;
     va_start(args, arg1);
-    std::cout << "Number of arguments: ";
+    std::cout << "Macro_ Number of arguments: ";
     int count = 0;
     int value = arg1;
     while (value != 0) {
@@ -64,6 +64,25 @@ void VarArgs(int arg1, ...) {
     va_end(args);
 }
 
+void VarArgs_1(int arg1, ...)
+{
+    int number = 0;	//счетчик элементов
+    //Объявите указатель на int и инициализируйте его адресом
+    //первого аргумента
+
+    //Пока не достигнут конец списка:
+    // а) печать значения очередного аргумента
+    // б) модификация указателя (он должен указывать на
+    //следующий аргумент списка)
+    // в) увеличить счетчик элементов
+    int* p = &arg1;
+    for (int* p = &arg1; *p; p++, number++) {
+       // std::cout << *p << ' ';
+    }
+    std::cout << "NoMacro_ Number of arguments: " << number << '\n';
+    //Печать числа элементов
+
+}
 
 
 void inputCoefficients(double& A, double& B, double& C) {

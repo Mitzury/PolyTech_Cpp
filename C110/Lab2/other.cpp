@@ -58,11 +58,9 @@ void VarArgs(int arg1, ...) {
     int value = arg1;
     while (value != 0) {
         ++count;
-        std::cout << value << " ";
-
         value = va_arg(args, int);
     }
-    std::cout << std::endl;
+    std::cout << count << std::endl;
     va_end(args);
 }
 

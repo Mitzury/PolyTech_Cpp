@@ -118,16 +118,19 @@ int _tmain()
 	// Признаком конца списка является нулевое значение.
 
 	int nN1=5, nN2=11, nN3=4, nN4=7, nN5=-1;
-	VarArgs(nN1,0);
-	VarArgs(nN1,nN2,0);
-	VarArgs(nN1,nN2,nN3,nN4,nN5,0);
+
+	VarArgs_1(nN1,0);
+	VarArgs_1(nN1,nN2,0);
+	VarArgs_1(nN1,nN2,nN3,nN4,nN5,0);
 
 
 
 	//Задание 3б. Модифицируйте функцию 3а с помощью макросов
 	// va_start, va_arg, va_end
 
-	VarArgs_1(nN1, nN2, nN3, nN4, nN5, 0);
+	VarArgs(nN1, 0);
+	VarArgs(nN1, nN2, 0);
+	VarArgs(nN1, nN2, nN3, nN4, nN5, 0);
 
 #endif
 #if 0
@@ -357,8 +360,8 @@ int _tmain()
 
 			if (n >= 1 && n <= 5)
 			{
-				const char* result = stringFunctions[n - 1]();
-				std::cout << "Result: " << result << std::endl;
+				
+				std::cout << "Result: " << stringFunctions[n - 1]() << std::endl;
 			}
 			else
 			{

@@ -40,11 +40,15 @@ void printCardIndex(const CARD_INDEX& cardIndex) {
 
 void addBook(CARD_INDEX& cardIndex) {
     if (cardIndex.count == cardIndex.capacity) {
+        // Увеличиваем емкость картотеки
         int newCapacity = cardIndex.capacity + 1;
+        // Выделяем память под новый массив
         BOOK* newBooks = new BOOK[newCapacity];
+        // Перезаписываем из старого в новый
         for (int i = 0; i < cardIndex.count; ++i) {
             newBooks[i] = cardIndex.books[i];
         }
+        // Удаляем старый
         delete[] cardIndex.books;
         cardIndex.books = newBooks;
         cardIndex.capacity = newCapacity;

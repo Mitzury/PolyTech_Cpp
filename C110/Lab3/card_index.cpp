@@ -61,13 +61,31 @@ void addBook(CARD_INDEX& cardIndex) {
 
 void removeBook(CARD_INDEX& cardIndex) {
     if (cardIndex.count > 0) {
-        cardIndex.count--;
-        std::cout << "Last book removed successfully!\n";
+        std::cout << "Books in the index:\n";
+        for (int i = 0; i < cardIndex.count; ++i) {
+            std::cout << i + 1 << ". " << cardIndex.books[i].title << " by " << cardIndex.books[i].author << "\n";
+        }
+
+        int bookToRemove;
+        std::cout << "Enter the number of the book to remove: ";
+        std::cin >> bookToRemove;
+
+        if (bookToRemove >= 1 && bookToRemove <= cardIndex.count) {
+            for (int i = bookToRemove - 1; i < cardIndex.count - 1; ++i) {
+                cardIndex.books[i] = cardIndex.books[i + 1];
+            }
+            cardIndex.count--;
+            std::cout << "Book " << bookToRemove << " removed successfully!\n";
+        }
+        else {
+            std::cout << "Invalid book number. No books removed.\n";
+        }
     }
     else {
         std::cout << "Card index is empty. No books to remove.\n";
     }
 }
+
 
 void saveToFile(const CARD_INDEX& cardIndex, const char* fileName) {
     FILE* file = std::fopen(fileName, "w");

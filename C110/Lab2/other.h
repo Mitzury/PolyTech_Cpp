@@ -7,6 +7,7 @@
 const int N = 3;
 const int M = 4;
 
+void printBuiltInArray2(int ar[][M], int rows);
 void printBuiltInArray(int ar[N][M]);
 void printDynamicArray(int** ar, int rows, int cols);
 

@@ -42,7 +42,11 @@ int _tmain()
 	
 	// Вызов функции для встроенного двумерного массива
 	std::cout << "Printing Built-in Array:" << std::endl;
-	printBuiltInArray(builtInArray2);
+	printBuiltInArray(builtInArray);
+
+	printBuiltInArray2(builtInArray2, x);
+
+	printBuiltInArray2(builtInArray, N);
 
 	// Выделение и заполнение динамического массива
 	int dynamicRows = 2;
@@ -121,10 +125,9 @@ int _tmain()
 
 	int nN1=5, nN2=11, nN3=4, nN4=7, nN5=-1;
 
-	VarArgs_1(nN1,0);
+    VarArgs_1(nN1,0);
 	VarArgs_1(nN1,nN2,0);
 	VarArgs_1(nN1,nN2,nN3,nN4,nN5,0);
-
 
 
 	//Задание 3б. Модифицируйте функцию 3а с помощью макросов

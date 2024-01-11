@@ -225,8 +225,8 @@ void main()
 
 	setlocale(LC_CTYPE, ".1251"); // Установка кодировки для вывода русских символов
 
-	CARD_INDEX cardIndex_2;
-	initializeCardIndex(cardIndex_2, 1); // Начальная емкость массива - 5
+	CARD_INDEX cardIndex_2 = { 0 };
+	//initializeCardIndex(cardIndex_2, 1); // Начальная емкость массива - 5
 
 	int choice_2;
 	do {

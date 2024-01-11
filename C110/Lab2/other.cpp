@@ -15,6 +15,15 @@ void printBuiltInArray(int ar[N][M]) {
     }
 }
 
+void printBuiltInArray2(int ar[][M], int rows) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < M; ++j) {
+            std::cout << ar[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
 void printDynamicArray(int** ar, int rows, int cols) {
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
@@ -50,21 +59,27 @@ void DayOfMonth(size_t numDay, size_t year, size_t& day, size_t& month, const in
 }
 
 
+
 void VarArgs(int arg1, ...) {
     va_list args;
     va_start(args, arg1);
-    std::cout << "Macro_ Number of arguments: ";
-    int count = 0;
-    int value = arg1;
-    std::cout << count;
-    while (value != 0) {
-        ++count;
-        value = va_arg(args, int);
+
+    std::cout << arg1;
+    int count = 1;
+    int value = va_arg(args, int);
+    for (int i = 0; value != 0; ++i) {
         std::cout << value << " ";
+        count = count + 1;
+        value = va_arg(args, int);
     }
+    std::cout << "Macro: Number of arguments: " << count << std::endl;
+    std::cout << std::endl;
 
     va_end(args);
 }
+
+
+
 
 void VarArgs_1(int arg1, ...)
 {
@@ -78,10 +93,12 @@ void VarArgs_1(int arg1, ...)
     //следующий аргумент списка)
     // в) увеличить счетчик элементов
     int* p = &arg1;
+    
     for (int* p = &arg1; *p; p++, number++) {
-       // std::cout << *p << ' ';
+        std::cout << *p << ' ';
+
     }
-    std::cout << "NoMacro_ Number of arguments: " << number << '\n';
+    std::cout << "\nNoMacro: Number of arguments: " << " " << number << std::endl;;
     //Печать числа элементов
 
 }

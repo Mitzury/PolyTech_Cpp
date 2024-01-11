@@ -21,6 +21,7 @@ struct CARD_INDEX {
 
 void initializeCardIndex(CARD_INDEX& cardIndex, int initialCapacity);
 void printMenu();
+void printMenu_1();
 void printCardIndex(const CARD_INDEX& cardIndex);
 void addBook(CARD_INDEX& cardIndex);
 void removeBook(CARD_INDEX& cardIndex);

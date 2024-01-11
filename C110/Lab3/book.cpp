@@ -11,10 +11,12 @@ void printBookInfo(const BOOK& book) {
 
 void fillBookFields(BOOK& book) {
     std::cout << "Enter author: ";
-    std::getline(std::cin, book.author);
+    //std::getline(std::cin, book.author);
+    std::cin >> book.author;
 
     std::cout << "Enter title: ";
-    std::getline(std::cin, book.title);
+    //std::getline(std::cin, book.title);
+    std::cin >> book.title;
 
     std::cout << "Enter year: ";
     std::cin >> book.year;

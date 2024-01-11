@@ -6,7 +6,7 @@
 
 
 
-void printBuiltInArray(int ar[][M]) {
+void printBuiltInArray(int ar[N][M]) {
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < M; ++j) {
             std::cout << ar[i][j] << " ";

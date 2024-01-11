@@ -21,6 +21,14 @@ void printMenu() {
     std::cout << "7. Exit\n";
 }
 
+void printMenu_1() {
+    std::cout << "Menu:\n";
+    std::cout << "1. Print card index\n";
+    std::cout << "2. Add a book\n";
+    std::cout << "3. Remove a book\n";
+    std::cout << "4. Exit\n";
+}
+
 void printCardIndex(const CARD_INDEX& cardIndex) {
     std::cout << "Card Index:\n";
     for (int i = 0; i < cardIndex.count; ++i) {

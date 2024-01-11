@@ -123,7 +123,7 @@ void main()
 
 	int choice;
 	do {
-		printMenu();
+		printMenu_1();
 		std::cout << "Enter your choice: ";
 		std::cin >> choice;
 
@@ -148,7 +148,7 @@ void main()
 	cleanUp(cardIndex); // Освобождение выделенной памяти
 
 #endif;
-#if 1;
+#if 0;
 	//----------------------------------------------------------------------------------------------------------------
 		//Задание 2.2 (*) Дорабатываем "картотеку".	
 
@@ -175,7 +175,7 @@ void main()
 	setlocale(LC_CTYPE, ".1251"); // Установка кодировки для вывода русских символов
 
 	CARD_INDEX cardIndex_1;
-	initializeCardIndex(cardIndex, 5); // Начальная емкость массива - 5
+	initializeCardIndex(cardIndex_1, 5); // Начальная емкость массива - 5
 
 	int choice_1;
 	do {

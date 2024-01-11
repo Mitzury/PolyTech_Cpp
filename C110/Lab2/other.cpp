@@ -56,11 +56,13 @@ void VarArgs(int arg1, ...) {
     std::cout << "Macro_ Number of arguments: ";
     int count = 0;
     int value = arg1;
+    std::cout << count;
     while (value != 0) {
         ++count;
         value = va_arg(args, int);
+        std::cout << value << " ";
     }
-    std::cout << count << std::endl;
+
     va_end(args);
 }
 
@@ -184,7 +186,7 @@ const char* GetString2()
 
 const char* GetString3()
 {
-    char str[] = "Little";
+    static char str[] = "Little";
     return str;
 }
 
@@ -197,5 +199,6 @@ const char* GetString4()
 const char* GetString5()
 {
     char* str = new char[strlen("time") + 1];
+    strcpy(str, "time");
     return str;
 }

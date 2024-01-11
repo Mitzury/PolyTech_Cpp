@@ -1,5 +1,7 @@
 #include "book.h"
 #include <iostream>
+#include <algorithm>
+#include <regex>
 
 void printBookInfo(const BOOK& book) {
     std::cout << "Author: " << book.author << std::endl;

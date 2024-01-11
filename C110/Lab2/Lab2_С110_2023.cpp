@@ -38,6 +38,8 @@ int _tmain()
 
 	int builtInArray2[][M] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15,16,17};
 
+	const int x = sizeof(builtInArray2)  / sizeof(builtInArray2[0]);
+	
 	// Вызов функции для встроенного двумерного массива
 	std::cout << "Printing Built-in Array:" << std::endl;
 	printBuiltInArray(builtInArray2);
@@ -361,7 +363,7 @@ int _tmain()
 			if (n >= 1 && n <= 5)
 			{
 				
-				std::cout << "Result: " << stringFunctions[n - 1]() << std::endl;
+				std::cout << stringFunctions[n - 1]() << std::endl;
 			}
 			else
 			{

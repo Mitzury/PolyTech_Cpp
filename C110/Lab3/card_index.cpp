@@ -39,14 +39,20 @@ void printCardIndex(const CARD_INDEX& cardIndex) {
 }
 
 void addBook(CARD_INDEX& cardIndex) {
-    if (cardIndex.count < cardIndex.capacity) {
-        fillBookFields(cardIndex.books[cardIndex.count]);
-        cardIndex.count++;
-        std::cout << "Book added successfully!\n";
+    if (cardIndex.count == cardIndex.capacity) {
+        int newCapacity = cardIndex.capacity + 1;
+        BOOK* newBooks = new BOOK[newCapacity];
+        for (int i = 0; i < cardIndex.count; ++i) {
+            newBooks[i] = cardIndex.books[i];
+        }
+        delete[] cardIndex.books;
+        cardIndex.books = newBooks;
+        cardIndex.capacity = newCapacity;
     }
-    else {
-        std::cout << "Card index is full. Unable to add more books.\n";
-    }
+
+    fillBookFields(cardIndex.books[cardIndex.count]);
+    cardIndex.count++;
+    std::cout << "Book Success added!\n";
 }
 
 void removeBook(CARD_INDEX& cardIndex) {

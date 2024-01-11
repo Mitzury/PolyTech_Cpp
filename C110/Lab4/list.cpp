@@ -4,7 +4,11 @@
 #include <iostream>
 
 Node* addToBeginning(Node* head, int value) {
+    // Создание нового узла с указанным значением
     Node* newNode = new Node{value, head};
+    // Установка указателя 'next' нового узла на текущий начальный узел связного списка
+    newNode->next = head;
+    // Обновление начального узла связного списка на новый узел
     return newNode;
 }
 

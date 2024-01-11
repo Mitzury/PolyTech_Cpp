@@ -15,7 +15,7 @@ typedef const char* (*StringFunction)();
 
 int _tmain()
 {
-#if 0
+#if 1
 	//Задание 1. 
 	//массивы в качестве аргументов функции.
 	//Напишите два варианта функции печати элементов
@@ -107,7 +107,7 @@ int _tmain()
 	std::cout << "Day of Month: " << resultDay << ", Month: " << resultMonth << std::endl;
 
 #endif
-#if 0
+#if 1
 	/////////////////////////////////////////////////////////////////////////////
 //Задание 3.
 	//Задание 3а. Функции с переменным числом параметров.
@@ -352,20 +352,18 @@ int _tmain()
 					GetString5
 			};
 
+			std::cout << "Enter the number of the function you want to call (1-5): ";
+			std::cin >> n;
 
-		std::cout << "Enter the number of the function you want to call (1-5): ";
-		std::cin >> n;
-
-
-
-		if (n >= 1 && n <= 5) {
-			const char* result = stringFunctions[n - 1]();
-
-			std::cout << "Result: " << result << std::endl;
-		}
-		else {
-			std::cout << "Incorrect number." << std::endl;
-		}
+			if (n >= 1 && n <= 5)
+			{
+				const char* result = stringFunctions[n - 1]();
+				std::cout << "Result: " << result << std::endl;
+			}
+			else
+			{
+				std::cout << "Invalid function number." << std::endl;
+			}
 
 
 #endif

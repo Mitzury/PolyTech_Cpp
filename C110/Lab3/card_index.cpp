@@ -61,10 +61,10 @@ void addBook(CARD_INDEX& cardIndex) {
 
 void removeBook(CARD_INDEX& cardIndex) {
     if (cardIndex.count > 0) {
-        std::cout << "Books in the index:\n";
+      /*  std::cout << "Books in the index:\n";
         for (int i = 0; i < cardIndex.count; ++i) {
             std::cout << i + 1 << ". " << cardIndex.books[i].title << " by " << cardIndex.books[i].author << "\n";
-        }
+        }*/
 
         int bookToRemove;
         std::cout << "Enter the number of the book to remove: ";

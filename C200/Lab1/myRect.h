@@ -20,7 +20,8 @@ public:
     int GetRight() const;
     int GetTop() const;
     int GetBottom() const;
-    Rect(): m_left(0), m_right(0), m_top(0), m_bottom(0) {}
+    Rect() : m_left(0), m_right(0), m_top(0), m_bottom(0) {}
+    Rect BoundingRectMethod(const Rect& rect) const;
 };
 
 Rect BoundingRect(const Rect& rect1, const Rect& rect2);

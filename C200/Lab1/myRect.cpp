@@ -59,6 +59,14 @@ int Rect::GetBottom() const {
     return m_bottom;
 }
 
+Rect Rect::BoundingRectMethod(const Rect& rect) const {
+    int left = std::min(m_left, rect.GetLeft());
+    int right = std::max(m_right, rect.GetRight());
+    int top = std::min(m_top, rect.GetTop());
+    int bottom = std::max(m_bottom, rect.GetBottom());
+
+    return Rect(left, right, top, bottom);
+}
 
 Rect BoundingRect(const Rect& rect1, const Rect& rect2) {
     int left = std::min(rect1.GetLeft(), rect2.GetLeft());

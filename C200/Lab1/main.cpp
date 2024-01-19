@@ -152,25 +152,27 @@ using namespace std;
 	Как происходит передача параметров и возвращение объекта класса?
 */
 	{
-
+		Rect r1(1, 2, 3, 4), r2(5, 6, 7, 8), r3;
+		cout << "\n#### Chapter 4.a \n";
+		r3 = BoundingRect(r1, r2);
+		r3.PrintRect();
+	}
 	//Задание 4а. Передача объектов по ссылке.
 	//Создайте глобальную функцию BoundingRect2, которая выполняет ту же
 	//задачу, принимая параметры по ссылке
 	//Вызываются ли конструкторы при передаче параметров?
-	Rect r1(1, 2, 3, 4), r2(5, 6, 7, 8), r3;
-	cout << "\n#### Chapter 4.a \n";
-	r3 = BoundingRect(r1, r2);
-	r3.PrintRect();
+	{
+		Rect r1(1, 2, 3, 4), r2(5, 6, 7, 8), r3;
+		cout << "\n#### Chapter 4.a \n";
+		r3 = BoundingRect2(r1, r2);
+		r3.PrintRect();
 
 	}
 	//Задание 4б.Реализуйте ту же задачу (BoundingRect) методом класса
 	{
-		Rect r1;
-		Rect r2;
-		Rect r3;
-		
+		Rect r1(1, 2, 3, 4), r2(5, 6, 7, 8), r3;
 		cout << "\n#### Chapter 4.b \n";
-		r3 = BoundingRect2(r1, r2);
+		r3 = r1.BoundingRectMethod(r2);
 		r3.PrintRect();
 	}
 /*

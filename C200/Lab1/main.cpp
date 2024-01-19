@@ -96,28 +96,28 @@ using namespace std;
 	//который принимает два аргумента, по умолчанию равных 1, и 
 	//раздвигает стороны прямоугольника на на заданные приращения.
 	//Для каких объектов вызывается функция InflateRect()?
-	{
-		Rect r1;
-		Rect r2;
-		Rect r3;
-		Rect r4;
-		Rect r5;
-		Rect r6;
-		cout << "\n#### Chapter 2.2B \n";
-		r1.InflateRect();
-		r2.InflateRect(1, 1);
-		r3.InflateRect(2, 2);
-		r4.InflateRect(2, 2, 2, 2);
-		r5.InflateRect(3, 3);
-	    r6.InflateRect(5);
+	//{
+	//	Rect r1;
+	//	Rect r2;
+	//	Rect r3;
+	//	Rect r4;
+	//	Rect r5;
+	//	Rect r6;
+	//	cout << "\n#### Chapter 2.2B \n";
+	//	//r1.InflateRect();
+	//	r2.InflateRect(1, 1);
+	//	r3.InflateRect(2, 2);
+	//	r4.InflateRect(2, 2, 2, 2);
+	//	r5.InflateRect(3, 3);
+	//  //r6.InflateRect(5);
 
-		r1.PrintRect();
-		r2.PrintRect();
-		r3.PrintRect();
-		r4.PrintRect();
-		r5.PrintRect();
-		r6.PrintRect();
-	}
+	//	r1.PrintRect();
+	//	r2.PrintRect();
+	//	r3.PrintRect();
+	//	r4.PrintRect();
+	//	r5.PrintRect();
+	//	r6.PrintRect();
+	//}
 
 	//Задание 3.Спецификаторы доступа. Инкапсуляция. 
 	{
@@ -185,7 +185,7 @@ using namespace std;
 	{
 
 		Rect r1; // Вызывается конструктор по умолчанию для r1
-		Rect*	pR = new Rect(1,2,1,2);	
+		Rect* pR = new Rect(1,2,1,2);	
 		{
 			Rect r2(r1); // Вызывается конструктор копирования для r2, создается копия r1
 			Rect arRect[2]; // Вызывается конструктор по умолчанию для каждого элемента arRect
@@ -250,7 +250,7 @@ using namespace std;
 		std::cout << "Original String: " << str3.GetString() << std::endl;
 
 		// Изменяем строку с помощью SetNewString
-		str3.SetNewString("Updated String");
+		str3.SetNewString("Updated String fffffffffffffffffffffffffffffffffff");
 		std::cout << "Updated String: " << str3.GetString() << std::endl;
 	}
 
@@ -275,8 +275,8 @@ using namespace std;
 
 	//	} 159
 		cout << "\n#### Chapter 7 \n";
-		Bochka spirt(10.0, 96.0);
-		Bochka water(10.0, 0.0);
+		Bochka spirt(100.0, 96.0);
+		Bochka water(100.0, 0.0);
 
 		int iteration = IterativePereliv::FindIterationNumber(spirt, water);
 

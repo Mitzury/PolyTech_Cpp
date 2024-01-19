@@ -11,21 +11,29 @@ Rect::Rect()
     : m_left(0), m_right(0), m_top(0), m_bottom(0) {
 }
 
-void Rect::InflateRect() {
-    m_left -= 1;
-    m_right += 1;
-    m_top -= 1;
-    m_bottom += 1;
-    Normalize();
+Rect::Rect(const Rect& other)
+    : m_left(other.m_left),
+    m_right(other.m_right),
+    m_top(other.m_top),
+    m_bottom(other.m_bottom) {
 }
 
-void Rect::InflateRect(int increment) {
-    m_left -= increment;
-    m_right += increment;
-    m_top -= increment;
-    m_bottom += increment;
-    Normalize();
-}
+
+//void Rect::InflateRect() {
+//    m_left -= 1;
+//    m_right += 1;
+//    m_top -= 1;
+//    m_bottom += 1;
+//    Normalize();
+//}
+
+//void Rect::InflateRect(int increment) {
+//    m_left -= increment;
+//    m_right += increment;
+//    m_top -= increment;
+//    m_bottom += increment;
+//    Normalize();
+//}
 
 
 void Rect::InflateRect(int xIncrement, int yIncrement) {

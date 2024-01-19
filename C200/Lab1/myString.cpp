@@ -36,6 +36,8 @@ void MyString::SetNewString(const char* newStr) {
     m_str = new char[strlen(newStr) + 1];
     strcpy(m_str, newStr);
 }
+
+
 // ѕерегрузка класса. ќператор присваивани€ operator=: копирует содержимое одного объекта MyString в другой, управл€€ динамической пам€тью.
 //MyString& MyString::operator=(const MyString& other) {
 //    if (this != &other) {

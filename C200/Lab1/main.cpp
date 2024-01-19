@@ -116,6 +116,7 @@ using namespace std;
 		r3.PrintRect();
 		r4.PrintRect();
 		r5.PrintRect();
+		r6.PrintRect();
 	}
 
 	//Задание 3.Спецификаторы доступа. Инкапсуляция. 
@@ -162,11 +163,12 @@ using namespace std;
 	r3.PrintRect();
 
 	}
+	//Задание 4б.Реализуйте ту же задачу (BoundingRect) методом класса
 	{
 		Rect r1;
 		Rect r2;
 		Rect r3;
-		//Задание 4б.Реализуйте ту же задачу (BoundingRect) методом класса
+		
 		cout << "\n#### Chapter 4.b \n";
 		r3 = BoundingRect2(r1, r2);
 		r3.PrintRect();

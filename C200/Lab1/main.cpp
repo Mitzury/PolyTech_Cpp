@@ -101,17 +101,21 @@ using namespace std;
 		Rect r2;
 		Rect r3;
 		Rect r4;
+		Rect r5;
+		Rect r6;
 		cout << "\n#### Chapter 2.2B \n";
-		r1.InflateRect(1, 1);
-		r2.InflateRect(2, 2);
-		r3.InflateRect(2, 2, 2, 2);
-		r4.InflateRect(3, 3);
-		//	r3.InflateRect(5);
-		//  r3.InflateRect();
+		r1.InflateRect();
+		r2.InflateRect(1, 1);
+		r3.InflateRect(2, 2);
+		r4.InflateRect(2, 2, 2, 2);
+		r5.InflateRect(3, 3);
+	    r6.InflateRect(5);
+
 		r1.PrintRect();
 		r2.PrintRect();
 		r3.PrintRect();
 		r4.PrintRect();
+		r5.PrintRect();
 	}
 
 	//Задание 3.Спецификаторы доступа. Инкапсуляция. 

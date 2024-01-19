@@ -88,7 +88,9 @@ int Rect::GetTop() const {
 int Rect::GetBottom() const {
     return m_bottom;
 }
-
+// BoundingRectMethod дл€ класса Rect. 
+// Ётот метод принимает другой объект Rect в качестве параметра и возвращает новый объект Rect, 
+// представл€ющий ограничивающий пр€моугольник, охватывающий оба исходных пр€моугольника.
 Rect Rect::BoundingRectMethod(const Rect& rect) const {
     int left = std::min(m_left, rect.GetLeft());
     int right = std::max(m_right, rect.GetRight());

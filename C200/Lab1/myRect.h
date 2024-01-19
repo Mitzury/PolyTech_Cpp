@@ -7,7 +7,7 @@ public:
     int m_top;
     int m_bottom;
 
-    Rect();  // Конструктор без параметров
+   // Rect();  // Конструктор без параметров
     Rect(int left, int right, int top, int bottom);  // Конструктор с параметрами
     void InflateRect(int xIncrement, int yIncrement);  // Метод увеличения размеров прямоугольника
     void InflateRect(int xIncrement, int yIncrement, int xIncrement2, int yIncrement2);  // Перегруженный метод для увеличения размеров прямоугольника
@@ -20,7 +20,7 @@ public:
     int GetRight() const;
     int GetTop() const;
     int GetBottom() const;
-
+    Rect(): m_left(0), m_right(0), m_top(0), m_bottom(0) {}
 };
 
 Rect BoundingRect(const Rect& rect1, const Rect& rect2);

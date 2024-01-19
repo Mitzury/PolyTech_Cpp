@@ -7,7 +7,6 @@ public:
     int m_top;
     int m_bottom;
 
-public:
     Rect();  // Конструктор без параметров
     Rect(int left, int right, int top, int bottom);  // Конструктор с параметрами
     void InflateRect(int xIncrement, int yIncrement);  // Метод увеличения размеров прямоугольника

@@ -1,6 +1,7 @@
 #include "myRect.h"
 #include "myString.h"
 #include <iostream>
+#include "Bochka.h"
 
 #define stop __asm nop
 
@@ -19,6 +20,7 @@ using namespace std;
 
 {
 	Rect rect; //Вызывается конструктор без параметров
+	cout << "#### Chapter 1 \n";
 	std::cout << "Rect1: " << rect.m_left << ", " << rect.m_right << ", " << rect.m_top << ", " << rect.m_bottom << std::endl;
 
 }
@@ -32,7 +34,7 @@ using namespace std;
 	//в какой момент происходит вызов конструктора(какого?)?
 
 	{
-	cout << "1.1a \n";
+	cout << "\n#### Chapter 1.1a \n";
 	Rect rect2(4, 2, 3, 1);
 	std::cout << "Rect2: " << rect2.m_left << ", " << rect2.m_right << ", " << rect2.m_top << ", " << rect2.m_bottom << std::endl;
 
@@ -60,7 +62,7 @@ using namespace std;
 	//Add/Add Member Function... С помощью появившейся диалоговой панели
 	//"дайте указания" Wizard-у как объявить и определить метод.
 	{
-		cout << "1.1B \n";
+		cout << "\n#### Chapter 1.1B \n";
 		Rect rect2;
 		rect2.InflateRect(1, 1);
 		std::cout << "Rect2 after InflateRect: " << rect2.m_left << ", " << rect2.m_right << ", " << rect2.m_top << ", " << rect2.m_bottom << std::endl;
@@ -76,7 +78,7 @@ using namespace std;
 	//конструктор вызывается при создании r1,r2,r3 и r4?
 	//Чему равны переменные созданных объектов?
 
-	cout << "2.2a \n";
+	cout << "\n#### Chapter 2.2a \n";
 	Rect r1;  // Вызывается конструктор без параметров
 	Rect r2(1, 2, 3, 4);  // Вызывается конструктор с параметрами
 	Rect r3 = r1;  // Вызывается конструктор копирования
@@ -93,7 +95,7 @@ using namespace std;
 	//раздвигает стороны прямоугольника на на заданные приращения.
 	//Для каких объектов вызывается функция InflateRect()?
 	{
-		cout << "2.2B \n";
+		cout << "\n#### Chapter 2.2B \n";
 		r1.InflateRect(1, 1);
 		r2.InflateRect(2, 2);
 		r3.InflateRect(2, 2, 2, 2);
@@ -121,7 +123,7 @@ using namespace std;
 	//который присваивают переменным класса передаваемые значения. Вызовите созданный метод, проверьте корректность. 
 	//Введите в класс Rect парный метод GetAll(...),
 	//который "достает" значения private-переменных класса. Вызовите созданный метод, проверьте корректность. 
-	cout << "3 \n";
+	cout << "\n#### Chapter 3 \n";
 	r.SetAll(1, 2, 3, 4);
 	int left, right, top, bottom;
 	r.GetAll(left, right, top, bottom);
@@ -148,14 +150,14 @@ using namespace std;
 	//задачу, принимая параметры по ссылке
 	//Вызываются ли конструкторы при передаче параметров?
 	
-	cout << "4.a \n";
-	r3 = BoundingRect2(r1, r2);
+	cout << "\n#### Chapter 4.a \n";
+	r3 = BoundingRect(r1, r2);
 	r3.PrintRect();
 
 	}
 
 	//Задание 4б.Реализуйте ту же задачу (BoundingRect) методом класса
-	cout << "4.b \n";
+	cout << "\n#### Chapter 4.b \n";
 	r3 = BoundingRect2(r1, r2);
 	r3.PrintRect();
 
@@ -165,7 +167,9 @@ using namespace std;
 	//явный деструктор класса. Поставьте остановы в 
 	//конструкторе (конструкторах) и деструкторе. Определите: когда для
 	//каждого из объектов вызывается конструктор, а когда - деструктор?
+*/
 	{
+
 		Rect r1;
 		Rect*	pR = new Rect(1,2,1,2);	
 		{
@@ -181,7 +185,6 @@ using namespace std;
 		delete pR;	
 		stop
 	}
-*/
 /* 
 	//Задание 6.Конструктор + деструктор = функциональное
 	// замыкание. Класс MyString
@@ -189,7 +192,9 @@ using namespace std;
 	//корректные инициализацию и деактивацию объекта
 	//C помощью остановов определите когда происходит
 	//захват и освобождение памяти для строки-члена класса
+*/
 	{
+		cout << "\n#### Chapter 6 \n";
 		MyString	str1("It's my string1!");
 		//Создайте метод GetString(), который обеспечит доступ к хранящейся строке.
 		//С помощью cout и метода GetString() распечатайте строку объекта str1
@@ -197,37 +202,42 @@ using namespace std;
 
 		//Подсказка 1:
 		//приведенный ниже код должен работать:
-		std::cout<<str1.GetString()<<std::endl;
+
+		// Выводим строку с помощью метода GetString()
+		std::cout << str1.GetString() << std::endl;
 
 		//Подсказка 2:
-		//приведенный ниже код НЕ должен работать:
-		str1.GetString()[1] = 'W';
+	    // Попытка изменения строки не должна компилироваться
+	    // str1.GetString()[1] = 'W'; // ошибка, так как GetString() возвращает const char*
+
 
 		//Подсказка 3:
 		//приведенный ниже код должен работать:
+		// Выводим строку с помощью метода GetString()
 		const MyString	str2("It's my string2!");
-		std::cout<<str2.GetString()<<std::endl;
+		std::cout << str2.GetString() << std::endl;
 	}
-	stop
-*/
 /*
 	//6a. Раскомментируйте следующий фрагмент. Подумайте - какие
 	//неприятности Вас ожидают. Попробуйте исправить положение (как?)
+*/
 		{
+		    cout << "\n#### Chapter 6a \n";
 			MyString str1("The first string!");
 			MyString str2 = str1;
-		}
-		stop
+		} // Деструкторы вызываются для str1 и str2
+
 
 	//6б. Реализуйте метод SetNewString, который будет заменять строку
 	// на новую
 
-	
-	
+		cout << "\n#### Chapter 6.b \n";
+		MyString str3("Original String");
+		std::cout << "Original String: " << str3.GetString() << std::endl;
 
-
-
-*/
+		// Изменяем строку с помощью SetNewString
+		str3.SetNewString("Updated String");
+		std::cout << "Updated String: " << str3.GetString() << std::endl;
 
 
 	//Задание 7.  Решите с помощью классов следующую задачу:
@@ -250,7 +260,15 @@ using namespace std;
 	//		...
 
 	//	} 159
+		cout << "\n#### Chapter 7 \n";
+		Bochka spirt(10.0, 96.0);
+		Bochka water(10.0, 0.0);
+
+		int iteration = IterativePereliv::FindIterationNumber(spirt, water);
+
+		std::cout << "Number of iterations: " << iteration << std::endl;
+
 return 0;
 
-}//end_main
+}
 

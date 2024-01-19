@@ -101,6 +101,7 @@ using namespace std;
 
 	cout << "\n#### Chapter 2.2B \n";
 	rectangle.InflateRect(1, 1);
+	rectangle.PrintRect();
 	//	r3.InflateRect(2, 2);
 	//	r4.InflateRect(2, 2, 2, 2);
 	//	r5.InflateRect(3, 3);

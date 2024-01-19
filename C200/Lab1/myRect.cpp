@@ -43,3 +43,38 @@ void Rect::GetAll(int& left, int& right, int& top, int& bottom) const {
     top = m_top;
     bottom = m_bottom;
 }
+// Задание 4
+int Rect::GetLeft() const {
+    return m_left;
+}
+
+int Rect::GetRight() const {
+    return m_right;
+}
+
+int Rect::GetTop() const {
+    return m_top;
+}
+
+int Rect::GetBottom() const {
+    return m_bottom;
+}
+
+
+Rect BoundingRect(const Rect& rect1, const Rect& rect2) {
+    int left = std::min(rect1.GetLeft(), rect2.GetLeft());
+    int right = std::max(rect1.GetRight(), rect2.GetRight());
+    int top = std::min(rect1.GetTop(), rect2.GetTop());
+    int bottom = std::max(rect1.GetBottom(), rect2.GetBottom());
+
+    return Rect(left, right, top, bottom);
+}
+
+Rect BoundingRect2(const Rect& rect1, const Rect& rect2) {
+    int left = std::min(rect1.GetLeft(), rect2.GetLeft());
+    int right = std::max(rect1.GetRight(), rect2.GetRight());
+    int top = std::min(rect1.GetTop(), rect2.GetTop());
+    int bottom = std::max(rect1.GetBottom(), rect2.GetBottom());
+
+    return Rect(left, right, top, bottom);
+}

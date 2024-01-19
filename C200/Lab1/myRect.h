@@ -16,4 +16,13 @@ public:
     void PrintRect() const;  // Метод для вывода прямоугольника в консоль
     void SetAll(int left, int right, int top, int bottom);  // Метод для установки значений private-переменных
     void GetAll(int& left, int& right, int& top, int& bottom) const;  // Метод для получения значений private-переменных
+
+    int GetLeft() const;
+    int GetRight() const;
+    int GetTop() const;
+    int GetBottom() const;
+
 };
+
+Rect BoundingRect(const Rect& rect1, const Rect& rect2);
+Rect BoundingRect2(const Rect& rect1, const Rect& rect2);

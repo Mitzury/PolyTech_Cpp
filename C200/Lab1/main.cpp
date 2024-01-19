@@ -65,9 +65,14 @@ using namespace std;
 	//"дайте указани€" Wizard-у как объ€вить и определить метод.
 	{
 		cout << "\n#### Chapter 1.1B \n";
-		Rect rect2;
-		rect2.InflateRect(1, 1);
+		Rect rect2 (10,20,20,30);
+		rect2.InflateRect(1, 1, 1, 1); //  9, 21, 19, 31
 		std::cout << "Rect2 after InflateRect: " << rect2.m_left << ", " << rect2.m_right << ", " << rect2.m_top << ", " << rect2.m_bottom << std::endl;
+
+		Rect rect3(10, 20, 20, 30);
+		rect3.InflateRect(-40, -20, -10, 1); //  
+		rect3.PrintRect();
+		//std::cout << "Rect2 after InflateRect: " << rect3.m_left << ", " << rect3.m_right << ", " << rect2.m_top << ", " << rect2.m_bottom << std::endl;
 		
 	}
 

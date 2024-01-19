@@ -10,8 +10,8 @@ public:
     Rect();  // Конструктор без параметров
     Rect(const Rect& other); // Конструктор копирования
     Rect(int left, int right, int top, int bottom);  // Конструктор с параметрами
-    void InflateRect(int xIncrement, int yIncrement);  // Метод увеличения размеров прямоугольника
-    void InflateRect(int xIncrement, int yIncrement, int xIncrement2, int yIncrement2);  // Перегруженный метод для увеличения размеров прямоугольника
+    void InflateRect(int xIncrement = 1, int yIncrement = 1);  // Метод увеличения размеров прямоугольника
+    void InflateRect(int dl, int dr, int dt, int db);  // Перегруженный метод для увеличения размеров прямоугольника
   //  void InflateRect(int increment);  // Перегруженный метод с одним аргументом
    // void InflateRect();
     void Normalize();  // Метод для проверки и коррекции "ненормализованного" прямоугольника

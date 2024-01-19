@@ -26,11 +26,11 @@ void Rect::InflateRect(int xIncrement, int yIncrement) {
     m_bottom += yIncrement;
     Normalize();
 }
-void Rect::InflateRect(int xIncrement, int yIncrement, int xIncrement2, int yIncrement2) {
-    m_left -= xIncrement;
-    m_right += xIncrement2;
-    m_top -= yIncrement;
-    m_bottom += yIncrement2;
+void Rect::InflateRect(int dl, int dr, int dt, int db) {
+    m_left -= dl; 
+    m_right += dr;
+    m_top -= dt;
+    m_bottom += db;
     Normalize();
 }
 

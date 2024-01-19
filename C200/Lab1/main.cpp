@@ -79,17 +79,17 @@ using namespace std;
 	//Выполняя задание по шагам, определите, какой
 	//конструктор вызывается при создании r1,r2,r3 и r4?
 	//Чему равны переменные созданных объектов?
-
-	cout << "\n#### Chapter 2.2a \n";
-	Rect r1;  // Вызывается конструктор без параметров
-	Rect r2(1, 2, 3, 4);  // Вызывается конструктор с параметрами
-	Rect r3 = r1;  // Вызывается конструктор копирования
-	Rect r4(r2);  // Вызывается конструктор копирования
-	r1.PrintRect();
-	r2.PrintRect();
-	r3.PrintRect();
-	r4.PrintRect();
-
+	{
+		cout << "\n#### Chapter 2.2a \n";
+		Rect r1;  // Вызывается конструктор без параметров
+		Rect r2(1, 2, 3, 4);  // Вызывается конструктор с параметрами
+		Rect r3 = r1;  // Вызывается конструктор копирования
+		Rect r4(r2);  // Вызывается конструктор копирования
+		r1.PrintRect();
+		r2.PrintRect();
+		r3.PrintRect();
+		r4.PrintRect();
+	}
 
 
   //2б. Объявите и определите в классе Rect метод InflateRect(),
@@ -97,16 +97,21 @@ using namespace std;
 	//раздвигает стороны прямоугольника на на заданные приращения.
 	//Для каких объектов вызывается функция InflateRect()?
 	{
+		Rect r1;
+		Rect r2;
+		Rect r3;
+		Rect r4;
 		cout << "\n#### Chapter 2.2B \n";
 		r1.InflateRect(1, 1);
 		r2.InflateRect(2, 2);
 		r3.InflateRect(2, 2, 2, 2);
-		r3.InflateRect(3, 3);
+		r4.InflateRect(3, 3);
 		//	r3.InflateRect(5);
 		//  r3.InflateRect();
 		r1.PrintRect();
 		r2.PrintRect();
 		r3.PrintRect();
+		r4.PrintRect();
 	}
 
 	//Задание 3.Спецификаторы доступа. Инкапсуляция. 
@@ -157,12 +162,15 @@ using namespace std;
 	r3.PrintRect();
 
 	}
-
-	//Задание 4б.Реализуйте ту же задачу (BoundingRect) методом класса
-	cout << "\n#### Chapter 4.b \n";
-	r3 = BoundingRect2(r1, r2);
-	r3.PrintRect();
-
+	{
+		Rect r1;
+		Rect r2;
+		Rect r3;
+		//Задание 4б.Реализуйте ту же задачу (BoundingRect) методом класса
+		cout << "\n#### Chapter 4.b \n";
+		r3 = BoundingRect2(r1, r2);
+		r3.PrintRect();
+	}
 /*
 	//Задание 5. Когда вызываются конструкторы и деструкторы.
 	//Объявите и определите

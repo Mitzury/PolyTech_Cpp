@@ -80,7 +80,6 @@ Rect Rect::BoundingRectMethod(const Rect& rect) const {
     int right = std::max(m_right, rect.GetRight());
     int top = std::min(m_top, rect.GetTop());
     int bottom = std::max(m_bottom, rect.GetBottom());
-
     return Rect(left, right, top, bottom);
 }
 

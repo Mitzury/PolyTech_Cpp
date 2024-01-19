@@ -100,7 +100,7 @@ using namespace std;
     Rect rectangle (10,10,20,50);
 
 	cout << "\n#### Chapter 2.2B \n";
-	rectangle.InflateRect(1, 1);
+	rectangle.InflateRect(1,1);
 	rectangle.PrintRect();
 	//	r3.InflateRect(2, 2);
 	//	r4.InflateRect(2, 2, 2, 2);
@@ -159,7 +159,7 @@ using namespace std;
 	//Вызываются ли конструкторы при передаче параметров?
 	{
 		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
-		cout << "\n#### Chapter 4.a \n";
+		cout << "\n#### Chapter 4a \n";
 		r3 = BoundingRect2(r1, r2);
 		r3.PrintRect();
 
@@ -167,7 +167,7 @@ using namespace std;
 	//Задание 4б.Реализуйте ту же задачу (BoundingRect);тодом класса
 	{
 		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
-		cout << "\n#### Chapter 4.b \n";
+		cout << "\n#### Chapter 4B \n";
 		r3 = r1.BoundingRectMethod(r2);
 		r3.PrintRect();
 	}

@@ -18,6 +18,7 @@ Rect::Rect(const Rect& other)
     m_bottom(other.m_bottom) {
 }
 
+
 void Rect::InflateRect(int xIncrement, int yIncrement) {
     m_left -= xIncrement;
     m_right += xIncrement;
@@ -32,6 +33,7 @@ void Rect::InflateRect(int xIncrement, int yIncrement, int xIncrement2, int yInc
     m_bottom += yIncrement2;
     Normalize();
 }
+
 
 void Rect::Normalize() {
     if (m_left > m_right) std::swap(m_left, m_right);

@@ -184,21 +184,21 @@ using namespace std;
 */
 	{
 
-		Rect r1;
+		Rect r1; // Вызывается конструктор по умолчанию для r1
 		Rect*	pR = new Rect(1,2,1,2);	
 		{
-			Rect r2(r1);
-			Rect arRect[2];
+			Rect r2(r1); // Вызывается конструктор копирования для r2, создается копия r1
+			Rect arRect[2]; // Вызывается конструктор по умолчанию для каждого элемента arRect
 			for(int i=0; i<3; i++)
 			{
-				static Rect r3 (i,i,i,i) ;
-				Rect r4(*pR);
+				static Rect r3 (i,i,i,i) ; // Вызывается конструктор с параметрами для r3
+				Rect r4(*pR); // Вызывается конструктор копирования для r4, создается копия *pR
 				Rect r5(i,i,i,i);
-			}
-		}
-		delete pR;	
-		stop
-	}
+			} 
+		}  // Вызываются деструкторы для r2, arRect[0], arRect[1], r3, r4, r5
+		delete pR;	// Вызывается деструктор для pR
+	} // Вызываются деструкторы для r1
+
 /* 
 	//Задание 6.Конструктор + деструктор = функциональное
 	// замыкание. Класс MyString
@@ -235,16 +235,16 @@ using namespace std;
 	//6a. Раскомментируйте следующий фрагмент. Подумайте - какие
 	//неприятности Вас ожидают. Попробуйте исправить положение (как?)
 */
-		{
-		    cout << "\n#### Chapter 6a \n";
-			MyString str1("The first string!");
-			MyString str2 = str1;
-		} // Деструкторы вызываются для str1 и str2
+	{
+	    cout << "\n#### Chapter 6a \n";
+		MyString str1("The first string!");
+		MyString str2 = str1;
+	} // Деструкторы вызываются для str1 и str2
 
 
 	//6б. Реализуйте метод SetNewString, который будет заменять строку
 	// на новую
-
+	{
 		cout << "\n#### Chapter 6.b \n";
 		MyString str3("Original String");
 		std::cout << "Original String: " << str3.GetString() << std::endl;
@@ -252,7 +252,7 @@ using namespace std;
 		// Изменяем строку с помощью SetNewString
 		str3.SetNewString("Updated String");
 		std::cout << "Updated String: " << str3.GetString() << std::endl;
-
+	}
 
 	//Задание 7.  Решите с помощью классов следующую задачу:
 	//даны две бочки известного объема. В одной бочке в начальный момент

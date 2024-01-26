@@ -26,7 +26,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		// Новый размер массива 
 		const int M = 5;
-		MyString ar2[M] = { MyString("String1"), MyString("String2"), MyString("String3"), 0,0 };
+		MyString ar2[M] = { MyString("String1"), MyString("String2"), MyString("String3"), MyString("String4"), MyString("String5") };
 		// Печать строк-членов класса
 		for (int i = 0; i < M; ++i) {
 			std::cout << "ar2[" << i << "]: " << ar2[i].m_str1 << std::endl;

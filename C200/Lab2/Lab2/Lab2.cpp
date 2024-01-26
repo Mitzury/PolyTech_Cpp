@@ -4,9 +4,11 @@
 
 
 #include <tchar.h>
-#include "classes.cpp"
 #include "MyString.h"
+#include <iostream>
 #define	  stop __asm nop
+
+using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -16,30 +18,23 @@ int _tmain(int argc, _TCHAR* argv[])
 		//Объявите и проинициализируйте массив ar из объектов
 		// Исходный размер массива
 		const int N = 3;
-
 		// Инициализация массива объектов MyString.
-		//MyString* str1 = new MyString[N]{ MyString("String1"), MyString("String2"), MyString("String3") };
-	
 		MyString ar[N] = { MyString("String1"), MyString("String2"), MyString("String3") };
-
 		// Печать строк-членов класса
-		for (int i = 0; i < N; ++i) {
-			std::cout << "ar[" << i << "]: " << ar[i].str << std::endl;
+		for (int i = 0; i <= N; ++i) {
+			std::cout << "ar[" << i << "]: " << ar[i].m_str1 << std::endl;
 		}
-
 		// Новый размер массива 
 		const int M = 5;
-		MyString ar2[M] = { MyString("String1"), MyString("String2"), MyString("String3") };
-		
-
+		MyString ar2[M] = { MyString("String1"), MyString("String2"), MyString("String3"), 0,0 };
 		// Печать строк-членов класса
 		for (int i = 0; i < M; ++i) {
-			std::cout << "ar2[" << i << "]: " << ar2[i].str << std::endl;
+			std::cout << "ar2[" << i << "]: " << ar2[i].m_str1 << std::endl;
 		}
 
 	}
 		
-#if 1;	
+#if 0;	
 	//Задание 2.Массив указателей на объекты класса.
 	{
 		//Объявите и проинициализируйте массив arPtr из N
@@ -53,20 +48,21 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		//Печать строк-членов класса
 		for (int i = 0; i < N; ++i) {
-			std::cout << "arPtr[" << i << "]: " << arPtr[i]->str << std::endl;
+			std::cout << "arPtr[" << i << "]: " << arPtr[i]->m_str1 << std::endl;
 		}
 
-		//Замените размер const int N=5; , не изменяя список инициализаторов.
+	   	//Замените размер const int N=5; , не изменяя список инициализаторов.
 		const int M = 5;
 
-		MyString* arPtr[M] = { new MyString("String1"), new MyString("String2"), new MyString("String3") };
+		MyString* arPtr2[M] = { new MyString("String1"), new MyString("String2"), new MyString("String3") };
 		//Печать строк-членов класса
 		for (int i = 0; i < M; ++i) {
-			std::cout << "arPtr[" << i << "]: " << arPtr[i]->str << std::endl;
+			std::cout << "arPtr[" << i << "]: " << arPtr2[i]->m_str1 << std::endl;
 		}
 
 	}
 #endif;
+#if 0
 	//Задание 3.Простое наследование.Аргументы конструктора, передаваемые в базовый класс.
 	{
 		//Создайте иерархию классов:
@@ -94,6 +90,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		//последовательность вызовов конструкторов и деструкторов базового
 		//и производного классов
 	}
+#endif;
+#if 0
 	//Задание 4.Виртуальные функции.
 	{
 		//4а) Модифицируйте классы Shape,Rect и Circle:
@@ -135,6 +133,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			//Выполните новый фрагмент, объясните разницу.
 
 	}
+#endif;
 		//////////////////////////////////////////////////////////////////////
 		/*
 			//Задание 5.Виртуальные деструкторы.

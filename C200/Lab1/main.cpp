@@ -107,17 +107,17 @@ using namespace std;
 	cout << "\n#### Chapter 2.2B \n";
 	rectangle.InflateRect(1,1);
 	rectangle.PrintRect();
-	//	r3.InflateRect(2, 2);
-	//	r4.InflateRect(2, 2, 2, 2);
-	//	r5.InflateRect(3, 3);
-	//  //r6.InflateRect(5);
+		//r3.InflateRect(2, 2);
+		//r4.InflateRect(2, 2, 2, 2);
+		//r5.InflateRect(3, 3);
+	 // //r6.InflateRect(5);
 
-	//	r1.PrintRect();
-	//	r2.PrintRect();
-	//	r3.PrintRect();
-	//	r4.PrintRect();
-	//	r5.PrintRect();
-	//	r6.PrintRect();
+		//r1.PrintRect();
+		//r2.PrintRect();
+		//r3.PrintRect();
+		//r4.PrintRect();
+		//r5.PrintRect();
+		//r6.PrintRect();
 	}
 
 	//Задание 3.Спецификаторы доступа. Инкапсуляция. 
@@ -195,7 +195,7 @@ using namespace std;
 				Rect r5(i, i, i, i);         // Вызывается конструктор с параметрами для r5
 			}
 		}  // Вызываются деструкторы для 
-		   // r5; r4; r3; arRect[1]; arRect[0]; r2;
+		   // r5; r4; arRect[1]; arRect[0]; r2;
 		delete pR;              // Вызывается деструктор для pR
 	}  // Вызываются деструкторы для r1
 

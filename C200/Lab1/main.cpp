@@ -101,26 +101,24 @@ using namespace std;
 	//который принимает два аргумента, по умолчанию равных 1, и 
 	//раздвигает стороны прямоугольника на заданные приращения.
 	//Для каких объектов вызывается функция InflateRect();
+	//
 	{
     Rect rectangle (10,10,20,50);
 
+	Rect r3 (1,1,1,1);
 	cout << "\n#### Chapter 2.2B \n";
 	rectangle.InflateRect(1,1);
-	rectangle.PrintRect();
+	rectangle.PrintRect(); // Rect: 9, 11, 19, 51
 
 	rectangle.InflateRect(1, 1);
-	rectangle.PrintRect();
-		//r3.InflateRect(2, 2);
-		//r4.InflateRect(2, 2, 2, 2);
-		//r5.InflateRect(3, 3);
-	 // //r6.InflateRect(5);
+	rectangle.PrintRect(); // Rect: 8, 12, 18, 52
+		r3.InflateRect(2, 2);
+		r3.PrintRect(); // Rect: -1, 3, -1, 3
+		r3.InflateRect(5);
+		r3.PrintRect(); // Rect: -6, 8, -2, 4
+		r3.InflateRect();
+		r3.PrintRect();
 
-		//r1.PrintRect();
-		//r2.PrintRect();
-		//r3.PrintRect();
-		//r4.PrintRect();
-		//r5.PrintRect();
-		//r6.PrintRect();
 	}
 
 	//Задание 3.Спецификаторы доступа. Инкапсуляция. 
@@ -155,9 +153,11 @@ using namespace std;
 	//возвращает объект класса Rect, который является прямоугольником, в который вписаны заданные прямоугольники. 
 	Как происходит передача параметров и возвращение объекта класса?
 */
+#if 0
 	{
 		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
-		cout << "\n#### Chapter 4.a \n";
+		cout << 
+			"\n#### Chapter 4.a \n";
 		r3 = BoundingRect(r1, r2);
 		r3.PrintRect();
 	
@@ -177,6 +177,7 @@ using namespace std;
 	
 		
 	}
+#endif 
 /*
 	//Задание 5. Когда вызываются конструкторы и деструкторы.
 	//Объявите и определите

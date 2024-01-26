@@ -107,6 +107,9 @@ using namespace std;
 	cout << "\n#### Chapter 2.2B \n";
 	rectangle.InflateRect(1,1);
 	rectangle.PrintRect();
+
+	rectangle.InflateRect(1, 1);
+	rectangle.PrintRect();
 		//r3.InflateRect(2, 2);
 		//r4.InflateRect(2, 2, 2, 2);
 		//r5.InflateRect(3, 3);
@@ -157,24 +160,26 @@ using namespace std;
 		cout << "\n#### Chapter 4.a \n";
 		r3 = BoundingRect(r1, r2);
 		r3.PrintRect();
-	}
+	
 	//Задание 4а. Передача объектов по ссылке.
 	//Создайте глобальную функцию BoundingRect2, которая выполняет ту же
 	//задачу, принимая параметры по ссылке
 	//Вызываются ли конструкторы при передаче параметров?
-	{
-		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
+	
 		cout << "\n#### Chapter 4a \n";
-		r3 = BoundingRect2(r1, r2);
+		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
+		Rect r3 = BoundingRect2(r1, r2);
+		std::cout << "BoundingRect2 result: ";
 		r3.PrintRect();
 
-	}
+	
 	//Задание 4б.Реализуйте ту же задачу (BoundingRect);тодом класса
-	{
-		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
+	
 		cout << "\n#### Chapter 4B \n";
-		r3 = r1.BoundingRectMethod(r2);
-		r3.PrintRect();
+		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
+		Rect r4 = r1.BoundingRect(r2);
+		std::cout << "BoundingRect method result: ";
+		r4.PrintRect();
 	}
 /*
 	//Задание 5. Когда вызываются конструкторы и деструкторы.

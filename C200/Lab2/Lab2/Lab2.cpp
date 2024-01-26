@@ -4,46 +4,94 @@
 
 
 #include <tchar.h>
+#include "classes.cpp"
 #define	  stop __asm nop
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//Задание 1.Массив объектов класса.
 	{
+		std::cout << "Chapter 1 \n" ;
 		//Объявите и проинициализируйте массив ar из объектов
-		// типа MyString. 
-			//const int N=3;
-			//MyString str1[N] = {...};
+		// Исходный размер массива
+		const int N = 3;
 
-		//Проверка - печать строк-членов класса
+		// Инициализация массива объектов MyString.
+		MyString* str1 = new MyString[N]{ MyString("String1"), MyString("String2"), MyString("String3") };
 
+		// Печать строк-членов класса
+		for (int i = 0; i < N; ++i) {
+			std::cout << "str1[" << i << "]: " << str1[i].str << std::endl;
+		}
 
-		//Замените размер const int N=5; , не изменяя список инициализаторов.
+		// Новый размер массива 
+		const int M = 5;
 
+		// Изменение размера массива без явного создания нового
+		MyString* temp = new MyString[M];
+		for (int i = 0; i < N; ++i) {
+			temp[i] = str1[i];
+		}
+		for (int i = N; i < M; ++i) {
+			temp[i] = MyString("String" + std::to_string(i + 1));
+		}
 
-
+		// Освобождение памяти старого массива и присвоение нового
+		delete[] str1;
+		str1 = temp;
+		// Печать строк-членов обновленного массива
+		for (int i = 0; i < M; ++i) {
+			std::cout << "str1[" << i << "]: " << str1[i].str << std::endl;
+		}
+		// Освобождение памяти нового массива
+		delete[] temp;
 	}
-	stop
-
-
-		//Задание 2.Массив указателей на объекты класса.
+		
+#if 0;	
+	//Задание 2.Массив указателей на объекты класса.
 	{
 		//Объявите и проинициализируйте массив arPtr из N
 		//указателей на объекты типа MyString (сами объекты 
 		//создаются динамически!).
-		//const int N=3;
+		std::cout << "\nChapter 2:\n";
+		const int N=3;
+
+		// Инициализация массива указателей на объекты MyString (создание объектов динамически)
+		MyString* arPtr[N];
+		arPtr[0] = new MyString("String1");
+		arPtr[1] = new MyString("String2");
+		arPtr[2] = new MyString("String3");
 
 		//Печать строк-членов класса
-
+		for (int i = 0; i < N; ++i) {
+			std::cout << "arPtr[" << i << "]: " << arPtr[i]->str << std::endl;
+		}
 		//Замените размер const int N=5; , не изменяя список инициализаторов.
-
+		const int M = 5;
+		// создаем указатель на массив указателей типа MyString. 
+		// Количество элементов в массиве равно M. Каждый элемент массива указывает на объект типа MyString
+		MyString** arPtrNew = new MyString * [M];
+		for (int i = 0; i < M; ++i) {
+			arPtrNew[i] = i < N ? arPtr[i] : new MyString("String" + std::to_string(i + 1));
+		}
+		// Печать строк-членов нового массива указателей
+		for (int i = 0; i < M; ++i) {
+			std::cout << "arPtrNew[" << i << "]: " << arPtrNew[i]->str << std::endl;
+		}
+		// Освобождение памяти для каждого созданного объекта старого массива
+		for (int i = 0; i < N; ++i) {
+			delete arPtr[i];
+		}
+		// Освобождение памяти для каждого созданного объекта нового массива
+		for (int i = 0; i < M; ++i) {
+			delete arPtrNew[i];
+		}
+		// Освобождение памяти для нового массива указателей
+		delete[] arPtrNew;
 	}
-	stop
-
-
-		//Задание 3.Простое наследование.Аргументы конструктора,
-		// передаваемые в базовый класс.
-
+#endif;
+	//Задание 3.Простое наследование.Аргументы конструктора, передаваемые в базовый класс.
+	{
 		//Создайте иерархию классов:
 		//базовый класс Shape (который описывает любую фигуру)
 		//и два производных класса Rect и Circle.
@@ -53,59 +101,55 @@ int _tmain(int argc, _TCHAR* argv[])
 		//будет определять цвет фигуры.
 		//Подсказка: для хранения цвета объявите перечисление (RED,GREEN,BLUE...);
 
+		// Создание объектов иерархии
+		std::cout << "\nChapter 3:\n";
+		Rect rect(RED);
+		Circle circle(GREEN);
 
+		// Вывод информации о фигурах
+		rect.printInfo();
+		std::cout << std::endl;
+		circle.printInfo();
 
 		//В конструкторах производных классов предусмотрите передачу
 		//параметра-цвета конструктору базового класса.
 		//При создании и уничтожении объекта производного типа определите
 		//последовательность вызовов конструкторов и деструкторов базового
 		//и производного классов
+	}
+	//Задание 4.Виртуальные функции.
+	{
+		//4а) Модифицируйте классы Shape,Rect и Circle:
+		//добавьте в каждый класс public метод void WhereAmI().
+		//Реализация каждой функции должна выводить сообщение
+		//следующего вида "Now I am in class Shape(Rect или Circle)".
+		//Выполните приведенный фрагмент, объясните результат.
+		std::cout << "\nChapter 4a:\n";
+		
+		Shape s(RED);
+		Rect r(GREEN);
+		Circle c(BLUE);
 
-
-
-
-		stop
-		//////////////////////////////////////////////////////////////////////
-		/*
-			//Задание 4.Виртуальные функции.
-			//4а) Модифицируйте классы Shape,Rect и Circle:
-			//добавьте в каждый класс public метод void WhereAmI().
-			//Реализация каждой функции должна выводить сообщение
-			//следующего вида "Now I am in class Shape(Rect или Circle)".
-			//Выполните приведенный фрагмент, объясните результат.
-
-
-			{
-				Shape s(...);
-				Rect r(...);
-				Circle c(...);
-
-
-				//Метод какого класса вызывается в следующих строчках???
-				s.WhereAmI();	//	???
-				r.WhereAmI();	//	???
-				c.WhereAmI();	//	???
-				stop
-
-
-				Shape* pShape = &s;
-				Shape* pRect = &r;
-				Shape* pCircle = &c;
-				pShape->WhereAmI();	//	???
-				pRect->WhereAmI();	//	???
-				pCircle->WhereAmI(); //	???
-				stop
-
-
-				//Заполните ... согласно комментариям
-				Shape& rShape = ...; //псевдоним s
-				Shape& rRect = ...; //псевдоним r
-				Shape& rCircle = ...; //псевдоним c
-				...WhereAmI();	//вызов посредством rShape	???
-				...WhereAmI();	//вызов посредством	rRect	???
-				...WhereAmI(); //вызов посредством rCircle	???
-				stop
-			}
+		//Метод какого класса вызывается в следующих строчках???
+		s.WhereAmI();  // Now I am in class Shape
+		r.WhereAmI();  // Now I am in class Rect
+		c.WhereAmI();  // Now I am in class Circle
+		
+		Shape* pShape = &s;
+		Shape* pRect = &r;
+		Shape* pCircle = &c;
+		pShape->WhereAmI();  // Now I am in class Shape
+		pRect->WhereAmI();   // Now I am in class Shape
+		pCircle->WhereAmI(); // Now I am in class Shape
+			
+		//Заполните ... согласно комментариям
+		Shape& rShape = s;
+		Shape& rRect = r;
+		Shape& rCircle = c;
+		rShape.WhereAmI();  // Now I am in class Shape
+		rRect.WhereAmI();   // Now I am in class Shape
+		rCircle.WhereAmI(); // Now I am in class Shape
+	}
 
 			//4б) Добавьте в базовый и производные классы виртуальный
 			// метод WhereAmIVirtual(). По аналогии с 4а вызовите
@@ -113,7 +157,6 @@ int _tmain(int argc, _TCHAR* argv[])
 			// ссылок, определенных в предыдущем фрагменте.
 			//Выполните новый фрагмент, объясните разницу.
 
-		*/
 
 		//////////////////////////////////////////////////////////////////////
 		/*

@@ -46,6 +46,7 @@ public:
             std::cout << "GREEN";
             break;
         case BLUE:
+
             std::cout << "BLUE";
             break;
         }

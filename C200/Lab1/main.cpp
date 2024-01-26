@@ -175,11 +175,7 @@ using namespace std;
 	
 	//Задание 4б.Реализуйте ту же задачу (BoundingRect);тодом класса
 	
-		cout << "\n#### Chapter 4B \n";
-		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
-		Rect r4 = r1.BoundingRect(r2);
-		std::cout << "BoundingRect method result: ";
-		r4.PrintRect();
+		
 	}
 /*
 	//Задание 5. Когда вызываются конструкторы и деструкторы.

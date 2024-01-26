@@ -149,7 +149,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		rShape.WhereAmI();  // Now I am in class Shape
 		rRect.WhereAmI();   // Now I am in class Shape
 		rCircle.WhereAmI(); // Now I am in class Shape
-	}
+	
 
 			//4б) Добавьте в базовый и производные классы виртуальный
 			// метод WhereAmIVirtual(). По аналогии с 4а вызовите
@@ -157,7 +157,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			// ссылок, определенных в предыдущем фрагменте.
 			//Выполните новый фрагмент, объясните разницу.
 
-
+	}
 		//////////////////////////////////////////////////////////////////////
 		/*
 			//Задание 5.Виртуальные деструкторы.

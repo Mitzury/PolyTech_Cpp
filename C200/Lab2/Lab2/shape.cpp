@@ -32,13 +32,13 @@ class Shape {
         virtual ~Shape() {
             std::cout << "Now I am in Shape's destructor!" << std::endl;
         }
+        virtual void Inflate(int factor) = 0;
 };
 
 // Производный класс Rect
 class Rect : public Shape {
     public:
-
-        Rect(Color c) : Shape(c) {}
+        Rect(Color c = RED) : Shape(c) {}
         //// Конструктор производного класса с параметром-цветом
         //Rect(Color c) : Shape(c) {
         //    std::cout << "Constructing Rect" << std::endl;
@@ -56,6 +56,9 @@ class Rect : public Shape {
         }
         void WhereAmIVirtual() const override {
             std::cout << "Now I am in class Rect (virtual)" << std::endl;
+        }
+        void Inflate(int factor) override {
+            std::cout << "Rect is inflating by a factor of " << factor << std::endl;
         }
 };
 
@@ -82,5 +85,8 @@ class Circle : public Shape {
         }
         void WhereAmIVirtual() const override {
             std::cout << "Now I am in class Circle (virtual)" << std::endl;
+        }
+        void Inflate(int factor) override {
+            std::cout << "Circle is inflating by a factor of " << factor << std::endl;
         }
 };

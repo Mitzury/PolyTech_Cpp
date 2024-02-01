@@ -1,6 +1,6 @@
 #pragma once
 class MyString {
-private:
+
     char* m_str;
 
 public:

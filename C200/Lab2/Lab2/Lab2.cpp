@@ -14,7 +14,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-#if 0	
+#if 1
 	//Задание 1.Массив объектов класса.
 	{
 		std::cout << "Chapter 1 \n" ;
@@ -25,7 +25,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		MyString str1[N] = { MyString("String1"), MyString("String2"), MyString("String3") };
 		// Печать строк-членов класса
 		for (int i = 0; i < N; ++i) {
-			std::cout << "str1[" << i << "]: " << str1[i].str << std::endl;
+			std::cout << "str1[" << i << "]: " << str1[i].GetString() << std::endl;
 		}
 		// Новый размер массива 
 		const int M = 5;
@@ -35,12 +35,12 @@ int _tmain(int argc, _TCHAR* argv[])
 			temp[i] = str1[i];
 		}
 		for (int i = N; i < M; ++i) {
-			temp[i] = MyString("String" + std::to_string(i + 1));
+			temp[i] = MyString("String");
 		}
 
 		// Печать строк-членов обновленного массива
 		for (int i = 0; i < M; ++i) {
-			std::cout << "temp[" << i << "]: " << temp[i].m_str << std::endl;
+			std::cout << "temp[" << i << "]: " << temp[i].GetString() << std::endl;
 		}
 
 	}
@@ -73,7 +73,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	}
 #endif;
-#if 1
+#if 0
 	//Задание 3.Простое наследование.Аргументы конструктора, передаваемые в базовый класс.
 	{
 		//Создайте иерархию классов:
@@ -102,7 +102,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		//и производного классов
 	}
 #endif;
-#if 1
+#if 0
 	//Задание 4.Виртуальные функции.
 	{
 		//4а) Модифицируйте классы Shape,Rect и Circle:
@@ -156,7 +156,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		rCircle.WhereAmIVirtual(); // Now I am in class Circle (virtual) 
 	}
 #endif;
-#if 1
+#if 0
 		//////////////////////////////////////////////////////////////////////
 		/*
 			//Задание 5.Виртуальные деструкторы.
@@ -198,6 +198,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 #endif;
+#if 0
 		/*
 			//Задание 6*. В чем заключается отличие 1) и 2)
 			{
@@ -215,14 +216,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		*/
 
 		//////////////////////////////////////////////////////////////////////
-		/*
-			//Задание 7.Виртуальные функции и оператор разрешения области видимости.
+		//Задание 7.Виртуальные функции и оператор разрешения области видимости.
 
-			{
-				Rect r(...);
-				Shape* p = &r;
-				p->WhereAmIVirtual();//...
-				stop
+		{
+			Rect r(GREEN);
+			Shape* p = &r;
+			p->WhereAmIVirtual();   // Now I am in class Shape (virtual)
+		// Оператор разрешения области видимости для вызова WhereAmIVirtual() из класса Shape
+			r.Shape::WhereAmIVirtual();       // Now I am in class Shape (virtual)
 
 
 				//4a Оператор разрешения области видимости.
@@ -230,25 +231,23 @@ int _tmain(int argc, _TCHAR* argv[])
 				//WhereAmIVirtual()класса Shape
 
 
-			}
-		*/
+		}
 
 		//////////////////////////////////////////////////////////////////////
-		/*
-			//Задание 8.Чисто виртуальные функции.
-			//Введите в базовый класс метод void Inflate(int); Подумайте:
-			//можно ли реализовать такой метод для базового класса? => как его нужно объявить.
-			//Реализуйте этот метод для производных классов.
-			{
-				Rect r(...);
-				Shape* p = &r;
-				p->Inflate(5);
-				Circle c(...);
-				p = &c;
-				p->Inflate(5);
-			}
-		*/
+		//Задание 8.Чисто виртуальные функции.
+		//Введите в базовый класс метод void Inflate(int); Подумайте:
+		//можно ли реализовать такой метод для базового класса? => как его нужно объявить.
+		//Реализуйте этот метод для производных классов.
+		{
+		Rect r;
+		Shape* p = &r;
+		p->Inflate(5);
 
+		Circle c;
+		p = &c;
+		p->Inflate(5);
+		}
+#endif;
 
 		//////////////////////////////////////////////////////////////////////
 			//Задание 9*. Создайте глобальную функцию, которая будет принимать любое

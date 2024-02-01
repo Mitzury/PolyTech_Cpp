@@ -5,35 +5,46 @@
 
 #include <tchar.h>
 #include "MyString.h"
+#include "shape.cpp"
 #include <iostream>
+#include <string>
 #define	  stop __asm nop
 
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+#if 0	
 	//Задание 1.Массив объектов класса.
 	{
 		std::cout << "Chapter 1 \n" ;
 		//Объявите и проинициализируйте массив ar из объектов
-		// Исходный размер массива
+	    // Исходный размер массива
 		const int N = 3;
-		// Инициализация массива объектов MyString.
-		MyString ar[N] = { MyString("String1"), MyString("String2"), MyString("String3") };
+		// Инициализация статического массива объектов MyString
+		MyString str1[N] = { MyString("String1"), MyString("String2"), MyString("String3") };
 		// Печать строк-членов класса
-		for (int i = 0; i <= N; ++i) {
-			std::cout << "ar[" << i << "]: " << ar[i].m_str1 << std::endl;
+		for (int i = 0; i < N; ++i) {
+			std::cout << "str1[" << i << "]: " << str1[i].str << std::endl;
 		}
 		// Новый размер массива 
 		const int M = 5;
-		MyString ar2[M] = { MyString("String1"), MyString("String2"), MyString("String3"), MyString("String4"), MyString("String5") };
-		// Печать строк-членов класса
+		// Изменение размера массива без явного создания нового
+		MyString temp[M];
+		for (int i = 0; i < N; ++i) {
+			temp[i] = str1[i];
+		}
+		for (int i = N; i < M; ++i) {
+			temp[i] = MyString("String" + std::to_string(i + 1));
+		}
+
+		// Печать строк-членов обновленного массива
 		for (int i = 0; i < M; ++i) {
-			std::cout << "ar2[" << i << "]: " << ar2[i].m_str1 << std::endl;
+			std::cout << "temp[" << i << "]: " << temp[i].m_str << std::endl;
 		}
 
 	}
-		
+#endif;
 #if 0;	
 	//Задание 2.Массив указателей на объекты класса.
 	{
@@ -62,7 +73,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	}
 #endif;
-#if 0
+#if 1
 	//Задание 3.Простое наследование.Аргументы конструктора, передаваемые в базовый класс.
 	{
 		//Создайте иерархию классов:
@@ -91,7 +102,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		//и производного классов
 	}
 #endif;
-#if 0
+#if 1
 	//Задание 4.Виртуальные функции.
 	{
 		//4а) Модифицируйте классы Shape,Rect и Circle:
@@ -126,14 +137,26 @@ int _tmain(int argc, _TCHAR* argv[])
 		rCircle.WhereAmI(); // Now I am in class Shape
 	
 
-			//4б) Добавьте в базовый и производные классы виртуальный
-			// метод WhereAmIVirtual(). По аналогии с 4а вызовите
-			// виртуальный метод посредством объектов, указателей и
-			// ссылок, определенных в предыдущем фрагменте.
-			//Выполните новый фрагмент, объясните разницу.
+		//4б) Добавьте в базовый и производные классы виртуальный
+		// метод WhereAmIVirtual(). По аналогии с 4а вызовите
+		// виртуальный метод посредством объектов, указателей и
+		// ссылок, определенных в предыдущем фрагменте.
+		//Выполните новый фрагмент, объясните разницу.
+		// Вызов виртуального метода
+		s.WhereAmIVirtual();   // Now I am in class Shape (virtual) 
+		r.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
+		c.WhereAmIVirtual();   // Now I am in class Circle (virtual) 
 
+		pShape->WhereAmIVirtual();  // Now I am in class Shape (virtual) 
+		pRect->WhereAmIVirtual();   // Now I am in class Rect (virtual) 
+		pCircle->WhereAmIVirtual(); // Now I am in class Circle (virtual) 
+
+		rShape.WhereAmIVirtual();  // Now I am in class Shape (virtual) 
+		rRect.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
+		rCircle.WhereAmIVirtual(); // Now I am in class Circle (virtual) 
 	}
 #endif;
+#if 1
 		//////////////////////////////////////////////////////////////////////
 		/*
 			//Задание 5.Виртуальные деструкторы.
@@ -145,6 +168,19 @@ int _tmain(int argc, _TCHAR* argv[])
 			// "Now I am in Shape's destructor!" или
 			// "Now I am in Rect's destructor!"
 			//Выполните фрагмент. Объясните результат.
+		*/
+	{
+		Rect r(GREEN);
+		Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
+
+		for (int i = 0; i < 4; ++i) {
+			ar[i]->WhereAmIVirtual();
+		}
+
+		for (int i = 0; i < 4; ++i) {
+			delete ar[i];
+		}
+	}
 
 			// b) Добавьте в объявление деструкторов ключевое слово virtual
 			//Выполните фрагмент.Объясните разницу.
@@ -156,14 +192,12 @@ int _tmain(int argc, _TCHAR* argv[])
 				//Если Вы считаете, что в приведенном фрагменте чего-то
 				//не хватает - добавьте
 
-				Rect r(<параметры>);
-				Shape* ar[]={new Shape(r), new Rect(r), new Circle(r), new Circle() };
+				//Rect r(<>);
+				//Shape* ar[]={new Shape(r), new Rect(r), new Circle(r), new Circle() };
 				//Вызовите для каждого элемента массива метод WhereAmIVirtual()
 
 
-			stop
-		*/
-
+#endif;
 		/*
 			//Задание 6*. В чем заключается отличие 1) и 2)
 			{

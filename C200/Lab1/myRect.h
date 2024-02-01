@@ -28,5 +28,6 @@ public:
 };
 
 
-Rect BoundingRect(const Rect& rect1, const Rect& rect2);
+Rect BoundingRect(Rect rect1, Rect rect2);
 Rect BoundingRect2(const Rect& rect1, const Rect& rect2);
+

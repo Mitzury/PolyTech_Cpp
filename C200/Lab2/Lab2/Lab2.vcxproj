@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lab2.cpp" />
+    <ClCompile Include="main_L2_C200.cpp" />
     <ClCompile Include="MyString.cpp" />
     <ClCompile Include="shape.cpp" />
   </ItemGroup>

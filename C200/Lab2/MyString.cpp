@@ -21,7 +21,7 @@ MyString::MyString(const MyString& other) {
 
 // Деструктор (MyString::~MyString()): Освобождает выделенную динамическую память при уничтожении объекта.
 MyString::~MyString() {
-    delete[] m_str;
+   // delete[] m_str;
     std::cout << "Destructor called" << std::endl;
 }
 

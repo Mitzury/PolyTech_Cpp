@@ -157,8 +157,9 @@ int main()
 	{
 		cout <<  "\n#### Chapter 4 \n";
 		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); Rect r3;
-		r3 = BoundingRect(r1, r2);
-		r3.PrintRect();
+		// Глобальная функция BoundingRect
+		r3 = BoundingRect(r1, r2); 
+		r3.PrintRect(); 
 	}
 	//Задание 4а. Передача объектов по ссылке.
 	//Создайте глобальную функцию BoundingRect2, которая выполняет ту же
@@ -168,9 +169,6 @@ int main()
 		cout << "\n#### Chapter 4a \n";
 
 		Rect r1(1, 2, 3, 4), r2(5, 6, 7, 8), r3;
-		// Глобальная функция BoundingRect
-		r3 = BoundingRect(r1, r2);
-		r3.PrintRect();
 		// Глобальная функция BoundingRect2
 		r3 = BoundingRect2(r1, r2);
 		r3.PrintRect();

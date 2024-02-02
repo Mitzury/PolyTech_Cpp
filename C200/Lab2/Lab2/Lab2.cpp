@@ -17,7 +17,7 @@ int _tmain(int argc, _TCHAR* argv[])
 #if 1
 	//Задание 1.Массив объектов класса.
 	{
-		std::cout << "Chapter 1 \n" ;
+		std::cout << "Chapter 1 \n";
 		//Объявите и проинициализируйте массив ar из объектов
 	    // Исходный размер массива
 		const int N = 3;
@@ -58,7 +58,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		MyString* arPtr[N] = { new MyString("String1"), new MyString("String2"), new MyString("String3") };
 		//Печать строк-членов класса
 		for (int i = 0; i < N; ++i) {
-			std::cout << "arPtr[" << i << "]: " << arPtr[i]->GetString() << std::endl;
+			std::cout << "arPtr[" << i << "]: " << (*arPtr[i]).GetString() << std::endl;
 		}
 	   	//Замените размер const int N=5; , не изменяя список инициализаторов.
 		const int M = 5;
@@ -84,7 +84,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	}
 #endif;
-#if 0
+#if 1
 	//Задание 3.Простое наследование.Аргументы конструктора, передаваемые в базовый класс.
 	{
 		//Создайте иерархию классов:
@@ -96,15 +96,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		//будет определять цвет фигуры.
 		//Подсказка: для хранения цвета объявите перечисление (RED,GREEN,BLUE...);
 
-		// Создание объектов иерархии
-		std::cout << "\nChapter 3:\n";
-		//Rect rect(RED);
-		//Circle circle(GREEN);
-		Shape x(RED);
+		 // Создание объектов иерархии
+		Rect rect(RED); 
+		Circle circle(GREEN); 
 		// Вывод информации о фигурах
-		//rect.printInfo();
-		std::cout << x.getColor() << std::endl;
-		//circle.printInfo();
+		rect.printInfo(); 
+		std::cout << std::endl; 
+		circle.printInfo(); 
 
 		//В конструкторах производных классов предусмотрите передачу
 		//параметра-цвета конструктору базового класса.
@@ -113,7 +111,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		//и производного классов
 	}
 #endif;
-#if 0
+#if 1
 	//Задание 4.Виртуальные функции.
 	{
 		//4а) Модифицируйте классы Shape,Rect и Circle:
@@ -123,29 +121,30 @@ int _tmain(int argc, _TCHAR* argv[])
 		//Выполните приведенный фрагмент, объясните результат.
 		std::cout << "\nChapter 4a:\n";
 		
-		Shape s(RED);
 		Rect r(GREEN);
 		Circle c(BLUE);
 
-		//Метод какого класса вызывается в следующих строчках???
-		s.WhereAmI();  // Now I am in class Shape
-		r.WhereAmI();  // Now I am in class Rect
-		c.WhereAmI();  // Now I am in class Circle
-		
-		Shape* pShape = &s;
+		r.WhereAmI();
+		c.WhereAmI();
+
 		Shape* pRect = &r;
 		Shape* pCircle = &c;
-		pShape->WhereAmI();  // Now I am in class Shape
-		pRect->WhereAmI();   // Now I am in class Shape
-		pCircle->WhereAmI(); // Now I am in class Shape
-			
-		//Заполните ... согласно комментариям
-		Shape& rShape = s;
+		pRect->WhereAmI();
+		pCircle->WhereAmI();
+
 		Shape& rRect = r;
 		Shape& rCircle = c;
-		rShape.WhereAmI();  // Now I am in class Shape
-		rRect.WhereAmI();   // Now I am in class Shape
-		rCircle.WhereAmI(); // Now I am in class Shape
+		rRect.WhereAmI();
+		rCircle.WhereAmI();
+
+		r.WhereAmIVirtual();
+		c.WhereAmIVirtual();
+
+		pRect->WhereAmIVirtual();
+		pCircle->WhereAmIVirtual();
+
+		rRect.WhereAmIVirtual();
+		rCircle.WhereAmIVirtual();
 	
 
 		//4б) Добавьте в базовый и производные классы виртуальный
@@ -154,20 +153,19 @@ int _tmain(int argc, _TCHAR* argv[])
 		// ссылок, определенных в предыдущем фрагменте.
 		//Выполните новый фрагмент, объясните разницу.
 		// Вызов виртуального метода
-		s.WhereAmIVirtual();   // Now I am in class Shape (virtual) 
+
 		r.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
 		c.WhereAmIVirtual();   // Now I am in class Circle (virtual) 
 
-		pShape->WhereAmIVirtual();  // Now I am in class Shape (virtual) 
+
 		pRect->WhereAmIVirtual();   // Now I am in class Rect (virtual) 
 		pCircle->WhereAmIVirtual(); // Now I am in class Circle (virtual) 
 
-		rShape.WhereAmIVirtual();  // Now I am in class Shape (virtual) 
 		rRect.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
 		rCircle.WhereAmIVirtual(); // Now I am in class Circle (virtual) 
 	}
 #endif;
-#if 0
+#if 1
 		//////////////////////////////////////////////////////////////////////
 		/*
 			//Задание 5.Виртуальные деструкторы.
@@ -182,7 +180,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		*/
 	{
 		Rect r(GREEN);
-		Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
+		Shape* ar[] = { new Rect(GREEN), new Circle(RED), new Circle(), new Rect(BLUE) };
 
 		for (int i = 0; i < 4; ++i) {
 			ar[i]->WhereAmIVirtual();
@@ -209,7 +207,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 #endif;
-#if 0
+#if 1
 		/*
 			//Задание 6*. В чем заключается отличие 1) и 2)
 			{
@@ -230,16 +228,17 @@ int _tmain(int argc, _TCHAR* argv[])
 		//Задание 7.Виртуальные функции и оператор разрешения области видимости.
 
 		{
-			Rect r(GREEN);
-			Shape* p = &r;
-			p->WhereAmIVirtual();   // Now I am in class Shape (virtual)
+		Rect r(GREEN);
+		Shape* p = &r;
+
+		p->WhereAmIVirtual(); // Now I am in class Shape (virtual)
 		// Оператор разрешения области видимости для вызова WhereAmIVirtual() из класса Shape
-			r.Shape::WhereAmIVirtual();       // Now I am in class Shape (virtual)
+		r.Shape::WhereAmIVirtual(); // Now I am in class Shape (virtual)
 
 
-				//4a Оператор разрешения области видимости.
-				//Посредством объекта r и указателя p вызовите виртуальную функцию
-				//WhereAmIVirtual()класса Shape
+		//4a Оператор разрешения области видимости.
+		//Посредством объекта r и указателя p вызовите виртуальную функцию
+		//WhereAmIVirtual()класса Shape
 
 
 		}
@@ -250,13 +249,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		//можно ли реализовать такой метод для базового класса? => как его нужно объявить.
 		//Реализуйте этот метод для производных классов.
 		{
-		Rect r;
-		Shape* p = &r;
-		p->Inflate(5);
+			Rect r;
+			Shape* p = &r;
+			p->Inflate(5);
 
-		Circle c;
-		p = &c;
-		p->Inflate(5);
+			Circle c;
+			p = &c;
+			p->Inflate(5);
 		}
 #endif;
 #if 0

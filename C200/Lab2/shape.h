@@ -29,17 +29,27 @@
     };
 // Класс прямоугольника, наследующий от базового класса Shape
     class Rect : public Shape {
+        private:
+            int width;
+            int height;
+            int x;
+            int y;
         public:
             // Конструктор прямоугольника с установкой цвета по умолчанию RED
             Rect(Color c = RED);
 
             void WhereAmI() const;
-
             void WhereAmIVirtual() const override;
 
             void printInfo() const override;
             // Реализация чисто виртуальной функции Inflate для прямоугольника
             //void Inflate(int factor) override;
+
+            int getWidth() const;
+            int getHeight() const;
+            int getX() const;
+            int getY() const;
+
             // Деструктор прямоугольника
             ~Rect();
     };
@@ -55,6 +65,9 @@
             Circle(Color c);
             // Конструктор круга по умолчанию
             Circle();
+            // Конструктор круга
+            Circle(Color c, int centerX, int centerY, int radius);
+
             // Конструктор круга, принимающий прямоугольник и устанавливающий цвет
             Circle(const Rect& rect);
 

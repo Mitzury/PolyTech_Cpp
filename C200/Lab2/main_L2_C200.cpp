@@ -124,11 +124,15 @@ int _tmain(int argc, _TCHAR* argv[])
 		r.WhereAmI();  // Now I'm in class Rect
 		c.WhereAmI();  // Now I'm in class Circle
 
-		Shape* pRect = &r;
+		// Указатель на базовый класс для хранения адреса обьекта производного класса.
+		Shape* pRect = &r; 
 		Shape* pCircle = &c;
 		pRect->WhereAmI();    // Now I'm in class Shape
 		pCircle->WhereAmI();  // Now I'm in class Shape
 
+		//Cсылки для инициализации переменных rRect и rCircle.
+		//rRect и rCircle являются псевдонимами объектов r и c, соответственно. 
+		//Однако тип данных ссылки остается тем же, что и у оригинального объекта (Shape).
 		Shape& rRect = r;
 		Shape& rCircle = c;
 		rRect.WhereAmI();     // Now I'm in class Shape
@@ -141,6 +145,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		//Выполните новый фрагмент, объясните разницу.
 		// Вызов виртуального метода
 
+		std::cout << "\nChapter 4b:\n";
 		sh.WhereAmIVirtual();  // Now I am in class Shape (virtual)
 		r.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
 		c.WhereAmIVirtual();   // Now I am in class Circle (virtual) 
@@ -159,37 +164,47 @@ int _tmain(int argc, _TCHAR* argv[])
 		// "Now I am in Shape's destructor!" или
 		// "Now I am in Rect's destructor!"
 		//Выполните фрагмент. Объясните результат.
+	{
+		{
+			std::cout << "\nChapter 5a:\n";
+			Rect r(GREEN);
+			Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
 
-	{ //переделать
-		Rect r(GREEN);
-		//Shape* ar[] = { new Rect(GREEN), new Circle(RED), new Circle(), new Rect(BLUE) };
-		Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
-
-
-		for (int i = 0; i < 4; ++i) {
-			ar[i]->WhereAmIVirtual();
+			for (int i = 0; i < 4; ++i) {
+				delete ar[i];
+			}
 		}
 
-		for (int i = 0; i < 4; ++i) {
-			delete ar[i];
-		}
-	}
 
-			// b) Добавьте в объявление деструкторов ключевое слово virtual
-			//Выполните фрагмент.Объясните разницу.
+		{
+			std::cout << "\nChapter 5b:\n";
+		// b) Добавьте в объявление деструкторов ключевое слово virtual
+		//Выполните фрагмент. Объясните разницу.
+			Shape s(RED);
+			Rect r(GREEN);
+			Circle c(BLUE);
+
 
 
 			//Подумайте: какие конструкторы вызываются в следующей строке?
-				//Если в разработанных классов каких-то конструкторов
-				//не хватает - реализуйте
-				//Если Вы считаете, что в приведенном фрагменте чего-то
-				//не хватает - добавьте
+			//Если в разработанных классов каких-то конструкторов
+			//не хватает - реализуйте
+			//Если Вы считаете, что в приведенном фрагменте чего-то
+			//не хватает - добавьте
+			
+			//Вызовите для каждого элемента массива метод WhereAmIVirtual()
+			Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
 
-				//Rect r(<>);
-				//Shape* ar[]={new Shape(r), new Rect(r), new Circle(r), new Circle() };
-				//Вызовите для каждого элемента массива метод WhereAmIVirtual()
 
+			for (int i = 0; i < 4; ++i) {
+				ar[i]->WhereAmIVirtual();
+			}
+			for (int i = 0; i < 4; ++i) {
+				delete ar[i];
+			}
 
+		}
+}
 #endif;
 #if 0
 		/*

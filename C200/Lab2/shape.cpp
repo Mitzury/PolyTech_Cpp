@@ -17,7 +17,9 @@ const char* colorToString(Color c) {
 // Реализация методов базового класса Shape
 
 // Конструктор Shape, устанавливающий цвет
-Shape::Shape(Color c) : color(c) {}
+Shape::Shape(Color c) : color(c) {
+    std::cout << "Constructing Shape" << std::endl;
+}
 
 // Геттер для цвета
 Color Shape::getColor() const {
@@ -28,61 +30,68 @@ Color Shape::getColor() const {
 void Shape::WhereAmI() const { 
     std::cout << "Now I am in class Shape" << std::endl;
 }
-
 // Виртуальная функция, сообщающая о местоположении объекта Shape (может быть переопределена)
 void Shape::WhereAmIVirtual() const {
     std::cout << "Now I am in class Shape (virtual)" << std::endl;
 }
-
 // Виртуальный деструктор Shape
 Shape::~Shape() {
     std::cout << "Now I am in Shape's destructor!" << std::endl;
 
 }
-
 // Виртуальная функция для вывода информации о фигуре (может быть переопределена в производных классах)
 void Shape::printInfo() const {
     std::cout << "Color: " << colorToString(color) << std::endl;
 }
 
 // Реализация методов производного класса Rect
-
 // Конструктор Rect, устанавливающий цвет с использованием конструктора базового класса Shape
-Rect::Rect(Color c) : Shape(c) {}
+Rect::Rect(Color c) : Shape(c) {
+    std::cout << "Constructing Rect" << std::endl;
+}
 
 // Невиртуальная функция, сообщающая о местоположении объекта Rect
 void Rect::WhereAmI() const {
     std::cout << "Now I am in class Rect" << std::endl;
-
 }
-
 void Rect::WhereAmIVirtual() const {
     std::cout << "Now I am in class Rect (virtual)" << std::endl;
 }
-
 void Rect::printInfo() const {
     std::cout << "Rectangle of color: " << colorToString(color) << std::endl;
 }
-
 //void Rect::Inflate(int factor) {
 //    std::cout << "Rect is inflating by a factor of " << factor << std::endl;
 //}
-
+int Rect::getWidth() const {
+    return width;
+}
+int Rect::getHeight() const {
+    return height;
+}
+int Rect::getX() const {
+    return x;
+}
+int Rect::getY() const {
+    return y;
+}
 Rect::~Rect() {
     std::cout << "Now I am in Rect's destructor!" << std::endl;
 
 }
 
+// Реализация методов производного класса Circle
 Circle::Circle(Color c) : Shape(c) {
     std::cout << "Constructing Circle" << std::endl;
 }
-
-// Реализация методов производного класса Circle
-
 // Конструктор Circle, устанавливающий цвет с использованием конструктора базового класса Shape
 Circle::Circle() : Shape(RED) {}
 
-Circle::Circle(const Rect& rect) : Shape(rect.getColor()) {}
+Circle::Circle(const Rect& rect) : Shape(rect.getColor()) {
+    centerX = rect.getWidth() / 2 + rect.getX();
+    centerY = rect.getHeight() / 2 + rect.getY();
+    radius = (rect.getWidth() + rect.getHeight()) / 4;
+}
 
 void Circle::WhereAmI() const {
     std::cout << "Now I am in class Circle" << std::endl;

@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bochka.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main_L1_C200.cpp" />
     <ClCompile Include="myRect.cpp" />
     <ClCompile Include="myString.cpp" />
   </ItemGroup>

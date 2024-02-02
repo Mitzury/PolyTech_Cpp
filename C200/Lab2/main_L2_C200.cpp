@@ -119,6 +119,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		Shape sh(RED);
 		Rect r(GREEN);
 		Circle c(BLUE);
+		// создать с параметрами
 
 		sh.WhereAmI(); // Now I'm in class Shape
 		r.WhereAmI();  // Now I'm in class Rect

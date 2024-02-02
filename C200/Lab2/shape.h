@@ -56,17 +56,17 @@
 // Класс круга, наследующий от базового класса Shape
     class Circle : public Shape {
         private:
-            int centerX;
-            int centerY;
-            int radius;
+            int m_centerX;
+            int m_centerY;
+            int m_radius;
 
         public: 
             // Конструктор круга с установкой цвета
-            Circle(Color c);
+          //  Circle(Color c);
             // Конструктор круга по умолчанию
-            Circle();
+          //  Circle();
             // Конструктор круга
-            Circle(Color c, int centerX, int centerY, int radius);
+            Circle(Color = RED, int centerX = 0, int centerY = 0, int radius = 0);
 
             // Конструктор круга, принимающий прямоугольник и устанавливающий цвет
             Circle(const Rect& rect);

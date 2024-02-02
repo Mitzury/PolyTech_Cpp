@@ -14,7 +14,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-#if 1
+#if 0
 	//Задание 1.Массив объектов класса.
 	{
 		std::cout << "Chapter 1 \n";
@@ -44,7 +44,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 #endif;
-#if 1;	
+#if 0	
 	//Задание 2.Массив указателей на объекты класса.
 	{
 		//Объявите и проинициализируйте массив arPtr из N
@@ -90,20 +90,19 @@ int _tmain(int argc, _TCHAR* argv[])
 		//цветной => в базовом классе можно ввести переменную, которая
 		//будет определять цвет фигуры.
 		//Подсказка: для хранения цвета объявите перечисление (RED,GREEN,BLUE...);
-
-		 // Создание объектов иерархии
-		Rect rect(RED); 
-		Circle circle(GREEN); 
-		// Вывод информации о фигурах
-		rect.printInfo(); 
-		std::cout << std::endl; 
-		circle.printInfo(); 
-
 		//В конструкторах производных классов предусмотрите передачу
 		//параметра-цвета конструктору базового класса.
 		//При создании и уничтожении объекта производного типа определите
 		//последовательность вызовов конструкторов и деструкторов базового
 		//и производного классов
+		
+		// Создание объектов иерархии
+		Rect rect(RED); 
+		Circle circle(GREEN); 
+		// Вывод информации о фигурах
+		rect.printInfo(); 
+		std::cout << std::endl;
+		circle.printInfo();
 	}
 #endif;
 #if 1
@@ -115,22 +114,25 @@ int _tmain(int argc, _TCHAR* argv[])
 		//следующего вида "Now I am in class Shape(Rect или Circle)".
 		//Выполните приведенный фрагмент, объясните результат.
 		std::cout << "\nChapter 4a:\n";
-		
+		//вызвать шейп
+		// чистая виртуальность - if 0
+		Shape sh(RED);
 		Rect r(GREEN);
 		Circle c(BLUE);
 
-		r.WhereAmI();
-		c.WhereAmI();
+		sh.WhereAmI(); // Now I'm in class Shape
+		r.WhereAmI();  // Now I'm in class Rect
+		c.WhereAmI();  // Now I'm in class Circle
 
 		Shape* pRect = &r;
 		Shape* pCircle = &c;
-		pRect->WhereAmI();
-		pCircle->WhereAmI();
+		pRect->WhereAmI();    // Now I'm in class Shape
+		pCircle->WhereAmI();  // Now I'm in class Shape
 
 		Shape& rRect = r;
 		Shape& rCircle = c;
-		rRect.WhereAmI();
-		rCircle.WhereAmI();
+		rRect.WhereAmI();     // Now I'm in class Shape
+		rCircle.WhereAmI();   // Now I'm in class Shape
 
 		//4б) Добавьте в базовый и производные классы виртуальный
 		// метод WhereAmIVirtual(). По аналогии с 4а вызовите
@@ -139,6 +141,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		//Выполните новый фрагмент, объясните разницу.
 		// Вызов виртуального метода
 
+		sh.WhereAmIVirtual();  // Now I am in class Shape (virtual)
 		r.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
 		c.WhereAmIVirtual();   // Now I am in class Circle (virtual) 
 
@@ -147,21 +150,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 #endif;
 #if 1
-		//////////////////////////////////////////////////////////////////////
-		/*
-			//Задание 5.Виртуальные деструкторы.
-			//Модифицируйте классы:
-			//a) введите соответствующие
-			// деструкторы (без ключевого слова virtual).
-			//Реализация каждого деструктора
-			//должна выводить сообщение следующего вида
-			// "Now I am in Shape's destructor!" или
-			// "Now I am in Rect's destructor!"
-			//Выполните фрагмент. Объясните результат.
-		*/
-	{
+	//Задание 5.Виртуальные деструкторы.
+		//Модифицируйте классы:
+		//a) введите соответствующие
+		// деструкторы (без ключевого слова virtual).
+		//Реализация каждого деструктора
+		//должна выводить сообщение следующего вида
+		// "Now I am in Shape's destructor!" или
+		// "Now I am in Rect's destructor!"
+		//Выполните фрагмент. Объясните результат.
+
+	{ //переделать
 		Rect r(GREEN);
-		Shape* ar[] = { new Rect(GREEN), new Circle(RED), new Circle(), new Rect(BLUE) };
+		//Shape* ar[] = { new Rect(GREEN), new Circle(RED), new Circle(), new Rect(BLUE) };
+		Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
+
 
 		for (int i = 0; i < 4; ++i) {
 			ar[i]->WhereAmIVirtual();
@@ -205,7 +208,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		*/
 #endif;
-#if 1
+#if 0
 		//////////////////////////////////////////////////////////////////////
 		//Задание 7.Виртуальные функции и оператор разрешения области видимости.
 

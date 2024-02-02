@@ -64,9 +64,9 @@ void Rect::printInfo() const {
     std::cout << "Rectangle of color: " << colorToString(color) << std::endl;
 }
 
-void Rect::Inflate(int factor) {
-    std::cout << "Rect is inflating by a factor of " << factor << std::endl;
-}
+//void Rect::Inflate(int factor) {
+//    std::cout << "Rect is inflating by a factor of " << factor << std::endl;
+//}
 
 Rect::~Rect() {
     std::cout << "Now I am in Rect's destructor!" << std::endl;
@@ -100,9 +100,9 @@ void Circle::printInfo() const {
 }
 
 // Реализация чисто виртуальной функции Inflate для круга
-void Circle::Inflate(int factor) {
-    std::cout << "Circle is inflating by a factor of " << factor << std::endl;
-}
+//void Circle::Inflate(int factor) {
+//    std::cout << "Circle is inflating by a factor of " << factor << std::endl;
+//}
 
 Circle::~Circle() {
     std::cout << "Now I am in Circle's destructor!" << std::endl;

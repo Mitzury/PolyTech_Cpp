@@ -5,15 +5,12 @@
 
 // Перечисление, представляющее различные цвета
     enum Color { RED, GREEN, BLUE };
-
 // Функция для преобразования перечисления Color в строку
     const char* colorToString(Color c);
-
 // Базовый класс для фигур
     class Shape {
         protected:
             Color color;
-
         public:
             // Конструктор, устанавливающий цвет фигуры
             Shape(Color c);
@@ -24,7 +21,7 @@
             // Виртуальная функция, указывающая местоположение фигуры (может быть переопределена в производных классах)
             virtual void WhereAmIVirtual() const;
             // Чисто виртуальная функция, требующая от производных классов реализации метода Inflate
-            virtual void Inflate(int factor) = 0;
+            //virtual void Inflate(int factor) = 0;
             // Виртуальный деструктор для обеспечения правильного освобождения ресурсов при удалении объектов производных классов
             virtual ~Shape();
             // Виртуальная функция для вывода информации о фигуре (может быть переопределена в производных классах)
@@ -42,13 +39,18 @@
 
             void printInfo() const override;
             // Реализация чисто виртуальной функции Inflate для прямоугольника
-            void Inflate(int factor) override;
+            //void Inflate(int factor) override;
             // Деструктор прямоугольника
             ~Rect();
     };
 // Класс круга, наследующий от базового класса Shape
     class Circle : public Shape {
-        public: //добавить радиус и центр х\у
+        private:
+            int centerX;
+            int centerY;
+            int radius;
+
+        public: 
             // Конструктор круга с установкой цвета
             Circle(Color c);
             // Конструктор круга по умолчанию
@@ -60,7 +62,7 @@
 
             void WhereAmIVirtual() const override;
 
-            void Inflate(int factor) override;
+            //void Inflate(int factor) override;
 
             void printInfo() const override;
             // Деструктор круга

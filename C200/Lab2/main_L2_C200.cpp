@@ -30,19 +30,18 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Новый размер массива 
 		const int M = 5;
 		// Изменение размера массива без явного создания нового
-		MyString str2[M];
-		for (int i = 0; i < N; ++i) {
-			str2[i] = str1[i];
-		}
-		for (int i = N; i < M; ++i) {
-			str2[i] = MyString(("String" + std::to_string(i + 1)).c_str());
-		}
+		MyString str2[M] = { MyString("String1"), MyString("String2"), MyString("String3") };
+		//for (int i = 0; i < N; ++i) {
+		//	str2[i] = str1[i];
+		//}
+		//for (int i = N; i < M; ++i) {
+		//	str2[i] = MyString(("String" + std::to_string(i + 1)).c_str());
+		//}// нет оператора присваивания
 
 		// Печать строк-членов обновленного массива
 		for (int i = 0; i < M; ++i) {
 			std::cout << "str2[" << i << "]: " << str2[i].GetString() << std::endl;
 		}
-
 	}
 #endif;
 #if 1;	
@@ -53,7 +52,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		std::cout << "\nChapter 2:\n";
 		const int N=3;
-
 		// Инициализация массива указателей на объекты MyString (создание объектов динамически)
 		MyString* arPtr[N] = { new MyString("String1"), new MyString("String2"), new MyString("String3") };
 		//Печать строк-членов класса
@@ -62,26 +60,23 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	   	//Замените размер const int N=5; , не изменяя список инициализаторов.
 		const int M = 5;
+		MyString* arPtrNew[M] = { new MyString("String1"), new MyString("String2"), new MyString("String3") };
 		// Создание нового массива указателей с новым размером
-		MyString** arPtrNew = new MyString * [M];
-		for (int i = 0; i < M; ++i) {
-			arPtrNew[i] = i < N ? arPtr[i] : new MyString(("String" + std::to_string(i + 1)).c_str());
-		}
+
 		// Печать строк-членов нового массива указателей
 		for (int i = 0; i < M; ++i) {
-			std::cout << "arPtrNew[" << i << "]: " << arPtrNew[i]->GetString() << std::endl;
+			if (arPtrNew[i] != 0) {
+				std::cout << "arPtrNew[" << i << "]: " << arPtrNew[i]->GetString() << std::endl;
+			}
 		}
 		// Освобождение памяти для каждого созданного объекта старого массива
 		for (int i = 0; i < N; ++i) {
 			delete arPtr[i];
 		}
 		// Освобождение памяти для каждого созданного объекта нового массива 
-		for (int i = N; i < M; ++i) {
+		for (int i = 0; i < M; ++i) {
 			delete arPtrNew[i];
 		}
-		// Освобождение памяти для нового массива указателей
-		delete[] arPtrNew;
-
 	}
 #endif;
 #if 1

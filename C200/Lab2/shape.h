@@ -3,62 +3,68 @@
 
 #include <iostream>
 
-enum Color { RED, GREEN, BLUE };
+// Перечисление, представляющее различные цвета
+    enum Color { RED, GREEN, BLUE };
 
-const char* colorToString(Color c);
+// Функция для преобразования перечисления Color в строку
+    const char* colorToString(Color c);
 
-class Shape {
-protected:
-    Color color;
+// Базовый класс для фигур
+    class Shape {
+        protected:
+            Color color;
 
-public:
-    Shape(Color c);
+        public:
+            // Конструктор, устанавливающий цвет фигуры
+            Shape(Color c);
+            // Геттер для цвета фигуры
+            Color getColor() const;
+            // Невиртуальная функция
+            void WhereAmI() const;
+            // Виртуальная функция, указывающая местоположение фигуры (может быть переопределена в производных классах)
+            virtual void WhereAmIVirtual() const;
+            // Чисто виртуальная функция, требующая от производных классов реализации метода Inflate
+            virtual void Inflate(int factor) = 0;
+            // Виртуальный деструктор для обеспечения правильного освобождения ресурсов при удалении объектов производных классов
+            virtual ~Shape();
+            // Виртуальная функция для вывода информации о фигуре (может быть переопределена в производных классах)
+            virtual void printInfo() const;
+    };
+// Класс прямоугольника, наследующий от базового класса Shape
+    class Rect : public Shape {
+        public:
+            // Конструктор прямоугольника с установкой цвета по умолчанию RED
+            Rect(Color c = RED);
 
-    Color getColor() const;
+            void WhereAmI() const;
 
-    void WhereAmI() const;
+            void WhereAmIVirtual() const override;
 
-    virtual void WhereAmIVirtual() const;
+            void printInfo() const override;
+            // Реализация чисто виртуальной функции Inflate для прямоугольника
+            void Inflate(int factor) override;
+            // Деструктор прямоугольника
+            ~Rect();
+    };
+// Класс круга, наследующий от базового класса Shape
+    class Circle : public Shape {
+        public:
+            // Конструктор круга с установкой цвета
+            Circle(Color c);
+            // Конструктор круга по умолчанию
+            Circle();
+            // Конструктор круга, принимающий прямоугольник и устанавливающий цвет
+            Circle(const Rect& rect);
 
-    virtual void Inflate(int factor) = 0;
+            void WhereAmI() const;
 
-    virtual ~Shape();
+            void WhereAmIVirtual() const override;
 
-    virtual void printInfo() const;
-};
+            void Inflate(int factor) override;
 
-class Rect : public Shape {
-public:
-    Rect(Color c = RED);
-
-    void WhereAmI() const;
-
-    void WhereAmIVirtual() const override;
-
-    void printInfo() const override;
-
-    void Inflate(int factor) override;
-
-    ~Rect();
-};
-
-class Circle : public Shape {
-public:
-    Circle(Color c);
-
-    Circle();
-
-    Circle(const Rect& rect);
-
-    void WhereAmI() const;
-
-    void WhereAmIVirtual() const override;
-
-    void Inflate(int factor) override;
-
-    void printInfo() const override;
-
-    ~Circle();
-};
+            void printInfo() const override;
+            // Деструктор круга
+            ~Circle();
+    };
 
 #endif

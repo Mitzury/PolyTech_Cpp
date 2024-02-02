@@ -137,16 +137,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		rRect.WhereAmI();
 		rCircle.WhereAmI();
 
-		r.WhereAmIVirtual();
-		c.WhereAmIVirtual();
-
-		pRect->WhereAmIVirtual();
-		pCircle->WhereAmIVirtual();
-
-		rRect.WhereAmIVirtual();
-		rCircle.WhereAmIVirtual();
-	
-
 		//4б) Добавьте в базовый и производные классы виртуальный
 		// метод WhereAmIVirtual(). По аналогии с 4а вызовите
 		// виртуальный метод посредством объектов, указателей и

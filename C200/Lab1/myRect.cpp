@@ -75,11 +75,11 @@ int Rect::GetBottom() const {
 // Этот метод принимает другой объект Rect в качестве параметра и возвращает новый объект Rect, 
 // представляющий ограничивающий прямоугольник, охватывающий оба исходных прямоугольника.
 Rect Rect::BoundingRectMethod(const Rect& rect) const {
-    int left = std::min(m_left, rect.GetLeft());
-    int right = std::max(m_right, rect.GetRight());
-    int top = std::min(m_top, rect.GetTop());
-    int bottom = std::max(m_bottom, rect.GetBottom());
-    return Rect(left, right, top, bottom);
+        int left = std::min(m_left, rect.GetLeft());
+        int right = std::max(m_right, rect.GetRight());
+        int top = std::min(m_top, rect.GetTop());
+        int bottom = std::max(m_bottom, rect.GetBottom());
+        return Rect(left, right, top, bottom);
 }
 // Задание 4б. Передача объектов по ссылке.
 Rect Rect::BoundingRect3(const Rect& rect1, const Rect& rect2)
@@ -95,20 +95,17 @@ Rect Rect::BoundingRect3(const Rect& rect1, const Rect& rect2)
 
 // Глобальная функция BoundingRect
 Rect BoundingRect(Rect rect1, Rect rect2) {
-    int left = std::min(rect1.GetLeft(), rect2.GetLeft());
-    int right = std::max(rect1.GetRight(), rect2.GetRight());
-    int top = std::min(rect1.GetTop(), rect2.GetTop()); 
-    int bottom = std::max(rect1.GetBottom(), rect2.GetBottom());
-
-    return Rect(left, right, top, bottom);
+        int left = std::min(rect1.GetLeft(), rect2.GetLeft());
+        int right = std::max(rect1.GetRight(), rect2.GetRight());
+        int top = std::min(rect1.GetTop(), rect2.GetTop()); 
+        int bottom = std::max(rect1.GetBottom(), rect2.GetBottom());
+        return Rect(left, right, top, bottom);
 }
 // Задание 4а. Передача объектов по ссылке.
 Rect BoundingRect2(const Rect& rect1, const Rect& rect2) {
-
-    int left = std::min(rect1.GetLeft(), rect2.GetLeft());
-    int right = std::max(rect1.GetRight(), rect2.GetRight());
-    int top = std::min(rect1.GetTop(), rect2.GetTop());
-    int bottom = std::max(rect1.GetBottom(), rect2.GetBottom());
-
-    return Rect(left, right, top, bottom);
+        int left = std::min(rect1.GetLeft(), rect2.GetLeft());
+        int right = std::max(rect1.GetRight(), rect2.GetRight());
+        int top = std::min(rect1.GetTop(), rect2.GetTop());
+        int bottom = std::max(rect1.GetBottom(), rect2.GetBottom());
+        return Rect(left, right, top, bottom);
 }

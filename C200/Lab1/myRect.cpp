@@ -34,7 +34,6 @@ void Rect::InflateRect(int dl, int dr, int dt, int db) {
     Normalize();
 }
 
-
 void Rect::Normalize() {
     if (m_left > m_right) std::swap(m_left, m_right);
     if (m_top > m_bottom) std::swap(m_top, m_bottom);
@@ -82,7 +81,17 @@ Rect Rect::BoundingRectMethod(const Rect& rect) const {
     int bottom = std::max(m_bottom, rect.GetBottom());
     return Rect(left, right, top, bottom);
 }
+// Задание 4б. Передача объектов по ссылке.
+Rect Rect::BoundingRect3(const Rect& rect1, const Rect& rect2)
+{
+        // Здесь объекты передаются по ссылке, и конструкторы копирования не вызываются
+        int minX = std::min(rect1.m_left, rect2.m_left);
+        int minY = std::min(rect1.m_right, rect2.m_right);
+        int maxX = std::max(rect1.m_left + rect1.m_top, rect2.m_left + rect2.m_top);
+        int maxY = std::max(rect1.m_right + rect1.m_bottom, rect2.m_right + rect2.m_bottom);
+        return Rect(minX, minY, maxX - minX, maxY - minY);
 
+}
 
 // Глобальная функция BoundingRect
 Rect BoundingRect(Rect rect1, Rect rect2) {
@@ -93,7 +102,6 @@ Rect BoundingRect(Rect rect1, Rect rect2) {
 
     return Rect(left, right, top, bottom);
 }
-
 // Задание 4а. Передача объектов по ссылке.
 Rect BoundingRect2(const Rect& rect1, const Rect& rect2) {
 

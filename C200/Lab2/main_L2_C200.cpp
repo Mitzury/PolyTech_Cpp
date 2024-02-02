@@ -147,12 +147,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		r.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
 		c.WhereAmIVirtual();   // Now I am in class Circle (virtual) 
 
-
 		pRect->WhereAmIVirtual();   // Now I am in class Rect (virtual) 
 		pCircle->WhereAmIVirtual(); // Now I am in class Circle (virtual) 
-
-		rRect.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
-		rCircle.WhereAmIVirtual(); // Now I am in class Circle (virtual) 
 	}
 #endif;
 #if 1

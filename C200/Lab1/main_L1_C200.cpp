@@ -166,14 +166,20 @@ int main()
 	//Вызываются ли конструкторы при передаче параметров?
 	{
 		cout << "\n#### Chapter 4a \n";
-		Rect r1(1, 2, 3, 4); Rect r2(5, 6, 7, 8); 
-		Rect r3 = BoundingRect2(r1, r2);
-		std::cout << "BoundingRect2 result: ";
+
+		Rect r1(1, 2, 3, 4), r2(5, 6, 7, 8), r3;
+		// Глобальная функция BoundingRect
+		r3 = BoundingRect(r1, r2);
+		r3.PrintRect();
+		// Глобальная функция BoundingRect2
+		r3 = BoundingRect2(r1, r2);
 		r3.PrintRect();
 
 	
 	//Задание 4б.Реализуйте ту же задачу (BoundingRect);тодом класса
-	
+	// функция BoundingRect3 как метод класса
+		r3.BoundingRect3(r1, r2);
+		r3.PrintRect();
 		
 	}
 #endif 

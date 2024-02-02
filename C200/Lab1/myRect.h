@@ -25,6 +25,7 @@ public:
     int GetBottom() const;
     
     Rect BoundingRectMethod(const Rect& rect) const;
+    Rect BoundingRect3(const Rect& rect1, const Rect& rect2);
 };
 
 

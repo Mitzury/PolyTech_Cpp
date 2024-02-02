@@ -178,6 +178,7 @@ int main()
 	
 	//Задание 4б.Реализуйте ту же задачу (BoundingRect);тодом класса
 	// функция BoundingRect3 как метод класса
+		cout << "\n#### Chapter 4b \n";
 		r3.BoundingRect3(r1, r2);
 		r3.PrintRect();
 		

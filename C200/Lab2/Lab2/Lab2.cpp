@@ -45,7 +45,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	}
 #endif;
-#if 0;	
+#if 1;	
 	//Задание 2.Массив указателей на объекты класса.
 	{
 		//Объявите и проинициализируйте массив arPtr из N
@@ -56,20 +56,31 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		// Инициализация массива указателей на объекты MyString (создание объектов динамически)
 		MyString* arPtr[N] = { new MyString("String1"), new MyString("String2"), new MyString("String3") };
-
 		//Печать строк-членов класса
 		for (int i = 0; i < N; ++i) {
-			std::cout << "arPtr[" << i << "]: " << arPtr[i]->m_str1 << std::endl;
+			std::cout << "arPtr[" << i << "]: " << arPtr[i]->GetString() << std::endl;
 		}
-
 	   	//Замените размер const int N=5; , не изменяя список инициализаторов.
 		const int M = 5;
-
-		MyString* arPtr2[M] = { new MyString("String1"), new MyString("String2"), new MyString("String3") };
-		//Печать строк-членов класса
+		// Создание нового массива указателей с новым размером
+		MyString** arPtrNew = new MyString * [M];
 		for (int i = 0; i < M; ++i) {
-			std::cout << "arPtr[" << i << "]: " << arPtr2[i]->m_str1 << std::endl;
+			arPtrNew[i] = i < N ? arPtr[i] : new MyString(("String" + std::to_string(i + 1)).c_str());
 		}
+		// Печать строк-членов нового массива указателей
+		for (int i = 0; i < M; ++i) {
+			std::cout << "arPtrNew[" << i << "]: " << arPtrNew[i]->GetString() << std::endl;
+		}
+		// Освобождение памяти для каждого созданного объекта старого массива
+		for (int i = 0; i < N; ++i) {
+			delete arPtr[i];
+		}
+		// Освобождение памяти для каждого созданного объекта нового массива 
+		for (int i = N; i < M; ++i) {
+			delete arPtrNew[i];
+		}
+		// Освобождение памяти для нового массива указателей
+		delete[] arPtrNew;
 
 	}
 #endif;

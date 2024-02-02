@@ -5,7 +5,7 @@
 
 #include <tchar.h>
 #include "MyString.h"
-#include "shape.cpp"
+#include "shape.h"
 #include <iostream>
 #include <string>
 #define	  stop __asm nop
@@ -30,17 +30,17 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Новый размер массива 
 		const int M = 5;
 		// Изменение размера массива без явного создания нового
-		MyString temp[M];
+		MyString str2[M];
 		for (int i = 0; i < N; ++i) {
-			temp[i] = str1[i];
+			str2[i] = str1[i];
 		}
 		for (int i = N; i < M; ++i) {
-			temp[i] = MyString("String");
+			str2[i] = MyString(("String" + std::to_string(i + 1)).c_str());
 		}
 
 		// Печать строк-членов обновленного массива
 		for (int i = 0; i < M; ++i) {
-			std::cout << "temp[" << i << "]: " << temp[i].GetString() << std::endl;
+			std::cout << "str2[" << i << "]: " << str2[i].GetString() << std::endl;
 		}
 
 	}
@@ -87,13 +87,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		// Создание объектов иерархии
 		std::cout << "\nChapter 3:\n";
-		Rect rect(RED);
-		Circle circle(GREEN);
-
+		//Rect rect(RED);
+		//Circle circle(GREEN);
+		Shape x(RED);
 		// Вывод информации о фигурах
-		rect.printInfo();
-		std::cout << std::endl;
-		circle.printInfo();
+		//rect.printInfo();
+		std::cout << x.getColor() << std::endl;
+		//circle.printInfo();
 
 		//В конструкторах производных классов предусмотрите передачу
 		//параметра-цвета конструктору базового класса.
@@ -248,14 +248,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		p->Inflate(5);
 		}
 #endif;
-
+#if 0
 		//////////////////////////////////////////////////////////////////////
 			//Задание 9*. Создайте глобальную функцию, которая будет принимать любое
 			//количество указателей на строки, а возвращать объект MyString,
 			//в котором строка будет конкатенацией параметров
-
 		////////////////////////////////////////////////////////////////////////
-		/*
+#endif;
+#if 0
 			//Задание 10.Объединения (union) C++. Битовые поля.
 			//1.
 			//Создайте следующие классы для различных представлений значений байта:
@@ -283,7 +283,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			//...
 
 
-		*/
+#endif;
 		return 0;
 }
 //endmain

@@ -29,5 +29,8 @@
     <ClInclude Include="MyString.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

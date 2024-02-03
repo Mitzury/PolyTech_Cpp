@@ -8,6 +8,7 @@
 #include "shape.h"
 #include <iostream>
 #include <string>
+#include "bytes.h"
 #define	  stop __asm nop
 
 using namespace std;
@@ -79,7 +80,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 #endif;
-#if 1
+#if 0
 	//Задание 3.Простое наследование.Аргументы конструктора, передаваемые в базовый класс.
 	{
 		//Создайте иерархию классов:
@@ -105,7 +106,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		circle.printInfo();
 	}
 #endif;
-#if 1
+#if 0
 	//Задание 4.Виртуальные функции.
 	{
 		//4а) Модифицируйте классы Shape,Rect и Circle:
@@ -155,7 +156,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		pCircle->WhereAmIVirtual(); // Now I am in class Circle (virtual) 
 	}
 #endif;
-#if 1
+#if 0
 	//Задание 5.Виртуальные деструкторы.
 		//Модифицируйте классы:
 		//a) введите соответствующие
@@ -264,7 +265,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			//в котором строка будет конкатенацией параметров
 		////////////////////////////////////////////////////////////////////////
 #endif;
-#if 0
+#if 1
 			//Задание 10.Объединения (union) C++. Битовые поля.
 			//1.
 			//Создайте следующие классы для различных представлений значений байта:
@@ -286,10 +287,24 @@ int _tmain(int argc, _TCHAR* argv[])
 			//			восьмеричные, двоичные цифры;
 			//в) изменять отдельные двоичные, восьмеричные или шестнадцатеричные цифры;
 
-			MyByte byte(0x1f);
-			byte.ShowHex();
-			byte.ShowBin();
-			//...
+		Bytes byte(0x1F);
+		byte.ShowHex();
+		std::cout << std::endl;
+		byte.ShowBin();
+		std::cout << std::endl;
+		byte.ShowDec();
+		std::cout << std::endl;
+		byte.ShowChar();
+		std::cout << std::endl;
+
+		byte.ShowHexPos(0);
+		std::cout << std::endl;
+		byte.ShowBinPos(2);
+		std::cout << std::endl;
+
+		byte.EditHex(1, 8);
+		byte.ShowHex();
+		std::cout << std::endl;
 
 
 #endif;

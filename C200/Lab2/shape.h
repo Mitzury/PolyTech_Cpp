@@ -71,6 +71,8 @@
             // Конструктор круга, принимающий прямоугольник и устанавливающий цвет
             Circle(const Rect& rect);
 
+            Circle(Color c);
+
             void WhereAmI() const;
 
             void WhereAmIVirtual() const override;

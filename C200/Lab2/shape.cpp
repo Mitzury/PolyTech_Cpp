@@ -85,13 +85,8 @@ Circle::Circle(Color c) : Shape(c) {
     std::cout << "Constructing Circle" << std::endl;
 }
 // Конструктор Circle, устанавливающий цвет с использованием конструктора базового класса Shape
-Circle::Circle() : Shape(RED) {}
 
-Circle::Circle(const Rect& rect) : Shape(rect.getColor()) {
-    centerX = rect.getWidth() / 2 + rect.getX();
-    centerY = rect.getHeight() / 2 + rect.getY();
-    radius = (rect.getWidth() + rect.getHeight()) / 4;
-}
+
 
 void Circle::WhereAmI() const {
     std::cout << "Now I am in class Circle" << std::endl;

@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bytes.cpp" />
     <ClCompile Include="main_L2_C200.cpp" />
     <ClCompile Include="MyString.cpp" />
     <ClCompile Include="shape.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bytes.h" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="shape.h" />
   </ItemGroup>

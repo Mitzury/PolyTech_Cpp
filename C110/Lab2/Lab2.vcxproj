@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lab2_С110_2023.cpp" />
+    <ClCompile Include="main_L2_C110.cpp" />
     <ClCompile Include="other.cpp" />
   </ItemGroup>
   <ItemGroup>

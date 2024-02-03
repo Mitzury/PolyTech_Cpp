@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lab5_2023.cpp">
+    <ClCompile Include="main_L5_C100.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="other.cpp">

@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="functions.cpp" />
-    <ClCompile Include="Lab4_list_2023.cpp" />
+    <ClCompile Include="main_L4_C110.cpp.cpp" />
     <ClCompile Include="list.cpp" />
   </ItemGroup>
   <ItemGroup>

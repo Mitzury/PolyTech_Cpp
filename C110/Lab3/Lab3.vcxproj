@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="book.cpp" />
     <ClCompile Include="card_index.cpp" />
-    <ClCompile Include="Lab3_C110_2023.cpp" />
+    <ClCompile Include="main_L3_C110.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="book.h" />

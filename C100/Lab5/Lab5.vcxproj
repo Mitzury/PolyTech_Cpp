@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="external.cpp" />
-    <ClCompile Include="lab5_2023.cpp" />
+    <ClCompile Include="main_L5_C100.cpp" />
     <ClCompile Include="other.cpp" />
   </ItemGroup>
   <ItemGroup>

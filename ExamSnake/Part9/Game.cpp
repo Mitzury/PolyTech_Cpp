@@ -68,16 +68,14 @@ void Game::moveSnake()
     snake.snakeBody[0].x = headX;
     snake.snakeBody[0].y = headY;
     // Обновление состояния поля после перемещения змейки
-    for (int i = 0; i < field.Y; i++) {
-        for (int j = 0; j < field.X; j++) {
+    for (int i = 1; i < field.Y; i++) {
+        for (int j = 1; j < field.X; j++) {
             if (i == headY && j == headX) {
                 field.GameBoard[i][j] = 'O'; // Голова змейки
             }
-            else if (i == tailY && j == tailX) {
-                field.GameBoard[i][j] = '.'; // Хвост змейки
-            }
-            else {
-                field.GameBoard[i][j] = ' '; // Пустая ячейка
+            // только обновление местоположения головы и хвоста
+            if (field.GameBoard[i][j] != 'o' && field.GameBoard[i][j] != '.') {
+                field.GameBoard[i][j] = ' '; // пустая ячейка
             }
         }
     }

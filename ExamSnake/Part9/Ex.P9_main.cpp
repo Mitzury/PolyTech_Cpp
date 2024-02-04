@@ -11,14 +11,16 @@ int main()
 {
     setlocale(LC_ALL, "ru");
 
-    Field field;
 
     int X;
     int Y;
     cout << "¬ведите размерности массива (N M): ";
     cin >> X >> Y;
+    Field field;
+    field.X = X;
+    field.Y = Y;
 
-    field.CreateField(X,Y, field);
-    field.PrintField(field, X, Y);
+    field.Create(X, Y);
+
 
 }

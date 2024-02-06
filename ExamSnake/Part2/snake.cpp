@@ -1,16 +1,15 @@
 #include <iostream>
-#include <cstdlib>
-#include <windows.h>  // Для функции system("cls")
 #include "const.h"
 
+
 int snake_size;  // Текущий размер змейки
-int head_position;  // Позиция головы змейки на поле
 
 // Инициализация змейки
 void initializeSnake() {
-    snake_size = 5;  // Начальный размер змейки
+    snake_size = 1;  // Начальный размер змейки
     head_position = 0;  // Начальная позиция головы
 }
+
 
 // Движение змейки
 void moveSnake() {

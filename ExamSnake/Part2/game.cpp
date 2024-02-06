@@ -1,8 +1,7 @@
 #include <iostream>
-#include <cstdlib>
-#include <windows.h>  // Для функции system("cls")
 #include "const.h"
 #include "snake.h"
+#include <Windows.h>
 
 // Начало игры
 void startGame() {

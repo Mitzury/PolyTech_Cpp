@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="const.cpp" />
     <ClCompile Include="Ex.P2_main.cpp" />
+    <ClCompile Include="food.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="snake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="const.h" />
+    <ClInclude Include="food.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="snake.h" />
   </ItemGroup>

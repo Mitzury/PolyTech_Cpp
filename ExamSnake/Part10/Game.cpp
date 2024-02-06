@@ -1,28 +1,28 @@
-#include "Game.h"
+п»ї#include "Game.h"
 #include <iostream>
 #include <conio.h>
 
 void Game::startGame()
 {
-    // Ввод размеров поля
+    // Р’РІРѕРґ СЂР°Р·РјРµСЂРѕРІ РїРѕР»СЏ
     std::cout << "Enter width: ";
     std::cin >> field.X;
     std::cout << "Enter height: ";
     std::cin >> field.Y;
-    // Создание поля
+    // РЎРѕР·РґР°РЅРёРµ РїРѕР»СЏ
     field.createField();
-    // Вывод поля на экран
+    // Р’С‹РІРѕРґ РїРѕР»СЏ РЅР° СЌРєСЂР°РЅ
     field.printField();
-    // Создание змейки
+    // РЎРѕР·РґР°РЅРёРµ Р·РјРµР№РєРё
     snake.size = 1;
     snake.createSnake();
-    // Цикл игры
+    // Р¦РёРєР» РёРіСЂС‹
     while (true) {
-        
-        field.printField(); // Вывод поля на экран
-        updateGame(); // Обновление состояния игры
-        if (_kbhit()) { // Проверка на нажатие клавиши
-            changeDirection(); // Изменение направления движения змейки
+        field.printField(); // Р’С‹РІРѕРґ РїРѕР»СЏ РЅР° СЌРєСЂР°РЅ
+        updateGame(); // РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ РёРіСЂС‹
+        if (_kbhit()) { // РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€Рё
+            changeDirection(); // РР·РјРµРЅРµРЅРёРµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РґРІРёР¶РµРЅРёСЏ Р·РјРµР№РєРё
+
         }
     }
 }
@@ -31,34 +31,34 @@ void Game::changeDirection()
 {
     char key = _getch();
     if (key == 'w' && snake.direction != 'd') {
-        snake.direction = 'u'; // Движение вверх
+        snake.direction = 'u'; // Р”РІРёР¶РµРЅРёРµ РІРІРµСЂС…
     }
     else if (key == 's' && snake.direction != 'u') {
-        snake.direction = 'd'; // Движение вниз
+        snake.direction = 'd'; // Р”РІРёР¶РµРЅРёРµ РІРЅРёР·
     }
     else if (key == 'a' && snake.direction != 'r') {
-        snake.direction = 'l'; // Движение влево
+        snake.direction = 'l'; // Р”РІРёР¶РµРЅРёРµ РІР»РµРІРѕ
     }
     else if (key == 'd' && snake.direction != 'l') {
-        snake.direction = 'r'; // Движение вправо
+        snake.direction = 'r'; // Р”РІРёР¶РµРЅРёРµ РІРїСЂР°РІРѕ
     }
 }
 
 void Game::updateGame()
 {
-    moveSnake(); // Движение змейки
+    moveSnake(); // Р”РІРёР¶РµРЅРёРµ Р·РјРµР№РєРё
 }
 
 void Game::moveSnake()
 {
     int headX = snake.snakeBody[0].x;
     int headY = snake.snakeBody[0].y;
-    // Изменение координат головы змейки в зависимости от направления движения
+    // РР·РјРµРЅРµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ РіРѕР»РѕРІС‹ Р·РјРµР№РєРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РЅР°РїСЂР°РІР»РµРЅРёСЏ РґРІРёР¶РµРЅРёСЏ
     if (snake.direction == 'u') headY--;
     else if (snake.direction == 'd') headY++;
     else if (snake.direction == 'l') headX--;
     else if (snake.direction == 'r') headX++;
-    // Перемещение головы змейки
+    // РџРµСЂРµРјРµС‰РµРЅРёРµ РіРѕР»РѕРІС‹ Р·РјРµР№РєРё
     int tailX = snake.snakeBody[snake.size - 1].x;
     int tailY = snake.snakeBody[snake.size - 1].y;
     for (int i = snake.size - 1; i > 0; i--) {
@@ -67,18 +67,18 @@ void Game::moveSnake()
     }
     snake.snakeBody[0].x = headX;
     snake.snakeBody[0].y = headY;
-    // Обновление состояния поля после перемещения змейки
+    // РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ РїРѕР»СЏ РїРѕСЃР»Рµ РїРµСЂРµРјРµС‰РµРЅРёСЏ Р·РјРµР№РєРё
     for (int i = 0; i < field.Y; i++) {
         for (int j = 0; j < field.X; j++) {
             if (i == headY && j == headX) {
-                field.GameBoard[i][j] = 'O'; // Голова змейки
+                field.GameBoard[i][j] = 'O'; // Р“РѕР»РѕРІР° Р·РјРµР№РєРё
             }
             else if (i == tailY && j == tailX) {
-                field.GameBoard[i][j] = '.'; // Хвост змейки
+                field.GameBoard[i][j] = '.'; // РҐРІРѕСЃС‚ Р·РјРµР№РєРё
             }
             else {
-                field.GameBoard[i][j] = ' '; // Пустая ячейка
-            }
+                field.GameBoard[i][j] = ' '; 
+             }
         }
     }
 }

@@ -1,7 +1,6 @@
 #pragma once
 //Задание 2.
 // Константы для игры
-int head_position;
 const int columns = 25;            // Длина игрового поля по горизонтали (включает граничные элементы)
 const char tail_symbol = '#';      // Символ для хвоста змейки
 const char head_symbol = '@';      // Символ для головы змейки

@@ -1,7 +1,8 @@
 #include <iostream>
 #include "const.h"
+#include "snake.h"
 
-
+int head_position;
 int snake_size;  // Текущий размер змейки
 
 // Инициализация змейки

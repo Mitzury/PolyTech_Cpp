@@ -54,7 +54,7 @@ using namespace std;
         }
     }
 
-    // Функция для отображения главного меню
+ // Функция для отображения главного меню
  void Game::showMainMenu() {
        
         system("cls");  // Очищаем консоль перед выводом меню
@@ -77,7 +77,7 @@ using namespace std;
             break;
         case 3:
             cout << "До свидания!" << endl;
-            exit;
+            exit(0);
             break;
         default:
             cout << "Неправильный выбор." << endl;
@@ -87,8 +87,7 @@ using namespace std;
         cin.clear();
         cin.ignore();
         cout << "Нажмите Enter, чтобы продолжить...";
-        cin.get();
-        
+        cin.get();     
  }
 
 
@@ -153,6 +152,7 @@ using namespace std;
         else {
             // Возвращаемся в главное меню при завершении игры
             GameOver = false;
+            cout << "Капец";
             showMainMenu();
         }
     }

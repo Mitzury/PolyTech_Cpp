@@ -7,5 +7,6 @@ struct Field {
 
     void createField(int width, int height);
     void printField();
+    void setFieldSize(int& width, int& height);
 
 };

@@ -1,6 +1,7 @@
 // Структура для представления игры
 #include "Const.h"
 #include "Game.h"
+#include "Field.h"
 #include "Windows.h"
 #include <conio.h>
 #include <iostream>
@@ -59,6 +60,31 @@ using namespace std;
         cout << "1) Начать игру" << endl;
         cout << "2) Настройки размера поля" << endl;
         cout << "3) Выйти" << endl;
+        cout << "Выберите пункт меню: ";
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            Game game;
+            game.startGame();
+            break;
+        case 2:
+            cout << "Установить размер поля" << endl;
+            field.setFieldSize(WIDTH, HEIGHT);
+            break;
+        case 3:
+            cout << "До свидания!" << endl;
+            exit;
+        default:
+            cout << "Неправильный выбор." << endl;
+            break;
+        }
+        // Очистка буфера ввода
+        cin.clear();
+        cin.ignore();
+        cout << "Нажмите Enter, чтобы продолжить...";
+        cin.get();
     }
 
     // Метод для обновления состояния игры

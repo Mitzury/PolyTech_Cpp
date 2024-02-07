@@ -45,3 +45,9 @@ using namespace std;
             cout << endl;
         }
     }
+
+    // Добавленный метод для настройки размера поля
+    void Field::setFieldSize(int& width, int& height) {
+        cout << "Введите новые размеры поля (ширина высота): ";
+        cin >> width >> height;
+    }

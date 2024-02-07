@@ -75,6 +75,7 @@ using namespace std;
             break;
         case 3:
             cout << "До свидания!" << endl;
+            break;
             exit;
         default:
             cout << "Неправильный выбор." << endl;
@@ -85,7 +86,9 @@ using namespace std;
         cin.ignore();
         cout << "Нажмите Enter, чтобы продолжить...";
         cin.get();
-    }
+        
+ }
+
 
     // Метод для обновления состояния игры
  void Game::updateGame() {
@@ -134,6 +137,8 @@ using namespace std;
         for (int i = 1; i < snake.size; ++i) {
             if (snake.snakeBody[0].x == snake.snakeBody[i].x && snake.snakeBody[0].y == snake.snakeBody[i].y) {
                 GameOver = true;
+                system("cls");
+                cout << "Нажмите Enter, чтобы продолжить...";
                 break; // Если есть столкновение, нет смысла продолжать проверку
             }
         }

@@ -17,7 +17,10 @@ void showMainMenu() {
 int main() {
     setlocale(LC_ALL, "ru");
     Game game;
-    game.showMainMenu();
+    do {
+        game.showMainMenu();
+    } while (true);
+   
 
     return 0;
 }

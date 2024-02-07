@@ -1,6 +1,7 @@
 #include "Snake.h"
 #include "Const.h"
 
+
     // Метод для создания змейки и ее инициализации
     void Snake::createSnake(Field& field) {
         size = 1;

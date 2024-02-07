@@ -7,6 +7,7 @@ struct Game {
     Field field; // Экземпляр игрового поля
     Snake snake; // Экземпляр змейки
 
+    ~Game();
     void startGame();
 
     void changeDirection(char key);

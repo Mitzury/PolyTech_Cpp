@@ -8,7 +8,16 @@
 using namespace std;
 
 
- void Game::startGame() {
+Game::~Game() {
+    for (int i = 0; i < WIDTH; ++i) {
+        for (int j = 0; i < HEIGHT; ++j) {
+
+            delete[] field.GameBoard[i];
+        }
+    }
+}
+
+void Game::startGame() {
         field.createField(WIDTH, HEIGHT);  // Создаем и инициализируем игровое поле
         snake.createSnake(field);  // Создаем и инициализируем змейку
         fruitX = rand() % (field.X - 2) + 1;  // Размещаем фрукт случайным образом внутри поля
@@ -153,6 +162,7 @@ using namespace std;
             // Возвращаемся в главное меню при завершении игры
             GameOver = false;
             cout << "Капец";
+            cin.get();
             showMainMenu();
         }
     }

@@ -22,7 +22,7 @@ using namespace std;
             }
             updateGame();       // Обновляем состояние игры
             field.printField(); // Выводим текущее состояние поля
-            Sleep(1);
+            Sleep(200);
         }
 
         // После завершения игры ожидаем нажатия Enter
@@ -56,6 +56,7 @@ using namespace std;
 
     // Функция для отображения главного меню
  void Game::showMainMenu() {
+       
         system("cls");  // Очищаем консоль перед выводом меню
         cout << "1) Начать игру" << endl;
         cout << "2) Настройки размера поля" << endl;
@@ -66,6 +67,7 @@ using namespace std;
 
         switch (choice) {
         case 1:
+            system("cls");
             Game game;
             game.startGame();
             break;

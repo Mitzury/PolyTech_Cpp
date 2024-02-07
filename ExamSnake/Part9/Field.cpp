@@ -32,7 +32,8 @@ using namespace std;
 
     // Метод для вывода текущего состояния поля в консоль
     void Field::printField() {
-        system("cls");  // Очищаем консоль перед выводом
+        setCursorPosition(0, 0);
+        //system("cls");  // Очищаем консоль перед выводом
         for (int i = 0; i < X; ++i) {
             for (int j = 0; j < Y; ++j) {
                 if (i == fruitY && j == fruitX) {

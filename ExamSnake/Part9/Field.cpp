@@ -1,36 +1,47 @@
 #include <iostream>
 #include "Field.h"
+#include "Const.h"
 
 using namespace std;
 
-void Field::createField()
-{
-    GameBoard = new char* [Y];
-    for (int i = 0; i < Y; i++) {
-        GameBoard[i] = new char[X];
-    }
+// Структура для представления игрового поля
 
+    // Метод для создания поля и его инициализации
+    void Field::createField(int width, int height) {
+        X = width;
+        Y = height;
 
-    for (int iy = 0; iy < Y; iy++) {
-        for (int ix = 0; ix < X; ix++) {
-            if ((iy == 0 || iy == Y - 1) || (ix == 0 || ix == X - 1)) {
-                GameBoard[iy][ix] = '#'; // символ решетки для границ
-            }
-            else {
-                GameBoard[iy][ix] = ' '; // пробел для пустых мест
+        // Выделяем память для двумерного массива - игрового поля
+        GameBoard = new char* [X];
+        for (int i = 0; i < X; ++i) {
+            GameBoard[i] = new char[Y];
+        }
+
+        // Инициализируем игровое поле, ставя границы и оставляя внутри пространство для змейки и фрукта
+        for (int iy = 0; iy < Y; iy++) {
+            for (int ix = 0; ix < X; ix++) {
+                if ((iy == 0 || iy == Y - 1) || (ix == 0 || ix == X - 1)) {
+                    GameBoard[iy][ix] = '#';
+                }
+                else {
+                    GameBoard[iy][ix] = ' ';
+                }
             }
         }
     }
 
-}
-
-void Field::printField()
-{
-    system("cls"); // Очистка экрана
-    for (int i = 0; i < Y; i++) {
-        for (int j = 0; j < X; j++) {
-            std::cout << GameBoard[i][j] << " ";
+    // Метод для вывода текущего состояния поля в консоль
+    void Field::printField() {
+        system("cls");  // Очищаем консоль перед выводом
+        for (int i = 0; i < X; ++i) {
+            for (int j = 0; j < Y; ++j) {
+                if (i == fruitY && j == fruitX) {
+                    cout << "* "; // Если текущая позиция соответствует позиции фрукта, выводим фрукт
+                }
+                else {
+                    cout << GameBoard[i][j] << " ";
+                }
+            }
+            cout << endl;
         }
-        std::cout << std::endl;
     }
-}

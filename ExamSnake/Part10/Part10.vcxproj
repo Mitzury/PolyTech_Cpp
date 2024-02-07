@@ -136,6 +136,7 @@
     <ClInclude Include="Const.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Includes.h" />
     <ClInclude Include="Snake.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

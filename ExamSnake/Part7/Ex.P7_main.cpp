@@ -242,7 +242,9 @@ int main() {
 
     Game game;
     int choice;
-    showMainMenu();
+    do {
+        showMainMenu();
+
     cout << "Выберите пункт меню: ";
     cin >> choice;
 
@@ -251,17 +253,15 @@ int main() {
         game.startGame();
         break;
     case 2:
+        cout << "Установить размер поля" << endl;
         setFieldSize(WIDTH, HEIGHT);
         break;
     case 3:
-        return 0;
-    default:
-        cout << "Неправильный выбор." << endl;
-        break;
+        cout << "До свидания!" << endl;
+        exit;
     }
-
-    cout << "Нажмите Enter, чтобы выйти...";
     cin.ignore();
     cin.get();
+    } while (true);
     return 0;
 }

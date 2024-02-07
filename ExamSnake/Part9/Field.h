@@ -5,6 +5,7 @@ struct Field {
     int Y; // Высота поля
     char** GameBoard; // Двумерный динамический массив для хранения состояния каждой ячейки поля
 
-    void createField();
+    void createField(int width, int height);
     void printField();
+
 };

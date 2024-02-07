@@ -8,7 +8,13 @@ struct Game {
     Snake snake; // Экземпляр змейки
 
     void startGame();
-    void changeDirection();
+
+    void changeDirection(char key);
+
+    void showMainMenu();
+
     void updateGame();
+
     void moveSnake();
+
 };

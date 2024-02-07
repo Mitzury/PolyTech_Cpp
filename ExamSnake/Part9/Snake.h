@@ -1,13 +1,14 @@
 #pragma once
+#include "Field.h"
 
 // Структура змейки
 struct Snake {
-    int size; // размер змейки
+    int size;
     struct coordinate {
-        int x, y; // координаты точки змейки
-    } *snakeBody; // массив координат змейки
-    char direction; // направление движения змейки
+        int x, y;
+    } *snakeBody;
+    char direction;
 
-    // создание змейки
-    void createSnake();
+    void createSnake(Field& field);
+
 };

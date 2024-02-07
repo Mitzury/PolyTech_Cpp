@@ -75,8 +75,8 @@ using namespace std;
             break;
         case 3:
             cout << "До свидания!" << endl;
-            break;
             exit;
+            break;
         default:
             cout << "Неправильный выбор." << endl;
             break;

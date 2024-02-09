@@ -17,15 +17,30 @@ enum WEEKDAY {
 	FRIDAY,
 	SATURDAY
 };
+
+// Операторы + и +=
 WEEKDAY operator+(const WEEKDAY& day, int daysToAdd) {
 	int result = (static_cast<int>(day) + daysToAdd) % 7;
 	return static_cast<WEEKDAY>(result < 0 ? result + 7 : result);
 }
 
-
 WEEKDAY& operator+=(WEEKDAY& day, int daysToAdd) {
 	day = day + daysToAdd;
 	return day;
+}
+
+// Функция для преобразования перечисления в строку
+const char* weekdayToString(WEEKDAY day) {
+	switch (day) {
+	case SUNDAY: return "Sunday";
+	case MONDAY: return "Monday";
+	case TUESDAY: return "Tuesday";
+	case WEDNESDAY: return "Wednesday";
+	case THURSDAY: return "Thursday";
+	case FRIDAY: return "Friday";
+	case SATURDAY: return "Saturday";
+	default: return "Invalid day";
+	}
 }
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -225,8 +240,11 @@ int _tmain(int argc, _TCHAR* argv[])
 			// соответствующая именованной константе:
 			{
 			std::cout << "\n Chapter 10 \n";
-				enum WEEKDAY wd = SATURDAY;
-				std::cout << wd << std::endl;//например, так:saturday
+				enum WEEKDAY wd1 = 1;
+				enum WEEKDAY wd2 = MONDAY;
+				std::cout << "wd1: " << weekdayToString(wd1) << std::endl;
+				std::cout << "wd2: " << weekdayToString(wd2) << std::endl;
+
 
 			}
 

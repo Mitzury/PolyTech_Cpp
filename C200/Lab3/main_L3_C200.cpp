@@ -125,7 +125,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			Point pt2(2,2);
 			Point pt3;
 
-			//pt3 = pt1 - 5;
+			pt3 = pt1 - 5;
 			pt3 = 2 - pt1;
 			std::cout << pt3 << std::endl;
 			pt3 = pt1 - pt2;

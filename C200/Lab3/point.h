@@ -89,4 +89,10 @@ public:
         result.y = -this->y;
         return result;
     }
+    Point operator-(int scalar) const {
+        Point result;
+        result.x = this->x - scalar;
+        result.y = this->y - scalar;
+        return result;
+    }
 };

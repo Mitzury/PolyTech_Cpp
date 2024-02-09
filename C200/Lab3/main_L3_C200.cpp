@@ -224,6 +224,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			//перечисления WD таким образом, чтобы при выводе отображалась строка,
 			// соответствующая именованной константе:
 			{
+			std::cout << "\n Chapter 10 \n";
 				enum WEEKDAY wd = SATURDAY;
 				std::cout << wd << std::endl;//например, так:saturday
 

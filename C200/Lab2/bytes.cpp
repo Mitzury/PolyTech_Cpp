@@ -6,6 +6,7 @@ void Bin::Show() {
         << m_bin3 << m_bin2 << m_bin1 << m_bin0 << "b";
 }
 
+// ¬ывод значени€ определенной позиции числа в двоичном формате
 void Bin::ShowPos(int pos) {
     if (pos >= 0 && pos <= 7) {
         std::cout << static_cast<int>((m_bin7 >> pos) & 1);
@@ -15,6 +16,7 @@ void Bin::ShowPos(int pos) {
     }
 }
 
+// »зменение значени€ определенной позиции числа в двоичном формате
 void Bin::Edit(int pos, int val) {
     if (pos >= 0 && pos <= 7 && (val == 0 || val == 1)) {
         if (val == 1) {
@@ -70,6 +72,7 @@ void Hex::ShowPos(int pos) {
     }
 }
 
+// »зменение значени€ определенной позиции числа в шестнадцатеричном формате
 void Hex::Edit(int pos, int val) {
     if (pos >= 0 && pos <= 3 && val >= 0 && val <= 15) {
         int shift = 4 * (1 - pos % 2);
@@ -83,15 +86,16 @@ void Hex::Edit(int pos, int val) {
 
 // –еализаци€ методов объединени€ Bytes
 Bytes::Bytes(unsigned char byte) : m_dec(byte) {}
-
+// ¬ывод значени€ байта в двоичном формате
 void Bytes::ShowBin() { m_bin.Show(); }
-
+// ¬ывод значени€ байта в восьмеричном формате
 void Bytes::ShowOct() { m_oct.Show(); }
-
+// ¬ывод значени€ байта в шестнадцатеричном формате
 void Bytes::ShowHex() { m_hex.Show(); }
-
+// ¬ывод значени€ байта в дес€тичном формате
 void Bytes::ShowDec() { std::cout << static_cast<int>(m_dec) << "d"; }
 
+// ¬ывод символа, соответствующего значению байта (если это печатный символ)
 void Bytes::ShowChar() {
     if (m_dec >= 32 && m_dec <= 126) {
         std::cout << static_cast<char>(m_dec);
@@ -101,14 +105,15 @@ void Bytes::ShowChar() {
     }
 }
 
+// ¬ывод значени€ определенной позиции байта в двоичном формате
 void Bytes::ShowBinPos(int pos) { m_bin.ShowPos(pos); }
-
+// ¬ывод значени€ определенной позиции байта в восьмеричном формате
 void Bytes::ShowOctPos(int pos) { m_oct.ShowPos(pos); }
-
+// ¬ывод значени€ определенной позиции байта в шестнадцатеричном формате
 void Bytes::ShowHexPos(int pos) { m_hex.ShowPos(pos); }
-
+// »зменение значени€ определенной позиции байта в двоичном формате
 void Bytes::EditBin(int pos, int val) { m_bin.Edit(pos, val); }
-
+// »зменение значени€ определенной позиции байта в восьмеричном формате
 void Bytes::EditOct(int pos, int val) { m_oct.Edit(pos, val); }
-
+// »зменение значени€ определенной позиции байта в шестнадцатеричном формате
 void Bytes::EditHex(int pos, int val) { m_hex.Edit(pos, val); }

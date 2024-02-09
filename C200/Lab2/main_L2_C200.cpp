@@ -287,21 +287,28 @@ int _tmain(int argc, _TCHAR* argv[])
 			//			восьмеричные, двоичные цифры;
 			//в) изменять отдельные двоичные, восьмеричные или шестнадцатеричные цифры;
 
-		Bytes byte(0x1F);
+		Bytes byte(0x48);
+		std::cout << "Show Hex:" << std::endl;
 		byte.ShowHex();
 		std::cout << std::endl;
+		std::cout << "Show Bin:" << std::endl;
 		byte.ShowBin();
 		std::cout << std::endl;
+		std::cout << "Show Dec:" << std::endl;
 		byte.ShowDec();
 		std::cout << std::endl;
+		std::cout << "Show Char:" << std::endl;
 		byte.ShowChar();
 		std::cout << std::endl;
 
+		std::cout << "Show Hex Pos:" << std::endl;
 		byte.ShowHexPos(0);
 		std::cout << std::endl;
+		std::cout << "Show Bin Pos:" << std::endl;
 		byte.ShowBinPos(2);
 		std::cout << std::endl;
 
+		std::cout << "Edit Hex:" << std::endl;
 		byte.EditHex(1, 8);
 		byte.ShowHex();
 		std::cout << std::endl;

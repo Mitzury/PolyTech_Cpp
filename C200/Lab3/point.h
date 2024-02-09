@@ -7,6 +7,7 @@ private:
     int y;
 
 public:
+    Point() : x(0), y(0) {} //Задание 2
     Point(int x, int y) : x(x), y(y) {}
 
     // Перегрузка оператора +=
@@ -40,5 +41,52 @@ public:
     // Дополнительный метод для вывода координат точки
     void printCoordinates() const {
         std::cout << "X: " << x << ", Y: " << y << std::endl;
+    }
+
+    //Задание 2
+    Point operator+(const Point& other) const {
+        Point result;
+        result.x = this->x + other.x;
+        result.y = this->y + other.y;
+        return result;
+    }
+    friend Point operator-(const Point& left, const Point& right) {
+        Point result;
+        result.x = left.x - right.x;
+        result.y = left.y - right.y;
+        return result;
+    }
+    Point operator+(int scalar) const {
+        Point result;
+        result.x = this->x + scalar;
+        result.y = this->y + scalar;
+        return result;
+    }
+    friend Point operator-(int scalar, const Point& point) {
+        Point result;
+        result.x = scalar - point.x;
+        result.y = scalar - point.y;
+        return result;
+    }
+    friend std::ostream& operator<<(std::ostream& os, const Point& point) {
+        //os << "(" << point.x << ", " << point.y << ")";
+        //Задание 4
+        os << "x = " << point.x << ", y = " << point.y;
+        return os;
+    }
+
+    //Задание 3
+    // Перегрузка унарного оператора +
+    Point operator+() const {
+        // Возвращаем текущий объект, т.к. оператор + не меняет значения
+        return *this;
+    }
+
+    // Перегрузка унарного оператора -
+    Point operator-() const {
+        Point result;
+        result.x = -this->x;
+        result.y = -this->y;
+        return result;
     }
 };

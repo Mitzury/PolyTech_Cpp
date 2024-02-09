@@ -1,13 +1,11 @@
 ﻿// Темы:
 // Простое наследование. Виртуальные функции. Абстрактные классы.
 // Битовые поля.
-
-
 #include <tchar.h>
 #include "MyString.h"
 #include "shape.h"
 #include <iostream>
-#include <string>
+#include <cstring>
 #include "bytes.h"
 #define	  stop __asm nop
 
@@ -80,65 +78,64 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 #endif;
-#if 0
-	//Задание 3.Простое наследование.Аргументы конструктора, передаваемые в базовый класс.
+#if 1
+//Задание 3.Простое наследование.Аргументы конструктора, передаваемые в базовый класс.
 	{
-		//Создайте иерархию классов:
-		//базовый класс Shape (который описывает любую фигуру)
-		//и два производных класса Rect и Circle.
-		//Подумайте: какие данные и методы нужно ввести в базовый
-		//и производные классы (например, любую фигуру можно сделать
-		//цветной => в базовом классе можно ввести переменную, которая
-		//будет определять цвет фигуры.
-		//Подсказка: для хранения цвета объявите перечисление (RED,GREEN,BLUE...);
-		//В конструкторах производных классов предусмотрите передачу
-		//параметра-цвета конструктору базового класса.
-		//При создании и уничтожении объекта производного типа определите
-		//последовательность вызовов конструкторов и деструкторов базового
-		//и производного классов
+	//Создайте иерархию классов:
+	//базовый класс Shape (который описывает любую фигуру)
+	//и два производных класса Rect и Circle.
+	//Подумайте: какие данные и методы нужно ввести в базовый
+	//и производные классы (например, любую фигуру можно сделать
+	//цветной => в базовом классе можно ввести переменную, которая
+	//будет определять цвет фигуры.
+	//Подсказка: для хранения цвета объявите перечисление (RED,GREEN,BLUE...);
+	//В конструкторах производных классов предусмотрите передачу
+	//параметра-цвета конструктору базового класса.
+	//При создании и уничтожении объекта производного типа определите
+	//последовательность вызовов конструкторов и деструкторов базового
+	//и производного классов
 		
-		// Создание объектов иерархии
-		Rect rect(RED); 
-		Circle circle(GREEN); 
-		// Вывод информации о фигурах
-		rect.printInfo(); 
-		std::cout << std::endl;
-		circle.printInfo();
+	// Создание объектов иерархии
+	Rect rect(RED);
+	Circle circle(GREEN);
+	// Вывод информации о фигурах
+	rect.printInfo();
+	std::cout << std::endl;
+	circle.printInfo();
 	}
 #endif;
-#if 0
-	//Задание 4.Виртуальные функции.
+#if 1
+//Задание 4.Виртуальные функции.
 	{
-		//4а) Модифицируйте классы Shape,Rect и Circle:
-		//добавьте в каждый класс public метод void WhereAmI().
-		//Реализация каждой функции должна выводить сообщение
-		//следующего вида "Now I am in class Shape(Rect или Circle)".
-		//Выполните приведенный фрагмент, объясните результат.
-		std::cout << "\nChapter 4a:\n";
-		//вызвать шейп
-		// чистая виртуальность - if 0
-		Shape sh(RED);
+	//4а) Модифицируйте классы Shape,Rect и Circle:
+	//добавьте в каждый класс public метод void WhereAmI().
+	//Реализация каждой функции должна выводить сообщение
+	//следующего вида "Now I am in class Shape(Rect или Circle)".
+	//Выполните приведенный фрагмент, объясните результат.
+	std::cout << "\nChapter 4a:\n";
+
+		Shape s(RED);
 		Rect r(GREEN);
 		Circle c(BLUE);
-		// создать с параметрами
 
-		sh.WhereAmI(); // Now I'm in class Shape
-		r.WhereAmI();  // Now I'm in class Rect
-		c.WhereAmI();  // Now I'm in class Circle
+		s.WhereAmI();  // Now I am in class Shape
+		r.WhereAmI();  // Now I am in class Rect
+		c.WhereAmI();  // Now I am in class Circle
 
-		// Указатель на базовый класс для хранения адреса обьекта производного класса.
-		Shape* pRect = &r; 
+		Shape* pShape = &s;
+		Shape* pRect = &r;
 		Shape* pCircle = &c;
-		pRect->WhereAmI();    // Now I'm in class Shape
-		pCircle->WhereAmI();  // Now I'm in class Shape
+		pShape->WhereAmI();  // Now I am in class Shape
+		pRect->WhereAmI();   // Now I am in class Shape
+		pCircle->WhereAmI(); // Now I am in class Shape
 
-		//Cсылки для инициализации переменных rRect и rCircle.
-		//rRect и rCircle являются псевдонимами объектов r и c, соответственно. 
-		//Однако тип данных ссылки остается тем же, что и у оригинального объекта (Shape).
+		Shape& rShape = s;
 		Shape& rRect = r;
 		Shape& rCircle = c;
-		rRect.WhereAmI();     // Now I'm in class Shape
-		rCircle.WhereAmI();   // Now I'm in class Shape
+		rShape.WhereAmI();  // Now I am in class Shape
+		rRect.WhereAmI();   // Now I am in class Shape
+		rCircle.WhereAmI(); // Now I am in class Shape
+
 
 		//4б) Добавьте в базовый и производные классы виртуальный
 		// метод WhereAmIVirtual(). По аналогии с 4а вызовите
@@ -148,24 +145,29 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Вызов виртуального метода
 
 		std::cout << "\nChapter 4b:\n";
-		sh.WhereAmIVirtual();  // Now I am in class Shape (virtual)
-		r.WhereAmIVirtual();   // Now I am in class Rect (virtual) 
-		c.WhereAmIVirtual();   // Now I am in class Circle (virtual) 
+		s.WhereAmIVirtual();   // Now I am in class Shape (virtual)
+		r.WhereAmIVirtual();   // Now I am in class Rect (virtual)
+		c.WhereAmIVirtual();   // Now I am in class Circle (virtual)
 
-		pRect->WhereAmIVirtual();   // Now I am in class Rect (virtual) 
-		pCircle->WhereAmIVirtual(); // Now I am in class Circle (virtual) 
+		pShape->WhereAmIVirtual();  // Now I am in class Shape (virtual)
+		pRect->WhereAmIVirtual();   // Now I am in class Rect (virtual)
+		pCircle->WhereAmIVirtual(); // Now I am in class Circle (virtual)
+
+		rShape.WhereAmIVirtual();  // Now I am in class Shape (virtual)
+		rRect.WhereAmIVirtual();   // Now I am in class Rect (virtual)
+		rCircle.WhereAmIVirtual(); // Now I am in class Circle (virtual)
 	}
 #endif;
 #if 0
-	//Задание 5.Виртуальные деструкторы.
-		//Модифицируйте классы:
-		//a) введите соответствующие
-		// деструкторы (без ключевого слова virtual).
-		//Реализация каждого деструктора
-		//должна выводить сообщение следующего вида
-		// "Now I am in Shape's destructor!" или
-		// "Now I am in Rect's destructor!"
-		//Выполните фрагмент. Объясните результат.
+//Задание 5.Виртуальные деструкторы.
+	//Модифицируйте классы:
+	//a) введите соответствующие
+	// деструкторы (без ключевого слова virtual).
+	//Реализация каждого деструктора
+	//должна выводить сообщение следующего вида
+	// "Now I am in Shape's destructor!" или
+	// "Now I am in Rect's destructor!"
+	//Выполните фрагмент. Объясните результат.
 	{
 		{
 			std::cout << "\nChapter 5a:\n";
@@ -177,7 +179,6 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 		}
 
-
 		{
 			std::cout << "\nChapter 5b:\n";
 		// b) Добавьте в объявление деструкторов ключевое слово virtual
@@ -185,6 +186,14 @@ int _tmain(int argc, _TCHAR* argv[])
 			Shape s(RED);
 			Rect r(GREEN);
 			Circle c(BLUE);
+
+			/*При выполнении кода будет вызван деструктор для каждого объекта, когда он выходит из области видимости. 
+			Однако, поскольку деструкторы не виртуальные, при удалении объектов через указатель на базовый класс 
+			(который может указывать на объект производного класса), вызывается только деструктор базового класса. 
+			В данном случае, деструкторы производных классов (Rect и Circle) не будут вызваны.
+			Теперь, если мы добавим ключевое слово virtual к деструкторам базового класса и запустим фрагмент, 
+			то деструкторы производных классов будут вызваны правильно при удалении объектов через указатель на базовый класс.*/
+
 
 			//Подумайте: какие конструкторы вызываются в следующей строке?
 			//Если в разработанных классов каких-то конструкторов
@@ -194,15 +203,17 @@ int _tmain(int argc, _TCHAR* argv[])
 			
 			//Вызовите для каждого элемента массива метод WhereAmIVirtual()
 			Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
-
-
+			//Вызовите для каждого элемента массива метод WhereAmIVirtual()
 			for (int i = 0; i < 4; ++i) {
 				ar[i]->WhereAmIVirtual();
 			}
-			for (int i = 0; i < 4; ++i) {
-				delete ar[i];
-			}
 
+			/*Вызывается конструктор Rect с параметрами <параметры>.
+			Вызываются конструкторы для каждого элемента массива ar:
+			new Shape(r) вызывает конструктор Shape с параметром r.
+			new Rect(r) вызывает конструктор Rect с параметром r.
+			new Circle(r) вызывает конструктор Circle с параметром r.
+			new Circle() вызывает конструктор Circle без параметров.*/
 		}
 }
 #endif;
@@ -223,18 +234,22 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		*/
 #endif;
-#if 0
-		//////////////////////////////////////////////////////////////////////
-		//Задание 7.Виртуальные функции и оператор разрешения области видимости.
+#if 1
+//Задание 7.Виртуальные функции и оператор разрешения области видимости.
 
 		{
+		std::cout << "\nChapter 7:\n";
 		Rect r(GREEN);
 		Shape* p = &r;
-
 		p->WhereAmIVirtual(); // Now I am in class Shape (virtual)
-		// Оператор разрешения области видимости для вызова WhereAmIVirtual() из класса Shape
-		r.Shape::WhereAmIVirtual(); // Now I am in class Shape (virtual)
 
+
+		//7a Оператор разрешения области видимости.
+		//Посредством объекта r и указателя p вызовите виртуальную функцию
+		//WhereAmIVirtual()класса Shape
+		// Оператор разрешения области видимости для вызова WhereAmIVirtual() из класса Shape
+		std::cout << "\nChapter 7a:\n";
+		r.Shape::WhereAmIVirtual(); // Now I am in class Shape (virtual)
 
 		//4a Оператор разрешения области видимости.
 		//Посредством объекта r и указателя p вызовите виртуальную функцию
@@ -242,28 +257,39 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 		}
-
+#endif;
+#if 1
 		//////////////////////////////////////////////////////////////////////
 		//Задание 8.Чисто виртуальные функции.
 		//Введите в базовый класс метод void Inflate(int); Подумайте:
 		//можно ли реализовать такой метод для базового класса? => как его нужно объявить.
 		//Реализуйте этот метод для производных классов.
 		{
+			std::cout << "\nChapter 8:\n";
 			Rect r;
 			Shape* p = &r;
 			p->Inflate(5);
-
 			Circle c;
 			p = &c;
 			p->Inflate(5);
 		}
 #endif;
 #if 0
-		//////////////////////////////////////////////////////////////////////
-			//Задание 9*. Создайте глобальную функцию, которая будет принимать любое
-			//количество указателей на строки, а возвращать объект MyString,
-			//в котором строка будет конкатенацией параметров
-		////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//Задание 9*. Создайте глобальную функцию, которая будет принимать любое
+//количество указателей на строки, а возвращать объект MyString,
+//в котором строка будет конкатенацией параметров
+////////////////////////////////////////////////////////////////////////
+		{
+			std::cout << "\nChapter 9:\n";
+			const char* str1 = "Hello, ";
+			const char* str2 = "world!";
+			const char* str3 = " How are you?";
+
+			MyString result = MyString(str1) + MyString(str2) + MyString(str3);
+
+			std::cout << result << std::endl;
+		}
 #endif;
 #if 1
 			//Задание 10.Объединения (union) C++. Битовые поля.
@@ -286,7 +312,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			//б) выводить отдельные (указанные посредством параметра) шестнадцатеричные,
 			//			восьмеричные, двоичные цифры;
 			//в) изменять отдельные двоичные, восьмеричные или шестнадцатеричные цифры;
-
+		std::cout << "\nChapter 10:\n";
 		Bytes byte(0x48);
 		std::cout << "Show Hex:" << std::endl;
 		byte.ShowHex();
@@ -317,4 +343,3 @@ int _tmain(int argc, _TCHAR* argv[])
 #endif;
 		return 0;
 }
-//endmain

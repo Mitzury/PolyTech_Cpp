@@ -18,9 +18,15 @@
     <ClCompile Include="main_L3_C200.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="myString.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="point.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="myString.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

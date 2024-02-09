@@ -3,85 +3,62 @@
 
 #include <iostream>
 
-// Перечисление, представляющее различные цвета
-    enum Color { RED, GREEN, BLUE };
-// Функция для преобразования перечисления Color в строку
-    const char* colorToString(Color c);
-// Базовый класс для фигур
-    class Shape {
-        protected:
-            Color color;
-        public:
-            // Конструктор, устанавливающий цвет фигуры
-            Shape(Color c);
-            // Геттер для цвета фигуры
-            Color getColor() const;
-            // Невиртуальная функция
-            void WhereAmI() const;
-            // Виртуальная функция, указывающая местоположение фигуры (может быть переопределена в производных классах)
-            virtual void WhereAmIVirtual() const;
-            // Чисто виртуальная функция, требующая от производных классов реализации метода Inflate
-            //virtual void Inflate(int factor) = 0;
-            // Виртуальный деструктор для обеспечения правильного освобождения ресурсов при удалении объектов производных классов
-            virtual ~Shape();
-            // Виртуальная функция для вывода информации о фигуре (может быть переопределена в производных классах)
-            virtual void printInfo() const;
-    };
-// Класс прямоугольника, наследующий от базового класса Shape
-    class Rect : public Shape {
-        private:
-            int width;
-            int height;
-            int x;
-            int y;
-        public:
-            // Конструктор прямоугольника с установкой цвета по умолчанию RED
-            Rect(Color c = RED);
+enum Color { RED, GREEN, BLUE };
 
-            void WhereAmI() const;
-            void WhereAmIVirtual() const override;
+const char* colorToString(Color c);
 
-            void printInfo() const override;
-            // Реализация чисто виртуальной функции Inflate для прямоугольника
-            //void Inflate(int factor) override;
+class Shape {
+protected:
+    Color color;
 
-            int getWidth() const;
-            int getHeight() const;
-            int getX() const;
-            int getY() const;
+public:
+    Shape(Color c);
+    ~Shape();
 
-            // Деструктор прямоугольника
-            ~Rect();
-    };
-// Класс круга, наследующий от базового класса Shape
-    class Circle : public Shape {
-        private:
-            int m_centerX;
-            int m_centerY;
-            int m_radius;
+    Color getColor() const;
+    virtual void printInfo() const;
+    virtual void Inflate(int factor);
+  //  virtual void drawShape() const = 0;
+    virtual void WhereAmI() const;
+    virtual void WhereAmIVirtual() const;
+};
 
-        public: 
-            // Конструктор круга с установкой цвета
-          //  Circle(Color c);
-            // Конструктор круга по умолчанию
-          //  Circle();
-            // Конструктор круга
-            Circle(Color = RED, int centerX = 0, int centerY = 0, int radius = 0);
+class Rect : public Shape {
+private:
+    int width;
+    int height;
+    int x;
+    int y;
 
-            // Конструктор круга, принимающий прямоугольник и устанавливающий цвет
-            Circle(const Rect& rect);
+public:
+    Rect(Color c = RED, int width = 0, int height = 0, int x = 0, int y = 0);
+    ~Rect();
+    int getWidth() const;
+    int getHeight() const;
+    int getX() const;
+    int getY() const;
 
-            Circle(Color c);
+    void printInfo() const override;
+    void Inflate(int factor) override;
+  //  void drawShape() const override;
+    void WhereAmI() const override;
+    void WhereAmIVirtual() const override;
+};
 
-            void WhereAmI() const;
+class Circle : public Shape {
+private:
+    int centerX;
+    int centerY;
+    int radius;
 
-            void WhereAmIVirtual() const override;
-
-            //void Inflate(int factor) override;
-
-            void printInfo() const override;
-            // Деструктор круга
-            ~Circle();
-    };
+public:
+    Circle(Color c = RED, int centerX = 0, int centerY = 0, int radius = 0);
+    ~Circle();
+    void printInfo() const override;
+    void Inflate(int factor) override;
+   // void drawShape() const override;
+    void WhereAmI() const override;
+    void WhereAmIVirtual() const override;
+};
 
 #endif

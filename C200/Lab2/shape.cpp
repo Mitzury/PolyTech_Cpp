@@ -1,6 +1,5 @@
 ﻿#include "shape.h"
 
-// Функция преобразования перечисления Color в строку
 const char* colorToString(Color c) {
     switch (c) {
     case RED:
@@ -14,100 +13,100 @@ const char* colorToString(Color c) {
     }
 }
 
-// Реализация методов базового класса Shape
+Shape::Shape(Color c) : color(c) {}
 
-// Конструктор Shape, устанавливающий цвет
-Shape::Shape(Color c) : color(c) {
-    std::cout << "Constructing Shape" << std::endl;
+Shape::~Shape() {
+    std::cout << "Now I am in Shape's destructor!" << std::endl;
 }
 
-// Геттер для цвета
 Color Shape::getColor() const {
     return color;
 }
 
-// Невиртуальная функция, сообщающая о местоположении объекта Shape
-void Shape::WhereAmI() const { 
-    std::cout << "Now I am in class Shape" << std::endl;
-}
-// Виртуальная функция, сообщающая о местоположении объекта Shape (может быть переопределена)
-void Shape::WhereAmIVirtual() const {
-    std::cout << "Now I am in class Shape (virtual)" << std::endl;
-}
-// Виртуальный деструктор Shape
-Shape::~Shape() {
-    std::cout << "Now I am in Shape's destructor!" << std::endl;
-
-}
-// Виртуальная функция для вывода информации о фигуре (может быть переопределена в производных классах)
 void Shape::printInfo() const {
     std::cout << "Color: " << colorToString(color) << std::endl;
 }
 
-// Реализация методов производного класса Rect
-// Конструктор Rect, устанавливающий цвет с использованием конструктора базового класса Shape
-Rect::Rect(Color c) : Shape(c) {
-    std::cout << "Constructing Rect" << std::endl;
+void Shape::Inflate(int factor) {
+    std::cout << "Inflating in Shape by factor: " << factor << std::endl;
 }
 
-// Невиртуальная функция, сообщающая о местоположении объекта Rect
-void Rect::WhereAmI() const {
-    std::cout << "Now I am in class Rect" << std::endl;
+void Shape::WhereAmI() const {
+    std::cout << "Now I am in class Shape" << std::endl;
 }
-void Rect::WhereAmIVirtual() const {
-    std::cout << "Now I am in class Rect (virtual)" << std::endl;
+
+void Shape::WhereAmIVirtual() const {
+    std::cout << "Now I am in class Shape (virtual)" << std::endl;
 }
-void Rect::printInfo() const {
-    std::cout << "Rectangle of color: " << colorToString(color) << std::endl;
+
+
+Rect::Rect(Color c, int width, int height, int x, int y) : Shape(c), width(width), height(height), x(x), y(y) {}
+
+Rect::~Rect() {
+    std::cout << "Now I am in Rect's destructor!" << std::endl;
 }
-//void Rect::Inflate(int factor) {
-//    std::cout << "Rect is inflating by a factor of " << factor << std::endl;
-//}
+
 int Rect::getWidth() const {
     return width;
 }
+
 int Rect::getHeight() const {
     return height;
 }
+
 int Rect::getX() const {
     return x;
 }
+
 int Rect::getY() const {
     return y;
 }
-Rect::~Rect() {
-    std::cout << "Now I am in Rect's destructor!" << std::endl;
 
+void Rect::printInfo() const {
+    std::cout << "Rectangle of color: " << colorToString(color) << std::endl;
+    std::cout << "Width: " << width << ", Height: " << height << ", Position: (" << x << ", " << y << ")" << std::endl;
 }
 
-// Реализация методов производного класса Circle
-Circle::Circle(Color c) : Shape(c) {
-    std::cout << "Constructing Circle" << std::endl;
-}
-// Конструктор Circle, устанавливающий цвет с использованием конструктора базового класса Shape
-
-
-
-void Circle::WhereAmI() const {
-    std::cout << "Now I am in class Circle" << std::endl;
-
+void Rect::Inflate(int factor) {
+    std::cout << "Rect is inflating by a factor of " << factor << std::endl;
 }
 
-// Переопределенная виртуальная функция базового класса Shape
-void Circle::WhereAmIVirtual() const {
-    std::cout << "Now I am in class Circle (virtual)" << std::endl;
-}
-
-// Переопределенная виртуальная функция для вывода информации о круге
-void Circle::printInfo() const {
-    std::cout << "Circle of color: " << colorToString(color) << std::endl;
-}
-
-// Реализация чисто виртуальной функции Inflate для круга
-//void Circle::Inflate(int factor) {
-//    std::cout << "Circle is inflating by a factor of " << factor << std::endl;
+//void Rect::drawShape() const {
+//    std::cout << "Drawing a rectangle" << std::endl;
 //}
+
+void Rect::WhereAmI() const {
+    std::cout << "Now I am in class Rect" << std::endl;
+}
+
+void Rect::WhereAmIVirtual() const {
+    std::cout << "Now I am in class Rect (virtual)" << std::endl;
+}
+
+
+Circle::Circle(Color c, int centerX, int centerY, int radius) : Shape(c), centerX(centerX), centerY(centerY), radius(radius) {}
 
 Circle::~Circle() {
     std::cout << "Now I am in Circle's destructor!" << std::endl;
+}
+
+void Circle::printInfo() const {
+    std::cout << "Circle of color: " << colorToString(color) << std::endl;
+    std::cout << "Center: (" << centerX << ", " << centerY << "), Radius: " << radius << std::endl;
+}
+
+void Circle::Inflate(int factor) {
+    std::cout << "Circle is inflating by a factor of " << factor << std::endl;
+}
+
+//void Circle::drawShape() const {
+//    std::cout << "Drawing a circle" << std::endl;
+//}
+
+void Circle::WhereAmI() const {
+    std::cout << "Now I am in class Circle" << std::endl;
+}
+
+void Circle::WhereAmIVirtual() const {
+    std::cout << "Now I am in class Circle (virtual)" << std::endl;
 }

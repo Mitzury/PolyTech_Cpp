@@ -240,7 +240,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			// соответствующая именованной константе:
 			{
 			std::cout << "\n Chapter 10 \n";
-				enum WEEKDAY wd1 = 1;
+				enum WEEKDAY wd1 = SATURDAY;
 				enum WEEKDAY wd2 = MONDAY;
 				std::cout << "wd1: " << weekdayToString(wd1) << std::endl;
 				std::cout << "wd2: " << weekdayToString(wd2) << std::endl;

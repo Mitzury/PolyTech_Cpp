@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="main_L3_C200.cpp" />
     <ClCompile Include="myString.cpp" />
+    <ClCompile Include="point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myString.h" />

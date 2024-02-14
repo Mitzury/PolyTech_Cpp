@@ -105,7 +105,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	circle.printInfo();
 	}
 #endif;
-#if 1
+#if 0
 //Задание 4.Виртуальные функции.
 	{
 	//4а) Модифицируйте классы Shape,Rect и Circle:
@@ -172,21 +172,36 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		{
 			std::cout << "\nChapter 5a:\n";
-			Rect r(GREEN);
-			Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
+			Rect r(Color::GREEN, 10, 20, 5, 5); // Создаем прямоугольник с зеленым цветом и заданными параметрами
+			
+			Shape* ar[] = { &r, new Rect(r), new Circle(r), new Circle(r) }; // Создаем массив указателей на Shape
 
+			// Выводим информацию о том, где находятся объекты до преобразования
 			for (int i = 0; i < 4; ++i) {
+				ar[i]->WhereAmIVirtual();
+			}
+
+
+			// Преобразуем каждый объект круга и выводим информацию о новом местоположении
+			for (int i = 1; i < 4; ++i) {
+				Circle* circlePtr = dynamic_cast<Circle*>(ar[i]); // Приводим указатель к типу Circle
+				if (circlePtr) { // Проверяем, удалось ли преобразование
+					*circlePtr = Circle(*dynamic_cast<Rect*>(ar[0])); // Конструируем круг из прямоугольника
+					ar[i]->WhereAmIVirtual(); // Выводим информацию о новом местоположении
+				}
+			}
+
+			// Удаляем динамически созданные объекты, чтобы избежать утечек памяти
+			for (int i = 1; i < 4; ++i) {
 				delete ar[i];
 			}
-		}
 
-		{
+
 			std::cout << "\nChapter 5b:\n";
 		// b) Добавьте в объявление деструкторов ключевое слово virtual
 		//Выполните фрагмент. Объясните разницу.
-			Shape s(RED);
-			Rect r(GREEN);
-			Circle c(BLUE);
+			//Shape s(RED);
+
 
 			/*При выполнении кода будет вызван деструктор для каждого объекта, когда он выходит из области видимости. 
 			Однако, поскольку деструкторы не виртуальные, при удалении объектов через указатель на базовый класс 
@@ -203,7 +218,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			//не хватает - добавьте
 			
 			//Вызовите для каждого элемента массива метод WhereAmIVirtual()
-			Shape* ar[] = { new Shape(r), new Rect(r), new Circle(r), new Circle() };
+			//Shape* ar[] = { new Rect(r), new Circle(r), new Circle() };
 			//Вызовите для каждого элемента массива метод WhereAmIVirtual()
 			for (int i = 0; i < 4; ++i) {
 				ar[i]->WhereAmIVirtual();
@@ -267,10 +282,11 @@ int _tmain(int argc, _TCHAR* argv[])
 		//Реализуйте этот метод для производных классов.
 		{
 			std::cout << "\nChapter 8:\n";
-			Rect r;
+			Rect r(GREEN);
 			Shape* p = &r;
 			p->Inflate(5);
-			Circle c;
+
+			Circle c(BLUE, 10);
 			p = &c;
 			p->Inflate(5);
 		}

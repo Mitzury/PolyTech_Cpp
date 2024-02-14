@@ -105,7 +105,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	circle.printInfo();
 	}
 #endif;
-#if 0
+#if 1
 //Задание 4.Виртуальные функции.
 	{
 	//4а) Модифицируйте классы Shape,Rect и Circle:
@@ -115,25 +115,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Выполните приведенный фрагмент, объясните результат.
 	std::cout << "\nChapter 4a:\n";
 
-		Shape s(RED);
-		Rect r(GREEN);
-		Circle c(BLUE);
+		//Shape s(RED);
+		Rect r(Color::GREEN, 0, 10, 0, 10);
+		Circle c(Color::BLUE, 5);
 
-		s.WhereAmI();  // Now I am in class Shape
+		//s.WhereAmI();  // Now I am in class Shape
 		r.WhereAmI();  // Now I am in class Rect
 		c.WhereAmI();  // Now I am in class Circle
 
-		Shape* pShape = &s;
+		//Shape* pShape = &s;
 		Shape* pRect = &r;
 		Shape* pCircle = &c;
-		pShape->WhereAmI();  // Now I am in class Shape
+		//pShape->WhereAmI();  // Now I am in class Shape
 		pRect->WhereAmI();   // Now I am in class Shape
 		pCircle->WhereAmI(); // Now I am in class Shape
 
-		Shape& rShape = s;
+		//Shape& rShape = s;
 		Shape& rRect = r;
 		Shape& rCircle = c;
-		rShape.WhereAmI();  // Now I am in class Shape
+		//rShape.WhereAmI();  // Now I am in class Shape
 		rRect.WhereAmI();   // Now I am in class Shape
 		rCircle.WhereAmI(); // Now I am in class Shape
 
@@ -146,15 +146,15 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Вызов виртуального метода
 
 		std::cout << "\nChapter 4b:\n";
-		s.WhereAmIVirtual();   // Now I am in class Shape (virtual)
+		//s.WhereAmIVirtual();   // Now I am in class Shape (virtual)
 		r.WhereAmIVirtual();   // Now I am in class Rect (virtual)
 		c.WhereAmIVirtual();   // Now I am in class Circle (virtual)
 
-		pShape->WhereAmIVirtual();  // Now I am in class Shape (virtual)
+		//pShape->WhereAmIVirtual();  // Now I am in class Shape (virtual)
 		pRect->WhereAmIVirtual();   // Now I am in class Rect (virtual)
 		pCircle->WhereAmIVirtual(); // Now I am in class Circle (virtual)
 
-		rShape.WhereAmIVirtual();  // Now I am in class Shape (virtual)
+		//rShape.WhereAmIVirtual();  // Now I am in class Shape (virtual)
 		rRect.WhereAmIVirtual();   // Now I am in class Rect (virtual)
 		rCircle.WhereAmIVirtual(); // Now I am in class Circle (virtual)
 	}

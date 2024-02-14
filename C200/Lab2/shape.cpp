@@ -15,6 +15,8 @@ const char* colorToString(Color c) {
 
 Shape::Shape(Color c) : color(c) {}
 
+Shape::Shape(const Shape& other) : color(other.color) {}
+
 Shape::~Shape() {
     std::cout << "Now I am in Shape's destructor!" << std::endl;
 }
@@ -41,6 +43,8 @@ void Shape::WhereAmIVirtual() const {
 
 
 Rect::Rect(Color c, int width, int height, int x, int y) : Shape(c), width(width), height(height), x(x), y(y) {}
+
+Rect::Rect(const Rect& other) : Shape(other.color), width(other.width), height(other.height), x(other.x), y(other.y) {}
 
 Rect::~Rect() {
     std::cout << "Now I am in Rect's destructor!" << std::endl;
@@ -71,9 +75,9 @@ void Rect::Inflate(int factor) {
     std::cout << "Rect is inflating by a factor of " << factor << std::endl;
 }
 
-//void Rect::drawShape() const {
-//    std::cout << "Drawing a rectangle" << std::endl;
-//}
+void Rect::drawShape() const {
+    std::cout << "Drawing a rectangle" << std::endl;
+}
 
 void Rect::WhereAmI() const {
     std::cout << "Now I am in class Rect" << std::endl;
@@ -85,6 +89,18 @@ void Rect::WhereAmIVirtual() const {
 
 
 Circle::Circle(Color c, int centerX, int centerY, int radius) : Shape(c), centerX(centerX), centerY(centerY), radius(radius) {}
+
+Circle::Circle(const Circle& other) : Shape(other.color), centerX(other.centerX), centerY(other.centerY), radius(other.radius) {}
+
+Circle::Circle(const Rect& rect) : Shape(rect.getColor()) {
+    // Находим центр прямоугольника
+    centerX = rect.getX() + rect.getWidth() / 2;
+    centerY = rect.getY() + rect.getHeight() / 2;
+
+    // Устанавливаем радиус в половину меньшей стороны прямоугольника
+    radius = rect.getWidth() < rect.getHeight() ? rect.getWidth() / 2 : rect.getHeight() / 2;
+}
+
 
 Circle::~Circle() {
     std::cout << "Now I am in Circle's destructor!" << std::endl;
@@ -99,9 +115,9 @@ void Circle::Inflate(int factor) {
     std::cout << "Circle is inflating by a factor of " << factor << std::endl;
 }
 
-//void Circle::drawShape() const {
-//    std::cout << "Drawing a circle" << std::endl;
-//}
+void Circle::drawShape() const {
+    std::cout << "Drawing a circle" << std::endl;
+}
 
 void Circle::WhereAmI() const {
     std::cout << "Now I am in class Circle" << std::endl;

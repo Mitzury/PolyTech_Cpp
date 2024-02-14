@@ -1,6 +1,3 @@
-#ifndef COLOR_H
-#define COLOR_H
-
 #include <iostream>
 
 enum Color { RED, GREEN, BLUE };
@@ -13,12 +10,13 @@ protected:
 
 public:
     Shape(Color c);
-    ~Shape();
+    Shape(const Shape& other);
+    virtual ~Shape();
 
     Color getColor() const;
     virtual void printInfo() const;
     virtual void Inflate(int factor);
-  //  virtual void drawShape() const = 0;
+    virtual void drawShape() const = 0;
     virtual void WhereAmI() const;
     virtual void WhereAmIVirtual() const;
 };
@@ -32,6 +30,7 @@ private:
 
 public:
     Rect(Color c = RED, int width = 0, int height = 0, int x = 0, int y = 0);
+    Rect(const Rect& other);
     ~Rect();
     int getWidth() const;
     int getHeight() const;
@@ -40,7 +39,7 @@ public:
 
     void printInfo() const override;
     void Inflate(int factor) override;
-  //  void drawShape() const override;
+    void drawShape() const override;
     void WhereAmI() const override;
     void WhereAmIVirtual() const override;
 };
@@ -53,12 +52,12 @@ private:
 
 public:
     Circle(Color c = RED, int centerX = 0, int centerY = 0, int radius = 0);
+    Circle(const Circle& other);
+    Circle(const Rect& rect);
     ~Circle();
     void printInfo() const override;
     void Inflate(int factor) override;
-   // void drawShape() const override;
+    void drawShape() const override;
     void WhereAmI() const override;
     void WhereAmIVirtual() const override;
 };
-
-#endif

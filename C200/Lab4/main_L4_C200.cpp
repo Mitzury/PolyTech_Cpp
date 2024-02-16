@@ -26,9 +26,9 @@ int main()
     // Добавляем сотрудников в базу
     // bd["Ivanov"] создает новую пару с ключом "Ivanov" в базе данных bd. 
     // Этот оператор [] возвращает ссылку на данные, связанные с этим ключом.
-    bd1["Ivanov"] = MyData(MyData::MALE, 30, "Engineer", 40000);
+    bd1["Ivanov"] = MyData(MyData::MALE, 30, "Engineer Java", 40000);
     bd1["Petrova"] = MyData(MyData::FEMALE, 35, "Designer", 25000);
-    bd1["Sidorov"] = MyData(MyData::MALE, 50, "Programmer", 50000);
+    bd1["Sidorov"] = MyData(MyData::MALE, 50, "Programmer С++", 50000);
 
 
     // Выводим информацию обо всех сотрудниках

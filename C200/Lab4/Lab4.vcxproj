@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -127,7 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CppDb.cpp" />
     <ClCompile Include="main_L4_C200.cpp" />
+    <ClCompile Include="MyData.cpp" />
+    <ClCompile Include="MyString.cpp" />
+    <ClCompile Include="Pair.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CppDb.h" />
+    <ClInclude Include="MyData.h" />
+    <ClInclude Include="MyString.h" />
+    <ClInclude Include="Pair.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,16 +10,12 @@ private:
 public:
     // Конструктор по умолчанию
     Pair();
-
     // Конструктор с параметрами, инициализирующий ключ и данные
     Pair(const MyString& k, const MyData& d);
-
     // Метод для получения ключа
     const MyString& getKey() const;
-
     // Метод для получения данных
     MyData& getData();
-
     // Перегруженный оператор вывода для класса Pair
     friend std::ostream& operator<<(std::ostream& os, const Pair& pair);
 };

@@ -24,6 +24,8 @@ int main()
     CppDb bd1;
 
     // Добавляем сотрудников в базу
+    // bd["Ivanov"] создает новую пару с ключом "Ivanov" в базе данных bd. 
+    // Этот оператор [] возвращает ссылку на данные, связанные с этим ключом.
     bd1["Ivanov"] = MyData(MyData::MALE, 30, "Engineer", 40000);
     bd1["Petrova"] = MyData(MyData::FEMALE, 35, "Designer", 25000);
     bd1["Sidorov"] = MyData(MyData::MALE, 50, "Programmer", 50000);
@@ -52,30 +54,25 @@ int main()
     std::cout << "BD3:" << std::endl;
     std::cout << bd3; //выводим информацию обо всех сотрудниках  из базы bd3
 
-
     // Задание 2.2: Добавляем сотрудников в базу bd2
     std::cout << "\n Chapter 2.2 \n";
-    bd2["Smith"] = MyData(MyData::MALE, 40, "Manager", 60000);
-    bd2["Johnson"] = MyData(MyData::MALE, 45, "Accountant", 55000);
-
+    bd2["Sidorov"] = MyData(MyData::MALE, 40, "Manager", 60000);
+    bd2["Petrov"] = MyData(MyData::MALE, 45, "Accountant", 55000);
     // Выводим информацию о сотрудниках в базе bd2 после добавления новых записей
     std::cout << "Информация о сотрудниках в базе bd2 после добавления новых записей:" << std::endl;
     std::cout << bd2 << std::endl;
-
     // Задание 2.3: Присваиваем содержимое базы bd3 базе bd1
     std::cout << "\n Chapter 2.3 \n";
     bd1 = bd3;
     // Выводим информацию о сотрудниках в базе bd1 после присваивания
     std::cout << "Информация о сотрудниках в базе bd1 после присваивания:" << std::endl;
     std::cout << bd1 << std::endl;
-
     //Задание 3. вспоминаем про семантику перемещения
     //Задание 3.1.создайте копию  базы  bd1
     std::cout << "\n Chapter 3.1 \n";
-    CppDb bd4 = move(bd2);
+    CppDb bd4 = move(bd2); // «Перемещение» ресурсов из одного объекта в другой вместо копирования
     std::cout << bd4; //выводим информацию обо всех сотрудниках  из базы bd4
     std::cout << bd2; //выводим информацию обо всех сотрудниках  из базы bd2
-
     //Задание 3.2.
     std::cout << "\n Chapter 3.2 \n";
     bd3 = move(bd4);

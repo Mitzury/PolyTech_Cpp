@@ -91,9 +91,11 @@ int main()
     CppDb bd;
     std::cout << "\n Chapter 4.1 \n";
     // Добавляем некоторые данные
-    bd["Ivanov"] = MyData(MyData::MALE, 30, "Engineer", 40000);
-    bd["Petrova"] = MyData(MyData::FEMALE, 35, "Designer", 25000);
-    bd["Sidorov"] = MyData(MyData::MALE, 50, "Programmer", 50000);
+    bd["Zadov"] = MyData(MyData::MALE, 20, "Programmer C++", 500000);
+    bd["Ivanov"] = MyData(MyData::MALE, 30, "Engineer Java", 40000);
+    bd["Petrova"] = MyData(MyData::FEMALE, 35, "Designer UI\\UX", 25000);
+    bd["Sidorov"] = MyData(MyData::MALE, 50, "Programmer C#", 50000);
+    bd["Abvgdeykin"] = MyData(MyData::UNDEF, 71, "Tester", 123500);
 
 
     // Выводим информацию о сотрудниках до сортировки

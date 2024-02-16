@@ -3,7 +3,7 @@
 
 class MyString {
 private:
-    char* str; // Указатель на массив символов 
+    char* m_str; // Указатель на массив символов 
 
 public:
     MyString(const char* s = ""); // Конструктор, принимающий C-style строку (по умолчанию пустая строка)

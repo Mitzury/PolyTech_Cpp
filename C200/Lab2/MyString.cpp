@@ -31,7 +31,6 @@ void MyString::SetNewString(const char* newStr) {
     m_str = new char[strlen(newStr) + 1];
     strcpy(m_str, newStr);
 }
-
 MyString& MyString::operator=(const MyString& other) {
     if (this != &other) {
         delete[] m_str;
@@ -47,7 +46,6 @@ MyString& MyString::operator=(const MyString& other) {
 
     return *this;
 }
-
 MyString& MyString::operator+(const MyString& other) const {
     char* resultStr = new char[std::strlen(m_str) + std::strlen(other.m_str) + 1];
     std::strcpy(resultStr, m_str);

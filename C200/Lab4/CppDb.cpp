@@ -74,7 +74,7 @@ int CppDb::deletePair(const char* key) {
     return -1; // Возвращаем код ошибки, если пара с указанным ключом не найдена
 }
 
-// Перегруженный оператор вывода для класса Base
+// Перегруженный оператор вывода для класса базы
 std::ostream& operator<<(std::ostream& os, const CppDb& bd) {
     for (size_t i = 0; i < bd.count; ++i) {
         os << bd.pBase[i] << std::endl; // Выводим каждую пару в поток вывода с переводом строки

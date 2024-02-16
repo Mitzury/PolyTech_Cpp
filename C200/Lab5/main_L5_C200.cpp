@@ -5,6 +5,9 @@
 #include <iostream>
 #include <fstream>
 #include "List.h"
+
+const char* sep = "------------------------------------\n";
+
 int main()
 {
 	//

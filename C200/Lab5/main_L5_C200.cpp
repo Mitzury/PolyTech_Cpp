@@ -22,17 +22,21 @@ int main()
 	ls1.addToTail(Circle(4, 4, 4));
 	ls1.addToTail(Circle(2, 2, 2));
 	ls1.addToTail(Circle(3, 3, 3));
+	std::cout << "List all circles: \n";
 	std::cout << ls1;					//выводим список	
 
 	ls1.remove(Circle(5, 5, 5));			// удаляем первый элемент, равный заданному
+	std::cout << "List all circles after delete \n";
 	std::cout << ls1;
 
+	std::cout << "List all circles after delete \n";
 	ls1.removeAll(Circle(2, 2, 2));     // удаляем все элементы, равные заданному
 	std::cout << ls1 << sep;
 
 	//
 	// 2. Приведенный ниже код должен выполняться корректно	
 	//
+
 	std::cout << "\n Chapter 2 \n";
 	List ls2 = ls1;
 	std::cout << ls2;
@@ -48,6 +52,7 @@ int main()
 
 	ls1 = ls3;			// из "маленького" списка в "большой"
 	std::cout << ls1 << sep;
+
 
 	//
 	// 3. Вспоминаем про семантику перемещения	

@@ -15,22 +15,24 @@ int main()
 	//
 	std::cout << "Chapter 1 \n";
 	List ls1;
-
-	ls1.addToTail(Circle(1, 1, 1));		//добавляем элементы в список
+	// Добавляем элементы в список
+	ls1.addToTail(Circle(1, 1, 1));	
 	ls1.addToTail(Circle(5, 5, 5));
 	ls1.addToTail(Circle(2, 2, 2));
 	ls1.addToTail(Circle(4, 4, 4));
 	ls1.addToTail(Circle(2, 2, 2));
 	ls1.addToTail(Circle(3, 3, 3));
+	// Выводим список	
 	std::cout << "List all circles: \n";
-	std::cout << ls1;					//выводим список	
-
-	ls1.remove(Circle(5, 5, 5));			// удаляем первый элемент, равный заданному
+	std::cout << ls1;					
+	// удаляем первый элемент, равный заданному
+	ls1.remove(Circle(5, 5, 5));			
 	std::cout << "List all circles after delete \n";
 	std::cout << ls1;
 
 	std::cout << "List all circles after delete \n";
-	ls1.removeAll(Circle(2, 2, 2));     // удаляем все элементы, равные заданному
+	// удаляем все элементы, равные заданному
+	ls1.removeAll(Circle(2, 2, 2));
 	std::cout << ls1 << sep;
 
 	//

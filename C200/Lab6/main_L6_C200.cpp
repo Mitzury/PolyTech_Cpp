@@ -27,6 +27,7 @@ int main()
 	//
 	// 2. Конструктор копирования
 	//
+
 			std::cout << "\n Chapter 2 \n";
 			MyString s;
 			MyString s2 = str2;
@@ -40,6 +41,7 @@ int main()
 	//
 	// 3. Оператор присваивания
 	//
+
 		std::cout << "\n Chapter 3 \n";
 		s3 = s4;
 		MyString::print();
@@ -55,6 +57,7 @@ int main()
 	//
 	// 4. Изменили регистр у всех строк на противоположный
 	//
+
 		std::cout << "\n Chapter 4 \n";
 		MyString s5("FFF");
 		MyString::print();
@@ -65,6 +68,7 @@ int main()
 	//
 	// 5. Распечатали строки в алфавитном порядке
 	//
+
 		std::cout << "\n Chapter 5 \n";
 		MyString::printAlph();
 	

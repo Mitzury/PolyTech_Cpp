@@ -57,6 +57,7 @@ int main()
 	//
 	// 3. Вспоминаем про семантику перемещения	
 	//
+
 	std::cout << "\n Chapter 3 \n";
 	List ls4 = std::move(ls2);
 	std::cout << ls4;
@@ -70,7 +71,7 @@ int main()
 	//4.  Сортировка по возрастанию площади кружка
 	//
 	std::cout << "\n Chapter 4 \n";
-
+	std::cout << "Sort by square \n";
 	std::cout << ls3;
 	ls3.sortList();
 	std::cout << ls3 << sep;

@@ -25,6 +25,7 @@ public:
     int deletePair(const char* key);
     // Метод для сортировки базы данных
     void sort();
+    void clear();
     // Перегруженный оператор вывода для класса Base
     friend std::ostream& operator<<(std::ostream& os, const CppDb& bd);
 };

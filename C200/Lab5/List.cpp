@@ -120,62 +120,64 @@ void List::sortList() {
 }
 
 List::List(const List& other) {
-    std::shared_ptr<Node> current = other.head;
-    while (current != nullptr) {
-        addToTail(current->data);
-        current = current->next;
+    std::shared_ptr<Node> current = other.head; // Устанавливаем указатель на текущий узел в начало списка other
+    while (current != nullptr) { // Пока не достигнут конец списка
+        addToTail(current->data); // Добавляем данные текущего узла в конец списка
+        current = current->next; // Переходим к следующему узлу списка other
     }
 }
 
 List& List::operator=(const List& other) {
-    if (this != &other) {
-        head.reset();
+    if (this != &other) { // Проверка на самоприсваивание
+        head.reset(); // Освобождаем память, занимаемую текущим списком
         tail.reset();
         size = 0;
 
-        std::shared_ptr<Node> current = other.head;
-        while (current != nullptr) {
-            addToTail(current->data);
-            current = current->next;
+        std::shared_ptr<Node> current = other.head; // Устанавливаем указатель на текущий узел в начало списка other
+        while (current != nullptr) { // Пока не достигнут конец списка
+            addToTail(current->data); // Добавляем данные текущего узла в конец списка
+            current = current->next; // Переходим к следующему узлу списка other
         }
     }
-    return *this;
+    return *this; // Возвращаем ссылку на текущий объект класса List
 }
 
+// noexcept - это спецификатор в плюсах, который используется для указания того, что функция не может выбрасывать исключения
 List::List(List&& other) noexcept {
-    head = std::move(other.head);
-    tail = std::move(other.tail);
-    size = other.size;
+    head = std::move(other.head); // Перемещаем указатель на начало списка из other в текущий объект
+    tail = std::move(other.tail); // Перемещаем указатель на конец списка из other в текущий объект
+    size = other.size; // Копируем размер списка из other в текущий объект
 
-    other.head.reset();
-    other.tail.reset();
-    other.size = 0;
+    other.head.reset(); // Обнуляем указатель на начало списка в other
+    other.tail.reset(); // Обнуляем указатель на конец списка в other
+    other.size = 0; // Обнуляем размер списка в other
 }
 
 List& List::operator=(List&& other) noexcept {
-    if (this != &other) {
-        head = std::move(other.head);
-        tail = std::move(other.tail);
-        size = other.size;
+    if (this != &other) { // Проверка на самоприсваивание
+        head = std::move(other.head); // Перемещаем указатель на начало списка из other в текущий объект
+        tail = std::move(other.tail); // Перемещаем указатель на конец списка из other в текущий объект
+        size = other.size; // Копируем размер списка из other в текущий объект
 
-        other.head.reset();
-        other.tail.reset();
-        other.size = 0;
+        other.head.reset(); // Обнуляем указатель на начало списка в other
+        other.tail.reset(); // Обнуляем указатель на конец списка в other
+        other.size = 0; // Обнуляем размер списка в other
     }
-    return *this;
+    return *this; // Возвращаем ссылку на текущий объект класса List
 }
 
 std::ostream& operator<<(std::ostream& os, const List& list) {
-    std::shared_ptr<Node> current = list.head;
-    while (current != nullptr) {
-        os << current->data << " ";
-        current = current->next;
+    std::shared_ptr<Node> current = list.head; // Устанавливаем указатель на текущий узел в начало списка
+    while (current != nullptr) { // Пока не достигнут конец списка
+        os << current->data << " "; // Выводим данные текущего узла в поток
+        current = current->next; // Переходим к следующему узлу списка
     }
-    os << std::endl;
-    return os;
+    os << std::endl; // Выводим символ новой строки в поток
+    return os; // Возвращаем поток вывода
 }
 
 std::istream& operator>>(std::istream& is, List& list) {
+    // Создаем круг с нулевыми координатами и радиусом
     Circle circle(0, 0, 0);
     while (is >> circle) {
         list.addToTail(circle);

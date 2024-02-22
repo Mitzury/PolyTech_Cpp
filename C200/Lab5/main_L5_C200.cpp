@@ -13,6 +13,7 @@ int main()
 	//
 	// 1. Создаем список
 	//
+	std::cout << "Chapter 1 \n";
 	List ls1;
 
 	ls1.addToTail(Circle(1, 1, 1));		//добавляем элементы в список
@@ -28,10 +29,11 @@ int main()
 
 	ls1.removeAll(Circle(2, 2, 2));     // удаляем все элементы, равные заданному
 	std::cout << ls1 << sep;
+
 	//
 	// 2. Приведенный ниже код должен выполняться корректно	
 	//
-
+	std::cout << "\n Chapter 2 \n";
 	List ls2 = ls1;
 	std::cout << ls2;
 	List ls3 = ls2;
@@ -50,7 +52,7 @@ int main()
 	//
 	// 3. Вспоминаем про семантику перемещения	
 	//
-
+	std::cout << "\n Chapter 3 \n";
 	List ls4 = std::move(ls2);
 	std::cout << ls4;
 	std::cout << ls2;
@@ -58,15 +60,21 @@ int main()
 	ls3 = std::move(ls4);
 	std::cout << ls3;
 	std::cout << ls4 << sep;
+
 	//
 	//4.  Сортировка по возрастанию площади кружка
 	//
+	std::cout << "\n Chapter 4 \n";
+
 	std::cout << ls3;
 	ls3.sortList();
 	std::cout << ls3 << sep;
+
 	//
 	// 5. Файловый ввод/вывод
 	//
+	std::cout << "\n Chapter 5 \n";
+
 	std::ofstream fout("list.txt");
 	fout << ls3;	// выводим список в файл
 	fout.close();

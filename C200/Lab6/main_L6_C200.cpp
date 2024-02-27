@@ -8,22 +8,20 @@
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	MyString test("test");
-	std::cout << test << std::endl;
 	// С помощью профилировщика проверяем всю ли динамическую память освободили
 	{
 	//
 	// 1. Создаем строки и вывод ее содержимого
 	//
-		
+
 			std::cout << "Chapter 1 \n";
-			MyString str("bbb");
-			MyString str2("bbb");
+			MyString str("bbb"); //1
+			MyString str2("bbb"); // +1
 			MyString str3("CCC");
 			MyString* str4 = new MyString("ddd");
 			MyString* str5 = new MyString("CCC");
 
-	//MyString::print();   // при печати выводим количество пользователей строки
+	        MyString::print();   // при печати выводим количество пользователей строки
 	//
 	// 2. Конструктор копирования
 	//
@@ -39,7 +37,7 @@ int main()
 
 			MyString s4 = std::move(*str4);
 			delete str4;
-			MyString::print();
+			MyString::print(); 
 		
 	//
 	// 3. Оператор присваивания

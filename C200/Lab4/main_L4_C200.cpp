@@ -108,10 +108,11 @@ int main()
         std::cout << "Информация о сотрудниках после сортировки:" << std::endl;
         std::cout << bd << std::endl;
 
-        bd1.clear();
-        bd2.clear();
-        bd3.clear();
-        bd4.clear();
-        return 0;
+        //bd1.clear();
+        //bd2.clear();
+        //bd3.clear();
+        //bd4.clear();
+    
     }
+    return 0;
 };

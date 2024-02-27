@@ -1,4 +1,4 @@
-#include "MyString.h"
+#include "myString.h"
 #include "Counter.h"
 #include <cstring>
 #include <algorithm>
@@ -11,6 +11,9 @@ MyString::MyString(const char* str) {
     strcpy_s(m_str, len, str);
     Counter* counter = new Counter(str);
     counter->AddUser();
+}
+void MyString::AddUser() {
+    m_counter->IncrementOwners();
 }
 
 MyString::MyString(const MyString& other) {

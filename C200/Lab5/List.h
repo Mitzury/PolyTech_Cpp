@@ -29,6 +29,10 @@ public:
     void AddToHead(const Circle& circle);
     void SortList();
 
-    // перегрузка оператора вывода для класса List
+
+    // Перегрузка оператора << для вывода списка в поток
     friend std::ostream& operator<<(std::ostream& os, const List& list);
+    // Перегрузка оператора >> для чтения списка из потока
+    friend std::istream& operator>>(std::istream& is, List& list);
+
 };

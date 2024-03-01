@@ -62,7 +62,7 @@ int main()
 		std::cout << "\n Chapter 4 \n";
 		MyString s5("FFF");
 		MyString::print();
-
+		std::cout << "ChangeCase \n";
 		MyString::changeCase();
 		MyString::print();
 

@@ -75,6 +75,7 @@ void List::AddToHead(const Circle& circle) {
 }
 
 void List::SortList() {
+
     for (Node* i = Head.pNext; i != &Tail; i = i->pNext) {
         for (Node* j = i->pNext; j != &Tail; j = j->pNext) {
             if (i->m_Data.radius > j->m_Data.radius) {
@@ -85,16 +86,6 @@ void List::SortList() {
         }
     }
 }
-
-std::ostream& operator<<(std::ostream& os, const List& list) {
-    Node* current = list.Head.pNext;
-    while (current != nullptr) {
-        os << "Center: (" << current->m_Data.center.x << ", " << current->m_Data.center.y << "), Radius: " << current->m_Data.radius << std::endl;
-        current = current->pNext;
-    }
-    return os;
-}
-
 
 List::List(const List& other) : m_size(0) {
     Head.pNext = &Tail;
@@ -123,9 +114,7 @@ List::List(List&& other) noexcept : m_size(0) {
     Head.pNext = other.Head.pNext;
     Tail.pPrev = other.Tail.pPrev;
 
-
     m_size = other.m_size;
-
 
     other.Head.pNext = &other.Tail;
     other.Tail.pPrev = &other.Head;
@@ -136,17 +125,29 @@ List& List::operator=(List&& other) noexcept {
     if (this != &other) {
         clear();
 
-
         Head.pNext = other.Head.pNext;
         Tail.pPrev = other.Tail.pPrev;
 
-
         m_size = other.m_size;
-
 
         other.Head.pNext = &other.Tail;
         other.Tail.pPrev = &other.Head;
         other.m_size = 0;
     }
     return *this;
+}
+
+
+std::ostream& operator<<(std::ostream& os, const List& list) {
+    Node* current = list.Head.pNext;
+    while (current != nullptr) {
+        os << "Center: (" << current->m_Data.center.x << ", " << current->m_Data.center.y << "), Radius: " << current->m_Data.radius << std::endl;
+        current = current->pNext;
+    }
+    return os;
+}
+
+std::istream& operator>>(std::istream& is, List& list)
+{
+    return is;
 }

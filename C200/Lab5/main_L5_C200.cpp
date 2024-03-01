@@ -2,6 +2,7 @@
 // Тестируем двухсвязный список
 //------------------------------------------------------------------------------
 #include <iostream>
+#include <fstream>
 #include "List.h"
 
 using namespace std;
@@ -35,6 +36,7 @@ int main() {
 
 	// Выводим список после удаления
 
+	std::cout << "Remove 5.5.5" << std::endl;
 	std::cout << ls1;
 	std::cout << sep << std::endl;
 
@@ -44,6 +46,7 @@ int main() {
 
 	// Выводим список после удаления
 
+	std::cout << "Remove all 2.2.2" << std::endl;
 	std::cout << ls1 << std::endl;
 	std::cout << sep;
 
@@ -95,5 +98,19 @@ int main() {
 	ls3.SortList();
 	std::cout << "ls3 after sort" << std::endl;
 	std::cout << ls3 << sep;
+
+
+	// 5. Файловый ввод/вывод
+
+	ofstream fout("list.txt");
+	fout << ls3;	// выводим список в файл
+	fout.close();
+
+	ifstream fin("list.txt");
+	List ls5;		// читаем список из файла
+	fin >> ls5;
+	fin.close();
+
 	return 0;
+
 }

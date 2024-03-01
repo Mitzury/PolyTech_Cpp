@@ -1,19 +1,13 @@
 #pragma once
-
-
-#include <iostream>
+#include "Point.h"
 
 class Circle {
-private:
-    int x;
-    int y;
+public:
+    Point center;
     int radius;
 
-public:
-    Circle(int x, int y, int radius);
+    // Конструктор класса Circle
+    Circle(int centerX, int centerY, int circleRadius);
 
-    friend std::ostream& operator<<(std::ostream& os, const Circle& circle);
-    bool operator==(const Circle& other) const;
-    friend std::istream& operator>>(std::istream& is, Circle& circle);
-    int getRadius() const;
+    friend std::ostream& operator<<(std::ostream& os, const Circle& c);
 };

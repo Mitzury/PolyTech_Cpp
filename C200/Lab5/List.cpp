@@ -1,186 +1,152 @@
 #include "List.h"
 
-// Конструктор класса List, инициализирующий указатели на начало и конец списка, а также размер списка
-List::List() : head(nullptr), tail(nullptr), size(0) {}
-
-void List::addToTail(const Circle& circle) {
-    // Создание нового узла списка с помощью умного указателя
-    std::shared_ptr<Node> newNode = std::make_shared<Node>(circle);
-    if (tail == nullptr) {
-        head = newNode;
-        tail = newNode;
-    }
-    else {
-        tail->next = newNode;
-        newNode->prev = tail;
-        tail = newNode;
-    }
-    size++;
+List::List() : m_size(0) {
+    Head.pNext = &Tail;
+    Tail.pPrev = &Head;
 }
 
-void List::addToHead(const Circle& circle) {
-    std::shared_ptr<Node> newNode = std::make_shared<Node>(circle); // Создание нового узла списка с помощью умного указателя
-    if (head == nullptr) { // Если список пуст
-        head = newNode; // Устанавливаем новый узел как начало списка
-        tail = newNode; // и как конец списка
-    }
-    else { // Если список не пуст
-        newNode->next = head; // Устанавливаем указатель следующего узла нового узла на текущее начало списка
-        head->prev = newNode; // Устанавливаем указатель предыдущего узла текущего начала списка на новый узел
-        head = newNode; // Устанавливаем новый узел как новое начало списка
-    }
-    size++; // Увеличиваем размер списка
+List::~List() {
+    clear();
 }
 
-void List::remove(const Circle& circle) {
-    std::shared_ptr<Node> current = head; // Устанавливаем указатель на текущий узел в начало списка
-    while (current != nullptr) { // Пока не достигнут конец списка
-        if (current->data == circle) { // Если данные текущего узла равны целевому кругу
-            if (current == head) { // Если текущий узел - это начало списка
-                head = current->next; // Устанавливаем новое начало списка на следующий узел
-                if (head != nullptr)
-                    head->prev.reset(); // Обнуляем указатель на предыдущий узел нового начала списка
-            }
-            else if (current == tail) { // Если текущий узел - это конец списка
-                tail = current->prev; // Устанавливаем новый конец списка на предыдущий узел
-                if (tail != nullptr)
-                    tail->next.reset(); // Обнуляем указатель на следующий узел нового конца списка
-            }
-            else { // Если текущий узел находится где-то в середине списка
-                current->prev->next = current->next; // Устанавливаем указатель на следующий узел от предыдущего узла текущего узла на следующий узел от текущего узла
-                current->next->prev = current->prev; // Устанавливаем указатель на предыдущий узел от следующего узла текущего узла на предыдущий узел от текущего узла
-            }
-            size--; // Уменьшаем размер списка
-            break; // Прерываем цикл
+void List::AddToTail(const Circle& circle) {
+    Node* newNode = new Node(circle, Tail.pPrev, &Tail);
+    Tail.pPrev->pNext = newNode;
+    Tail.pPrev = newNode;
+    ++m_size;
+}
+
+bool List::remove(const Circle& circle) {
+    Node* current = Head.pNext;
+    while (current != &Tail) {
+        if (current->m_Data.center.x == circle.center.x &&
+            current->m_Data.center.y == circle.center.y &&
+            current->m_Data.radius == circle.radius) {
+            current->pPrev->pNext = current->pNext;
+            current->pNext->pPrev = current->pPrev;
+            delete current;
+            --m_size;
+            return true;
         }
-        current = current->next; // Переходим к следующему узлу списка
+        current = current->pNext;
     }
+    return false;
 }
 
-void List::removeAll(const Circle& circle) {
-    std::shared_ptr<Node> current = head; // Устанавливаем указатель на текущий узел в начало списка
-    while (current != nullptr) { // Пока не достигнут конец списка
-        if (current->data == circle) { // Если данные текущего узла равны целевому кругу
-            if (current == head) { // Если текущий узел - это начало списка
-                head = current->next; // Устанавливаем новое начало списка на следующий узел
-                if (head != nullptr)
-                    head->prev.reset(); // Обнуляем указатель на предыдущий узел нового начала списка
-            }
-            else if (current == tail) { // Если текущий узел - это конец списка
-                tail = current->prev; // Устанавливаем новый конец списка на предыдущий узел
-                if (tail != nullptr)
-                    tail->next.reset(); // Обнуляем указатель на следующий узел нового конца списка
-            }
-            else { // Если текущий узел находится где-то в середине списка
-                current->prev->next = current->next; // Устанавливаем указатель на следующий узел от предыдущего узла текущего узла на следующий узел от текущего узла
-                current->next->prev = current->prev; // Устанавливаем указатель на предыдущий узел от следующего узла текущего узла на предыдущий узел от текущего узла
-            }
-            size--; // Уменьшаем размер списка
+size_t List::removeAll(const Circle& circle) {
+    size_t count = 0;
+    Node* current = Head.pNext;
+    while (current != &Tail) {
+        if (current->m_Data.center.x == circle.center.x &&
+            current->m_Data.center.y == circle.center.y &&
+            current->m_Data.radius == circle.radius) {
+            Node* temp = current;
+            current = current->pNext;
+            temp->pPrev->pNext = temp->pNext;
+            temp->pNext->pPrev = temp->pPrev;
+            delete temp;
+            ++count;
+            --m_size;
         }
-        current = current->next; // Переходим к следующему узлу списка
-    }
-}
-
-void List::quickSort(std::vector<Circle>& arr, int low, int high) {
-    if (low < high) { // Если индекс начала массива меньше индекса конца
-        int pi = partition(arr, low, high); // Находим индекс опорного элемента после разбиения массива
-        quickSort(arr, low, pi - 1); // Рекурсивно сортируем элементы меньше опорного элемента
-        quickSort(arr, pi + 1, high); // Рекурсивно сортируем элементы больше опорного элемента
-    }
-}
-
-int List::partition(std::vector<Circle>& arr, int low, int high) {
-    Circle pivot = arr[high]; // Выбираем последний элемент массива как опорный элемент
-    int i = low - 1; // Инициализируем индекс наименьшего элемента
-
-    for (int j = low; j < high; j++) { // Проходим по всем элементам массива, кроме последнего (опорного элемента)
-        if (arr[j].getRadius() <= pivot.getRadius()) { // Если текущий элемент меньше или равен опорному
-            i++; // Увеличиваем индекс наименьшего элемента
-            std::swap(arr[i], arr[j]); // Меняем местами текущий элемент и элемент с индексом наименьшего элемента
+        else {
+            current = current->pNext;
         }
     }
-    std::swap(arr[i + 1], arr[high]); // Меняем местами опорный элемент и элемент, стоящий после наименьшего элемента
-    return i + 1; // Возвращаем индекс опорного элемента
+    return count;
 }
 
-void List::sortList() {
-    if (size <= 1) return; // Если размер списка меньше или равен 1, нет необходимости в сортировке
-    std::vector<Circle> circles; // Создаем вектор для хранения элементов списка
-    std::shared_ptr<Node> current = head; // Устанавливаем указатель на текущий узел в начало списка
-    while (current != nullptr) { // Пока не достигнут конец списка
-        circles.push_back(current->data); // Добавляем данные текущего узла в вектор
-        current = current->next; // Переходим к следующему узлу списка
+void List::clear() {
+    Node* current = Head.pNext;
+    while (current != &Tail) {
+        Node* temp = current;
+        current = current->pNext;
+        delete temp;
     }
-    quickSort(circles, 0, circles.size() - 1); // Вызываем функцию быстрой сортировки для вектора
-    current = head; // Устанавливаем указатель на текущий узел в начало списка
-    for (const auto& circle : circles) { // Перебираем отсортированный вектор
-        current->data = circle; // Заменяем данные текущего узла на данные из вектора
-        current = current->next; // Переходим к следующему узлу списка
+    Head.pNext = &Tail;
+    Tail.pPrev = &Head;
+    m_size = 0;
+}
+
+void List::AddToHead(const Circle& circle) {
+    Node* newNode = new Node(circle, &Head, Head.pNext);
+    Head.pNext->pPrev = newNode;
+    Head.pNext = newNode;
+    ++m_size;
+}
+
+void List::SortList() {
+    for (Node* i = Head.pNext; i != &Tail; i = i->pNext) {
+        for (Node* j = i->pNext; j != &Tail; j = j->pNext) {
+            if (i->m_Data.radius > j->m_Data.radius) {
+                Circle temp = i->m_Data;
+                i->m_Data = j->m_Data;
+                j->m_Data = temp;
+            }
+        }
     }
 }
 
-List::List(const List& other) {
-    std::shared_ptr<Node> current = other.head; // Устанавливаем указатель на текущий узел в начало списка other
-    while (current != nullptr) { // Пока не достигнут конец списка
-        addToTail(current->data); // Добавляем данные текущего узла в конец списка
-        current = current->next; // Переходим к следующему узлу списка other
+std::ostream& operator<<(std::ostream& os, const List& list) {
+    Node* current = list.Head.pNext;
+    while (current != &list.Tail) {
+        os << "Center: (" << current->m_Data.center.x << ", " << current->m_Data.center.y << "), Radius: " << current->m_Data.radius << std::endl;
+        current = current->pNext;
+    }
+    return os;
+}
+
+
+List::List(const List& other) : m_size(0) {
+    Head.pNext = &Tail;
+    Tail.pPrev = &Head;
+    Node* current = other.Head.pNext;
+    while (current != &other.Tail) {
+        AddToTail(current->m_Data);
+        current = current->pNext;
     }
 }
 
 List& List::operator=(const List& other) {
-    if (this != &other) { // Проверка на самоприсваивание
-        head.reset(); // Освобождаем память, занимаемую текущим списком
-        tail.reset();
-        size = 0;
+    if (this != &other) {
+        clear();
 
-        std::shared_ptr<Node> current = other.head; // Устанавливаем указатель на текущий узел в начало списка other
-        while (current != nullptr) { // Пока не достигнут конец списка
-            addToTail(current->data); // Добавляем данные текущего узла в конец списка
-            current = current->next; // Переходим к следующему узлу списка other
+        Node* current = other.Head.pNext;
+        while (current != &other.Tail) {
+            AddToTail(current->m_Data);
+            current = current->pNext;
         }
     }
-    return *this; // Возвращаем ссылку на текущий объект класса List
+    return *this;
 }
 
-// noexcept - это спецификатор в плюсах, который используется для указания того, что функция не может выбрасывать исключения
-List::List(List&& other) noexcept {
-    head = std::move(other.head); // Перемещаем указатель на начало списка из other в текущий объект
-    tail = std::move(other.tail); // Перемещаем указатель на конец списка из other в текущий объект
-    size = other.size; // Копируем размер списка из other в текущий объект
+List::List(List&& other) noexcept : m_size(0) {
+    Head.pNext = other.Head.pNext;
+    Tail.pPrev = other.Tail.pPrev;
 
-    other.head.reset(); // Обнуляем указатель на начало списка в other
-    other.tail.reset(); // Обнуляем указатель на конец списка в other
-    other.size = 0; // Обнуляем размер списка в other
+
+    m_size = other.m_size;
+
+
+    other.Head.pNext = &other.Tail;
+    other.Tail.pPrev = &other.Head;
+    other.m_size = 0;
 }
 
 List& List::operator=(List&& other) noexcept {
-    if (this != &other) { // Проверка на самоприсваивание
-        head = std::move(other.head); // Перемещаем указатель на начало списка из other в текущий объект
-        tail = std::move(other.tail); // Перемещаем указатель на конец списка из other в текущий объект
-        size = other.size; // Копируем размер списка из other в текущий объект
+    if (this != &other) {
+        clear();
 
-        other.head.reset(); // Обнуляем указатель на начало списка в other
-        other.tail.reset(); // Обнуляем указатель на конец списка в other
-        other.size = 0; // Обнуляем размер списка в other
-    }
-    return *this; // Возвращаем ссылку на текущий объект класса List
-}
 
-std::ostream& operator<<(std::ostream& os, const List& list) {
-    std::shared_ptr<Node> current = list.head; // Устанавливаем указатель на текущий узел в начало списка
-    while (current != nullptr) { // Пока не достигнут конец списка
-        os << current->data << " "; // Выводим данные текущего узла в поток
-        current = current->next; // Переходим к следующему узлу списка
-    }
-    os << std::endl; // Выводим символ новой строки в поток
-    return os; // Возвращаем поток вывода
-}
+        Head.pNext = other.Head.pNext;
+        Tail.pPrev = other.Tail.pPrev;
 
-std::istream& operator>>(std::istream& is, List& list) {
-    // Создаем круг с нулевыми координатами и радиусом
-    Circle circle(0, 0, 0);
-    while (is >> circle) {
-        list.addToTail(circle);
+
+        m_size = other.m_size;
+
+
+        other.Head.pNext = &other.Tail;
+        other.Tail.pPrev = &other.Head;
+        other.m_size = 0;
     }
-    return is;
+    return *this;
 }

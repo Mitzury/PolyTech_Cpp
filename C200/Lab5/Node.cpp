@@ -1,4 +1,7 @@
 #include "Node.h"
+Node::Node() : pPrev(nullptr), pNext(nullptr), m_Data(0,0,0) {}
 
-// Определение конструктора класса Node, инициализирующего данные узла и указатели на следующий и предыдущий узлы списк
-Node::Node(const Circle& data) : data(data), next(nullptr), prev(nullptr) {}
+Node::Node(const Circle& circle, Node* prevNode, Node* nextNode)
+    : m_Data(circle), pPrev(prevNode), pNext(nextNode) {}
+
+Node::~Node() {}

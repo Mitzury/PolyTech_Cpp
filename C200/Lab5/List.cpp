@@ -88,7 +88,7 @@ void List::SortList() {
 
 std::ostream& operator<<(std::ostream& os, const List& list) {
     Node* current = list.Head.pNext;
-    while (current != &list.Tail) {
+    while (current != nullptr) {
         os << "Center: (" << current->m_Data.center.x << ", " << current->m_Data.center.y << "), Radius: " << current->m_Data.radius << std::endl;
         current = current->pNext;
     }

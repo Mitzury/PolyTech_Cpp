@@ -25,6 +25,7 @@ public:
     // Оператор присваивания копирования
     List& operator=(const List& other);
 
+
     void Reverse();
 
     // метод добавления ноды в конец списка

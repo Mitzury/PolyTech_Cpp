@@ -55,28 +55,30 @@ List& List::operator=(const List& other) {
     } return *this;
 }
 
-void List::Reverse()
-{
-    // Создаем вспомогательную переменную temp для хранения текущего узла.
-        Node* temp = nullptr;
+void List::Reverse() {
+    // Проверка наличия списка или его пустоты
+    if (!(head) || !((head)->next))
+        return;
+
     // Создаем указатель curr, чтобы указывать на текущий узел.
-        Node* curr = head;
-        while (curr != nullptr) {
+    Node* current = head;
+    // Создаем вспомогательную переменную temp для хранения текущего узла.
+    Node* temp = nullptr;
+
+    while (current != nullptr) {
         // Сохраняем указатель на предыдущий узел в temp.
-            temp = curr->prev;
-            // Переназначаем указатель на предыдущий узел на указатель на следующий узел.
-            curr->prev = curr->next;
-            // Переназначаем указатель на следующий узел на указатель на предыдущий узел.
-            curr->next = temp;
-            // Перемещаем curr на предыдущий узел.
-            curr = curr->prev;
-        }
-        // Переназначаем указатель на голову на предыдущий узел.
-        if (temp != nullptr) {
-            head = temp->prev;
-        }
-        delete curr;
-        curr = temp;
+        temp = current->prev;
+        // Переназначаем указатель на предыдущий узел на указатель на следующий узел.
+        current->prev = current->next;
+        // Переназначаем указатель на следующий узел на указатель на предыдущий узел.
+        current->next = temp;
+        // Перемещаем curr на предыдущий узел.
+        current = current->prev;
+    }
+
+    // Переназначаем указатель на голову на предыдущий узел.
+    if (temp != nullptr)
+        head = temp->prev;
 }
 
 void List::AddToTail(const Circle& data) {

@@ -16,10 +16,7 @@ public:
 
 
     // Конструктор перемещения
-    List(List&& other) : head(other.head), tail(other.tail) {
-        other.head = nullptr;
-        other.tail = nullptr;
-    }
+    List(List&& other);
     // Оператор присваивания перемещения
     List& operator=(List&& other);
 

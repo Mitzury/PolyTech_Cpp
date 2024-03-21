@@ -1,5 +1,10 @@
 #include "List.h"
 
+List::List(List&& other) : head(other.head), tail(other.tail) {
+        other.head = nullptr;
+        other.tail = nullptr;
+ }
+
 //Оператор присваивания перемещения
 // используется для перемещения(move) содержимого одного объекта списка в другой.
 List& List::operator=(List&& other) {

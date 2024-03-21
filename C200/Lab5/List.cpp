@@ -1,5 +1,7 @@
 #include "List.h"
 
+//Оператор присваивания перемещения
+// используется для перемещения(move) содержимого одного объекта списка в другой.
 List& List::operator=(List&& other) {
     if (this != &other) {
         // Очищаем текущий список
@@ -97,16 +99,23 @@ void List::Remove(const Circle& data) {
     }
 }
 
+// Функция для удаления всех узлов, поля которых совпадают с заданным значением
 void List::RemoveAll(const Circle& data) {
+// Если список пустой, то выходим из функции
     if (head == nullptr) {
         return;
     }
+// Устанавливаем текущий узел на голову списка
     Node* current = head;
     while (current != nullptr) {
+// Создаем временный указатель на текущий узел
         Node* temp = current;
         current = current->next;
+// Проверяем, совпадает ли значение поля узла с заданным значением
         if (temp->data == data) {
+// Проверяем, является ли текущий узел головой списка
             if (temp == head) {
+// Переустанавливаем голову списка и обновляем указатели
                 head = temp->next;
                 if (head != nullptr)
                     head->prev = nullptr;
@@ -117,6 +126,7 @@ void List::RemoveAll(const Circle& data) {
                     tail->next = nullptr;
             }
             else {
+// Переопределение связей перед и после элемента
                 temp->prev->next = temp->next;
                 temp->next->prev = temp->prev;
             }

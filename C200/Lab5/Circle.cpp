@@ -1,6 +1,7 @@
 #include "Circle.h"
 
 
+// конструктор класса circle, инициализирующий центр окружности(center) и радиус(r)
 Circle::Circle(int xCenter, int yCenter, int radius) : center(xCenter, yCenter) {
     this->r = radius;
 }
@@ -8,8 +9,10 @@ double Circle::getSquare() {
     return 3.14159 * (r * 2);
 }
 bool operator==(const Circle& c1, const Circle& c2) {
+// Если центры и радиусы окружностей совпадают, функция возвращает "true", иначе - "false".
     return c1.center == c2.center && c1.r == c2.r;
 }
+
 std::ostream& operator<<(std::ostream& os, const Circle& c) {
     os << "Circle (" << c.center << "," << c.r << ")";
     return os;

@@ -3,8 +3,8 @@
 using namespace std;
 class Circle {
 private:
-    Point center;
-    int r;
+    Point center; // координаты центра окружности
+    int r;        // радиус окружности
 public:
     Circle(int xCenter, int yCenter, int radius);
 

@@ -23,11 +23,10 @@ public:
     // Оператор присваивания перемещения
     List& operator=(List&& other);
 
-
-
     // Конструктор копирования
     List(const List& other);
-    // Оператор присваивания
+
+    // Оператор присваивания копирования
     List& operator=(const List& other);
 
 

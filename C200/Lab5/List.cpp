@@ -120,7 +120,6 @@ void List::RemoveAll(const Circle& data) {
         if (temp->data == data) {
 // Проверяем, является ли текущий узел головой списка
             if (temp == head) {
-// Переустанавливаем голову списка и обновляем указатели
                 head = temp->next;
                 if (head != nullptr)
                     head->prev = nullptr;

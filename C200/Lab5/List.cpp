@@ -68,6 +68,7 @@ void List::Reverse()
         if (temp != nullptr) {
             head = temp->prev;
         }
+
 }
 
 void List::AddToTail(const Circle& data) {
@@ -95,6 +96,25 @@ void List::AddToHead(const Circle& data) {
     }
 }
 
+void List::InsertBefore(const Circle& newData, const Circle& data) {
+    Node* newNode = new Node(newData);
+    Node* curr = head;
+    while (curr != nullptr) {
+        if (curr->data == data) {
+            newNode->prev = curr->prev;
+            newNode->next = curr;
+            if (curr->prev != nullptr) {
+                curr->prev->next = newNode;
+            }
+            curr->prev = newNode;
+            if (curr == head) {
+                head = newNode;
+            }
+            return;
+        }
+        curr = curr->next;
+    }
+}
 
 void List::InsertAfter(const Circle& newData, const Circle& data) {
     Node* newNode = new Node(newData);

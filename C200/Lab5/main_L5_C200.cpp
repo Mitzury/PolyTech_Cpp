@@ -26,6 +26,7 @@ int main()
     // Выводим список
     std::cout << "Chapter 1" << std::endl;
     std::cout << "Out List 1 after init" << endl << ls1 << sep;
+
     // Удаляем первый элемент, равный заданному
     ls1.Remove(Circle(5, 5, 5));
     std::cout << "Out List 1 after delete 5 circle" << endl << ls1 << sep;
@@ -73,6 +74,7 @@ int main()
     //
     // 5. Файловый ввод/вывод
     //
+    std::cout << "Chapter 5" << std::endl;
     ofstream fout("list.txt");
     fout << ls3;	// выводим список в файл
     fout.close();
@@ -86,6 +88,11 @@ int main()
     // 6. Дополнительные проверки
     //
     // ...
+
+    std::cout << "Chapter 6" << std::endl;
+    std::cout << "Out List 1 before Reverse" << endl << ls1 << sep;
+    ls1.Reverse();
+    std::cout << "Out List 1 after Reverse" << endl << ls1 << sep;
 
     return 0;
 }

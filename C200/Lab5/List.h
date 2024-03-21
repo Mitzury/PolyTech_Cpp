@@ -14,7 +14,6 @@ public:
     // очищаем память после использованя класса
     ~List();
 
-
     // Конструктор перемещения
     List(List&& other);
     // Оператор присваивания перемещения
@@ -26,6 +25,8 @@ public:
     // Оператор присваивания копирования
     List& operator=(const List& other);
 
+
+    void Reverse();
 
     // метод добавления ноды в конец списка
     void AddToTail(const Circle& data);

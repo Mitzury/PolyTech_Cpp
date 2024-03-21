@@ -55,15 +55,32 @@ List& List::operator=(const List& other) {
     } return *this;
 }
 
+void List::Reverse()
+{
+        Node* temp = nullptr;
+        Node* curr = head;
+        while (curr != nullptr) {
+            temp = curr->prev;
+            curr->prev = curr->next;
+            curr->next = temp;
+            curr = curr->prev;
+        }
+        if (temp != nullptr) {
+            head = temp->prev;
+        }
+}
+
+
 void List::AddToTail(const Circle& data) {
-    Node* newNode = new Node(data);
-    if (head == nullptr) {
-        head = tail = newNode;
+    Node* newnode = new Node(data); // —оздаем новый узел с переданными данными
+    if (head == nullptr) { // ≈сли список пустой
+        head = tail = newnode; // ”станавливаем новый узел как голову и хвост
     }
-    else {
-        tail->next = newNode;
-        newNode->prev = tail;
-        tail = newNode;
+    else { // ≈сли список не пустой
+        newnode->prev = tail; // ”станавливаем указатель prev дл€ нового узла на текущий хвост
+        tail->next = newnode; // ”станавливаем указатель next дл€ текущего хвоста на новый узел
+
+        tail = newnode; // ќбновл€ем хвост списка на новый узел
     }
 }
 
@@ -175,7 +192,7 @@ List::~List() {
 std::ostream& operator<<(std::ostream& os, const List& list) {
     Node* current = list.head;
     while (current != nullptr) {
-        os << current->data << endl;
+        os << current->prev << " " << current->data << " " << current->next << endl;
         current = current->next;
     }
     return os;

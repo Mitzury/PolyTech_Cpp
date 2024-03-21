@@ -1,153 +1,179 @@
 #include "List.h"
 
-List::List() : m_size(0) {
-    Head.pNext = &Tail;
-    Tail.pPrev = &Head;
-}
-
-List::~List() {
-    clear();
-}
-
-void List::AddToTail(const Circle& circle) {
-    Node* newNode = new Node(circle, Tail.pPrev, &Tail);
-    Tail.pPrev->pNext = newNode;
-    Tail.pPrev = newNode;
-    ++m_size;
-}
-
-bool List::remove(const Circle& circle) {
-    Node* current = Head.pNext;
-    while (current != &Tail) {
-        if (current->m_Data.center.x == circle.center.x &&
-            current->m_Data.center.y == circle.center.y &&
-            current->m_Data.radius == circle.radius) {
-            current->pPrev->pNext = current->pNext;
-            current->pNext->pPrev = current->pPrev;
-            delete current;
-            --m_size;
-            return true;
-        }
-        current = current->pNext;
-    }
-    return false;
-}
-
-size_t List::removeAll(const Circle& circle) {
-    size_t count = 0;
-    Node* current = Head.pNext;
-    while (current != &Tail) {
-        if (current->m_Data.center.x == circle.center.x &&
-            current->m_Data.center.y == circle.center.y &&
-            current->m_Data.radius == circle.radius) {
+List& List::operator=(List&& other) {
+    if (this != &other) {
+        // Очищаем текущий список
+        Node* current = head;
+        while (current != nullptr) {
             Node* temp = current;
-            current = current->pNext;
-            temp->pPrev->pNext = temp->pNext;
-            temp->pNext->pPrev = temp->pPrev;
+            current = current->next;
             delete temp;
-            ++count;
-            --m_size;
         }
-        else {
-            current = current->pNext;
-        }
+        head = nullptr;
+        tail = nullptr;
+        // Перемещаем данные из другого списка
+        head = other.head;
+        tail = other.tail;
+        other.head = nullptr;
+        other.tail = nullptr;
     }
-    return count;
+    return *this;
 }
 
-void List::clear() {
-    Node* current = Head.pNext;
-    while (current != &Tail) {
-        Node* temp = current;
-        current = current->pNext;
-        delete temp;
-    }
-    Head.pNext = &Tail;
-    Tail.pPrev = &Head;
-    m_size = 0;
-}
-
-void List::AddToHead(const Circle& circle) {
-    Node* newNode = new Node(circle, &Head, Head.pNext);
-    Head.pNext->pPrev = newNode;
-    Head.pNext = newNode;
-    ++m_size;
-}
-
-void List::SortList() {
-
-    for (Node* i = Head.pNext; i != &Tail; i = i->pNext) {
-        for (Node* j = i->pNext; j != &Tail; j = j->pNext) {
-            if (i->m_Data.radius > j->m_Data.radius) {
-                Circle temp = i->m_Data;
-                i->m_Data = j->m_Data;
-                j->m_Data = temp;
-            }
-        }
-    }
-}
-
-List::List(const List& other) : m_size(0) {
-    Head.pNext = &Tail;
-    Tail.pPrev = &Head;
-    Node* current = other.Head.pNext;
-    while (current != &other.Tail) {
-        AddToTail(current->m_Data);
-        current = current->pNext;
+List::List(const List& other) : head(nullptr), tail(nullptr) {
+    Node* current = other.head;
+    while (current != nullptr) {
+        AddToTail(current->data);
+        current = current->next;
     }
 }
 
 List& List::operator=(const List& other) {
     if (this != &other) {
-        clear();
+        // Очищаем текущий список
+        Node* current = head;
+        while (current != nullptr) {
+            Node* temp = current;
+            current = current->next;
+            delete temp;
+        }
+        head = nullptr;
+        tail = nullptr;
+        // Копируем данные из другого списка
+        current = other.head;
+        while (current != nullptr) {
+            AddToTail(current->data);
+            current = current->next;
+        }
+    } return *this;
+}
 
-        Node* current = other.Head.pNext;
-        while (current != &other.Tail) {
-            AddToTail(current->m_Data);
-            current = current->pNext;
+void List::AddToTail(const Circle& data) {
+    Node* newNode = new Node(data);
+    if (head == nullptr) {
+        head = tail = newNode;
+    }
+    else {
+        tail->next = newNode;
+        newNode->prev = tail;
+        tail = newNode;
+    }
+}
+
+void List::AddToHead(const Circle& data) {
+    Node* newNode = new Node(data);
+    if (head == nullptr) {
+        head = tail = newNode;
+    }
+    else {
+        head->prev = newNode;
+        newNode->next = head;
+        head = newNode;
+    }
+}
+
+void List::Remove(const Circle& data) {
+    Node* current = head;
+    while (current != nullptr) {
+        if (current->data == data) {
+            if (current == head) {
+                head = current->next;
+                if (head != nullptr)
+                    head->prev = nullptr;
+            }
+            else if (current == tail) {
+                tail = current->prev;
+                if (tail != nullptr)
+                    tail->next = nullptr;
+            }
+            else {
+                current->prev->next = current->next;
+                current->next->prev = current->prev;
+            }
+            delete current;
+            break;
+        }
+        current = current->next;
+    }
+}
+
+void List::RemoveAll(const Circle& data) {
+    if (head == nullptr) {
+        return;
+    }
+    Node* current = head;
+    while (current != nullptr) {
+        Node* temp = current;
+        current = current->next;
+        if (temp->data == data) {
+            if (temp == head) {
+                head = temp->next;
+                if (head != nullptr)
+                    head->prev = nullptr;
+            }
+            else if (temp == tail) {
+                tail = temp->prev;
+                if (tail != nullptr)
+                    tail->next = nullptr;
+            }
+            else {
+                temp->prev->next = temp->next;
+                temp->next->prev = temp->prev;
+            }
+            delete temp;
         }
     }
-    return *this;
 }
 
-List::List(List&& other) noexcept : m_size(0) {
-    Head.pNext = other.Head.pNext;
-    Tail.pPrev = other.Tail.pPrev;
-
-    m_size = other.m_size;
-
-    other.Head.pNext = &other.Tail;
-    other.Tail.pPrev = &other.Head;
-    other.m_size = 0;
+void List::SortList() {
+    // Bubble sort
+    if (head == nullptr || head == tail)
+        return;
+    Node* current;
+    Node* temp = nullptr;
+    bool swapped;
+    do {
+        swapped = false;
+        current = head;
+        while (current->next != temp) {
+            if (current->data.getSquare() > current->next->data.getSquare()) {
+                Circle tempData = current->data;
+                current->data = current->next->data;
+                current->next->data = tempData;
+                swapped = true;
+            }
+            current = current->next;
+        } temp = current;
+    } while (swapped);
 }
 
-List& List::operator=(List&& other) noexcept {
-    if (this != &other) {
-        clear();
-
-        Head.pNext = other.Head.pNext;
-        Tail.pPrev = other.Tail.pPrev;
-
-        m_size = other.m_size;
-
-        other.Head.pNext = &other.Tail;
-        other.Tail.pPrev = &other.Head;
-        other.m_size = 0;
+List::~List() {
+    Node* current = head;
+    while (current != nullptr) {
+        Node* temp = current;
+        current = current->next;
+        delete temp;
     }
-    return *this;
+    head = nullptr;
+    tail = nullptr;
 }
-
 
 std::ostream& operator<<(std::ostream& os, const List& list) {
-    Node* current = list.Head.pNext;
+    Node* current = list.head;
     while (current != nullptr) {
-        os << "Center: (" << current->m_Data.center.x << ", " << current->m_Data.center.y << "), Radius: " << current->m_Data.radius << std::endl;
-        current = current->pNext;
+        os << current->data << endl;
+        current = current->next;
     }
     return os;
 }
 
-std::istream& operator>>(std::istream& is, List& list)
-{
+std::istream& operator>>(std::istream& is, List& list) {
+    std::string str;
+    int x, y, radius;
+    while (std::getline(is, str)) {
+        sscanf(str.c_str(), "Circle (%d,%d,%d)", &x, &y, &radius);
+        Circle c = Circle(x, y, radius);
+        list.AddToTail(c);
+    }
     return is;
 }

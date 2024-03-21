@@ -1,12 +1,13 @@
+#pragma once
 #include "Circle.h"
-
+using namespace std;
+// класс ноды листа
 class Node {
 public:
-    Node* pPrev; // указатель на предыдущий элемент
-    Node* pNext; // указатель на следующий элемент
-    Circle m_Data;
+    Circle data;
+    Node* next;
+    Node* prev;
 
-    Node();
-    Node(const Circle& circle, Node* prevNode = nullptr, Node* nextNode = nullptr);
-    ~Node();
+    // конструктор ноды, принимает в себя ссылку на объект класса Circle 
+    Node(const Circle& data) : data(data), next(nullptr), prev(nullptr) {}
 };

@@ -1,13 +1,17 @@
 #pragma once
 #include "Point.h"
-
+using namespace std;
 class Circle {
-public:
+private:
     Point center;
-    int radius;
+    int r;
+public:
+    Circle(int xCenter, int yCenter, int radius);
 
-    // Конструктор класса Circle
-    Circle(int centerX, int centerY, int circleRadius);
+    double getSquare();
 
-    friend std::ostream& operator<<(std::ostream& os, const Circle& c);
+    // переопределение оператора ==, сравнивает круги по площади и координатам центра
+    friend bool operator==(const Circle& c1, const Circle& c2);
+    // перегрузка оператора вывода объекта в консоль
+    friend std::ostream& operator << (std::ostream& os, const Circle& c);
 };

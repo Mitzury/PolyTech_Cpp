@@ -90,17 +90,19 @@ int main()
     // ...
 
     std::cout << "Chapter 6" << std::endl;
+    // Стартовый список
     std::cout << "Out List 1" << endl << ls1 << sep;
+    // Добавляем ноду в конец списка
     ls1.AddToTail(Circle(1, 1, 1));
     std::cout << "Out List 1 Insert to tail 1,1,1" << endl << ls1 << sep;
+    // Делаем вставку новой ноды после указанной
     ls1.InsertAfter(Circle(2, 2, 2), Circle(1, 1, 1));
     std::cout << "Out List 1 Insert 2,2,2 After 1,1,1" << endl << ls1 << sep;
-
+    // Делаем вставку новой ноды перед указанной
     ls1.InsertBefore(Circle(9, 9, 9), Circle(1, 1, 1));
     std::cout << "Out List 1 Insert 9,9,9 before 1,1,1" << endl << ls1 << sep;
-
-
     std::cout << "Out List 1 before Reverse" << endl << ls1 << sep;
+    // Реверсиурем список
     ls1.Reverse();
     std::cout << "Out List 1 after Reverse" << endl << ls1 << sep;
 

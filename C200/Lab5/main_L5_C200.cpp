@@ -105,6 +105,9 @@ int main()
     // Реверсиурем список
     ls1.Reverse();
     std::cout << "Out List 1 after Reverse" << endl << ls1 << sep;
+    // Реверсиурем список
+    ls1.Reverse();
+    std::cout << "Out List 1 after Reverse" << endl << ls1 << sep;
 
     return 0;
 }

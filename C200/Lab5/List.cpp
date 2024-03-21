@@ -57,18 +57,26 @@ List& List::operator=(const List& other) {
 
 void List::Reverse()
 {
+    // Создаем вспомогательную переменную temp для хранения текущего узла.
         Node* temp = nullptr;
+    // Создаем указатель curr, чтобы указывать на текущий узел.
         Node* curr = head;
         while (curr != nullptr) {
+        // Сохраняем указатель на предыдущий узел в temp.
             temp = curr->prev;
+            // Переназначаем указатель на предыдущий узел на указатель на следующий узел.
             curr->prev = curr->next;
+            // Переназначаем указатель на следующий узел на указатель на предыдущий узел.
             curr->next = temp;
+            // Перемещаем curr на предыдущий узел.
             curr = curr->prev;
         }
+        // Переназначаем указатель на голову на предыдущий узел.
         if (temp != nullptr) {
             head = temp->prev;
         }
-
+        delete curr;
+        curr = temp;
 }
 
 void List::AddToTail(const Circle& data) {
@@ -97,15 +105,23 @@ void List::AddToHead(const Circle& data) {
 }
 
 void List::InsertBefore(const Circle& newData, const Circle& data) {
+    // Создаем новый узел с переданными данными
     Node* newNode = new Node(newData);
+    // Устанавливаем текущий узел на головной узел списка
     Node* curr = head;
     while (curr != nullptr) {
         if (curr->data == data) {
+            // Если данные текущего узла совпадают с переданными данными
+            // Устанавливаем предыдущий указатель нового узла на предыдущий узел текущего
             newNode->prev = curr->prev;
+            // Устанавливаем следующий указатель нового узла на текущий
             newNode->next = curr;
             if (curr->prev != nullptr) {
+                // Если предыдущий узел существует
+                // Устанавливаем следующий указатель предыдущего узла на новый узел
                 curr->prev->next = newNode;
             }
+            // Устанавливаем предыдущий указатель текущего узла на новый узел
             curr->prev = newNode;
             if (curr == head) {
                 head = newNode;

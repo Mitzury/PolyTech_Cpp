@@ -94,5 +94,7 @@ int main()
     ls1.Reverse();
     std::cout << "Out List 1 after Reverse" << endl << ls1 << sep;
 
+    ls1.InsertAfter(Circle(2, 2, 2), Circle(1, 1, 1));
+    std::cout << "Out List 1 Insert 2,2,2 After 1,1,1" << endl << ls1 << sep;
     return 0;
 }

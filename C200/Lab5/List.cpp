@@ -70,7 +70,6 @@ void List::Reverse()
         }
 }
 
-
 void List::AddToTail(const Circle& data) {
     Node* newnode = new Node(data); // Создаем новый узел с переданными данными
     if (head == nullptr) { // Если список пустой
@@ -95,6 +94,26 @@ void List::AddToHead(const Circle& data) {
         head = newNode;
     }
 }
+
+
+void List::InsertAfter(const Circle& newData, const Circle& data) {
+    Node* newNode = new Node(newData);
+    Node* curr = head;
+    while (curr != nullptr) {
+        if (curr->data == data) {
+            newNode->prev = curr;
+            newNode->next = curr->next;
+            if (curr->next != nullptr) {
+                curr->next->prev = newNode;
+            }
+            curr->next = newNode;
+            return;
+        }
+        curr = curr->next;
+    }
+}
+
+
 
 void List::Remove(const Circle& data) {
     Node* current = head;

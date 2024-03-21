@@ -25,13 +25,15 @@ public:
     // Оператор присваивания копирования
     List& operator=(const List& other);
 
-
     void Reverse();
 
     // метод добавления ноды в конец списка
     void AddToTail(const Circle& data);
     // метод добавления ноды в начало списка
     void AddToHead(const Circle& data);
+
+    void InsertAfter(const Circle& newCircle, const Circle& existingCircle);
+
     // метод удаления первой ноды, поля которой совпадают с данной
     void Remove(const Circle& data);
     // метод удаления всех нод, поля которых совпадают с данной

@@ -89,27 +89,29 @@ int main()
     // 6. Дополнительные проверки
     //
     // ...
-
     std::cout << "Chapter 6" << std::endl;
     // Стартовый список
     std::cout << "Out List 1" << endl << ls1 << sep;
     // Добавляем ноду в конец списка
     ls1.AddToTail(Circle(1, 1, 1));
     std::cout << "Out List 1 Insert to tail 1,1,1" << endl << ls1 << sep;
-
     // Реверсиурем список
     std::cout << "Out List 1 before Reverse" << endl << ls1 << sep;
     ls1.Reverse();
     std::cout << "Out List 1 after Reverse" << endl << ls1 << sep;
-
-
     // Делаем вставку новой ноды после указанной
     ls1.InsertAfter(Circle(2, 2, 2), Circle(1, 1, 1));
     std::cout << "Out List 1 Insert 2,2,2 After 1,1,1" << endl << ls1 << sep;
 
-    // Делаем вставку новой ноды перед указанной
+
+
+    std::cout << "EXAM" << endl << sep << endl;
+    // Печатаем список
+    std::cout << "Out List 1" << endl << ls1 << sep;
+    // Делаем вставку новой ноды перед указанной, которой не существует (вставка в начало списка)
     ls1.InsertBefore(Circle(9, 9, 9), Circle(11, 11, 11));
     std::cout << "Out List 1 Insert 9,9,9 before 11,11,11 (haven't)" << endl << ls1 << sep;
+    // Делаем вставку новой ноды перед указанной, которая существует (вставка перед ней)
     ls1.InsertBefore(Circle(10, 10, 10), Circle(4, 4, 4));
     std::cout << "Out List 1 Insert 10,10,10 before 4,4,4 (have's)" << endl << ls1 << sep;
 

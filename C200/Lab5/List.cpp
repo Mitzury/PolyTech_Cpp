@@ -249,7 +249,7 @@ List::~List() {
 std::ostream& operator<<(std::ostream& os, const List& list) {
     Node* current = list.head;
     while (current != nullptr) {
-        os << current->prev << " " << current->data << " " << current->next << endl;
+        os << current->data << endl;
         current = current->next;
     }
     return os;

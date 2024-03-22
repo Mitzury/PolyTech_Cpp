@@ -255,9 +255,9 @@ int _tmain(int argc, _TCHAR* argv[])
 				std::cout << "\n Chapter 11 exam \n";
 				enum WEEKDAY wd1 = SATURDAY; // 5
 				wd1 = wd1 + 2; // 5 + 2 = 7
-				std::cout << "wd1 = wd1 + 2: " << weekdayToString(wd1) << std::endl; // 1
-				WEEKDAY wd2 = wd1 + 1; // 2
-				wd2 += 2; // 4
+				std::cout << "wd1 = wd1 + 2: " << weekdayToString(wd1) << std::endl; // 0
+				WEEKDAY wd2 = wd1 + 1; // 1
+				wd2 += 2; // 3
 				std::cout << "wd2 = wd1 + 1 \ wd2 += 2: " << weekdayToString(wd2) << std::endl;
 			}
 

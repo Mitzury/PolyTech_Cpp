@@ -23,7 +23,6 @@ public:
     }
 
 };
-
 class List {
 private:
     class Node {
@@ -36,52 +35,44 @@ private:
     };
     Node head;
     Node tail;
-
 public:
-    // constructor
-    List() {
-        head.next = &tail;
-        tail.prev = &head;
+    List() : head(Circle()), tail(Circle()) {
+        this->head.next = &this->tail;
+        this->tail.prev = &this->head;
     }
 
-    void insert_at_tail(const Circle& newData) {
-        if (head.next == &tail) {
-            Node* newNode = new Node(newData);
-            newNode->next = &tail;
-            tail.prev = newNode;
-            head.next = newNode;
-            newNode->prev = &head;
-        }
-        else {
-            Node* newNode = new Node(newData);
-            tail.prev->next = newNode;
-            newNode->prev = tail.prev;
-            newNode->next = &tail;
-            tail.prev = newNode;
-        }
+    void AddToTail(const Circle& data) {
+        Node* newNode = new Node{ data };
+
+        newNode->prev = tail.prev;
+        newNode->next = &tail;
+        tail.prev->next = newNode;
+        tail.prev = newNode;
     }
 
-    friend std::ostream& operator<<(std::ostream& out, const List& list) {
-        for (Node* node = list.head.next; node != &list.tail; node = node->next) {
-            out << "&Head prev: " << list.head.prev << "\n";
-            out << "&Head: " << &list.head << "\n";
-            out << "&Head->next: " << list.head.next << "\n";
-            out << "&Node: " << node << "\n";
-            out << "&Node->prev: " << node->prev << "\n";
-            out << "&Node->next: " << node->next << "\n";
-            out << "&Tail: " << &list.tail << "\n";
-            out << "&Tail->prev: " << list.tail.prev << "\n";
-            out << "&Tail next: " << list.tail.next << "\n";
-            out << "{Center: " << node->data.Center.X << "," << node->data.Center.Y << "," << node->data.Radius << "}\n\n";
+    friend std::ostream& operator<<(std::ostream& os, const List& list)
+    {
+        Node* curr = list.head.next;
+        os << list.head.prev << std::endl;
+        os << &list.head << std::endl;
+        os << list.head.next << std::endl;
+        while (curr != &list.tail) {
+            os << curr->prev << " " << curr->data.Center.X << ", " << curr->data.Center.Y << ", " << curr->data.Radius << " " << curr->next << std::endl;
+            curr = curr->next;
         }
-        return out;
-    }
+        os << &list.tail << std::endl;
+        os << list.tail.prev << std::endl;
+        os << list.tail.next << std::endl;
 
+        return os;
+    }
 };
+
+
 
 int main() {
     List ls1;
-    ls1.insert_at_tail(Circle(2, 2, 2));
-    ls1.insert_at_tail(Circle(3, 3, 3));
+    ls1.AddToTail(Circle(2, 2, 2));
+    ls1.AddToTail(Circle(3, 3, 3));
     std::cout << ls1;
 }

@@ -10,6 +10,11 @@ public:
         X = xCoord;
         Y = yCoord;
     }
+    // перегрузка оператора вывода объекта в консоль
+    friend std::ostream& operator << (std::ostream& os, const Point& p) {
+        os << p.X << "," << p.Y;
+        return os;
+    }
 };
 
 class Circle {
@@ -22,6 +27,10 @@ public:
         this->Radius = radius;
     }
 
+    friend std::ostream& operator<<(std::ostream& os, const Circle& c) {
+        os << "Circle (" << c.Center << "," << c.Radius << ")";
+        return os;
+    }
 };
 class List {
 private:
@@ -57,7 +66,7 @@ public:
         os << &list.head << std::endl;
         os << list.head.next << std::endl;
         while (curr != &list.tail) {
-            os << curr->prev << " " << curr->data.Center.X << ", " << curr->data.Center.Y << ", " << curr->data.Radius << " " << curr->next << std::endl;
+            os << curr->prev << " " << curr->data << " " << curr->next << std::endl;
             curr = curr->next;
         }
         os << &list.tail << std::endl;
@@ -74,5 +83,8 @@ int main() {
     List ls1;
     ls1.AddToTail(Circle(2, 2, 2));
     ls1.AddToTail(Circle(3, 3, 3));
+    ls1.AddToTail(Circle(9, 9, 9));
     std::cout << ls1;
-}
+
+    return 0;
+};

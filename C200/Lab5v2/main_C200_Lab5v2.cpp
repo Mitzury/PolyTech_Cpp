@@ -52,11 +52,17 @@ public:
 
     void AddToTail(const Circle& data) {
         Node* newNode = new Node{ data };
-
         newNode->prev = tail.prev;
         newNode->next = &tail;
         tail.prev->next = newNode;
         tail.prev = newNode;
+    }
+    void AddToHead(const Circle& data) {
+        Node* newNode = new Node{ data };
+        newNode->next = head.next;
+        newNode->prev = &head;
+        head.next->prev = newNode;
+        head.next = newNode;
     }
 
     friend std::ostream& operator<<(std::ostream& os, const List& list)
@@ -77,13 +83,12 @@ public:
     }
 };
 
-
-
 int main() {
     List ls1;
     ls1.AddToTail(Circle(2, 2, 2));
     ls1.AddToTail(Circle(3, 3, 3));
     ls1.AddToTail(Circle(9, 9, 9));
+    ls1.AddToHead(Circle(90, 90, 90));
     std::cout << ls1;
 
     return 0;

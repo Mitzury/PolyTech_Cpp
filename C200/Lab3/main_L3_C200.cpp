@@ -9,18 +9,20 @@
 using namespace std;
 
 enum WEEKDAY {
-	SUNDAY,
 	MONDAY,
 	TUESDAY,
 	WEDNESDAY,
 	THURSDAY,
 	FRIDAY,
-	SATURDAY
+	SATURDAY,
+	SUNDAY,
 };
 
 // Операторы + и +=
 WEEKDAY operator+(const WEEKDAY& day, int daysToAdd) {
+	// Результат делится на 7 и берется остаток от деления с помощью оператора %, чтобы получить номер дня недели от 0 до 6.
 	int result = (static_cast<int>(day) + daysToAdd) % 7;
+	// Если результат отрицательный, то к нему добавляется 7, чтобы получить корректный номер дня недели.
 	return static_cast<WEEKDAY>(result < 0 ? result + 7 : result);
 }
 
@@ -32,20 +34,20 @@ WEEKDAY& operator+=(WEEKDAY& day, int daysToAdd) {
 // Функция для преобразования перечисления в строку
 const char* weekdayToString(WEEKDAY day) {
 	switch (day) {
-	case SUNDAY: return "Sunday";
 	case MONDAY: return "Monday";
 	case TUESDAY: return "Tuesday";
 	case WEDNESDAY: return "Wednesday";
 	case THURSDAY: return "Thursday";
 	case FRIDAY: return "Friday";
 	case SATURDAY: return "Saturday";
+	case SUNDAY: return "Sunday";
 	default: return "Invalid day";
 	}
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-#if 1;	
+#if 0;	
 //////////////////////////////////////////////////////////////////////
 //Задание 1
 //Создайте класс Point, который будет содержать координаты "точки". 
@@ -97,7 +99,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 #endif;
-#if 1;	
+#if 0;	
 		//Задание 2
 		//2a. Перегрузите оператор +
 		//с помощью методов класса, где это возможно
@@ -133,7 +135,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			
 		}
 #endif;
-#if 1;	
+#if 0;	
 //Задание 3
 		// Перегрузите унарный оператор +/-
 		{
@@ -149,7 +151,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			std::cout << pt3 << std::endl;
 		}
 #endif;
-#if 1;	
+#if 0;	
 		//Задание 4. Перегрузите оператор << (вывода в поток) для
 		// класса Point  таким образом, чтобы при выводе отображались координаты точки
 		{
@@ -160,7 +162,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 
 #endif;
-#if 1;	
+#if 0;	
 //Задание 5.Перегрузка оператора  =.
 //Подключите к проекту файлы MyString.cpp и MyString.h
 //класса MyString, разработанного Вами на предыдущем занятии
@@ -181,7 +183,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 
 #endif;
-#if 1;	
+#if 0;	
 //Задание 6. Перегрузите оператор << (вывода в поток) для
 //класса MyString таким образом, чтобы при выполнении приведенной строки
 //на экран было выведено:
@@ -202,7 +204,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		std::cout << s4.GetString() << std::endl;
 	}
 #endif;
-#if 1;
+#if 0;
 		//Задание 8. Перегрузите операторы  постфиксный декремент -- и префиксный инкремент
 		//для класса MyString таким образом, при применении декремента производился перевод в нижний регистр всех символов,
 		// являющихся буквами латинского алфавита, а при применении инкремента производился перевод в верхний регистр.
@@ -223,7 +225,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			std::cout << str2_2.GetString() << std::endl;
 		}
 #endif;
-#if 1;
+#if 0;
 //Задание 9. Перегрузите операторы + и +=   для enum WEEKDAY
 			{
 			std::cout << "\n Chapter 9 \n";
@@ -246,6 +248,17 @@ int _tmain(int argc, _TCHAR* argv[])
 				std::cout << "wd2: " << weekdayToString(wd2) << std::endl;
 
 
+			}
+#endif;
+#if 1;
+			{
+				std::cout << "\n Chapter 11 \n";
+				enum WEEKDAY wd1 = SATURDAY; // 5
+				wd1 = wd1 + 2; // 5 + 2 = 7
+				std::cout << "wd1 = wd1 + 2: " << weekdayToString(wd1) << std::endl;
+				WEEKDAY wd2 = wd1 + 1; // 2
+				wd2 += 2; // 4
+				std::cout << "wd1: " << weekdayToString(wd1) << std::endl;
 			}
 
 #endif;

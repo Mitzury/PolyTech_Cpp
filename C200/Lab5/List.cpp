@@ -131,7 +131,7 @@ void List::InsertBefore(const Circle& newData, const Circle& data) {
             return;
         }
         curr = curr->next;
-    }
+    } AddToHead(newData);
 }
 
 void List::InsertAfter(const Circle& newData, const Circle& data) {

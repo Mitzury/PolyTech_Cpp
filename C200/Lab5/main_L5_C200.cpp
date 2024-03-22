@@ -11,6 +11,7 @@ const char* sep = "------------------------------------\n";
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
     //
     // 1. Создаем список
     //

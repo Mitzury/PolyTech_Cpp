@@ -130,6 +130,9 @@
     <ClCompile Include="main_L3_C210.cpp" />
     <ClCompile Include="MyString.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Point.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

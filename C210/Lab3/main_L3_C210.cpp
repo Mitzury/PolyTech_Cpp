@@ -85,13 +85,15 @@ setlocale(LC_ALL, "Russian");
 //Попробуйте "выйти" за границы вектора с помощью at() и
 //с помощью []. 
 
-	std::cout << "Chapter 3" << std::endl;
+	
 	std::vector<MyString> vecMyString(5, MyString("A"));
 
+	std::cout << "Chapter 3" << std::endl;
 	// Изменяем значения некоторых элементов с помощью функции at()
 	try {
 		vecMyString.at(2).set("B");
 		vecMyString.at(4).set("C");
+		vecMyString.at(11).set("C");
 	}
 	catch (const std::out_of_range& e) {
 		std::cerr << "Обнаружено исключение out_of_range: " << e.what() << std::endl;
@@ -105,7 +107,7 @@ setlocale(LC_ALL, "Russian");
 		vecMyString.at(10).set("D");
 	}
 	catch (const std::out_of_range& e) {
-		std::cerr << "Caught an out_of_range exception: " << e.what() << std::endl;
+		std::cerr << "Обнаружено исключение out_of_range: " << e.what() << std::endl;
 	}
 
 	// Печатаем значения всех элементов вектора

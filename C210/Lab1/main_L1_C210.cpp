@@ -37,7 +37,7 @@ public:
         this->Radius = radius;
     }
 
-    Circle* clone() const override {
+    virtual Shape* clone() const {
         return new Circle(*this);
     }
 
@@ -94,7 +94,7 @@ public:
         this->tail.prev = &this->head;
     }
 
-    void AddToHead(const Circle& data) {
+    void AddToHead(const Shape& data) {
         Node * newNode = new Node{ data };
         newNode->next = head.next;
         newNode->prev = &head;
@@ -125,7 +125,7 @@ int main() {
     std::cout << c.clone() << std::endl;
 
     ls1.AddToHead(Circle(2, 2, 2, Shape::RED));
-    ls1.AddToHead(Circle(22, 2, 2, Shape::RED));
+    ls1.AddToHead(Rect(22, 2, 2,3, Shape::RED));
 
 
     std::cout << "Out List 1" << std::endl << ls1 << sep;

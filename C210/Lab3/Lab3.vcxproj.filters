@@ -26,5 +26,8 @@
     <ClInclude Include="Point.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="T.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

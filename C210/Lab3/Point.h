@@ -1,5 +1,4 @@
 #pragma once
-#include <ostream>
 
 class Point {
 public:

@@ -417,22 +417,46 @@ setlocale(LC_ALL, "Russian");
 //его значениями с помощью методов push_back(),
 //push_front, insert()
 
+		std::list<Point> ptList1;
 
 //Напишите шаблон функции, которая будет выводить элементы
 //ЛЮБОГО КОНТЕЙНЕРА на печать. Проверьте работу шаблона на контейнерах
 //vector и list. Подсказка - хотелось бы увидеть тип контейнера.
 //Сделайте любой из списков "реверсивным" - reverse()
 
+		ptList1.push_back(Point(1, 1));
+		ptList1.push_front(Point(2, 2));
+		ptList1.insert(++ptList1.begin(), Point(3, 3));
+		// Вывод элементов ptList1
+		printContainer(ptList1, "ptList1");
+
+		ptList1.reverse();
+		std::cout << "After reversing ptList1:" << std::endl;
+		printContainer(ptList1, "ptList1");
+
 //Создайте список ptList2 из элементов Point таким образом, чтобы он стал 
 //копией вектора элементов типа Point, но значения элементов списка располагались
 //бы в обратном порядке 
 
-
+		std::vector<Point> points = { Point(4, 4), Point(5, 5), Point(6, 6) };
+		std::list<Point> ptList2(points.rbegin(), points.rend());
+		// Вывод элементов ptList2
+		printContainer(ptList2, "ptList2");
 
 //Отсортируйте списки  ptList1 и ptList2 - методом класса list - sort()
 //по возрастанию.
 //Подумайте: что должно быть перегружено в классе Point для того, чтобы
 //работала сортировка
+
+		// Сортировка списков ptList1 и ptList2 по возрастанию
+		ptList1.sort([](const Point& p1, const Point& p2) { return p1.x < p2.x; });
+		ptList2.sort([](const Point& p1, const Point& p2) { return p1.x < p2.x; });
+
+		// Вывод отсортированных списков
+		std::cout << "After sorting ptList1:" << std::endl;
+		printContainer(ptList1, "ptList1");
+		std::cout << "After sorting ptList2:" << std::endl;
+		printContainer(ptList2, "ptList2");
 
 
 stop
@@ -440,18 +464,30 @@ stop
 //Объедините отсортированные списки - merge(). Посмотрите: что
 //при этом происходит с каждым списком.
 
+		std::list<int> list1 = { 1, 3, 5 };
+		std::list<int> list2 = { 2, 4, 6 };
+		list1.merge(list2); // list1 теперь содержит объединенный и отсортированный список, а list2 становится пустым
+
+
 stop
 
 //Исключение элемента из списка - remove()
 //Исключите из списка элемент с определенным значением.
 //Подумайте: что должно быть перегружено в классе Point?
 
+		std::list<int> myList = { 1, 2, 3, 4, 5 };
+		myList.remove(3); // Удаляет все вхождения числа 3 из списка
 
 //Исключение элемента из списка, удовлетворяющего заданному условию:
 //любая из координат отрицательна - remove_if(). 
 
+		std::list<int> myList_1 = { -1, 2, -3, 4, -5 };
+		myList_1.remove_if([](int x) { return x < 0; }); // Удаляет все элементы списка, которые меньше нуля
 
 //Исключение из списка подряд расположенных дублей - unique(). 
+
+		std::list<int> myList_2 = { 1, 2, 2, 3, 3, 3, 4, 4, 5 };
+		myList_2.unique(); // Удаляет подряд расположенные дубликаты, список становится {1, 2, 3, 4, 5}
 
 stop
 
@@ -463,7 +499,16 @@ stop
 //разработанного Вами в предыдущем задании универсального шаблона
 //выведите значения элементов на печать
 
+	std::deque<Point> pointDeque;
+	// Создание вектора с элементами типа Point
+	std::vector<Point> points_1 = { Point(1, 1), Point(2, 2), Point(3, 3) };
+	pointDeque.assign(points_1.begin(), points_1.end());
 
+			// Заполнение deque копиями элементов вектора с помощью assign
+		pointDeque.assign(points_1.begin(), points_1.end());
+
+		// Вывод значений элементов на печать с помощью шаблона функции
+		printContainer(pointDeque, "pointDeque");
 
 //Создайте deque с элементами типа MyString. Заполните его значениями
 //с помощью push_back(), push_front(), insert()

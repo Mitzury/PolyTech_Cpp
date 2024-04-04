@@ -25,8 +25,6 @@ void insertIfNotExists(std::vector<T>& vec, const T& value) {
 	}
 }
 
-
-
 template<typename T>
 void removeDuplicates(std::vector<T>& vec) {
 	// Сортируем вектор
@@ -35,4 +33,14 @@ void removeDuplicates(std::vector<T>& vec) {
 	auto last = std::unique(vec.begin(), vec.end());
 	// Используем метод erase() для удаления всех дубликатов
 	vec.erase(last, vec.end());
+}
+
+// Шаблон функции для вывода элементов любого контейнера на печать
+template<typename Container>
+void printContainer(const Container& container, const std::string& containerType) {
+	std::cout << "Elements of container " << containerType << ":" << std::endl;
+	for (const auto& element : container) {
+		std::cout << element << " ";
+	}
+	std::cout << std::endl;
 }

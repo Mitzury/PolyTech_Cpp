@@ -9,10 +9,12 @@
 
 #pragma warning(disable: 4786)
 
-
+// Определение макроса stop для остановки программы
 #define	  stop __asm nop
+
 using namespace std;
 
+// Шаблонная функция для вывода информации о векторе
 template <typename T>
 void printVectorInfo(const std::vector<T>& vec) {
 	std::cout << "Size: " << vec.size() << std::endl;

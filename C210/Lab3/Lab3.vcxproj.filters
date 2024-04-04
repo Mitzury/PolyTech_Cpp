@@ -18,5 +18,8 @@
     <ClCompile Include="main_L3_C210.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="MyString.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

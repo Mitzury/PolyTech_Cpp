@@ -52,7 +52,8 @@ setlocale(LC_ALL, "Russian");
 //Раскомментируйте следующий фрагмент, подумайте - все ли корректно
 //Если есть некорректности, - исправьте
 
-	//vInt.front()=1;
+	vInt.push_back(1);
+	vInt.front()=1;
 	//Попытка доступа к front() элементу до заполнения вектора будет некорректной, так как вектор пустой:
 
 
@@ -278,7 +279,7 @@ setlocale(LC_ALL, "Russian");
 		std::cout << std::endl;
 
 
-
+		std::cout << "Chapter 6.1" << std::endl;
 		//!!! shrink_to_fit - Уменьшение емкости вектора.
 		//Для любого вектора из предыдущего задания требуется уменьшить емкость
 		//до size.
@@ -289,7 +290,6 @@ setlocale(LC_ALL, "Russian");
 		// Уменьшение емкости вектора v2 до его текущего размера
 		v2.shrink_to_fit();
 
-		std::cout << "Chapter 6.1" << std::endl;
 		// Вывод информации о емкости векторов после уменьшения
 		std::cout << "After shrinking to fit:" << std::endl;
 		std::cout << "v1.size() = " << v1.size() << ", v1.capacity() = " << v1.capacity() << std::endl;
@@ -318,6 +318,9 @@ setlocale(LC_ALL, "Russian");
 		for (size_t i = 0; i < sizeof(ar) / sizeof(ar[0]); ++i) {
 			vv.push_back(std::vector<int>(i + 1, ar[i]));
 		}
+
+		//std::cout << vv;
+
 
 		// Выводим содержимое двумерного вектора по строкам
 		for (const auto& innerVec : vv) {

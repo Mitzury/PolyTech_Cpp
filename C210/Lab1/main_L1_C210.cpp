@@ -27,7 +27,7 @@ public:
 };
 
 class Circle : public Shape {
-public:
+private:
     Point Center;
     int Radius;
     Color color;
@@ -37,7 +37,7 @@ public:
         this->Radius = radius;
     }
 
-    virtual Shape* clone() const {
+    Circle* clone() const override {
         return new Circle(*this);
     }
 
@@ -60,8 +60,12 @@ public:
     Rect(int xCoord = 0, int yCoord = 0, int width = 0, int height = 0, Color col = WHITE)
         : X(xCoord), Y(yCoord), Width(width), Height(height), color(col) {}
 
-    Shape* clone() const override {
+    Rect* clone() const override {
         return new Rect(*this);
+    }
+    friend std::ostream& operator<<(std::ostream& os, const Rect& r) {
+        os << "rect (" << r.X << "," << r.Y << "," << r.Width << "," << r.Height << ")";
+        return os;
     }
 
 };
@@ -73,17 +77,7 @@ private:
         Node* prev;
         Node* next;
         Node() : next(nullptr), prev(nullptr) {}
-        Node(const Shape& data) {
-           m_data =  data.clone();
-        }
-
-        ~Node() {
-            delete m_data;
-        }
-        friend std::ostream& operator<<(std::ostream& ost, Node& n) {
-            ost << n.m_data;
-            return ost;
-        }
+        Node(const Shape& data) : m_data(data.clone()) {}
     };
     Node head;
     Node tail;
@@ -96,9 +90,10 @@ public:
 
     void AddToHead(const Shape& data) {
         Node * newNode = new Node{ data };
+       // Node * newNode = new Node{ &Head, data };
         newNode->next = head.next;
         newNode->prev = &head;
-        head.next->prev = newNode;
+        tail.prev = newNode;
         head.next = newNode;
         m_size++;
     }
@@ -109,6 +104,7 @@ public:
         Node* current = l.head.next;
         while (current->next != nullptr) {
             ost << current->m_data << std::endl;
+          //  current->m_data->print(ost);
             current = current->next;
         }
         return ost;
@@ -125,7 +121,7 @@ int main() {
     std::cout << c.clone() << std::endl;
 
     ls1.AddToHead(Circle(2, 2, 2, Shape::RED));
-    ls1.AddToHead(Rect(22, 2, 2,3, Shape::RED));
+    ls1.AddToHead(Rect(22, 2, 2,3, Shape::GREEN));
 
 
     std::cout << "Out List 1" << std::endl << ls1 << sep;

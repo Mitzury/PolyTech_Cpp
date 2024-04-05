@@ -20,18 +20,31 @@ public:
         return p1.X == p2.X && p1.Y == p2.Y;
     }
 };
-class Circle {
+
+enum Color { RED, GREEN, BLUE };
+
+class Shape {
+protected:
+    Color color;
+
+public:
+    Shape();
+    Shape(Color c);
+
+};
+class Circle : public Shape {
 public:
     Point Center;
     int Radius;
+    Color color;
 public:
     Circle() : Center(0, 0), Radius(0) {}
-    Circle(int xCoord, int yCoord, int radius) : Center(xCoord, yCoord) {
+    Circle(int xCoord, int yCoord, int radius, Color = BLUE) : Center(xCoord, yCoord) {
         this->Radius = radius;
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Circle& c) {
-        os << "Circle (" << c.Center << "," << c.Radius << ")";
+        os << "Circle (" << c.Center << "," << c.Radius << ") " << c.color;
         return os;
     }
     friend bool operator==(const Circle& c1, const Circle& c2) {
@@ -108,17 +121,14 @@ const char* sep = "------------------------------------\n";
 int main() {
 
     List ls1;
-    ls1.AddToTail(Circle(2, 2, 2));
-    ls1.AddToTail(Circle(3, 3, 3));
-    ls1.AddToTail(Circle(9, 9, 9));
-    ls1.AddToHead(Circle(90, 90, 90));
+    ls1.AddToTail(Circle(2, 2, 2, Shape::RED));
+    ls1.AddToTail(Circle(3, 3, 3,Shape::RED));
+    ls1.AddToTail(Circle(9, 9, 9, Shape::RED));
+    ls1.AddToHead(Circle(90, 90, 90, Shape::RED));
 
 
     std::cout << "Out List 1" << std::endl << ls1 << sep;
-    ls1.InsertBefore(Circle(2, 2, 8), (Circle(9, 9, 9)));
-    std::cout << "Out List 1 after add 2.2.8 before 9.9.9 (have's)" << std::endl << ls1 << sep;
-    ls1.InsertBefore(Circle(8, 8, 8), (Circle(8, 8, 8)));
-    std::cout << "Out List 1 after add 8.8.8 before 8.8.8 (haven't)" << std::endl << ls1 << sep;
+
 
     return 0;
 };

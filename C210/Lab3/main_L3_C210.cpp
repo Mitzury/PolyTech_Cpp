@@ -501,23 +501,70 @@ stop
 //assign заполните deque копиями элементов вектора. С помощью
 //разработанного Вами в предыдущем задании универсального шаблона
 //выведите значения элементов на печать
-
+{
 	std::deque<Point> pointDeque;
 	// Создание вектора с элементами типа Point
 	std::vector<Point> points_1 = { Point(1, 1), Point(2, 2), Point(3, 3) };
 	pointDeque.assign(points_1.begin(), points_1.end());
 
-			// Заполнение deque копиями элементов вектора с помощью assign
-		pointDeque.assign(points_1.begin(), points_1.end());
+	// Заполнение deque копиями элементов вектора с помощью assign
+	pointDeque.assign(points_1.begin(), points_1.end());
 
-		// Вывод значений элементов на печать с помощью шаблона функции
-		printContainer(pointDeque, "pointDeque");
+	// Вывод значений элементов на печать с помощью шаблона функции
+	printContainer(pointDeque, "pointDeque");
+
+}
 
 //Создайте deque с элементами типа MyString. Заполните его значениями
 //с помощью push_back(), push_front(), insert()
 //С помощью erase удалите из deque все элементы, в которых строчки
 //начинаются с 'A' или 'a'
 
+// Задание 2: Создание пустого deque с элементами типа Point
+	std::deque<Point> pointDeque;
 
-		return 0;
+// Создание вектора с элементами типа Point
+	std::vector<Point> points_2 = { Point(1, 1), Point(2, 2), Point(3, 3) };
+
+// Заполнение deque копиями элементов вектора с помощью assign
+	pointDeque.assign(points_2.begin(), points_2.end());
+
+// Вывод значений элементов на печать с помощью шаблона функции
+	printContainer(pointDeque, "pointDeque");
+
+	std::deque<MyString> myDeque;
+
+// Заполнение deque значениями с помощью push_back(), push_front(), insert()
+	myDeque.push_back(MyString("Apple"));
+	myDeque.push_back(MyString("Banana"));
+	myDeque.push_back(MyString("Carrot"));
+	myDeque.push_front(MyString("Ant"));
+	myDeque.push_front(MyString("Apricot"));
+	myDeque.insert(myDeque.begin() + 2, MyString("Avocado"));
+
+// Вывод содержимого deque
+	std::cout << "Deque contents before erasing:" << std::endl;
+	for (const auto& str : myDeque) {
+		std::cout << str.get() << std::endl;
+	}
+	std::cout << std::endl;
+
+// Удаление элементов из deque, в которых строчки начинаются с 'A' или 'a'
+	auto it = myDeque.begin();
+	while (it != myDeque.end()) {
+		if (it->get()[0] == 'A' || it->get()[0] == 'a') {
+			it = myDeque.erase(it);
+		}
+		else {
+			++it;
+		}
+	}
+
+// Вывод содержимого deque после удаления
+	std::cout << "Deque contents after erasing:" << std::endl;
+	for (const auto& str : myDeque) {
+		std::cout << str.get() << std::endl;
+	}
+
+	return 0;
 }

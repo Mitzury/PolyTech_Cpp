@@ -130,6 +130,8 @@
     <ClCompile Include="main_L2_C210.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyStack.h" />
+    <ClInclude Include="MyStack2.h" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="swap.h" />
   </ItemGroup>

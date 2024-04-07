@@ -22,7 +22,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//шаблона с помощью приведенного ниже фрагмента кода.
 	//Подсказка 1: объявление шаблона корректнее поместить в .h-файл.
 
-		std::cout << "Chapter: 1\n";
+		std::cout << "Chapter: Swap\n";
 		int iX = 1, iY = -1;
 		std::cout << "Before Swap: iX: " << iX << "; iY: " << iY << std::endl;
 		Swap(iX, iY);
@@ -37,9 +37,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		std::cout << "Chapter: 1.1\n";
 		MyString str1("One"), str2("Two");
-		std::cout << "before: str1: " << str1 << "; str2: " << str2 << std::endl;
+		std::cout << "Before Swap: str1: " << str1 << "; str2: " << str2 << std::endl;
 		Swap(str1, str2);
-		std::cout << "after: str1: " << str1 << "; str2: " << str2 << std::endl;
+		std::cout << "After Swap: str1: " << str1 << "; str2: " << str2 << std::endl;
 
 
 	/////////////////////////////////////////////////////////////////////
@@ -62,7 +62,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//С помощью шаблона MyStack создайте стек из 5 элементов int - iStack и
 	//стек из 10 элементов MyString - strStack и поэкспериментируйте с функциями
 	//operator<< и operator>>, operator[]
-		std::cout << "Chapter: 1.3\n";
+		std::cout << "==========================================\n";
+		std::cout << "Chapter: MyStack\n";
 		{
 			try {
 				MyStack< int, 5 > iStack;
@@ -96,7 +97,6 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 		}
 
-
 	//Задание 2. 
 	// Реализуйте шаблон стека - MyStack2 таким образом, чтобы 
 	//для хранения элементов использовался ОДНОСВЯЗНЫЙ список.
@@ -110,7 +110,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//			 оператор присваивания, ...)
 	// Проверьте работоспособность разработанного шаблона класса
 		std::cout << "==========================================\n";
-		std::cout << "Chapter: 2\n";
+		std::cout << "Chapter: MyStack 2\n";
 		try {
 			MyStack2< MyString> s1;
 			s1.push(MyString("Aaa"));

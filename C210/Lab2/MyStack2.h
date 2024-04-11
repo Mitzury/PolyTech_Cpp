@@ -4,7 +4,13 @@
 template <typename T>
 class MyStack2 {
 private:
-    std::list<T> m_data;
+   // std::list<T> m_data;
+    class Node{
+        T data;
+        Mode* pNext;
+    }
+    Node Head;
+    size_t m_size;
 
 public:
 

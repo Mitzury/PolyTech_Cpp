@@ -62,13 +62,21 @@ void printContainer(const Container& c) {
 	}
 	std::cout << std::endl << std::endl;
 }
-
 // Функция-предикат для удаления элементов меньше нуля
 bool isNegative(int x) {
 	return x < 0;
 }
-
-// Перегрузка оператора вывода для вектора векторов
+//// Перегрузка оператора вывода для вектора векторов
+//template <typename T>
+//std::ostream& operator<<(std::ostream& os, const std::vector<T>& vv)
+//	{
+//	for (int i =0; i < vv.size(); i++) 
+//	{
+//		os << vv[i] << " ";
+//		os << std::endl;
+//	}
+//	return os;
+//}
 std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<int>>& vv) {
 	for (std::vector<std::vector<int>>::const_iterator row = vv.begin(); row != vv.end(); ++row) {
 		for (std::vector<int>::const_iterator val = row->begin(); val != row->end(); ++val) {
@@ -78,7 +86,6 @@ std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<int>>& 
 	}
 	return os;
 }
-
 // Функция для вывода вектора
 template <typename T>
 void printVector(const std::vector<T>& vec) {
@@ -86,4 +93,20 @@ void printVector(const std::vector<T>& vec) {
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
+}
+
+// Специализация шаблонной функции для вектора указателей на Point
+void printVectorOfPointersStats(const vector<Point*>& v) {
+	std::cout << "Вывод информации для вектора указателей на Point:" << std::endl;
+	std::cout << "Size: " << v.size() << ", Capacity: " << v.capacity() << ", Max_size: " << v.max_size() << std::endl;
+	std::cout << "Содержимое (в качестве указателей): ";
+	for (vector<Point*>::const_iterator it = v.begin(); it != v.end(); ++it) {
+		if (*it != nullptr) {
+			std::cout << **it << " "; // Разыменовываем итератор, а затем указатель
+		}
+		else {
+			std::cout << "null ";
+		}
+	}
+	std::cout << "\n\n";
 }

@@ -33,7 +33,6 @@ void printVectorOfPointersStats(const vector<Point*>& v) {
 	std::cout << "\n\n";
 }
 
-
 int main() {
 	setlocale(LC_ALL, "Russian");
 	// Контейнер стандартной библиотеки vector 

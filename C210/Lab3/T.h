@@ -52,3 +52,14 @@ void printContainer(const Container& cont, const std::string& contName) {
 bool isNegative(int x) {
 	return x < 0;
 }
+
+// ѕерегрузка оператора вывода дл€ вектора векторов
+std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<int>>& vv) {
+	for (std::vector<std::vector<int>>::const_iterator row = vv.begin(); row != vv.end(); ++row) {
+		for (std::vector<int>::const_iterator val = row->begin(); val != row->end(); ++val) {
+			os << *val << " ";
+		}
+		os << std::endl;
+	}
+	return os;
+}

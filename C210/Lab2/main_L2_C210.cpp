@@ -76,8 +76,10 @@ int _tmain(int argc, _TCHAR* argv[])
 				//iStack >> ar[0];	//exception Stack is Empty
 
 				MyStack< MyString, 10 > strStack;
+				std::cout << "Make MyStack: Aaa Bbb Ccc\n";
 				strStack << MyString("Aaa") << MyString("Bbb") << MyString("Ccc");
 				MyString str("Ddd");
+				std::cout << "Add to MyStack: Ddd\n";
 				strStack << str;
 				std::cout << strStack;
 
@@ -110,13 +112,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		std::cout << "==========================================\n";
 		std::cout << "Chapter: MyStack 2\n";
 		try {
-			MyStack2< MyString> s1;
+			MyStack2<MyString> s1;
 			s1.push(MyString("Aaa"));
 			s1.push(MyString("Bbb"));
 			s1.push(MyString("Ccc"));
 			s1.push(MyString("Ddd"));
 
-			MyStack2< MyString> s2(s1);
+			MyStack2<MyString> s2(s1);
 			MyString str = s1.pop();
 
 			s1.pop();
@@ -132,7 +134,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			std::cout << s2;
 
 
-			MyStack2< MyString> s3(std::move(s1));
+			MyStack2<MyString> s3(std::move(s1));
 			std::cout << "s3 moved from s1, s1 after moving to s3:\n";
 			std::cout << s3 << s1;
 

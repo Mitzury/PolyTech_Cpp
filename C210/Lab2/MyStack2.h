@@ -3,6 +3,9 @@
 // Класс MyStack2
 template <typename T>
 class MyStack2 {
+private:
+    std::list<T> m_data;
+
 public:
 
     MyStack2() {
@@ -76,7 +79,4 @@ public:
 
         return *this;
     }
-
-private:
-    std::list<T> m_data;
 };

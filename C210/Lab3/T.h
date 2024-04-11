@@ -37,10 +37,18 @@ void removeDuplicates(std::vector<T>& vec) {
 
 // Шаблон функции для вывода элементов любого контейнера на печать
 template<typename Container>
-void printContainer(const Container& container, const std::string& containerType) {
-	std::cout << "Elements of container " << containerType << ":" << std::endl;
-	for (const auto& element : container) {
-		std::cout << element << " ";
+void printContainer(const Container& cont, const std::string& contName) {
+	std::cout << "Container type: " << typeid(Container).name() << std::endl;
+	std::cout << "Container name: " << contName << std::endl;
+	std::cout << "Container elements: ";
+	for (const auto& elem : cont) {
+		std::cout << elem << " ";
 	}
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
+}
+
+
+// Функция-предикат для удаления элементов меньше нуля
+bool isNegative(int x) {
+	return x < 0;
 }

@@ -19,7 +19,6 @@ public:
     //перегрузка метода присваивани€ дл€ эффективного выполнени€ шаблонизированного метода Swap()
     MyString& operator=(const MyString& other) {
         if (this != &other) { // ѕроверка на самоприсваивание
-            delete[] m_data; // ќсвобождение старой пам€ти
             m_length = other.m_length;
             m_data = new char[m_length + 1];
             std::strcpy(m_data, other.m_data);

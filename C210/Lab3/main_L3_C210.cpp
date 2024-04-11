@@ -16,20 +16,6 @@
 
 using namespace std;
 
-std::string removeRepeatingSequences(const std::string& str) {
-	std::string result;
-
-	// Проходим по строке и добавляем в результирующую строку только символы, которые не являются повторяющимися
-	for (size_t i = 0; i < str.size(); ++i) {
-		// Если текущий символ не совпадает с предыдущим или если это первый символ, добавляем его в результат
-		if (i == 0 || str[i] != str[i - 1]) {
-			result += str[i];
-		}
-	}
-
-	return result;
-};
-
 int main() {
 
 	setlocale(LC_ALL, "Russian");
@@ -101,7 +87,7 @@ int main() {
 		vecMyString.at(2).set("B");
 		vecMyString.at(4).set("C");
 		vecMyString.at(11).set("C"); // Обнаружено исключение out_of_range: invalid vector subscript
-		vecMyString[11].set("X"); // Обнаружено исключение out_of_range: invalid vector subscript
+		//vecMyString[11].set("X"); // Обнаружено исключение out_of_range: invalid vector subscript
 	}
 	catch (const std::out_of_range& e) {
 		std::cerr << "Обнаружено исключение out_of_range: " << e.what() << std::endl;
@@ -375,7 +361,7 @@ int main() {
 		cout << "Удаление элемента последовательности" << endl;
 		vector<char> vChar4 = { 'q', 'w', 'e', 'r', 'r', 'r', 't', 'y', '1', '2', '2', '2', '2', 'r', '3' };
 		removeAllDuplicates(vChar4);
-		printVector(vChar4); // Вывод зависит от сортировки, например: "1 2 3 e q r t w y" 
+		printContainer(vChar4); // Вывод зависит от сортировки, например: "1 2 3 e q r t w y" 
 
 
 		///////////////////////////////////////////////////////////////////

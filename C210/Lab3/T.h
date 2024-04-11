@@ -35,15 +35,6 @@ void removeDuplicates(std::vector<T>& vec) {
 	vec.erase(last, vec.end());
 }
 
-// Функция для вывода вектора
-template <typename T>
-void printVector(const std::vector<T>& vec) {
-	for (typename std::vector<T>::const_iterator it = vec.begin(); it != vec.end(); ++it) {
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-}
-
 // Функция для вставки элемента перед каждым элементом вектора
 template <typename T>
 void insertBeforeEveryElement(std::vector<T>& vec, const T& value) {
@@ -72,7 +63,6 @@ void printContainer(const Container& c) {
 	std::cout << std::endl << std::endl;
 }
 
-
 // Функция-предикат для удаления элементов меньше нуля
 bool isNegative(int x) {
 	return x < 0;
@@ -87,4 +77,13 @@ std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<int>>& 
 		os << std::endl;
 	}
 	return os;
+}
+
+// Функция для вывода вектора
+template <typename T>
+void printVector(const std::vector<T>& vec) {
+	for (typename std::vector<T>::const_iterator it = vec.begin(); it != vec.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 }

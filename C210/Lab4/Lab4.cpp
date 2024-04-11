@@ -2,7 +2,7 @@
 //stack, queue, priority_queue
 //set, multiset, map, multimap
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <stack>
 #include <queue>
 #include <set>

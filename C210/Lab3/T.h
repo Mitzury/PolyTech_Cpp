@@ -1,8 +1,6 @@
 #pragma once
 #include <algorithm>
 
-
-
 // Шаблонная функция для вывода информации о векторе
 template <typename T>
 void printVectorInfo(const std::vector<T>& vec) {
@@ -16,56 +14,6 @@ void printVectorInfo(const std::vector<T>& vec) {
 	std::cout << std::endl << std::endl;
 }
 
-template<typename T>
-void insertIfNotExists(std::vector<T>& vec, const T& value) {
-	// Проверяем, есть ли значение в векторе
-	if (std::find(vec.begin(), vec.end(), value) == vec.end()) {
-		// Если значения нет, вставляем его в начало вектора
-		vec.insert(vec.begin(), value);
-	}
-}
-
-template<typename T>
-void removeDuplicates(std::vector<T>& vec) {
-	// Сортируем вектор
-	std::sort(vec.begin(), vec.end());
-	// Используем std::unique() для перемещения всех дублирующихся элементов в конец вектора
-	auto last = std::unique(vec.begin(), vec.end());
-	// Используем метод erase() для удаления всех дубликатов
-	vec.erase(last, vec.end());
-}
-
-// Функция для вставки элемента перед каждым элементом вектора
-template <typename T>
-void insertBeforeEveryElement(std::vector<T>& vec, const T& value) {
-	for (typename std::vector<T>::iterator it = vec.begin(); it != vec.end(); it = std::next(it, 2)) {
-		it = vec.insert(it, value); // Вставляем элемент и сдвигаем итератор на новый элемент
-	}
-}
-template <typename T>
-void removeConsecutiveDuplicates(std::vector<T>& vec) {
-	typename std::vector<T>::iterator newEnd = std::unique(vec.begin(), vec.end());
-	vec.erase(newEnd, vec.end()); // Удаляем все дубликаты после последнего уникального элемента
-}
-template <typename T>
-void removeAllDuplicates(std::vector<T>& vec) {
-	std::sort(vec.begin(), vec.end()); // Сортируем вектор
-	typename std::vector<T>::iterator newEnd = std::unique(vec.begin(), vec.end()); // Удаляем последовательные дубликаты
-	vec.erase(newEnd, vec.end()); // Удаляем неуникальные элементы в конце вектора
-}
-
-//Универсальная функция для вывода контейнеров
-template <typename Container>
-void printContainer(const Container& c) {
-	for (const auto& elem : c) {
-		std::cout << elem << " ";
-	}
-	std::cout << std::endl << std::endl;
-}
-// Функция-предикат для удаления элементов меньше нуля
-bool isNegative(int x) {
-	return x < 0;
-}
 //// Перегрузка оператора вывода для вектора векторов
 //template <typename T>
 //std::ostream& operator<<(std::ostream& os, const std::vector<T>& vv)
@@ -77,6 +25,8 @@ bool isNegative(int x) {
 //	}
 //	return os;
 //}
+// 
+// Перегрузка оператора вывода для вектора векторов
 std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<int>>& vv) {
 	for (std::vector<std::vector<int>>::const_iterator row = vv.begin(); row != vv.end(); ++row) {
 		for (std::vector<int>::const_iterator val = row->begin(); val != row->end(); ++val) {
@@ -86,6 +36,7 @@ std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<int>>& 
 	}
 	return os;
 }
+
 // Функция для вывода вектора
 template <typename T>
 void printVector(const std::vector<T>& vec) {
@@ -95,18 +46,53 @@ void printVector(const std::vector<T>& vec) {
 	std::cout << std::endl;
 }
 
-// Специализация шаблонной функции для вектора указателей на Point
-void printVectorOfPointersStats(const vector<Point*>& v) {
-	std::cout << "Вывод информации для вектора указателей на Point:" << std::endl;
-	std::cout << "Size: " << v.size() << ", Capacity: " << v.capacity() << ", Max_size: " << v.max_size() << std::endl;
-	std::cout << "Содержимое (в качестве указателей): ";
-	for (vector<Point*>::const_iterator it = v.begin(); it != v.end(); ++it) {
-		if (*it != nullptr) {
-			std::cout << **it << " "; // Разыменовываем итератор, а затем указатель
-		}
-		else {
-			std::cout << "null ";
+// Функция для вставки элемента перед каждым элементом вектора
+template <typename T>
+void insertBeforeEveryElement(std::vector<T>& vec, const T& value) {
+	for (typename std::vector<T>::iterator it = vec.begin(); it != vec.end(); it = std::next(it, 2)) {
+		it = vec.insert(it, value); // Вставляем элемент и сдвигаем итератор на новый элемент
+	}
+}
+
+template <typename T>
+void removeConsecutiveDuplicates(std::vector<T>& vec) {
+	typename std::vector<T>::iterator newEnd = std::unique(vec.begin(), vec.end());
+	vec.erase(newEnd, vec.end()); // Удаляем все дубликаты после последнего уникального элемента
+}
+
+template <typename T>
+void removeAllDuplicates(std::vector<T>& vec) {
+	sort(vec.begin(), vec.end()); // Сортируем вектор
+	typename std::vector<T>::iterator newEnd = unique(vec.begin(), vec.end()); // Удаляем последовательные дубликаты
+	vec.erase(newEnd, vec.end()); // Удаляем неуникальные элементы в конце вектора
+}
+
+//Универсальная функция для вывода контейнеров
+template <typename Container>
+void printContainer(const Container& c) {
+	for (const auto& elem : c) {
+		std::cout << elem << " ";
+	}
+	std::cout << std::endl << std::endl;
+}
+
+template<typename T>
+void insertIfNotExists(std::vector<T>& vec, const T& value) {
+	// Проверяем, есть ли значение в векторе
+	bool alreadyExists = false;
+	for (auto it = vec.begin(); it != vec.end(); it++) {
+		if (*it == value) {
+			alreadyExists = true;
+			break;
 		}
 	}
-	std::cout << "\n\n";
+	if (!alreadyExists) {
+		// Если значения нет, вставляем его в начало вектора
+		vec.insert(vec.begin(), value);
+	}
+}
+
+// Функция-предикат для удаления элементов меньше нуля
+bool isNegative(int x) {
+	return x < 0;
 }

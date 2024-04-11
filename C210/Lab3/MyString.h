@@ -1,6 +1,5 @@
 #pragma once
-#include <iostream>
-
+#include <string>
 class MyString {
 private:
 	std::string str;

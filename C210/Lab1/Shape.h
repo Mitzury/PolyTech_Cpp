@@ -1,4 +1,3 @@
-#pragma once
 #include <string>
 #include <map>
 
@@ -12,12 +11,16 @@ public:
 	};
 	// map для сопоставления объекта enum и строки
 	std::string colorMap(Color color) const {
-		std::map<Color, std::string> colorMap = {
-			{Color::RED, "RED"},
-			{Color::GREEN, "GREEN"},
-			{Color::WHITE, "WHITE"}
-		};
-		return colorMap[color];
+		switch (color) {
+		case RED:
+			return "RED";
+			break;
+		case GREEN:
+			return "GREEN";
+			break;
+		default:
+			return "WHITE";
+		}
 	}
 	// конструктор
 	Shape(Color color) : m_color(color) {}

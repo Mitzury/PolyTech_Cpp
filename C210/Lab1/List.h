@@ -1,26 +1,14 @@
-#pragma once
 #include <fstream>
 #include <vector>
 #include <string>
 
-// класс ноды дл€ списка
-class Node {
-public:
-    Shape* data;
-    Node* next;
-    Node* prev;
 
-    // конструктор
-    Node(Shape* shape) : data(shape), next(nullptr), prev(nullptr) {}
-};
 
 // enum с типами сортировок
 enum SortType { AREA, COLOR /* .... */ };
 
 class List {
 private:
-    Node* head;
-    Node* tail;
     // метод, возвращающий из строки объект enum Color
     Shape::Color parseStringToEnum(const std::string& str) {
         if (str == "RED") {
@@ -44,22 +32,43 @@ private:
             return 0;
         return x;
     };
+    // класс ноды дл€ списка
+    class Node {
+    public:
+        Shape* data;
+        Node* next;
+        Node* prev;
+
+        // конструктор
+        Node(Shape* shape) : data(shape), next(nullptr), prev(nullptr) {}
+        Node() : data(nullptr), next(nullptr), prev(nullptr) {}
+    };
+
+    Node head;
+    Node tail;
 
 public:
     // конструктор
-    List() : head(nullptr), tail(nullptr) {}
+    List() : head(Node()), tail(Node()) {
+        head.next = &tail;
+        tail.prev = &head;
+    }
 
     // метод добавлени€ элемента в конец списка
     void AddToTail(Shape* shape) {
         Shape* newShape = shape->Clone();
         Node* newNode = new Node(newShape);
-        if (head == nullptr) {
-            head = tail = newNode;
+        if (head.next->data == nullptr) {
+            head.next = newNode;
+            tail.prev = newNode;
+            newNode->prev = &head;
+            newNode->next = &tail;
         }
         else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
+            newNode->next = &tail;
+            newNode->prev = tail.prev;
+            tail.prev->next = newNode;
+            tail.prev = newNode;
         }
     }
 
@@ -67,36 +76,38 @@ public:
     void AddToHead(Shape* shape) {
         Shape* newShape = shape->Clone();
         Node* newNode = new Node(newShape);
-        if (head == nullptr) {
-            head = tail = newNode;
+        if (head.next->data == nullptr) {
+            head.next = newNode;
+            tail.prev = newNode;
+            newNode->next = &tail;
+            newNode->prev = &head;
         }
         else {
-            head->prev = newNode;
-            newNode->next = head;
-            head = newNode;
+            newNode->next = head.next;
+            newNode->prev = &head;
+            head.next->prev = newNode;
+            head.next = newNode;
         }
     }
 
     // метод удаление объекта, совпадающего с пришедшим
     void Remove(Shape* shape) {
-        Node* current = head;
-        while (current != nullptr) {
+        Node* current = head.next;
+        while (current->data != nullptr) {
             if (shape->Equals(current->data)) {
-                if (current == head) {
-                    head = current->next;
-                    if (head != nullptr)
-                        head->prev = nullptr;
+                if (current == head.next) {
+                    head.next = current->next;
+                    current->next->prev = &head;
                 }
-                else if (current == tail) {
-                    tail = current->prev;
-                    if (tail != nullptr)
-                        tail->next = nullptr;
+                else if (current == tail.prev) {
+                    tail.prev = current->prev;
+                    current->prev->next = &tail;
                 }
                 else {
                     current->prev->next = current->next;
                     current->next->prev = current->prev;
                 }
-                delete current;
+                current = nullptr;
                 break;
             }
             current = current->next;
@@ -105,44 +116,41 @@ public:
 
     // метод удаление всех объектов, совпадающих с пришедшим
     void RemoveAll(Shape* shape) {
-        Node* current = head;
-        while (current != nullptr) {
+        Node* current = head.next;
+        while (current->data != nullptr) {
             Node* temp = current;
             current = current->next;
             if (shape->Equals(temp->data)) {
-                if (temp == head) {
-                    head = temp->next;
-                    if (head != nullptr)
-                        head->prev = nullptr;
+                if (temp == head.next) {
+                    head.next = temp->next;
+                    temp->next->prev = &head;
                 }
-                else if (temp == tail) {
-                    tail = temp->prev;
-                    if (tail != nullptr)
-                        tail->next = nullptr;
+                else if (temp == tail.prev) {
+                    tail.prev = temp->prev;
+                    temp->prev->next = &tail;
                 }
                 else {
                     temp->prev->next = temp->next;
                     temp->next->prev = temp->prev;
                 }
-                delete temp;
+                temp = nullptr;
             }
         }
     }
 
     // метод сортировки списка, принимает в себ€ параметр по которому список будет сортироватьс€
     void SortList(SortType sortType) {
-        if (head == nullptr || head == tail)
+        if (head.next->data == nullptr || head.next == tail.prev)
             return;
 
         Node* current;
-        Node* temp = nullptr;
         bool swapped;
 
         do {
             swapped = false;
-            current = head;
+            current = head.next;
 
-            while (current->next != temp) {
+            while (current->next->data != nullptr) {
                 if (sortType == AREA) {
                     if (current->data->calculateArea() > current->next->data->calculateArea()) {
                         Shape* tempData = current->data;
@@ -161,27 +169,18 @@ public:
                 }
                 current = current->next;
             }
-            temp = current;
 
         } while (swapped);
     }
 
     // перегрузка оператора вывода содержимого списка
     friend std::ostream& operator<<(std::ostream& os, const List& list) {
-        Node* current = list.head;
-        if (current == nullptr)
+        Node* current = list.head.next;
+        if (current->data == nullptr)
             os << "List is Empty\n";
-        while (current != nullptr) {
-            try
-            {
-                os << current->data->toString();
-                current = current->next;
-            }
-            catch (const std::exception& e)
-            {
-                std::cerr << e.what() << std::endl;
-            }
-
+        while (current->data != nullptr) {
+            os << current->data->toString();
+            current = current->next;
         }
         return os;
     }
@@ -189,42 +188,59 @@ public:
     //  онструктор перемещени€
     List(List&& other) : head(other.head), tail(other.tail) {
 
-        other.head = nullptr;
-        other.tail = nullptr;
+        other.head = Node();
+        other.tail = Node();
+        other.head.next = &(other.tail);
+        other.tail.prev = &(other.head);
     }
 
     //  онструктор копировани€ 
     List(const List& other) {
         if (this != &other) {
-            Node* current = head;
-            head = nullptr;
-            tail = nullptr;
+            Node* current = head.next;
 
+            if (head.next != nullptr)
+            {
+                while (current->data != nullptr) {
+                    Node* temp = current;
+                    current = current->next;
+                    temp = nullptr;
+                }
+            }
+
+            head.next = &tail;
+            tail.prev = &head;
+
+            current = other.head.next;
             //  опируем данные из другого списка
-            current = other.head;
-            while (current != nullptr) {
+            while (current->data != nullptr) {
                 AddToTail(current->data);
                 current = current->next;
             }
         }
     }
 
+
     // ќператор присваивани€ копировани€ 
     List& operator=(const List& other) {
         if (this != &other) {
             // ќчищаем текущий список
-            Node* current = head;
-            while (current != nullptr) {
-                Node* temp = current;
-                current = current->next;
-                delete temp;
+            Node* current = head.next;
+
+            if (head.next != nullptr) {
+                while (current->data != nullptr) {
+                    Node* temp = current;
+                    current = current->next;
+                    temp = nullptr;
+                }
             }
-            head = nullptr;
-            tail = nullptr;
+
+            head.next = &tail;
+            tail.prev = &head;
 
             //  опируем данные из другого списка
-            current = other.head;
-            while (current != nullptr) {
+            current = other.head.next;
+            while (current->data != nullptr) {
                 AddToTail(current->data);
                 current = current->next;
             }
@@ -236,20 +252,19 @@ public:
     List& operator=(List&& other) {
         if (this != &other) {
             // ќчищаем текущий список
-            Node* current = head;
-            while (current != nullptr) {
+            Node* current = head.next;
+            while (current->data != nullptr) {
                 Node* temp = current;
                 current = current->next;
-                delete temp;
+                temp = nullptr;
             }
-            head = nullptr;
-            tail = nullptr;
-
             // ѕеремещаем данные из другого списка
             head = other.head;
             tail = other.tail;
-            other.head = nullptr;
-            other.tail = nullptr;
+            other.head = Node();
+            other.tail = Node();
+            other.head.next = &(other.tail);
+            other.tail.prev = &(other.head);
         }
         return *this;
     }
@@ -257,25 +272,26 @@ public:
     // перегрузка оператора чтени€ из файлового потока
     friend List operator>>(std::ifstream& ifs, List& list) {
         std::string line;
-        List result;
         while (std::getline(ifs, line)) {
             char separator = ' ';
+            int j = 0;
             std::string s;
-            std::vector<std::string> tokens;
+            std::string tokens[13];
             for (int i = 0; i < line.length(); i++) {
                 if (line[i] != separator) {
                     s += line[i];
                 }
                 else {
-                    tokens.push_back(s);
+                    tokens[j] = s;
+                    j++;
                     s.clear();
                 }
             }
-            tokens.push_back(s);
+            tokens[j] = s;
             s.clear();
             if (tokens[0] == "Circle:")
             {
-                result.AddToTail(Circle(
+                list.AddToTail(Circle(
                     list.string_to_int(tokens[2]),
                     list.string_to_int(tokens[4]),
                     list.string_to_int(tokens[6]),
@@ -289,23 +305,19 @@ public:
                     list.string_to_int(tokens[8]),
                     list.parseStringToEnum(tokens[10]));
 
-                result.AddToTail(rect);
+                list.AddToTail(rect);
             }
-            tokens.clear();
         }
-        list = std::move(result);
         return list;
     }
 
     // деконструктор
     ~List() {
-        Node* current = head;
+        Node* current = &head;
         while (current != nullptr) {
             Node* temp = current;
             current = current->next;
-            delete temp;
+            temp = nullptr;
         }
-        head = nullptr;
-        tail = nullptr;
     }
 };

@@ -1,4 +1,3 @@
-#pragma once
 #include "Shape.h"
 #include <iostream>
 #include <sstream>

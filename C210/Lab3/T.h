@@ -35,13 +35,38 @@ void removeDuplicates(std::vector<T>& vec) {
 	vec.erase(last, vec.end());
 }
 
-// Шаблон функции для вывода элементов любого контейнера на печать
-template<typename Container>
-void printContainer(const Container& cont, const std::string& contName) {
-	std::cout << "Container type: " << typeid(Container).name() << std::endl;
-	std::cout << "Container name: " << contName << std::endl;
-	std::cout << "Container elements: ";
-	for (const auto& elem : cont) {
+// Функция для вывода вектора
+template <typename T>
+void printVector(const std::vector<T>& vec) {
+	for (typename std::vector<T>::const_iterator it = vec.begin(); it != vec.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+}
+
+// Функция для вставки элемента перед каждым элементом вектора
+template <typename T>
+void insertBeforeEveryElement(std::vector<T>& vec, const T& value) {
+	for (typename std::vector<T>::iterator it = vec.begin(); it != vec.end(); it = std::next(it, 2)) {
+		it = vec.insert(it, value); // Вставляем элемент и сдвигаем итератор на новый элемент
+	}
+}
+template <typename T>
+void removeConsecutiveDuplicates(std::vector<T>& vec) {
+	typename std::vector<T>::iterator newEnd = std::unique(vec.begin(), vec.end());
+	vec.erase(newEnd, vec.end()); // Удаляем все дубликаты после последнего уникального элемента
+}
+template <typename T>
+void removeAllDuplicates(std::vector<T>& vec) {
+	std::sort(vec.begin(), vec.end()); // Сортируем вектор
+	typename std::vector<T>::iterator newEnd = std::unique(vec.begin(), vec.end()); // Удаляем последовательные дубликаты
+	vec.erase(newEnd, vec.end()); // Удаляем неуникальные элементы в конце вектора
+}
+
+//Универсальная функция для вывода контейнеров
+template <typename Container>
+void printContainer(const Container& c) {
+	for (const auto& elem : c) {
 		std::cout << elem << " ";
 	}
 	std::cout << std::endl << std::endl;

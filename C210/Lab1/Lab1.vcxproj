@@ -129,6 +129,12 @@
   <ItemGroup>
     <ClCompile Include="main_L1_C210.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Circle.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="Shape.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

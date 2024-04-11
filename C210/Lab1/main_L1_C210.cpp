@@ -1,131 +1,120 @@
+//------------------------------------------------------------------------------
+// Тестируем разработанный список
+//------------------------------------------------------------------------------
+#include "Rect.h"
+#include "Circle.h"
+#include "List.h"
+
+#include <tchar.h>
+#include <stdexcept>
 #include <iostream>
+#include <fstream>
+#include <typeinfo>
 
-class Point {
-public:
-    int X;
-    int Y;
-public:
-    Point(int xCoord = 0, int yCoord = 0)
-    {
-        X = xCoord;
-        Y = yCoord;
-    }
-    friend std::ostream& operator << (std::ostream& os, const Point& p) {
-        os << p.X << "," << p.Y;
-        return os;
-    }
-    friend bool operator==(const Point& p1, const Point& p2) {
-        return p1.X == p2.X && p1.Y == p2.Y;
-    }
-};
-class Shape {
-public:
-    enum Color { WHITE, RED, GREEN };
-
-    virtual Shape* clone() const { return nullptr; }
-
-};
-
-class Circle : public Shape {
-private:
-    Point Center;
-    int Radius;
-    Color color;
-public:
-    Circle() : Center(0, 0), Radius(0) {}
-    Circle(int xCoord, int yCoord, int radius, Color) : Center(xCoord, yCoord) {
-        this->Radius = radius;
-    }
-
-    Circle* clone() const override {
-        return new Circle(*this);
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, const Circle& c) {
-        os << "Circle (" << c.Center << "," << c.Radius << ")";
-        return os;
-    }
-    friend bool operator==(const Circle& c1, const Circle& c2) {
-        return c1.Center == c2.Center && c1.Radius == c2.Radius;
-    }
-};
-class Rect : public Shape {
-public:
-    int X;
-    int Y;
-    int Width;
-    int Height;
-    Color color;
-
-    Rect(int xCoord = 0, int yCoord = 0, int width = 0, int height = 0, Color col = WHITE)
-        : X(xCoord), Y(yCoord), Width(width), Height(height), color(col) {}
-
-    Rect* clone() const override {
-        return new Rect(*this);
-    }
-    friend std::ostream& operator<<(std::ostream& os, const Rect& r) {
-        os << "rect (" << r.X << "," << r.Y << "," << r.Width << "," << r.Height << ")";
-        return os;
-    }
-
-};
-class List {
-private:
-    class Node {
-    public:
-        Shape* m_data;
-        Node* prev;
-        Node* next;
-        Node() : next(nullptr), prev(nullptr) {}
-        Node(const Shape& data) : m_data(data.clone()) {}
-    };
-    Node head;
-    Node tail;
-    size_t m_size;
-public:
-    List() : head(), tail(), m_size(0) {
-        this->head.next = &this->tail;
-        this->tail.prev = &this->head;
-    }
-
-    void AddToHead(const Shape& data) {
-        Node * newNode = new Node{ data };
-       // Node * newNode = new Node{ &Head, data };
-        newNode->next = head.next;
-        newNode->prev = &head;
-        tail.prev = newNode;
-        head.next = newNode;
-        m_size++;
-    }
-
-    
-
-    friend std::ostream& operator<<(std::ostream& ost, const List& l) {
-        Node* current = l.head.next;
-        while (current->next != nullptr) {
-            ost << current->m_data << std::endl;
-          //  current->m_data->print(ost);
-            current = current->next;
-        }
-        return ost;
-
-    }
-
-};
 const char* sep = "------------------------------------\n";
 
-int main() {
+int main(int argc, _TCHAR* argv[])
+{
+	//
+	// 1. Создаем список
+	//
+	List ls1;
 
-    List ls1;
-    Circle c = Circle(2, 2, 2, Shape::RED);
-    std::cout << c.clone() << std::endl;
+	ls1.AddToTail(Circle(1, 1, 1, Shape::WHITE));	//добавляем элементы в список
+	ls1.AddToTail(Circle(5, 5, 5, Shape::RED));
+	ls1.AddToTail(Circle(5, 5, 5, Shape::RED));
+	ls1.AddToTail(Rect(2, 3, 4, 5, Shape::RED));
+	ls1.AddToTail(Rect(4, 6, 8, 10, Shape::GREEN));
+	ls1.AddToTail(Circle(2, 2, 2, Shape::WHITE));
+	ls1.AddToTail(Rect(3, 5, 6, 7, Shape::GREEN));
+	std::cout << ls1 << sep;								//выводим список	
 
-    ls1.AddToHead(Circle(2, 2, 2, Shape::RED));
-    ls1.AddToHead(Rect(22, 2, 2,3, Shape::GREEN));
+	ls1.Remove(Circle(5, 5, 5, Shape::RED));
+	std::cout << "After remove Circle 5 R\n";		// удаляем первый элемент, равный заданному
+	std::cout << ls1 << sep;
+	ls1.Remove(Rect(4, 6, 8, 10, Shape::GREEN));
+	std::cout << "After remove Rect 4-10 G\n";
+	std::cout << ls1 << sep;
+
+	//
+	// 2. Приведенный ниже код должен выполняться корректно	
+	//
+	List ls2 = ls1;
+	List ls3 = ls2;
+	std::cout << "Copy of ls1\n";
+	std::cout << ls2 << sep;
+
+	ls2.AddToHead(Circle(5, 5, 5, Shape::RED));
+	ls2.AddToHead(Rect(5, 7, 9, 11, Shape::WHITE));
+
+	std::cout << "After add to head Circle 5 R and Rect 5-11 W\n";
+	std::cout << ls2 << sep;
+	ls1 = ls2;			// из "большого" списка в "маленький"
+	std::cout << "ls1 copied from ls2\n";
+	std::cout << ls1 << sep;
+
+	ls1 = ls3;			// из "маленького" списка в "большой"
+	std::cout << "ls1 copied from ls3, small list\n";
+	std::cout << ls1 << sep;
+	//
+	// 3. Вспоминаем про семантику перемещения	
+	//
+	List ls4 = std::move(ls2);
+
+	std::cout << "ls4 moved from ls2\n";
+	std::cout << ls4 << sep;
+	std::cout << "ls2 after move to ls4\n";
+	std::cout << ls2 << sep;
+
+	ls3 = std::move(ls4);
+	std::cout << "ls3 moved from ls4\n";
+	std::cout << ls3 << sep;
+	std::cout << "ls4 after move to ls3\n";
+	std::cout << ls4 << sep;
+	//
+	//4.  Сортировка по возрастанию площади кружка
+	//
+	std::cout << "ls3 before sorting\n";
+	std::cout << ls3 << sep;
+	ls3.SortList(AREA);
+	std::cout << "ls3 after sorting by area\n";
+	std::cout << ls3 << sep;
+
+	ls3.SortList(COLOR);
+	std::cout << "ls3 after sorting by color\n";
+	std::cout << ls3 << sep;
+
+	//
+	// 5. Файловый ввод/вывод
+	//
+	std::ofstream fout("list.txt");
+	fout << ls3;	// выводим список в файл
+	fout.close();
+
+	std::ifstream fin("list.txt");
+	List ls5;		// читаем список из файла
+	fin >> ls5;
+	fin.close();
+
+	std::cout << "ls5 after reading from file\n";
+	std::cout << ls5 << sep;
+	// 
+	// 6. Дополнительные проверки
+	//
+	// ...
+
+	ls5.AddToTail(Circle(1, 1, 1, Shape::WHITE));
+
+	ls5.AddToTail(Circle(1, 1, 1, Shape::RED));
+
+	std::cout << "Add two items:\n";
+	std::cout << ls5 << sep;
+
+	ls5.RemoveAll(Circle(1, 1, 1, Shape::WHITE));
+
+	std::cout << "Remove all Circle 1 W:\n";
+	std::cout << ls5 << sep;
 
 
-    std::cout << "Out List 1" << std::endl << ls1 << sep;
-
-
-    return 0;
-};
+	return 0;
+}

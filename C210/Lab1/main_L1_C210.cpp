@@ -27,7 +27,7 @@ int main(int argc, _TCHAR* argv[])
 	ls1.AddToTail(Circle(5, 5, 5, Shape::WHITE));
 	ls1.AddToTail(Rect(2, 3, 4, 5, Shape::GREEN));
 	ls1.AddToTail(Rect(2, 4, 8, 10, Shape::RED));
-	ls1.AddToTail(Rect(4, 6, 820, 10, Shape::GREEN));
+	ls1.AddToTail(Rect(4, 6, 8, 10, Shape::RED));
 	ls1.AddToTail(Circle(2, 21, 2, Shape::WHITE));
 	ls1.AddToTail(Rect(3, 5, 6, 7, Shape::GREEN));
 	std::cout << ls1 << sep;								//выводим список	
@@ -36,7 +36,7 @@ int main(int argc, _TCHAR* argv[])
 	std::cout << "After remove Circle 5 RED\n";		// удаляем первый элемент, равный заданному
 	std::cout << ls1 << sep;
 	ls1.Remove(Rect(4, 6, 8, 10, Shape::RED));
-	std::cout << "After remove Rect 4-10 GREEN\n";
+	std::cout << "After remove Rect 4-10 RED\n";
 	std::cout << ls1 << sep;
 
 	//

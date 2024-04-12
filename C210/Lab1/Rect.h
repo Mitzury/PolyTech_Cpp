@@ -18,6 +18,20 @@ public:
     Color getColor() const override {
         return m_color;
     }
+
+    int GetX1() {
+        return upLeft.getX();
+    }
+    int GetX2() {
+        return downRight.getX();
+    }
+    int GetY1() {
+        return upLeft.getY();
+    }
+    int GetY2() {
+        return downRight.getY();
+    }
+
     // ћетод дл€ получени€ ширины пр€моугольника
     double getWidth() const {
         return abs(downRight.getX() - upLeft.getX());
@@ -58,11 +72,11 @@ public:
         Rect* r = dynamic_cast<Rect*>(shape);
         if (r == nullptr)
             return false;
-        return r->getHeight() == getHeight()
-            && r->downRight.getX() == downRight.getX()
-            && r->upLeft.getY() == upLeft.getY()
-            && r->downRight.getY() == downRight.getY()
-            && r->getColor() == getColor();
+        return r->GetX1() == upLeft.getX()
+            && r->GetX2() == downRight.getX()
+            && r->GetY1() == upLeft.getY()
+            && r->GetY2() == downRight.getY()
+            && r->getColor() == m_color;
     }
 
     // оператор не€вного каста к родительскому классу

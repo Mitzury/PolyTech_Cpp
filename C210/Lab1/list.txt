@@ -8,4 +8,3 @@
 	Circle(5,50,5) RED area: 78.5397
 	Rectangle(2,3,4,5) GREEN area: 4
 	Rectangle(3,5,6,7) GREEN area: 6
-	Rectangle(4,6,820,10) GREEN area: 3264

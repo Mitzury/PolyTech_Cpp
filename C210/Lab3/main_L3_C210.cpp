@@ -17,14 +17,14 @@
 
 using namespace std;
 
-// Специализация шаблонной функции для вектора указателей на Point
-void printVectorOfPointersStats(const vector<Point*>& v) {
-	std::cout << "Вывод информации для вектора указателей на Point:" << std::endl;
+template <typename T>
+void printVectorOfPointersStats(const std::vector<T*>& v) {
+	std::cout << "Вывод информации для вектора указателей на объекты типа " << typeid(T).name() << ":\n";
 	std::cout << "Size: " << v.size() << ", Capacity: " << v.capacity() << ", Max_size: " << v.max_size() << std::endl;
 	std::cout << "Содержимое (в качестве указателей): ";
-	for (vector<Point*>::const_iterator it = v.begin(); it != v.end(); ++it) {
-		if (*it != nullptr) {
-			std::cout << **it << " "; // Разыменовываем итератор, а затем указатель
+	for (const auto* ptr : v) {
+		if (ptr != nullptr) {
+			std::cout << *ptr << " "; // Разыменовываем указатель для вывода объекта
 		}
 		else {
 			std::cout << "null ";

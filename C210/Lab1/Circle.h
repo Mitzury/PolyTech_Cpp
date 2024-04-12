@@ -5,17 +5,17 @@
 class Circle : public Shape {
 private:
 	Point Center;
-	int x, y, radius;
+	int radius;
 
 public:
 	// конструктор
 	Circle(int x, int y, int r, Color c) : Center(x, y), radius(r), Shape(c) {}
 
 	int GetX() {
-		return x;
+		return Center.getX();
 	}
 	int GetY() {
-		return y;
+		return Center.getY();
 	}
 	int GetRadius() {
 		return radius;
@@ -54,8 +54,8 @@ public:
 		Circle* c = dynamic_cast<Circle*>(shape);
 		if (c == nullptr)
 			return false;
-		return c->GetX() == x
-			&& c->GetY() == y
+		return c->GetX() == Center.getX()
+			&& c->GetY() == Center.getY()
 			&& c->GetRadius() == radius
 			&& c->getColor() == m_color;
 	}

@@ -31,7 +31,6 @@ public:
         // вычисляем ширину и высоту прямоугольника
         double width = getWidth();
         double height = getHeight();
-
         // площадь = ширина * высота
         return width * height;
     }
@@ -59,8 +58,7 @@ public:
         Rect* r = dynamic_cast<Rect*>(shape);
         if (r == nullptr)
             return false;
-        return 
-             r->upLeft.getX() == upLeft.getX()
+        return r->getHeight() == getHeight()
             && r->downRight.getX() == downRight.getX()
             && r->upLeft.getY() == upLeft.getY()
             && r->downRight.getY() == downRight.getY()

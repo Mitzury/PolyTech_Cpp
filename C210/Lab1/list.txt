@@ -1,8 +1,11 @@
 	Circle(1,1,1) WHITE area: 3.14159
-	Circle(2,2,2) WHITE area: 12.5664
+	Circle(2,21,2) WHITE area: 12.5664
 	Rectangle(5,7,9,11) WHITE area: 16
-	Rectangle(2,3,4,5) RED area: 4
+	Circle(5,5,5) WHITE area: 78.5397
+	Circle(5,5,5) WHITE area: 78.5397
+	Rectangle(2,4,8,10) RED area: 36
 	Circle(5,5,5) RED area: 78.5397
-	Circle(5,5,5) RED area: 78.5397
-	Circle(5,5,5) RED area: 78.5397
+	Circle(5,50,5) RED area: 78.5397
+	Rectangle(2,3,4,5) GREEN area: 4
 	Rectangle(3,5,6,7) GREEN area: 6
+	Rectangle(4,6,820,10) GREEN area: 3264

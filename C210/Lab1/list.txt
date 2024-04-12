@@ -1,7 +1,8 @@
-Circle: x= 1 ,y= 1 ,radius= 1 ,color= WHITE ,area: 3.14159
-Circle: x= 2 ,y= 2 ,radius= 2 ,color= WHITE ,area: 12.5664
-Rectangle: x1= 5 ,y1= 7 ,x2= 9 ,y2= 11 ,color= WHITE ,area: 16
-Rectangle: x1= 2 ,y1= 3 ,x2= 4 ,y2= 5 ,color= RED ,area: 4
-Circle: x= 5 ,y= 5 ,radius= 5 ,color= RED ,area: 78.5397
-Circle: x= 5 ,y= 5 ,radius= 5 ,color= RED ,area: 78.5397
-Rectangle: x1= 3 ,y1= 5 ,x2= 6 ,y2= 7 ,color= GREEN ,area: 6
+	Circle(1,1,1) WHITE area: 3.14159
+	Circle(2,2,2) WHITE area: 12.5664
+	Rectangle(5,7,9,11) WHITE area: 16
+	Rectangle(2,3,4,5) RED area: 4
+	Circle(5,5,5) RED area: 78.5397
+	Circle(5,5,5) RED area: 78.5397
+	Circle(5,5,5) RED area: 78.5397
+	Rectangle(3,5,6,7) GREEN area: 6

@@ -1,51 +1,45 @@
 #include "Shape.h"
 #include <iostream>
 #include <sstream>
+#include "Point.h"
 
 class Rect : public Shape {
 private:
-    int x1, y1, x2, y2;
+    Point upLeft;
+    Point downRight;
 
 public:
-    // конструктор
-    Rect(
-        int x1,
-        int y1,
-        int x2,
-        int y2,
-        Color color)
-        : x1(x1),
-        y1(y1),
-        x2(x2),
-        y2(y2),
-        Shape(color) {}
 
-    int GetX1() {
-        return x1;
-    }
-    int GetX2() {
-        return x2;
-    }
-    int GetY1() {
-        return y1;
-    }
-    int GetY2() {
-        return y2;
-    }
+    // конструктор
+    Rect(int x1,int y1,int x2,int y2, Color color): upLeft(x1,y1), downRight(x2, y2), Shape(color) {}
+
+
     // возвращает поле с цветом
     Color getColor() const override {
         return m_color;
     }
+    // ћетод дл€ получени€ ширины пр€моугольника
+    double getWidth() const {
+        return abs(downRight.getX() - upLeft.getX());
+    }
+    double getHeight() const {
+        return abs(downRight.getY() - upLeft.getY());
+    }
 
     // вычисление площади
     double calculateArea() const override {
-        return abs(x1 - x2) * abs(y1 - y2);
+        // вычисл€ем ширину и высоту пр€моугольника
+        double width = getWidth();
+        double height = getHeight();
+
+        // площадь = ширина * высота
+        return width * height;
     }
 
     // возвращает строковое представление объекта
     std::string toString() const override {
         std::ostringstream oss;
-        oss << "Rectangle: x1= " << x1 << " ,y1= " << y1 << " ,x2= " << x2 << " ,y2= " << y2 << " ,color= " << colorMap(m_color) << " ,area: " << calculateArea() << std::endl;
+        oss << "\tRectangle(" << upLeft << "," << downRight << ") " << colorMap(m_color) << " area: " << calculateArea() << std::endl;
         return oss.str();
     }
 
@@ -65,11 +59,12 @@ public:
         Rect* r = dynamic_cast<Rect*>(shape);
         if (r == nullptr)
             return false;
-        return r->GetX1() == x1
-            && r->GetX2() == x2
-            && r->GetY1() == y1
-            && r->GetY2() == y2
-            && r->getColor() == m_color;
+        return 
+             r->upLeft.getX() == upLeft.getX()
+            && r->downRight.getX() == downRight.getX()
+            && r->upLeft.getY() == upLeft.getY()
+            && r->downRight.getY() == downRight.getY()
+            && r->getColor() == getColor();
     }
 
     // оператор не€вного каста к родительскому классу

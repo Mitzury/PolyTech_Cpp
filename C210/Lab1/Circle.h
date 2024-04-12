@@ -1,13 +1,15 @@
 #include <iostream>
 #include <sstream>
+#include "Point.h"
 
 class Circle : public Shape {
 private:
+	Point Center;
 	int x, y, radius;
 
 public:
 	// конструктор
-	Circle(int x, int y, int r, Color c) : radius(r), x(x), y(y), Shape(c) {}
+	Circle(int x, int y, int r, Color c) : Center(x, y), radius(r), Shape(c) {}
 
 	int GetX() {
 		return x;
@@ -32,7 +34,7 @@ public:
 	// возвращает строковое представление объекта
 	std::string toString() const override {
 		std::ostringstream oss;
-		oss << "Circle: x= " << x << " ,y= " << y << " ,radius= " << radius << " ,color= " << colorMap(m_color) << " ,area: " << calculateArea() << std::endl;
+		oss << "\t" << "Circle(" << Center << "," << radius << ") " << colorMap(m_color) << " area: " << calculateArea() << std::endl;
 		return oss.str();
 	}
 

@@ -30,7 +30,11 @@ int main(int argc, _TCHAR* argv[])
 	ls1.AddToTail(Rect(4, 6, 8, 10, Shape::RED));
 	ls1.AddToTail(Circle(2, 21, 2, Shape::WHITE));
 	ls1.AddToTail(Rect(3, 5, 6, 7, Shape::GREEN));
-	std::cout << ls1 << sep;								//выводим список	
+
+	// ¬ыводим список
+	std::cout << "Chapter 1" << std::endl;
+	std::cout << "Out List 1 after init" << std::endl << ls1 << sep;
+
 
 	ls1.Remove(Circle(5, 5, 5, Shape::RED));
 	std::cout << "After remove Circle 5 RED\n";		// удал€ем первый элемент, равный заданному

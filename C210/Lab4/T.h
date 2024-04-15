@@ -1,4 +1,5 @@
 #pragma once
 
+// Объявления функций
 template<typename T>
-void printStack(stack<T> s);
+void printStack(std::stack<T> s);

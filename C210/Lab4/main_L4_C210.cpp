@@ -38,13 +38,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	q.push(1);
 	q.push(2);
 	q.push(3);
-	printQueue(q);
+	//printQueue(q);
 
 	priority_queue<int> pq;
 	pq.push(3);
 	pq.push(1);
 	pq.push(2);
-	printPriorityQueue(pq);
+	//printPriorityQueue(pq);
 
 
 

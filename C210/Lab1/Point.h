@@ -6,19 +6,10 @@ private:
     int X;
     int Y;
 public:
-    Point(int xCoord = 0, int yCoord = 0)
-    {
-        X = xCoord;
-        Y = yCoord;
-    }
+    Point(int xCoord, int yCoord);
 
-    int getX() const {
-        return X;
-    }
-
-    int getY() const {
-        return Y;
-    }
+    int getX() const;
+    int getY() const;
 
     // перегрузка оператора вывода объекта в консоль
     friend std::ostream& operator << (std::ostream& os, const Point& p) {

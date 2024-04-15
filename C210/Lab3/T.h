@@ -1,6 +1,9 @@
 #pragma once
 #include <algorithm>
 
+template <typename T>
+void printVectorOfPointersStats(const std::vector<T*>& v);
+
 // Шаблонная функция для вывода информации о векторе
 template <typename T>
 void printVectorInfo(const std::vector<T>& vec) {

@@ -15,17 +15,36 @@
 #include <iostream>
 #include <tchar.h>
 
+#include "T.h"
 using namespace std;
 
 #define stop __asm nop
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
-
+	setlocale(LC_ALL, "Ru");
 	//Напишите шаблон функции для вывода значений stack, queue, priority_queue
 	//обратите внимание на то, что контейнеры предоставляют РАЗНЫЕ методы для 
 	//получения значений
+
+	stack<int> stk;
+	stk.push(1);
+	stk.push(2);
+	stk.push(3);
+	cout << "Stack: ";
+	printStack(stk);
+
+	queue<int> q;
+	q.push(1);
+	q.push(2);
+	q.push(3);
+	printQueue(q);
+
+	priority_queue<int> pq;
+	pq.push(3);
+	pq.push(1);
+	pq.push(2);
+	printPriorityQueue(pq);
 
 
 

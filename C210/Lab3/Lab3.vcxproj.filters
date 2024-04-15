@@ -21,6 +21,9 @@
     <ClCompile Include="MyString.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
+    <ClCompile Include="T.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Point.h">

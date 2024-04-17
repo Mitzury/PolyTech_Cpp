@@ -2,13 +2,12 @@
 //Контейнеры стандартной библиотеки - vector
 //Итераторы
 
-#include <iostream>
-#include <vector>
-#include "MyString.h"
 #include "Point.h"
 #include "T.h"
+#include "MyString.h"
 #include <list>
 #include <deque>
+
 
 #pragma warning(disable: 4786)
 

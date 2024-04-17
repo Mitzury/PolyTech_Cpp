@@ -128,9 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main_L4_C210.cpp" />
-    <ClCompile Include="T.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Point.h" />
     <ClInclude Include="T.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

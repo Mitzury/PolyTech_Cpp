@@ -37,7 +37,8 @@ int main(int argc, _TCHAR* argv[])
 
 
 	ls1.Remove(Circle(5, 5, 5, Shape::RED));
-	std::cout << "After remove Circle 5 RED\n";		// удаляем первый элемент, равный заданному
+	// удаляем первый элемент, равный заданному
+	std::cout << "After remove Circle 5 RED\n";	
 	std::cout << ls1 << sep;
 	ls1.Remove(Rect(4, 6, 8, 10, Shape::RED));
 	std::cout << "After remove Rect 4-10 RED\n";

@@ -1,12 +1,12 @@
 #pragma once
-// Класс MyStack
+// класс MyStack
 template <typename T, int SIZE>
 class MyStack {
 public:
     // Дефолтный конструктор
-    MyStack() : data_(new T[SIZE]), size_(0) {}
+    MyStack() :size_(0), data_() {}
 
-    // Метод для добавления в стэк
+    // Метод добавления в стэк
     void push(const T& value) {
         if (size_ >= SIZE) {
             throw std::runtime_error("Exception: Stack is full");
@@ -15,7 +15,7 @@ public:
         data_[size_++] = value;
     }
 
-    // Метод для получения объекта из стэка
+    // Метод удаления из стэка
     T pop() {
         if (size_ == 0) {
             throw std::runtime_error("Exception: Stack is empty");
@@ -25,7 +25,7 @@ public:
         return value;
     }
 
-    // Доступ к элементам по индексу
+    // Индексатор для доступа к элементам по индексу
     T& operator[](int index) {
         if (index >= size_ || index < 0) {
             throw std::out_of_range("Exception: Index out of range");
@@ -34,7 +34,7 @@ public:
         return data_[index];
     }
 
-    // Метод для вывода размера стэка
+    // Метод, возвращающий количество элементов в стэке
     int size() const {
         return size_;
     }
@@ -44,16 +44,14 @@ public:
         return size_ == 0;
     }
 
-    // Освобождение памяти после использования
-    ~MyStack() {
-        delete[] data_;
-    }
+    // Деконструктор
+    ~MyStack() { }
 
 private:
-    T* data_;
+    T data_[SIZE];
     int size_;
 
-    // Переопределение оператора << для вывода объектов стэка
+    // Перегрузка оператора << для вывода значений в поток
     friend std::ostream& operator<<(std::ostream& os, MyStack<T, SIZE>& stack) {
         for (auto i = 0; i < stack.size_; i++) {
             os << stack[i] << ' ';
@@ -64,13 +62,13 @@ private:
         return os;
     }
 
-    // Переопределение оператора << для добавления объектов в стэк
+    // Перегрузка оператора << для добавления значений 
     friend MyStack<T, SIZE>& operator<<(MyStack<T, SIZE>& stack, T value) {
         stack.push(value);
         return stack;
     }
 
-    // Переопределение оператора >> для добавления объектов в стэк
+    // Перегрузка оператора >> для ввода значений из потока
     friend std::istream& operator>>(std::istream& is, MyStack<T, SIZE>& stack) {
         T value;
         while (is >> value) {
@@ -79,7 +77,7 @@ private:
         return is;
     }
 
-    // Переопределение оператора >> для вывода объектов из стэка в переменную
+    // Перегрузка оператора >> для вывода значений в аргумент
     friend MyStack<T, SIZE>& operator>>(MyStack<T, SIZE>& stack, T& arg) {
         arg = stack.pop();
         return stack;

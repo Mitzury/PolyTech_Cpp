@@ -123,6 +123,5 @@ int main(int argc, _TCHAR* argv[])
 	std::cout << "Remove all Circle 1 W:\n";
 	std::cout << ls5 << sep;
 
-
 	return 0;
 }

@@ -1,17 +1,8 @@
-#pragma once
-#include <list>
+#include "List.h"
+
 // Класс MyStack2
 template <typename T>
 class MyStack2 {
-private:
-   // std::list<T> m_data;
-    class Node{
-        T data;
-        Mode* pNext;
-    }
-    Node Head;
-    size_t m_size;
-
 public:
 
     MyStack2() {
@@ -32,12 +23,12 @@ public:
     }
 
     ~MyStack2() {
-        m_data.clear();
+        m_data.~List();
     }
 
     // Метод для добавления в стэк
     void push(const T& value) {
-        m_data.push_back(value);
+        m_data.AddToTail(value);
     }
 
     // Метод для получения объекта из стэка
@@ -45,8 +36,8 @@ public:
         if (m_data.empty()) {
             throw std::underflow_error("Exception: Stack is empty");
         }
-        T result = m_data.back();
-        m_data.pop_back();
+        T result = m_data.GetLast();
+        m_data.RemoveLast();
         return result;
     }
 
@@ -55,14 +46,28 @@ public:
         return m_data.empty();
     }
 
+
+
+    MyStack2<T>& operator=(const MyStack2<T>& other) {
+        if (this != &other) {
+            m_data.clear();
+            m_data = other.m_data;
+        }
+
+        return *this;
+    }
+
+private:
+    List<T> m_data;
+
     // Перегрузка оператора << для вывода значений в поток
     friend std::ostream& operator<<(std::ostream& os, const MyStack2<T>& stack) {
-        for (const auto& value : stack.m_data) {
-            os << value << ' ';
-        }
         if (stack.empty())
-            os << "MyStack2 is empty";
-        os << '\n';
+        {
+            os << "MyStack2 is empty\n";
+            return os;
+        }
+        os << stack.m_data;
         return os;
     }
 
@@ -73,16 +78,5 @@ public:
             stack.push(value);
         }
         return is;
-    }
-
-    MyStack2<T>& operator=(const MyStack2<T>& other) {
-        if (this != &other) {
-            m_data.clear();
-            for (const auto& value : other.m_data) {
-                m_data.push_back(value);
-            }
-        }
-
-        return *this;
     }
 };

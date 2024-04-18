@@ -1,34 +1,31 @@
 #pragma once
+
 #include <iostream>
 
-class MyString {
-private:
-    char* m_data;
-    int m_length;
-
+class MyString
+{
+    char* m_pStr;	//строка-член класса
 public:
-    MyString() : m_data(nullptr), m_length(0) {} // ƒефолтный конструктор
+    MyString(); // конструктор по умолчанию
+    MyString(const char* ptr); // конструктор
+    MyString(const MyString& str); // конструктор копировани€
+    MyString(MyString&& str); // move конструктор копировани€
+    ~MyString();
+    const char* GetString() const;
+    MyString& operator=(const MyString& str); // оператор присваивани€
+    void SetNewString(const char* ptr);
+    friend std::ostream& operator<<(std::ostream& os, const MyString& str);
 
-    //  онструктор дл€ строки
-    MyString(const char* str) {
-        m_length = std::strlen(str);
-        m_data = new char[m_length + 1];
-        std::strcpy(m_data, str);
-    }
+    MyString operator=(MyString&& str);
+    MyString operator=(const char* p_char);
+    friend MyString operator+(const MyString& str1, const MyString& str2);
+    MyString& operator+=(const MyString& str);
+    MyString& operator++(); 
+    MyString& operator--(); 
+    MyString operator++(int); 
+    MyString operator--(int); 
 
-    //перегрузка метода присваивани€ дл€ эффективного выполнени€ шаблонизированного метода Swap()
-    MyString& operator=(const MyString& other) {
-        if (this != &other) { // ѕроверка на самоприсваивание
-            m_length = other.m_length;
-            m_data = new char[m_length + 1];
-            std::strcpy(m_data, other.m_data);
-        }
-        return *this;
-    }
-
-    // ѕерегрузка оператора << дл€ вывода строки 
-    friend std::ostream& operator<<(std::ostream& os, const MyString& str) {
-        os << str.m_data;
-        return os;
-    }
+    //friend void Swap(MyString& str1, MyString& str2);  //!!!
+    void Swap(MyString& str2);
 };
+

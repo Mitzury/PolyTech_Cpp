@@ -2,19 +2,15 @@
 //Шаблоны: 
 //	шаблоны функций,
 //	шаблоны классов,
-
 #include <tchar.h>
 #include "swap.h"
 #include "MyString.h"
 #include "MyStack.h"
 #include "MyStack2.h"
-
 //#include <stdexcept>
 
 #define stop __asm nop
-int _tmain(int argc, _TCHAR* argv[])
-{
-	
+int _tmain(int argc, _TCHAR* argv[]) {
 ////////////////////////////////////////////////////////////////////////////
 //Тема. Шаблоны функций.
 //Создайте шаблон функции перестановки местами двух
@@ -61,6 +57,7 @@ int _tmain(int argc, _TCHAR* argv[])
 //С помощью шаблона MyStack создайте стек из 5 элементов int - iStack и
 //стек из 10 элементов MyString - strStack и поэкспериментируйте с функциями
 //operator<< и operator>>, operator[]
+
 		std::cout << "==========================================\n";
 		std::cout << "Chapter: MyStack\n";
 		{

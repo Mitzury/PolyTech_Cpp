@@ -107,7 +107,7 @@ public:
                     current->prev->next = current->next;
                     current->next->prev = current->prev;
                 }
-                current = nullptr;
+                delete current;
                 break;
             }
             current = current->next;
@@ -133,7 +133,7 @@ public:
                     temp->prev->next = temp->next;
                     temp->next->prev = temp->prev;
                 }
-                temp = nullptr;
+                delete temp;
             }
         }
     }
@@ -204,7 +204,7 @@ public:
                 while (current->data != nullptr) {
                     Node* temp = current;
                     current = current->next;
-                    temp = nullptr;
+                    delete temp;
                 }
             }
 
@@ -231,7 +231,7 @@ public:
                 while (current->data != nullptr) {
                     Node* temp = current;
                     current = current->next;
-                    temp = nullptr;
+                    delete temp;
                 }
             }
 
@@ -256,7 +256,7 @@ public:
             while (current->data != nullptr) {
                 Node* temp = current;
                 current = current->next;
-                temp = nullptr;
+                delete temp;
             }
             // Перемещаем данные из другого списка
             head = other.head;
@@ -313,11 +313,13 @@ public:
 
     // деконструктор
     ~List() {
-        Node* current = &head;
-        while (current != nullptr) {
+        Node* current = head.next;
+        while (current->data != nullptr) {
             Node* temp = current;
             current = current->next;
-            temp = nullptr;
+            delete temp;
         }
+        head = nullptr;
+        tail = nullptr;
     }
 };

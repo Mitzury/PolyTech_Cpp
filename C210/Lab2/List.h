@@ -36,7 +36,6 @@ public:
             head = nullptr;
             tail = nullptr;
 
-            
             head = other.head;
             tail = other.tail;
             other.head = nullptr;

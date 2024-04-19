@@ -76,7 +76,7 @@ public:
             && r->GetX2() == downRight.getX()
             && r->GetY1() == upLeft.getY()
             && r->GetY2() == downRight.getY()
-            && r->getColor() == m_color;
+            && Shape::Equals(shape); // c->getColor() == m_color;
     }
 
     // оператор неявного каста к родительскому классу

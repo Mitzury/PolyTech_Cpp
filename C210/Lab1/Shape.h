@@ -33,7 +33,7 @@ public:
 	// метод, создающий копию объекта (асбтрактный)
 	virtual Shape* Clone() const = 0;
 	// метод, провер€ющий равенство объектов (асбтрактный)
-	virtual bool Equals(Shape* shape) const = 0;
+	virtual bool Equals(Shape* shape) const { return m_color == shape->m_color; }
 protected:
 	// поле с цветом, передаетс€ и доступно только наследникам
 	Color m_color;

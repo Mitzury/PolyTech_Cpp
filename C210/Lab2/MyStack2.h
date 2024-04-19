@@ -3,6 +3,17 @@
 // Класс MyStack2
 template <typename T>
 class MyStack2 {
+
+    /*class Node{
+
+        Node *pNext;
+        T data;
+
+    }
+    Node  Head;
+    size_t m_size;*/
+
+
 public:
 
     MyStack2() {

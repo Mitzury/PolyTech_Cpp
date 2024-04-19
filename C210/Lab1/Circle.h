@@ -57,7 +57,7 @@ public:
 		return c->GetX() == Center.getX()
 			&& c->GetY() == Center.getY()
 			&& c->GetRadius() == radius
-			&& c->getColor() == m_color;
+			&& Shape::Equals(shape); // c->getColor() == m_color;
 	}
 
 	// оператор неявного каста к родительскому классу

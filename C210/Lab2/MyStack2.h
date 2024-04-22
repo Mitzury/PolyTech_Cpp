@@ -4,60 +4,6 @@
 // Класс MyStack2
 template <typename T>
 class MyStack2 {
-public:
-
-    MyStack2() {
-        m_data = List<T>();
-    }
-
-    MyStack2(MyStack2&& other) {
-        m_data = std::move(other.m_data);
-    }
-
-    MyStack2& operator=(MyStack2&& other) {
-        m_data = std::move(other.m_data);
-        return *this;
-    }
-
-    MyStack2(const MyStack2& other) {
-        m_data = other.m_data;
-    }
-
-    ~MyStack2() {
-        m_data.~List();
-    }
-
-    // Метод для добавления в стэк
-    void push(const T& value) {
-        m_data.AddToTail(value);
-    }
-
-    // Метод для получения объекта из стэка
-    T pop() {
-        if (m_data.empty()) {
-            throw std::underflow_error("Exception: Stack is empty");
-        }
-        T result = m_data.GetLast();
-        m_data.RemoveLast();
-        return result;
-    }
-
-    // Метод для определения наполненности стэка
-    bool empty() const {
-        return m_data.empty();
-    }
-
-
-
-    MyStack2<T>& operator=(const MyStack2<T>& other) {
-        if (this != &other) {
-            m_data.clear();
-            m_data = other.m_data;
-        }
-
-        return *this;
-    }
-
 private:
     template<typename T>
     class List {
@@ -71,7 +17,6 @@ private:
             Node() : next(nullptr), data(nullptr) {}
         };
         Node head;
-
     public:
         List() {
             head = Node();
@@ -165,7 +110,6 @@ private:
                 current = current->next;
                 delete tmp;
             }
-
             head.next = nullptr;
         }
 
@@ -180,6 +124,48 @@ private:
             }
         }
     };
+
+public:
+    MyStack2() {
+        m_data = List<T>();
+    }
+    MyStack2(MyStack2&& other) {
+        m_data = std::move(other.m_data);
+    }
+    MyStack2& operator=(MyStack2&& other) {
+        m_data = std::move(other.m_data);
+        return *this;
+    }
+    MyStack2(const MyStack2& other) {
+        m_data = other.m_data;
+    }
+    ~MyStack2() {
+        m_data.~List();
+    }
+    // Метод для добавления в стэк
+    void push(const T& value) {
+        m_data.AddToTail(value);
+    }
+    // Метод для получения объекта из стэка
+    T pop() {
+        if (m_data.empty()) {
+            throw std::underflow_error("Exception: Stack is empty");
+        }
+        T result = m_data.GetLast();
+        m_data.RemoveLast();
+        return result;
+    }
+    // Метод для определения наполненности стэка
+    bool empty() const {
+        return m_data.empty();
+    }
+    MyStack2<T>& operator=(const MyStack2<T>& other) {
+        if (this != &other) {
+            m_data.clear();
+            m_data = other.m_data;
+        }
+        return *this;
+    }
 
     List<T> m_data;
 

@@ -1,6 +1,4 @@
-﻿// Iter_Alg.cpp : Defines the entry point for the console application.
-//
-//Итераторы. Стандартные алгоритмы. Предикаты.
+﻿//Итераторы. Стандартные алгоритмы. Предикаты.
 
 #include <iostream>
 #include <vector>

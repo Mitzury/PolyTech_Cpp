@@ -13,6 +13,11 @@ MyString::MyString()
 
 MyString::MyString(const char* ptr)
 {
+	if (ptr == nullptr)
+	{
+		m_pStr = nullptr;
+		return;
+	}
 	size_t size = strlen(ptr);
 	m_pStr = new char[size + 1];
 	strcpy_s(m_pStr, size + 1, ptr);

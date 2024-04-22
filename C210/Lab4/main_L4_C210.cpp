@@ -20,21 +20,21 @@ int main()
 	stk.push(2);
 	stk.push(3);
 	cout << "Stack: " << std::endl; 
-	printStack(stk);
+	Show(stk);
 
 	queue<int> q;
 	q.push(1);
 	q.push(2);
 	q.push(3);
 	cout << "Queue: " << std::endl;
-	printQueue(q);
+	Show(q);
 
 	priority_queue<int> pq;
 	pq.push(3);
 	pq.push(1);
 	pq.push(2);
 	cout << "Priority Queue: " << std::endl;
-	printPriorityQueue(pq);
+	Show(pq);
 
 	////////////////////////////////////////////////////////////////////////////////////
 	//stack

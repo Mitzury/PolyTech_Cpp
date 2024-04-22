@@ -29,7 +29,7 @@ cout << "Задание 1. Итераторы\n" << endl;
 	pointsSet.insert(Point(5, 6));
 
 // Создаем вектор, который будет хранить элементы set в обратном порядке
-	vector<Point> pointsVector(pointsSet.rbegin(), pointsSet.rend());
+	vector<Point> pointsVector(pointsSet.rbegin(), pointsSet.rend()); //чем отличается от енд
 
 //Потоковые итераторы. С помощью ostream_iterator выведите содержимое
 //vector и set из предыдущего задания на экран.

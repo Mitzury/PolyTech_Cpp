@@ -42,7 +42,7 @@ int main()
 	//а) элементы стека стали копиями элементов вектора
 	//б) при выводе значений как вектора, так и стека порядок значений был одинаковым 
 
-	std::cout << "Chapter 2 stack:" << std::endl;
+	std::cout << "\nChapter 2 stack:" << std::endl;
 	vector<int> vec = { 1, 2, 3, 4, 5 }; // Исходный вектор
 	stack<int> stkСopied;
 
@@ -69,7 +69,7 @@ int main()
 	//при этом явно задайте базовый контейнер.
 	//Измените значения первого и последнего элементов посредством front() и back()
 	//Подумайте, что требуется сделать при уничтожении такой очереди?
-	std::cout << "Chapter 3 queue:" << std::endl;
+	std::cout << "\nChapter 3 queue:" << std::endl;
 	// Создаём очередь, явно указывая list как базовый контейнер
 	queue<Point*, list<Point*>> pointQueue;
 
@@ -104,7 +104,7 @@ int main()
 	// в данном случае, адреса строковых литералов. Так как строки сортируются по их адресам в памяти, 
 	// а не лексикографически, упорядоченность может быть не такой, как ожидалось.
 
-	std::cout << "Chapter 4 priority_queue:" << std::endl;
+	std::cout << "\nChapter 4 priority_queue:" << std::endl;
 	// а) Создаем priority_queue для хранения адресов строковых литералов
 	priority_queue<const char*> pq_two;
 
@@ -134,7 +134,7 @@ int main()
 	//	контейнера, например, элементов массива	
 	// е) Ответ на вопрос: что происходит, если в массиве имеются дубли?
 	// Множества автоматически удаляют дубликаты при вставке, поэтому дублирующиеся значения в массиве будут игнорироваться.
-	std::cout << "Chapter 4 set:" << std::endl;
+	std::cout << "\nChapter 4 set:" << std::endl;
 // a) Создание множества с элементами типа Point
 	set<Point> pointSet;
 	pointSet.insert(Point(1, 2));
@@ -172,8 +172,9 @@ int main()
 	//г) замените один из КЛЮЧЕЙ на новый (была "Иванова", вышла замуж => стала "Петрова")
 
 	// Создаем map, используя строковые литералы в качестве ключей
-	std::cout << "Chapter 4 map, multiset:" << std::endl;
-	map<const char*, int> salary_map;
+	std::cout << "\nChapter 4 map, multiset:" << std::endl;
+	map<string, int> salary_map;
+
 
 	// Заполняем map с помощью operator[]
 	salary_map["Иванов"] = 50000;
@@ -188,9 +189,14 @@ int main()
 		cout << pair.first << " имеет зарплату:" << pair.second << endl;
 	}
 
+	// г) Замена ключа "Иванова" на "Петрова" (сначала добавим "Иванову")
+	salary_map["Иванова"] = 55000; // Добавляем Иванову
+	int salary = salary_map["Иванова"]; // Сохраняем зарплату Ивановой
+
+
 	// Замена ключа "Иванова" на "Петрова"
-	// Сначала проверяем наличие "Иванова" в map
-	auto it = salary_map.find("Иванова");
+ // Сначала проверяем наличие "Иванова" в map
+	map<string, int>::iterator it = salary_map.find("Иванова");
 	if (it != salary_map.end()) {
 		// Сохраняем зарплату Ивановой
 		int salary = it->second;
@@ -198,10 +204,13 @@ int main()
 		salary_map.erase(it);
 		// Добавляем Петрову с сохраненной зарплатой
 		salary_map["Петрова"] = salary;
+
+		cout << "\nИванова заменена на Петрову с зарплатой " << salary << endl;
 	}
 	else {
-		cout << "Запись для Ивановой не найдена." << endl;
+		cout << "\nЗапись для Ивановой не найдена." << endl;
 	}
+
 
 
 	// Выводим обновленное содержимое
@@ -298,7 +307,7 @@ int main()
 	//г) Выведите на экран только варианты "переводов" для заданного ключа. Подсказка: для нахождения диапазона
 	//		итераторов можно использовать методы lower_bound() и upper_bound()
 
-	std::cout << "Chapter 4 multimap:" << std::endl;
+	std::cout << "\nChapter 4 multimap:" << std::endl;
 	// а) Создание англо-русского словаря с использованием multimap
 	multimap<string, string> dict;
 

@@ -2,6 +2,7 @@
 #include <sstream>
 
 // Класс MyStack2
+
 template <typename T>
 class MyStack2 {
 private:
@@ -9,21 +10,29 @@ private:
     class List {
     private:
         bool is_deleted = false;
+        // Вложенный класс node для представления элемента списка
         class Node {
         public:
             T data;
+            // указатель на следующий элемент
             Node* next;
+            // конструктор с параметром
             Node(const T& data) : next(nullptr), data(data) {}
+            // конструктор без параметров
             Node() : next(nullptr), data(nullptr) {}
         };
+        // головной узел списка
         Node head;
     public:
+        // Конструктор по умолчанию
         List() {
             head = Node();
         }
+        // Конструктор перемещения
         List(List&& other) : head(other.head) {
             other.head = Node();
         }
+        // Оператор перемещения
         List& operator=(List&& other) {
             if (this != &other) {
                 clear();
@@ -32,6 +41,7 @@ private:
             }
             return *this;
         }
+        // Оператор копирования
         List& operator=(const List& other) {
             if (this != &other) {
                 clear();
@@ -43,26 +53,26 @@ private:
             }
             return *this;
         }
+        // Метод для добавления элемента в конец списка
         void AddToTail(const T& data) {
             Node* newNode = new Node(data);
             if (head.next == nullptr) {
                 head.next = newNode;
-            }
-            else {
+            } else {
                 Node* current = head.next;
                 while (current->next != nullptr)
                     current = current->next;
                 current->next = newNode;
             }
         }
-
+        // Метод для получения последнего элемента списка
         T GetLast() {
             Node* current = head.next;
             while (current->next != nullptr)
                 current = current->next;
             return current->data;
         }
-
+        // Метод для удаления последнего элемента списка
         void RemoveLast() {
             if (head.next != nullptr)
             {
@@ -74,7 +84,7 @@ private:
                 delete tmp;
             }
         }
-
+        // Конструктор копирования
         List(const List& other) {
             clear();
             Node* current = other.head;
@@ -83,7 +93,7 @@ private:
                 current = current->next;
             }
         }
-
+        // Перегрузка оператора вывода в поток для списка
         friend std::ostream& operator<<(std::ostream& os, const List& list) {
             Node* current = list.head.next;
             while (current != nullptr) {
@@ -93,7 +103,7 @@ private:
             os << std::endl;
             return os;
         }
-
+        // Перегрузка оператора ввода из потока для списка
         friend std::istream& operator>>(std::istream& is, List& list) {
             std::string str;
             while (std::getline(is, str)) {
@@ -102,7 +112,7 @@ private:
             }
             return is;
         }
-
+        // Метод для очистки списка
         void clear() {
             Node* current = head.next;
             while (current != nullptr) {
@@ -112,11 +122,11 @@ private:
             }
             head.next = nullptr;
         }
-
+        // Метод для проверки, пуст ли список
         bool empty() const {
             return head.next == nullptr;
         }
-
+        // Деструктор
         ~List() {
             if (!is_deleted) {
                 clear();

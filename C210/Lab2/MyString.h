@@ -24,8 +24,6 @@ public:
     MyString& operator--(); 
     MyString operator++(int); 
     MyString operator--(int); 
-
-    //friend void Swap(MyString& str1, MyString& str2);  //!!!
     void Swap(MyString& str2);
 };
 

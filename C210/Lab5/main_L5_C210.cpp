@@ -33,6 +33,7 @@ cout << "Задание 1. Итераторы\n" << endl;
 
 //Потоковые итераторы. С помощью ostream_iterator выведите содержимое
 //vector и set из предыдущего задания на экран.
+
 // Выводим содержимое set с помощью ostream_iterator
 	cout << "Содержимое set: ";
 	copy(pointsSet.begin(), pointsSet.end(), ostream_iterator<Point>(cout, " "));
@@ -135,10 +136,19 @@ cout << "Задание 1. Итераторы\n" << endl;
 	//итератор на элемент Point, удовлетворяющий условию: координаты x и y лежат в промежутке
 	//[-n, +m].
 	// Поиск точки с координатами в заданном диапазоне
-	int n = -10, m = 10; // Задаем диапазон координат
-	vector<Point>::iterator foundPoint = find_if(pointss.begin(), pointss.end(), [n, m](const Point& p) {
-		return p.x >= n && p.x <= m && p.y >= n && p.y <= m;
-		});
+	// Поиск точки с координатами в заданном диапазоне
+
+	class PointInRange {
+		int n, m;
+	public:
+		PointInRange(int n, int m) : n(n), m(m) {}
+
+		bool operator()(const Point& p) const {
+			return p.x >= n && p.x <= m && p.y >= n && p.y <= m;
+		}
+	};
+
+	vector<Point>::iterator foundPoint = find_if(pointss.begin(), pointss.end(), PointInRange(-10, 10));
 	if (foundPoint != pointss.end()) {
 		cout << "Найдена точка в заданном диапазоне: " << *foundPoint << endl;
 	}
@@ -165,7 +175,8 @@ cout << "Задание 1. Итераторы\n" << endl;
 	}
 	cout << endl;
 	cout << "\n\ntransform\n" << endl;
-	//transform
+
+//transform
 //Напишите функцию, которая с помощью алгоритма transform переводит 
 //содержимое объекта string в нижний регистр.
 //Подсказка: класс string - это "почти" контейнер, поэтому для него
@@ -190,8 +201,14 @@ cout << "Задание 1. Итераторы\n" << endl;
 		cout << str << " ";
 	}
 	cout << endl;
+	//inserter создает итератор, который вставляет каждый преобразованный элемент в stringSet.
+	// 
+	//Использование inserter в обеспечивает корректное 
+	// добавление элементов в set, не нарушая его свойства и обеспечивая совместимость 
+	// с шаблонными алгоритмами STL.
 
 	cout << "\n\ncopy_if\n" << endl;
+
 	{
 	//copy_if
 	//Дан вектор с элементами типа string. С помощью copy_if() требуется
@@ -203,12 +220,21 @@ cout << "Задание 1. Итераторы\n" << endl;
 
 		vector<string> words = { "Apple", "авокадо", "Апельсин", "банан", "Барбарис" };
 
-	// Вывод строк, начинающихся с определенной буквы
+		// Вывод строк, начинающихся с определенной буквы
+		class StartsWith {
+			char letter;
+		public:
+			StartsWith(char letter) : letter(letter) {}
+
+			bool operator()(const string& str) const {
+				return !str.empty() && (str[0] == letter || str[0] == tolower(letter));
+			}
+		};
+
+		// Пример использования
 		for (char letter = 'А'; letter <= 'Б'; ++letter) {
 			cout << "Строки, начинающиеся с буквы " << letter << ": ";
-			copy_if(words.begin(), words.end(), ostream_iterator<string>(cout, " "), [letter](const string& str) {
-				return str.size() > 0 && (str[0] == letter || str[0] == tolower(letter));
-				});
+			copy_if(words.begin(), words.end(), ostream_iterator<string>(cout, " "), StartsWith(letter));
 			cout << endl;
 		}
 

@@ -19,11 +19,19 @@ void changePoint(T& value, int newX, int newY) {
 }
 
 // Функция преобразования строки в нижний регистр
+class ToLower {
+public:
+	char operator()(char c) const {
+		return tolower(static_cast<unsigned char>(c));
+	}
+};
+
 string toLowerCase(const string& str) {
 	string lowerCaseStr;
-	transform(str.begin(), str.end(), back_inserter(lowerCaseStr), [](unsigned char c) -> unsigned char { return tolower(c); });
+	transform(str.begin(), str.end(), back_inserter(lowerCaseStr), ToLower());
 	return lowerCaseStr;
 }
+
 
 
 // Перегрузка оператора вывода для пары

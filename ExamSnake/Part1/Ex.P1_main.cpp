@@ -73,7 +73,7 @@ int main() {
         }
         std::cout << "Игра завершена. Спасибо за участие!\n";
 #endif;
-#if 1; // Часть 1. Задание 2. Способ 1
+#if 0; // Часть 1. Задание 2. Способ 1
         enum Keys {
             LEFT = 'a',
             RIGHT = 'd',
@@ -112,50 +112,46 @@ int main() {
             }
             std::cout << "Игра завершена. Спасибо за участие!\n";
 #endif;
-#if 0; // Часть 1. Задание 3. Способ 1
+#if 1; // Часть 1. Задание 3. Способ 1
             enum ArrowKeys {
-                LEFT_ARROW = 50,
+                LEFT_ARROW = 75,
                 RIGHT_ARROW = 77,
                 UP_ARROW = 72,
                 DOWN_ARROW = 80,
                 ESC = 27
             };
-                char direction = '>';
-                std::cout << "Введите символ управления (← - влево, → - вправо, ↑ - вверх, ↓ - вниз, ESC - выход):\n ";
+                std::cout << "Введите символ управления (← - влево, → - вправо, ↑ - вверх, ↓ - вниз, ESC - выход): " << std::endl;;
                 while (true) {
-                    unsigned int input = _getch();
-                    unsigned int secondInput;
+                    unsigned int input = 0;
 
-                    if (input == 0xE0) {
-                        secondInput = _getch();
-                        input = secondInput + 256;
-                    }
-                    if (input == ESC) {
-                        break;
-                    }
-                    else if (input == LEFT_ARROW || input == RIGHT_ARROW || input == UP_ARROW || input == DOWN_ARROW) {
+                    if ((input = _getch()) == 0 || input == 224) /* функциональная ли клавиша */
+                    {
+                        input = _getch(); /* получаем код клавиши */
                         switch (input) {
                         case LEFT_ARROW:
-                            direction = '<';
+                            std::cout << '<' << std::endl;
                             break;
                         case RIGHT_ARROW:
-                            direction = '>';
+                            std::cout << '>' << std::endl; 
                             break;
                         case UP_ARROW:
-                            direction = '^';
+                            std::cout << '^' << std::endl;
                             break;
                         case DOWN_ARROW:
-                            direction = 'v';
+                            std::cout << 'v' << std::endl;
                             break;
                         }
                     }
                     else {
-                        std::cout << "Ошибка: Неверный символ управления. Пожалуйста, введите корректный символ.\n";
-                        continue;
+                        if (input == ESC)
+                        {
+                            std::cout << "Игра завершена. Спасибо за участие!" << std::endl;
+                            break;
+                        }
+                        else
+                            std::cout << "Ошибка: Неверный символ управления. Пожалуйста, введите корректный символ.\n" << std::endl;
                     }
-                    std::cout << direction;
                 }
-                std::cout << "Игра завершена. Спасибо за участие!\n";
 #endif;
 return 0;
 }

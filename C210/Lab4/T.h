@@ -62,7 +62,7 @@ void printPointQueue(std::queue<Point*, std::list<Point*>> q) {
 
 
 template <typename Adapter>
-void Show(Adapter c_copy)
+void Show(Adapter& c_copy)
 {
     while (!c_copy.empty())
     {

@@ -21,6 +21,7 @@ int main()
 	stk.push(3);
 	cout << "Stack: " << std::endl; 
 	Show(stk);
+	Show(stk);
 
 	queue<int> q;
 	q.push(1);

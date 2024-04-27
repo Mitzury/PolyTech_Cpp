@@ -115,6 +115,10 @@ int _tmain(int argc, _TCHAR* argv[]) {
 			s1.push(MyString("Ccc"));
 			s1.push(MyString("Ddd"));
 
+			std::cout << "s1 pop\n";
+			s1.pop();
+			std::cout << s1;
+
 			MyStack2<MyString> s2(s1);
 			MyString str = s1.pop();
 

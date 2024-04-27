@@ -31,6 +31,14 @@ cout << "Задание 1. Итераторы\n" << endl;
 // Создаем вектор, который будет хранить элементы set в обратном порядке
 	vector<Point> pointsVector(pointsSet.rbegin(), pointsSet.rend()); //чем отличается от енд
 
+	// В контейнере set в языке C++ элементы хранятся в отсортированном порядке по значению. 
+	// end и begin являются итераторами, указывающими на первый и последний элемент контейнера соответственно. 
+	// rbegin указывает на последний элемент контейнера и при обходе контейнера с помощью итератора будет 
+	// последовательно указывать на каждый элемент контейнера до первого элемента. 
+	// begin и end для обхода контейнера set, вы получите элементы в порядке возрастания. 
+	// Таким образом rbegin и rend, то получите элементы в порядке убывания.
+
+
 //Потоковые итераторы. С помощью ostream_iterator выведите содержимое
 //vector и set из предыдущего задания на экран.
 
@@ -100,10 +108,21 @@ cout << "Задание 1. Итераторы\n" << endl;
 	//как шаблон) и выведите результат с помощью предыдущего предиката
 
 	// Изменяем координаты всех точек в векторе
-	for_each(points.begin(), points.end(), [&](Point& p) { changePoint(p, 10, 20); });
-	cout << "Измененный вектор точек: ";
+	class ChangeCoordinates {
+	int newX, newY;
+	public:
+		ChangeCoordinates(int newX, int newY) : newX(newX), newY(newY) {}
+
+		void operator()(Point& p) const {
+				p.x = newX;
+				p.y = newY;
+			}
+	};
+
+	for_each(points.begin(), points.end(), ChangeCoordinates(10, 20));
 	for_each(points.begin(), points.end(), printElement<Point>);
 	cout << endl;
+
 
 	//С помощью алгоритма find() найдите в любой последовательности элементов Point
 	//все итераторы на элемент Point с указанным значением.
@@ -252,15 +271,32 @@ cout << "Задание 1. Итераторы\n" << endl;
 
 	// Создание двух map из multimap: для четного и нечетного количества дней
 
-		map<string, int> evenDays, oddDays;
-		for (const auto& m : month) {
-			if (m.second % 2 == 0) {
-				evenDays.insert(m);
+		class DaysCount
+		{
+			bool even;
+		public:
+			DaysCount(bool e) : even(e) {}
+			bool operator()(const std::pair<std::string, int>& p) const
+			{
+				return (even ? p.second % 2 == 0 : p.second % 2 != 0);
 			}
-			else {
-				oddDays.insert(m);
-			}
-		}
+		};
+
+		std::map <std::string, int > evenDays;
+		std::map<std::string, int> oddDays;
+		copy_if(month.begin(), month.end(), inserter(evenDays, evenDays.begin()), DaysCount(true));
+		copy_if(month.begin(), month.end(), inserter(oddDays, oddDays.begin()), DaysCount(false));
+
+
+		//map<string, int> evenDays, oddDays;
+		//for (const auto& m : month) {
+		//	if (m.second % 2 == 0) {
+		//		evenDays.insert(m);
+		//	}
+		//	else {
+		//		oddDays.insert(m);
+		//	}
+		//}
 
 
 	// Вывод содержимого map с четным количеством дней

@@ -43,7 +43,7 @@ public:
 
     // Метод для добавления в стэк
     void push(const T& value) {
-        AddToTail(value);
+        AddToHead(value);
     }
 
     // Метод для получения объекта из стэка
@@ -52,7 +52,7 @@ public:
             throw std::underflow_error("Exception: Stack is empty");
         }
         T result = GetLast();
-        RemoveLast();
+        RemoveFirst();
         return result;
     }
 
@@ -97,12 +97,25 @@ private:
             current->next = newNode;
         }
     }
+    void AddToHead(const T& data) {
+        Node* newNode = new Node(data);
+        newNode->next = head.next;
+        head.next = newNode;
+    }
 
     T GetLast() {
         Node* current = head.next;
         while (current->next != nullptr)
             current = current->next;
         return current->data;
+    }
+
+    void RemoveFirst() {
+        if (head.next != nullptr) {
+            Node* tmp = head.next;
+            head.next = tmp->next;
+            delete tmp;
+        }
     }
 
     void RemoveLast() {

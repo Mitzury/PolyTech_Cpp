@@ -1,6 +1,7 @@
-#QnA_Итоговое тестирование С20 + С21
+<h1>QnA_Итоговое тестирование С20 + С21</h1>
 
-##Вопрос 1:
+<strong>Вопрос 1:</strong>
+<blockquote>
 Дан 
 class A{
 public void f();
@@ -28,6 +29,7 @@ d)
 void func(const A* a){
 	a->f();
 }
+</blockquote>
 
 
 ##Вопрос 2:

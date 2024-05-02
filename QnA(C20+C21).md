@@ -99,6 +99,7 @@ B b; F (&b); }</code></p>
 		 set s(v.begin(),v.end()); 
 		 size_t n2 =s.size(); 
 		 for(set::iterator b=s.begin,e=s.end;b!=e;++b) { cout&lt;&lt;*b&lt;&lt;", "; }
+	</code>
 <p>Что будет выведено?</p>
 <ul>
 <li>a) 1, 8, 8, 7, 6, 4, 1</li>

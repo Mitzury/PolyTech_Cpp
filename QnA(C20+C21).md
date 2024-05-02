@@ -1,596 +1,257 @@
-<h1>QnA_Итоговое тестирование С20 + С21</h1>
-
-<strong>Вопрос 1:</strong>
-<blockquote>
-Дан 
-class A{
-public void f();
-}
-
-Отметьте корректные варианты вызова метода f()
-Выберете один или несколько ответов
-
-a) 
-void func(A& a){
-	a.f();
-}
-b) 
-void func(A* a){
-	a.f();
-}
-c) 
-void func(A a){
-	a.f();
-}
-d) 
-void func(const A* a){
-	a->f();
-}
+<div class="markdown-heading">
+<h1 class="heading-element" tabindex="-1">QnA_Итоговое тестирование С20 + С21</h1>
+</div>
+<p><strong>Вопрос 1:</strong></p>
+<blockquote>Дан&nbsp;<code> class A{ public void f(); }</code>
+<p>Отметьте корректные варианты вызова метода f()</p>
+<p>Выберете один или несколько ответов</p>
+<ul>
+<li>a) void func(A&amp; a){ a.f(); }</li>
+<li>b) void func(A* a){ a.f(); }</li>
+<li>c) void func(A a){ a.f(); }</li>
+<li>d) void func(const A* a){ a-&gt;f(); }</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 2:</strong>
-<blockquote>
-class A { ... };
-class B : public A { ... };
-
-void F(A* pA) { ... }
-
-int main()
-{
-
-   B b;
-   F (&b);
-   
-}   
-
-Посредством pA в функции F можно:
-Выберете один или несколько ответов:
-
-a) Обращаться к protected переменным класса А
-b) Вызывать не виртуальные public методы класса А
-c) Обращаться к переменным класса B
-d) Вызывать виртуальные public методы класса B
-e) Вызывать не виртуальные public методы класса B
+<p><strong>Вопрос 2:</strong></p>
+<blockquote><em>class A { ... }; class B : public A { ... };</em>
+<p><em>void F(A* pA) { ... }</em></p>
+<p><em>int main() {</em></p>
+<p><em>B b; F (&amp;b);</em></p>
+<p><em>}</em></p>
+<p>Посредством pA в функции F можно: Выберете один или несколько ответов:</p>
+<ul>
+<li>a) Обращаться к protected переменным класса А</li>
+<li>b) Вызывать не виртуальные public методы класса А</li>
+<li>c) Обращаться к переменным класса B</li>
+<li>d) Вызывать виртуальные public методы класса B</li>
+<li>e) Вызывать не виртуальные public методы класса B</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 3:</strong>
-<blockquote>
-class A { ...
-public:
-
-	virtual void VF() = 0;
-};
-class B : public A{ ...
-public:
-
-	virtual void VF();
-};
-
-Отметьте корректные варианты
-Выберете один или несколько ответов:
-
-a) B b;
-	A& r = b;
-	
-b) A* p = new A;
-
-c) A a;
-
-d) A* p = new B
+<p><strong>Вопрос 3:</strong></p>
+<blockquote><em>class A { ... public:</em>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto">
+<pre class="notranslate"><em><code>virtual void VF() = 0;
+</code></em></pre>
+</div>
+<p><em>}; class B : public A{ ... public:</em></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto">
+<pre class="notranslate"><em><code>virtual void VF();
+</code></em></pre>
+</div>
+<p><em>};</em></p>
+<p>Отметьте корректные варианты Выберете один или несколько ответов:</p>
+<ul>
+<li>a) B b; A&amp; r = b;</li>
+<li>b) A* p = new A;</li>
+<li>c) A a;</li>
+<li>d) A* p = new B</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 4:</strong>
-<blockquote>
-Отметьте корректные утверждения:
-Выберете один или несколько ответов:
-
-a) для std::deque реализован оператор []
-b) для std::deque не реализованы методы push_front(), 
-    pop_front(), т.к. вставка в начало неэффективна
-c) std::deque - это контейнер с произвольным доступом
+<p><strong>Вопрос 4:</strong></p>
+<blockquote>Отметьте корректные утверждения: Выберете один или несколько ответов:
+<ul>
+<li>a) для std::deque реализован оператор []</li>
+<li>b) для std::deque не реализованы методы push_front(), pop_front(), т.к. вставка в начало неэффективна</li>
+<li>c) std::deque - это контейнер с произвольным доступом</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 5:</strong>
-<blockquote>
-Отметьте корректные варианты:
-Выберете один или несколько ответов:
-a) 
-  A.h
-  class A{ ...
-  public:
-	virtual void VF()=0;
-  };
-  A.cpp
-  #include "A.h"
-  void A::VF() {<реализация>}
-b)
- class A{ ...
-  public:
-	virtual void VF()=0; // релизации нет
-  };
-c)
- class A{ ...
-  public:
-	virtual void VF()=0; {<реализация>}
-  };  
+<p><strong>Вопрос 5:</strong></p>
+<blockquote>Отметьте корректные варианты: Выберете один или несколько ответов:</blockquote>
+<ul>
+<li>a) A.h class A{ ... public: virtual void VF()=0; }; A.cpp #include "A.h" void A::VF() {&lt;реализация&gt;}</li>
+<li>b) class A{ ... public: virtual void VF()=0; // релизации нет };</li>
+<li>c) class A{ ... public: virtual void VF()=0; {&lt;реализация&gt;} };</li>
+</ul>
+<p><strong>Вопрос 6:</strong></p>
+<blockquote><em>class A { ... public: A(int=0); };</em>
+<p>отметьте корректные варианты Выберете один или несколько ответов:</p>
+<ul>
+<li>a) A* ar[]={new A(), new A(1)};</li>
+<li>b) A* ar[]={&amp;A(1),&amp;A(2)};</li>
+<li>c) A a1(1), a2(2); A* ar[]={&amp;a1,&amp;a2};</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 6:</strong>
-<blockquote>
-class A { 
-   ...
-public:
-	A(int=0);
-};
-
-отметьте корректные варианты
-Выберете один или несколько ответов:
-
-a) 
-  A* ar[]={new A(), new A(1)};
-b) 
-  A* ar[]={&A(1),&A(2)};
-c)
-  A a1(1), a2(2);
-  A* ar[]={&a1,&a2};
+<p><strong>Вопрос 7:</strong></p>
+<blockquote>При создании объекта компилятор выделяет память Выберете один или несколько ответов:
+<ul>
+<li>a) для кода не-inline методов класса</li>
+<li>b) для обычных (нестатических) переменных класса</li>
+<li>c) может добавлять дополнительные байты для оптимизации по времени</li>
+<li>d) для кода inline методов класса</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 7:</strong>
-<blockquote>
-При создании объекта компилятор выделяет память
-Выберете один или несколько ответов:
-
-a) для кода не-inline методов класса
-b) для обычных (нестатических) переменных класса
-c) может добавлять дополнительные байты для оптимизации по времени
-d) для кода inline методов класса
+<p><strong>Вопрос 8:</strong></p>
+<blockquote>class A { ... public: A(); void f(); }; Отметьте корректные варианты Выберете один или несколько ответов:
+<ul>
+<li>a) { A a; A* pa-&amp;a; pa-&gt;f(); }</li>
+<li>b) { A* pa=new A; ... delete pa; pa-&gt;f(); }</li>
+<li>c) { A* pa=&amp;A(); pa-&gt;f(); }</li>
+<li>d) A* pa; { A a; pa=&amp;a; ) pa-&gt;f();</li>
+<li>e) { A* pa=new A; pa-&gt;f(); ... delete pa; }</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 8:</strong>
-<blockquote>
-class A { 
-...
-public:
-	A();
-	void f();
-};
-Отметьте корректные варианты
-Выберете один или несколько ответов:
-
-a)
-	{
-		A a;
-		A* pa-&a;
-		pa->f();
-	}
-b) 
-	{
-		A* pa=new A;
-		...
-		delete pa;
-		pa->f();
-	}
-c)
-	{
-		A* pa=&A();
-		pa->f();
-	}
-d)
-	A* pa;
-	{
-		A a;
-		pa=&a;
-	)
-	pa->f();
-e) 
-	{
-		A* pa=new A;
-		pa->f();
-		...
-		delete pa;
-	}
+<p><strong>Вопрос 9:</strong></p>
+<blockquote>Отметьте варианты, в которых перегружен оператор приведения типа Выберете один или несколько ответов:</blockquote>
+<ul>
+<li>a) class A { int m_a; public: operator int(); };</li>
+<li>b) class A { char* p; public: operator const char*(); };</li>
+<li>c) class A { int m_a; public: int operator(); };</li>
+</ul>
+<p><strong>Вопрос 10:</strong></p>
+<blockquote>int ar[10] ={8,9,7,6,4,1}; vector v(ar,ar+10); size_t n1 =v.size(); set s(v.begin(),v.end()); size_t n2 =s.size(); for(set::iterator b=s.begin,e=s.end;b!=e;++b){ cout&lt;&lt;*b&lt;&lt;", "; }
+<p>Что будут выведено?</p>
+<ul>
+<li>a) 1, 8, 8, 7, 6, 4, 1</li>
+<li>b) 1, 8, 9, 7, 6, 4, 1, 0</li>
+<li>с) 1, 1, 4, 6, 7, 8, 9</li>
+<li>d) 0, 1, 4, 6, 7, 8, 9</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 9:</strong>
-<blockquote>
-Отметьте варианты, в которых перегружен оператор приведения типа
-Выберете один или несколько ответов:
-a)
-	class A {
-		int m_a;
-	public:
-		operator int();
-		};
-b)
-	class A {
-		char* p;
-	public:
-		operator const char*();
-		};
-c)
-	class A {
-		int m_a;
-	public:
-		int operator();
-		};
+<p><strong>Вопрос 11:</strong></p>
+<blockquote>Деструктор Выберете один или несколько ответов:
+<ul>
+<li>a) программист должен обязательно явно реализовать в каждом классе</li>
+<li>b) имя деструктора должно совпадать с именем класса и предваряться значком "~"</li>
+<li>с) тип возвращаемого деструктором значения ~void</li>
+<li>d) может быть виртуальным</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 10:</strong>
-<blockquote>
-int ar[10] ={8,9,7,6,4,1};
-vector<int> v(ar,ar+10);
-size_t n1 =v.size();
-set<int> s(v.begin(),v.end());
-size_t n2 =s.size();
-for(set<int>::iterator b=s.begin,e=s.end;b!=e;++b){
-		cout<<*b<<", ";
-		}
-
-Что будут выведено?
-
-a) 1, 8, 8, 7, 6, 4, 1
-b) 1, 8, 9, 7, 6, 4, 1, 0
-с) 1, 1, 4, 6, 7, 8, 9
-d) 0, 1, 4, 6, 7, 8, 9
+<p><strong>Вопрос 12:</strong></p>
+<blockquote>Отметьте корректные утверждения: Выберете один или несколько ответов:</blockquote>
+<ul>
+<li>a) для std::deque реализованы методы push_back(), pop_back()</li>
+<li>b) для std::deque реализованы методы push_front(), pop_front()</li>
+<li>с) std::deque -это контейнер с последовательным доступом</li>
+</ul>
+<p><strong>Вопрос 13:</strong></p>
+<blockquote>class A {... virtual void f(); ...}; class B : public A { ... }; class C : public B { ... };
+<p>int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typeid(*pA) == typeid (B) ; //? }</p>
+<p>В строках, помеченных "?", Выберете один или несколько ответов:</p>
+<ul>
+<li>a) b2== true</li>
+<li>b) b1== true</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 11:</strong>
-<blockquote>
-Деструктор
-Выберете один или несколько ответов:
-
-a) программист должен обязательно явно реализовать в каждом классе
-b) имя деструктора должно совпадать с именем класса и предваряться
-   значком "~"
-с) тип возвращаемого деструктором значения ~void
-d) может быть виртуальным
+<p><strong>Вопрос 14:</strong></p>
+<blockquote>class A { int m_a; ... void f1(); void f(2) const; };
+<p>Отметьте корректные варианты: Выберете один или несколько ответов:</p>
+<ul>
+<li>a) void A::f1(){ m_a++; }</li>
+<li>b) void A::f2() const { f1(); }</li>
+<li>c) void A::f2() const { m_a++; }</li>
+<li>d) void A::f1() { f2(); }</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 12:</strong>
-<blockquote>
-Отметьте корректные утверждения:
-Выберете один или несколько ответов:
-a) для std::deque реализованы методы push_back(), pop_back()
-b) для std::deque реализованы методы push_front(), pop_front()
-с) std::deque -это контейнер с последовательным доступом
+<p><strong>Вопрос 15:</strong></p>
+<blockquote>template void f(const A&amp; a, const A&amp; b) {...} Отметьте корректные варианты вызова функции: Выберете один или несколько ответов:</blockquote>
+<ul>
+<li>a) f(2,3.3);</li>
+<li>b) f(2.2,1);</li>
+<li>c) int x=1; unsigned int y=2; f(x,y);</li>
+<li>d) int x=1; double y=2.2; f(x,y);</li>
+</ul>
+<p><strong>Вопрос 16:</strong></p>
+<blockquote>Отметьте варианты реализации шаблонной функции, для которых компилятор не будет выдавать ошибок в приведенном фрагменте: f(1); double d=5.5; f(d); Выберете один или несколько ответов:</blockquote>
+<ul>
+<li>a) template void f(const T&amp; t) {...}</li>
+<li>b) template void f(T t) {...}</li>
+<li>c) template void f(T&amp; t) {...}</li>
+</ul>
+<p><strong>Вопрос 17:</strong></p>
+<blockquote>Отметьте корректные варианты перегрузки префиксного оператора "++" Выберете один или несколько ответов:
+<ul>
+<li>a) class A { ... public: friend A&amp; operator++(A&amp;); };</li>
+<li>b) class A { ... public: A&amp; operator++(); };</li>
+<li>c) class A { ... public: A&amp; operator++(A&amp;); };</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 13:</strong>
-<blockquote>
-class A {... virtual void f(); ...};
-class B : public A { ... };
-class C : public B { ... };
-
-int main()
-{
-	A* pa= new C;
-	bool b1= typeid(*pA) == typeid (C) ; //?
-	bool b2= typeid(*pA) == typeid (B) ; //?
-}
-
-В строках, помеченных "?",
-Выберете один или несколько ответов:
-
-a) b2== true
-b) b1== true
+<p><strong>Вопрос 18:</strong></p>
+<blockquote>vector v; //формирование значений list l; //формирование v.size() начений deque d; // требуется: d[i]=v[i]+l[i];
+<p>Отметьте корректные варианты задания предиката для трансформации двух последовательностей в третью Выберете один или несколько ответов:</p>
+<ul>
+<li>a) class MyPlus { public: int operator() (int x, int y) const {return x+y} }; transform(..., MyPlus);</li>
+<li>b) class MyPlus { returnreturn x+y} void main() { ... transform(..., MyPlus); ... }</li>
+<li>c) std::transform(...,std::plus());</li>
+<li>d) template class MyPlus { public: T operator() (T x,T y) const (return x+y} }; transform(..., MyPlus());</li>
+<li>e) class MyPlus { public: int operator() (int x, int y) const {return x+y} }; transform(..., MyPlus());</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 14:</strong>
-<blockquote>
-class A {
-	int m_a;
-	...
-	void f1();
-	void f(2) const;
-};
-
-Отметьте корректные варианты:
-Выберете один или несколько ответов:
-
-a)
-	void A::f1(){
-		m_a++;
-	}
-b)
-	void A::f2() const {
-		f1();
-	}
-c) 
-	void A::f2() const {
-		m_a++;
-	}	
-d)
-	void A::f1() {
-		f2();
-	}
+<p><strong>Вопрос 19:</strong></p>
+<blockquote>Отметьте корректные варианты Выберете один или несколько ответов:
+<ul>
+<li>a) class A { ... private: friend class B; };</li>
+<li>b) class A { ... public: friend class B; };</li>
+<li>c) class A{ ... protected: friend class B; };</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 15:</strong>
-<blockquote>
-template<typename A> void f(const A& a, const A& b) {...}
-Отметьте корректные варианты вызова функции:
-Выберете один или несколько ответов:
-a)
-	f(2,3.3);
-b)
-	f<double>(2.2,1);
-c)
-	int x=1;
-	unsigned int y=2;
-	f(x,y);
-d)
-	int x=1;
-	double y=2.2;
-	f(x,y);	
-</blockquote> 
-
-<strong>Вопрос 16:</strong>
-<blockquote>
-Отметьте варианты реализации шаблонной функции, для которых компилятор 
-не будет выдавать ошибок в приведенном фрагменте:
-f(1);
-double d=5.5;
-f(d);
-Выберете один или несколько ответов:
-a)
-	template<typename T> void f(const T& t) {...}
-b)
-	template<typename T> void f(T t) {...}	
-c)
-	template<typename T> void f(T& t) {...}	
-		
+<p><strong>Вопрос 20:</strong></p>
+<blockquote>Отметьте корректные утверждения: Выберете один или несколько ответов:
+<ul>
+<li>a) сортировка списка реализована только методом класса std::list::sotr()</li>
+<li>b) список можно отсортировать как мутодом класса std::list::sotr(), так и обобщеным алгоритмом std::sotr() стандартной библиотеки</li>
+<li>c) список можно отсортировать обобщеным алгоритмом std::sotr() стандартной библиотеки</li>
+</ul>
 </blockquote>
-
- 
-<strong>Вопрос 17:</strong>
-<blockquote>
-Отметьте корректные варианты перегрузки префиксного оператора "++"
-Выберете один или несколько ответов:
-
-a)
-	class A { ...
-	public:
-		friend A& operator++(A&);
-	};	
-b)
-	class A { ...
-	public:
-		A& operator++();
-	};	
-c)
-	class A { ...
-	public:
-		A& operator++(A&);
-	};	
+<p><strong>Вопрос 21:</strong></p>
+<blockquote>Метод std::vector::rend() Выберете один ответ:
+<ul>
+<li>a) Возвращает итератор на последний элемент контейнера</li>
+<li>b) формирует признак выхода за пределы контейнера</li>
+<li>c) Возвращает итератор на первый элемент контейнера</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 18:</strong>
+<p><strong>Вопрос 22:</strong></p>
 <blockquote>
-vector<int> v;
-//формирование значений
-list<int> l;
-//формирование v.size() начений
-deque<int> d;
-// требуется: d[i]=v[i]+l[i];
-
-Отметьте корректные варианты задания предиката для трансформации двух
-последовательностей в третью
-Выберете один или несколько ответов:
-
-a)
-	class MyPlus {
-	public:
-		int operator() (int x, int y) const {return x+y}
-	};
-	transform(..., MyPlus);
-b)
-	class MyPlus { returnreturn x+y}
-	void main() {
-	...
-	transform(..., MyPlus);
-	...
-	}
-c) 
-	std::transform(...,std::plus<int>());
-d)
-	template<typename T> class MyPlus {
-	public:
-		T operator() (T x,T y) const (return x+y}
-	};
-	transform(..., MyPlus<int>());
-e)
-	class MyPlus {
-	public:
-		int operator() (int x, int y) const {return x+y}
-	};
-	transform(..., MyPlus());
+<p>class A { int m_a; public: A(int); void f(); }; class B public A { int m_b; public: B(int,int); virtual void f(); }; class C public B { int m_c; public: C(int,int,int); };</p>
+<p>Для каких классов компилятор сформирует таблицу виртуальных функций Выберете один или несколько ответов:</p>
+<ul>
+<li>a) C</li>
+<li>b) A</li>
+<li>c) B</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 19:</strong>
+<p><strong>Вопрос 23:</strong></p>
+<blockquote>Куда происходит передача управления при выполнении оператора throw 1? Выберете один или несколько ответов:
+<ul>
+<li>a) на открывающую фигурную скобку обработчика catch(int)</li>
+<li>b) на закрывающую фигурную скобку блока, в котором находится оператор throw</li>
+<li>c) на закрывающую фигурную скобку функции, в которой находится оператор throw</li>
+</ul>
+</blockquote>
+<p><strong>Вопрос 24:</strong></p>
+<blockquote>Отметьте корректные высказывания:
+<ul>
+<li>a) операции вставки/удаления значений в вписок осуществляются эффективнее чем в вектор</li>
+<li>b) данные в списке располагаются последовательно в памяти</li>
+</ul>
+</blockquote>
+<p><strong>Вопрос 25:</strong></p>
+<blockquote>Отличие классов от структур языка Си Выберете один или несколько ответов:
+<ul>
+<li>a) Структура Си может содержать как данные, так и методы</li>
+<li>b) Класс может содержать как данные, так и методы</li>
+<li>c) Класс может содержать только методы</li>
+<li>d) Класс может содержать только данные</li>
+<li>e) Структура Си должна содержать только данные</li>
+</ul>
+</blockquote>
+<p><strong>Вопрос 26:</strong></p>
+<blockquote>Отметьте корректные варианты: Выберете один или несколько ответов:
+<ul>
+<li>a) try{ ... } catch(...) { &lt;обработка всех типов исключительных ситуаций, кроме целочисленного исключения&gt; } catch (int n) { &lt;обработка целочисленного исключения&gt; }</li>
+<li>b) try{ ... } catch (int n) { &lt;обработка целочисленного исключения&gt; } catch(...) { &lt;обработка всех остальных исключительных ситуаций&gt; } c) try{ ... } catch (int n) { &lt;обработка целочисленного исключения&gt; } catch(double)</li>
+<li>с) { &lt;обработка исключения типа double&gt; }</li>
+<li>d) try{ ... } catch(...) { &lt;обработка любой исключительной ситуации&gt; } e) try{ ... } &lt;продолжение выполнения кода&gt;</li>
+</ul>
+</blockquote>
+<p><strong>Вопрос 27:</strong></p>
 <blockquote>
-Отметьте корректные варианты
-Выберете один или несколько ответов:
-
-a)
-	class A {
-	...
-	private:
-		friend class B;
-	};
-b)
-	class A {
-	...
-	public:
-		friend class B;
-	};
-c)
-	class A{
-	...
-	protected:
-		friend class B;
-	};
+<p>class A {... virtual void fA(); ...}; class B {... virtual void fB(); ...}; class C : public A, public B {};</p>
+<p>В каких вариантах будет сформирован ненулевой указатель pp?</p>
+<ul>
+<li>a) A* p= new C; C* pp= dynamic_cast&lt;C*&gt;(p);</li>
+<li>b) A* p= new C; C* pp= dynamic_cast&lt;B*&gt;(p);</li>
+<li>c) B* p= new C; C* pp= dynamic_cast&lt;C*&gt;(p);</li>
+<li>d) B* p= new C; A* pp= dynamic_cast&lt;A*&gt;(p);</li>
+</ul>
 </blockquote>
-
-<strong>Вопрос 20:</strong>
-<blockquote>
-Отметьте корректные утверждения:
-Выберете один или несколько ответов:
-
-a) сортировка списка реализована только методом класса
-	std::list::sotr()
-b) список можно отсортировать как мутодом класса 
-	std::list::sotr(), так и обобщеным алгоритмом 	std::sotr()
-   стандартной библиотеки
-c) список можно отсортировать обобщеным алгоритмом 	std::sotr()
-   стандартной библиотеки   
-
-</blockquote>
-
- 
-<strong>Вопрос 21:</strong>
-<blockquote>
-Метод std::vector::rend()
-Выберете один ответ:
-
-a) Возвращает итератор на последний элемент контейнера
-b) формирует признак выхода за пределы контейнера
-c) Возвращает итератор на первый элемент контейнера
-</blockquote>
-
-
-<strong>Вопрос 22:</strong>
-<blockquote>
-
-class A {
-	int m_a;
-public:
-	A(int);
-	void f();
-};
-class B public A {
-	int m_b;
-public:
-	B(int,int);
-	virtual void f();
-};
-class C public B {
-	int m_c;
-public:
-	C(int,int,int);
-};
-
-Для каких классов компилятор сформирует таблицу виртуальных функций
-Выберете один или несколько ответов:
-a) C
-b) A
-c) B
-</blockquote>
-
-<strong>Вопрос 23:</strong>
-<blockquote>
-Куда происходит передача управления при выполнении оператора throw 1?
-Выберете один или несколько ответов:
-
-a) на открывающую фигурную скобку обработчика catch(int)
-b) на закрывающую фигурную скобку блока, в котором находится
-   оператор throw
-c) на закрывающую фигурную скобку функции, в которой находится оператор throw
-</blockquote>
-
-<strong>Вопрос 24:</strong>
-<blockquote>
-Отметьте корректные высказывания:
-
-a) операции вставки/удаления значений в вписок осуществляются 
-	эффективнее чем в вектор
-b) данные в списке располагаются последовательно в памяти
-</blockquote>
-
-<strong>Вопрос 25:</strong>
-<blockquote>
-Отличие классов от структур языка Си
-Выберете один или несколько ответов:
-
-a) Структура Си может содержать как данные, так и методы
-b) Класс может содержать как данные, так и методы
-c) Класс может содержать только методы
-d) Класс может содержать только данные
-e) Структура Си должна содержать только данные
-</blockquote>
-
-
-<strong>Вопрос 26:</strong>
-<blockquote>
-Отметьте корректные варианты:
-Выберете один или несколько ответов:
-
-a) 
-	try{
-	...
-	}
-	catch(...) {
-		<обработка всех типов исключительных ситуаций,
-		кроме целочисленного исключения>
-	}
-	catch (int n) {
-		<обработка целочисленного исключения>
-	}
-b)  
-	try{
-	...
-	}
-	catch (int n) {
-		<обработка целочисленного исключения>
-	}
-	catch(...) {
-		<обработка всех остальных исключительных ситуаций>
-	}
-c)
-	try{
-	...
-	}
-	catch (int n) {
-		<обработка целочисленного исключения>
-	}
-	catch(double d) {
-		<обработка исключения типа double>
-	}
-	
-d) 
-	try{
-	...
-	}
-	catch(...) {
-		<обработка любой исключительной ситуации>
-	}
-e) 	
-	try{
-	...
-	}
-	<продолжение выполнения кода>
-</blockquote>
-
-<strong>Вопрос 27:</strong>
-<blockquote>
-	
-class A {... virtual void fA(); ...};
-class B {... virtual void fB(); ...};
-class C : public A, public B {};
-
-В каких вариантах будет сформирован ненулевой указатель pp?
-
-a) 
-	A* p= new C;
-	C* pp= dynamic_cast<C*>(p);
-b) 
-	A* p= new C;
-	C* pp= dynamic_cast<B*>(p);
-c) 
-	B* p= new C;
-	C* pp= dynamic_cast<C*>(p);
-d) 
-	B* p= new C;
-	A* pp= dynamic_cast<A*>(p);
-</blockquote>
-
-

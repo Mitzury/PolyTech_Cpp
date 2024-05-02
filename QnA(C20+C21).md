@@ -1,6 +1,6 @@
 <div class="markdown-heading">
 <h1 class="heading-element" tabindex="-1">QnA_Итоговое тестирование С20 + С21</h1>
-<i>Вопросы от апреля 2024. Некоторые ответы могут быть не точными</i>
+<i>Вопросы от апреля 2024. Для самостоятельной подготовки.</i>
 </div>
 </blockquote><p><strong>Вопрос 1:</strong></p>
 <blockquote>Дан&nbsp;<code>class A { public void f(); }</code>
@@ -756,11 +756,11 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </blockquote><p><strong>Вопрос 88:</strong></p>
 <blockquote><br /> отметьте корректные варианты: выберете один или несколько ответов:
 <ul>
-<li>a) &nbsp;try{ &nbsp;... &nbsp;} &nbsp;catch(...) { &nbsp; &lt;обработка всех типов исключительных ситуаций, &nbsp; кроме целочисленного исключения&gt; &nbsp;} &nbsp;catch (int n) { &nbsp; &lt;обработка целочисленного исключения&gt; &nbsp;}</li>
-<li>b) &nbsp; &nbsp;try{ &nbsp;... &nbsp;} &nbsp;catch (int n) { &nbsp; &lt;обработка целочисленного исключения&gt; &nbsp;} &nbsp;catch(...) { &nbsp; &lt;обработка всех остальных исключительных ситуаций&gt; &nbsp;}</li>
-<li>c) &nbsp;try{ &nbsp;... &nbsp;} &nbsp;catch (int n) { &nbsp; &lt;обработка целочисленного исключения&gt; &nbsp;} &nbsp;catch(double d) { &nbsp; &lt;обработка исключения типа double&gt; &nbsp;}&nbsp;</li>
-<li>d) &nbsp;try{ &nbsp;... &nbsp;} &nbsp;catch(...) { &nbsp; &lt;обработка любой исключительной ситуации&gt; &nbsp;}</li>
-<li>e) &nbsp; &nbsp;try{ &nbsp;... &nbsp;} &nbsp;&lt;продолжение выполнения кода&gt; <br /><br /></li>
+<li>a) <code>&nbsp;try{ &nbsp;... &nbsp;} &nbsp;catch(...) { &nbsp; &lt;обработка всех типов исключительных ситуаций, &nbsp; кроме целочисленного исключения&gt; &nbsp;} &nbsp;catch (int n) { &nbsp; &lt;обработка целочисленного исключения&gt; &nbsp;}</code></li>
+<li>b) <code>&nbsp; &nbsp;try{ &nbsp;... &nbsp;} &nbsp;catch (int n) { &nbsp; &lt;обработка целочисленного исключения&gt; &nbsp;} &nbsp;catch(...) { &nbsp; &lt;обработка всех остальных исключительных ситуаций&gt; &nbsp;}</code></li>
+<li>c) <code>&nbsp;try{ &nbsp;... &nbsp;} &nbsp;catch (int n) { &nbsp; &lt;обработка целочисленного исключения&gt; &nbsp;} &nbsp;catch(double d) { &nbsp; &lt;обработка исключения типа double&gt; &nbsp;}&nbsp;</code></li>
+<li>d) <code>&nbsp;try{ &nbsp;... &nbsp;} &nbsp;catch(...) { &nbsp; &lt;обработка любой исключительной ситуации&gt; &nbsp;}</code></li>
+<li>e) <code>&nbsp; &nbsp;try{ &nbsp;... &nbsp;} &nbsp;&lt;продолжение выполнения кода&gt; </code></li>
 </ul>
 
 </blockquote><p><strong>Вопрос 89:</strong></p>

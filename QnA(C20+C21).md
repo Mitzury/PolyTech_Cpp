@@ -424,9 +424,11 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 38:</strong></p>
-<blockquote><br /> <code>a.h</code>
-	<code> class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> void f(); </code><br /><code> };</code>
-	><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<blockquote>
+	<code>a.h
+	class a { int m_a;  public:  void f();  };
+	</code>
+	<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. a.cpp <br /> <code>void a::f() { &nbsp;}</code></li>
 		<li>b. a.cpp <br /> <code>#include &ldquo;a.h&rdquo; </code><br /><code> void a::f() { }</code></li>
@@ -456,7 +458,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 41:</strong></p>
-<blockquote><br /> порядок инициализации переменных класса <br /> выберите один ответ:
+<blockquote>Порядок инициализации переменных класса <br /> выберите один ответ:
 	<ul>
 		<li>a. зависит от порядка объявления переменных в классе</li>
 		<li>b. зависит от их следования в списке инициализации</li>
@@ -473,7 +475,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 43:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>a.h </code><br /><code> class a { </code><br /><code> ... </code><br /><code> public: </code><br /><code> a(int); </code><br /><code> };</code>
 	<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 	<ul>
@@ -484,14 +486,14 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 44:</strong></p>
-<blockquote><br /> шаблонная функция может быть перегружена <br /> выберите один ответ:
+<blockquote>Шаблонная функция может быть перегружена <br /> выберите один ответ:
 	<ul>
 		<li>a. да</li>
 		<li>b. нет</li>
 	</ul>
 </blockquote>
 <p><strong>Вопрос 45:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>class a {}; </code><br /><code> class b : public a {}; </code><br /><code> &nbsp; </code><br /><code> void f1(const a&amp;, const a&amp;); </code><br /><code> void f2(const b&amp;, const b&amp;);</code>
 	<br /> &nbsp; <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 	<ul>
@@ -502,7 +504,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	<p>&nbsp;</p>
 </blockquote>
 <p><strong>Вопрос 46:</strong></p>
-<blockquote><br /> <code>int ar[5] = {1, 2, 3, 4, 5}; </code><br /><code> vector&lt;int&gt; v;</code> <br /> &nbsp;
+<blockquote><code>int ar[5] = {1, 2, 3, 4, 5}; </code><br /><code> vector&lt;int&gt; v;</code> <br /> &nbsp;
 	<br /> отметьте корректные варианты: <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. copy(ar, ar + 5, inserter(v, v.begin()));</li>
@@ -512,7 +514,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 47:</strong></p>
-<blockquote><br /><br /> дано <br /> a a1, a2, a3;
+<blockquote>Дано <br /> a a1, a2, a3;
 	<br /> отметьте примеры, в которых оператор можно перегрузить только глобальной функцией <br /> выберите один или
 	несколько ответов:
 	<ul>
@@ -525,7 +527,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 48:</strong></p>
-<blockquote><br /> методы класса могут быть <br /> выберите один или несколько ответов:
+<blockquote>Методы класса могут быть <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. private</li>
 		<li>b. public</li>
@@ -534,7 +536,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 49:</strong></p>
-<blockquote><br /> выберите один или несколько ответов:
+<blockquote>Выберите один или несколько ответов:
 	<ul>
 		<li>a. можно перегрузить оператор \"+\" для типа заданного с помощью enum</li>
 		<li>b. перегруженные операторы наследуют приоритеты и ассоциативность от встроенных операторов</li>
@@ -543,7 +545,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 50:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> a(int); </code><br /><code> virtual void f(); </code><br /><code> }; </code><br /><code> class b : public a { </code><br /><code> int m_b; </code><br /><code> public: </code><br /><code> b(int, int); </code><br /><code> void f(); </code><br /><code> }; </code><br /><code> class c : public b { </code><br /><code> int m_c; </code><br /><code> public: </code><br /><code> c(int, int, int); </code><br /><code> void f(); </code><br /><code> };</code>
 	<br /> для каких классов компилятор сформирует таблицу виртуальных функций <br /> выберите один или несколько
 	ответов:
@@ -554,7 +556,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 51:</strong></p>
-<blockquote><br /> <code>class a { void f(); };</code> <br /> &nbsp; <br /> тип указателя this в методе f() выберите
+<blockquote><code>class a { void f(); };</code> <br /> &nbsp; <br /> тип указателя this в методе f() выберите
 	один или несколько ответов:
 	<ul>
 		<li>a. const a*</li>
@@ -564,7 +566,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 52:</strong></p>
-<blockquote><br /> понятия, связанные с rtti: <br /> выберите один или несколько ответов:
+<blockquote>Понятия, связанные с rtti: <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. класс exception</li>
 		<li>b. оператор static_cast</li>
@@ -574,7 +576,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 53:</strong></p>
-<blockquote><br /> <code>class a {</code><br /><code> void f(); </code><br /><code> };</code> <br /> &nbsp; <br /> тип
+<blockquote><code>class a {</code><br /><code> void f(); </code><br /><code> };</code> <br /> &nbsp; <br /> тип
 	указателя this в методе f() <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. const a*</li>
@@ -584,7 +586,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 54:</strong></p>
-<blockquote><br /> какие из утверждений верны? <br /> выберите один или несколько ответов:
+<blockquote>Какие из утверждений верны? <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. move operator= может автоматически генерируется компилятором</li>
 		<li>b. move operator= вызывается компилятором, если справа временный объект</li>
@@ -593,7 +595,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 55:</strong></p>
-<blockquote><br /> <code>vector&lt;vector&lt;int&gt;&gt; v(10, vector&lt;int&gt;(10,1));</code>
+<blockquote><code>vector&lt;vector&lt;int&gt;&gt; v(10, vector&lt;int&gt;(10,1));</code>
 	<br /> отметьте корректные варианты получения значений элементов <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. int x = v.at(1).at(1);</li>
@@ -604,7 +606,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 56:</strong></p>
-<blockquote><br /> объекты класса &nbsp; <strong>type_info</strong> &nbsp; можно: <br /> выберите один или несколько
+<blockquote>Объекты класса &nbsp; <strong>type_info</strong> &nbsp; можно: <br /> выберите один или несколько
 	ответов:
 	<ul>
 		<li>a. копировать</li>
@@ -634,7 +636,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 58:</strong></p>
-<blockquote><br /> <code>class a { }; a a; void func() { }</code>
+<blockquote><code>class a { }; a a; void func() { }</code>
 	<br /> когда будет вызван деструктор? <br /> выберите один ответ:
 	<ul>
 		<li>a. при завершении приложения</li>
@@ -643,7 +645,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 59:</strong></p>
-<blockquote><br /> выберите один или несколько ответов:
+<blockquote>Выберите один или несколько ответов:
 	<ul>
 		<li>a. не существует ограничений на тип возвращаемого перегруженным оператором значения</li>
 		<li>b. нельзя менять число операндов оператора</li>
@@ -651,7 +653,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 60:</strong></p>
-<blockquote><br /> когда вызывается деструктор для объекта-исключения? <br /> выберите один или несколько ответов:
+<blockquote>Когда вызывается деструктор для объекта-исключения? <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. по закрывающей фигурной скобке блока try</li>
 		<li>b. по закрывающей фигурной скобке обработчика catch</li>
@@ -660,7 +662,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 61:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>class a { ... }; </code><br /><code> a a; </code><br /><code> void func() </code><br /><code> { </code><br /><code> &hellip; </code><br /><code> }</code>
 	<br /> когда будет вызван деструктор? <br /> выберите один ответ:
 	<ul>
@@ -670,7 +672,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 62:</strong></p>
-<blockquote><br /> в контейнерах stl <br /> выберите один ответ:
+<blockquote>В контейнерах stl выберите один ответ:
 	<ul>
 		<li>a. совмещены операции захвата памяти и инициализации</li>
 		<li>b. осуществляется захват &laquo;сырой&raquo; (неинициализированной) памяти, а вызов конструктора происходит
@@ -678,7 +680,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 63:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>class a { </code><br /><code> int x; </code><br /><code> protected: </code><br /><code> int y; </code><br /><code> public: </code><br /><code> void f(); </code><br /><code> &hellip; </code><br /><code> }; </code><br /><code> class b : public a {&hellip;};</code>
 	<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 	<ul>
@@ -688,7 +690,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 64:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> a operator=(const a&amp;); </code><br /><code> };</code>
 	<br /> в каких примерах можно использовать реализованный оператор присваивания <br /> выберите один или несколько
 	ответов:
@@ -698,7 +700,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 65:</strong></p>
-<blockquote><br /> выберите один или несколько ответов:
+<blockquote>Выберите один или несколько ответов:
 	<ul>
 		<li>a.
 			<code>void func(const a&amp;); </code><br /><code> void anotherfunc() { </code><br /><code> a a; </code><br /><code> func(a); </code><br /><code> }</code>
@@ -712,7 +714,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 66:</strong></p>
-<blockquote><br /> деструктор <br /> выберите один или несколько ответов:
+<blockquote>Деструктор <br /> выберите один или несколько ответов:
 	<ul>
 		<li>a. вызывается компилятором неявно при уничтожении объекта</li>
 		<li>b. деструкторов может быть несколько</li>
@@ -721,7 +723,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 67:</strong></p>
-<blockquote><br /> какой из операторов присваивания &nbsp;более эффективен? <br /> выберите один ответ:
+<blockquote>Какой из операторов присваивания &nbsp;более эффективен? <br /> выберите один ответ:
 	<ul>
 		<li>a.
 			<code>class a { </code><br /><code> int m_a;</code><br /><code> public: </code><br /><code> a operator=(const a&amp;); </code><br /><code> };</code>
@@ -732,7 +734,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 68:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> a(int &nbsp;= 0); </code><br /><code> }; </code><br /><code> class b { </code><br /><code> int m_b; </code><br /><code> a m_a; </code><br /><code> public: </code><br /><code> b(const a&amp;, int b); </code><br /><code> };</code>
 	<br /> отметьте корректные и эффективные варианты инициализации встроенного объекта <br /> выберите один или
 	несколько ответов:
@@ -745,7 +747,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 69:</strong></p>
-<blockquote><br /> в качестве базового контейнера для<strong> std::priority_queue</strong> можно использовать: <br />
+<blockquote>В качестве базового контейнера для<strong> std::priority_queue</strong> можно использовать: <br />
 	выберите один или несколько ответов:
 	<ul>
 		<li>a. std::list</li>
@@ -754,7 +756,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 70:</strong></p>
-<blockquote><br /> выберите один или несколько ответов:
+<blockquote>Выберите один или несколько ответов:
 	<ul>
 		<li>a. &nbsp;<code>try { </code><br /><code> } </code><br /><code> catch(int n) {}</code></li>
 		<li>b.<code> try {</code><br /><code> } </code><br /><code> catch(int) &nbsp;{ &nbsp;}</code></li>
@@ -771,17 +773,8 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 		<li>d. <code>list&lt;int&gt; l();</code></li>
 	</ul>
 </blockquote>
-<p><strong>Вопрос 72:</strong></p>
-<blockquote><br /> диапазон изменения данных от (-2) до (+1). <br /> какое из битовых полей удовлетворяет условию?
-	<br /> выберите один ответ:
-	<ul>
-		<li>a. <code>class a { </code><br /><code> unsigned char x:2;</code><br /><code> };</code></li>
-		<li>b. <code>class a { </code><br /><code> char x:1;</code><br /><code> };</code></li>
-		<li>c. <code>class a { </code><br /><code> char x:2;</code><br /><code> };</code></li>
-	</ul>
-</blockquote>
 <p><strong>Вопрос 73:</strong></p>
-<blockquote><br /><br /> выберите один или несколько ответов:
+<blockquote>Выберите один или несколько ответов:
 	<ul>
 		<li>a.
 			&nbsp;<code>try { </code><br /><code> ... </code><br /><code> } </code><br /><code> catch(int n) {...}</code>
@@ -796,7 +789,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 74:</strong></p>
-<blockquote><br /> диапазон изменения данных от (-2) до (+1). <br /> какое из битовых полей удовлетворяет условию?
+<blockquote>Диапазон изменения данных от (-2) до (+1). Какое из битовых полей удовлетворяет условию?
 	<br /> выберите один ответ:
 	<ul>
 		<li>a.<code> class a { </code><br /><code> unsigned char x:2; </code><br /><code> &hellip; </code><br /><code> };</code>
@@ -808,7 +801,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 75:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>class a { </code><br /><code> &hellip; </code><br /><code> void f() const; </code><br /><code> };</code>
 	<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 	<ul>
@@ -817,7 +810,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 76:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>vector&lt;int&gt; v(10,1); </code><br /><code> vector&lt;int&gt;::iterator it = v.begin();</code> <br />
 	&nbsp; <br /> отметьте корректные варианты получения значений элементов <br /> выберите один или несколько ответов:
 	<ul>
@@ -827,7 +820,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 77:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>class a { ... &nbsp;virtual void f(); ... }; </code><br /><code> class b : public a { ... }; </code><br /><code> &nbsp; </code><br /><code> int main() { </code><br /><code> a* pa = new b; </code><br /><code> bool b = typeid(*pa).before(typeid(b)); </code><br /><code> } </code><br /><code> &nbsp;</code>
 	<br /> значение переменной "b&rdquo;: <br /> выберите один ответ:
 	<ul>
@@ -836,7 +829,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 78:</strong></p>
-<blockquote><br />
+<blockquote>
 	<code>a.h </code><br /><code> class a { ... </code><br /><code> public: </code><br /><code> explicit a(int = 0); </code><br /><code> };</code>
 	<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 	<ul>
@@ -864,9 +857,9 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 	</ul>
 </blockquote>
 <p><strong>Вопрос 80:</strong></p>
-<blockquote>Дано:</blockquote>
-<blockquote><br /><code>class a { ... }; <br /> a a1, a2;</code></blockquote>
-<blockquote><br /> для выражения a1 + &nbsp;a2 выберите один или несколько ответов:
+<blockquote>Дано:
+<br /><code>class a { ... }; a a1, a2;</code></blockquote>
+<br /> для выражения a1 + &nbsp;a2 выберите один или несколько ответов:
 <ul>
 <li>a. программист должен предоставить компилятору функцию с произвольным именем, например, &ldquo;f+&rdquo;</li>
 <li>b. компилятор по контексту использования генерирует код сам</li>

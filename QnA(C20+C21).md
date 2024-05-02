@@ -2,22 +2,21 @@
 <h1 class="heading-element" tabindex="-1">QnA_Итоговое тестирование С20 + С21</h1>
 </div>
 <p><strong>Вопрос 1:</strong></p>
-<blockquote>Дан&nbsp;<code> class A{ public void f(); }</code>
+<blockquote>Дан&nbsp;<code>class A { public void f(); }</code>
 <p>Отметьте корректные варианты вызова метода f()</p>
 <p>Выберете один или несколько ответов</p>
 <ul>
-<li>a) void func(A&amp; a){ a.f(); }</li>
+<li>a) void func(A a){ a.f(); }</li>
 <li>b) void func(A* a){ a.f(); }</li>
 <li>c) void func(A a){ a.f(); }</li>
-<li>d) void func(const A* a){ a-&gt;f(); }</li>
+<li>d) void func(const A* a){ a->f(); }</li>
 </ul>
 </blockquote>
 <p><strong>Вопрос 2:</strong></p>
-<blockquote><em>class A { ... }; class B : public A { ... };</em>
-<p><em>void F(A* pA) { ... }</em></p>
-<p><em>int main() {</em></p>
-<p><em>B b; F (&amp;b);</em></p>
-<p><em>}</em></p>
+<blockquote><code>class A { ... }; class B : public A { ... };
+void F(A* pA) { ... }
+int main() {
+B b; F (&b); }</code></p>
 <p>Посредством pA в функции F можно: Выберете один или несколько ответов:</p>
 <ul>
 <li>a) Обращаться к protected переменным класса А</li>
@@ -28,17 +27,11 @@
 </ul>
 </blockquote>
 <p><strong>Вопрос 3:</strong></p>
-<blockquote><em>class A { ... public:</em>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto">
-<pre class="notranslate"><em><code>virtual void VF() = 0;
-</code></em></pre>
-</div>
-<p><em>}; class B : public A{ ... public:</em></p>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto">
-<pre class="notranslate"><em><code>virtual void VF();
-</code></em></pre>
-</div>
-<p><em>};</em></p>
+<blockquote><code>class A { ... public:
+	virtual void VF() = 0; }; 
+	class B : public A{ ... public:
+	virtual void VF(); };
+</code></p>
 <p>Отметьте корректные варианты Выберете один или несколько ответов:</p>
 <ul>
 <li>a) B b; A&amp; r = b;</li>
@@ -63,7 +56,7 @@
 <li>c) class A{ ... public: virtual void VF()=0; {&lt;реализация&gt;} };</li>
 </ul>
 <p><strong>Вопрос 6:</strong></p>
-<blockquote><em>class A { ... public: A(int=0); };</em>
+<blockquote><code>class A { ... public: A (int=0); };</code>
 <p>отметьте корректные варианты Выберете один или несколько ответов:</p>
 <ul>
 <li>a) A* ar[]={new A(), new A(1)};</li>
@@ -81,7 +74,8 @@
 </ul>
 </blockquote>
 <p><strong>Вопрос 8:</strong></p>
-<blockquote>class A { ... public: A(); void f(); }; Отметьте корректные варианты Выберете один или несколько ответов:
+<blockquote><code>class A { ... public: A(); void f(); };</code> 
+Отметьте корректные варианты Выберете один или несколько ответов:
 <ul>
 <li>a) { A a; A* pa-&amp;a; pa-&gt;f(); }</li>
 <li>b) { A* pa=new A; ... delete pa; pa-&gt;f(); }</li>
@@ -98,8 +92,14 @@
 <li>c) class A { int m_a; public: int operator(); };</li>
 </ul>
 <p><strong>Вопрос 10:</strong></p>
-<blockquote>int ar[10] ={8,9,7,6,4,1}; vector v(ar,ar+10); size_t n1 =v.size(); set s(v.begin(),v.end()); size_t n2 =s.size(); for(set::iterator b=s.begin,e=s.end;b!=e;++b){ cout&lt;&lt;*b&lt;&lt;", "; }
-<p>Что будут выведено?</p>
+<blockquote>
+	<code>int ar[10] ={8,9,7,6,4,1}; 
+		vector v(ar,ar+10);
+		 size_t n1 =v.size(); 
+		 set s(v.begin(),v.end()); 
+		 size_t n2 =s.size(); 
+		 for(set::iterator b=s.begin,e=s.end;b!=e;++b) { cout&lt;&lt;*b&lt;&lt;", "; }
+<p>Что будет выведено?</p>
 <ul>
 <li>a) 1, 8, 8, 7, 6, 4, 1</li>
 <li>b) 1, 8, 9, 7, 6, 4, 1, 0</li>
@@ -124,8 +124,10 @@
 <li>с) std::deque -это контейнер с последовательным доступом</li>
 </ul>
 <p><strong>Вопрос 13:</strong></p>
-<blockquote>class A {... virtual void f(); ...}; class B : public A { ... }; class C : public B { ... };
-<p>int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typeid(*pA) == typeid (B) ; //? }</p>
+<blockquote>
+<code>class A {... virtual void f(); ...}; class B : public A { ... }; class C : public B { ... };
+int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typeid(*pA) == typeid (B) ; //? }
+</code>
 <p>В строках, помеченных "?", Выберете один или несколько ответов:</p>
 <ul>
 <li>a) b2== true</li>
@@ -133,7 +135,8 @@
 </ul>
 </blockquote>
 <p><strong>Вопрос 14:</strong></p>
-<blockquote>class A { int m_a; ... void f1(); void f(2) const; };
+<blockquote>
+<code>class A { int m_a; ... void f1(); void f(2) const; };</code>
 <p>Отметьте корректные варианты: Выберете один или несколько ответов:</p>
 <ul>
 <li>a) void A::f1(){ m_a++; }</li>
@@ -143,13 +146,16 @@
 </ul>
 </blockquote>
 <p><strong>Вопрос 15:</strong></p>
-<blockquote>template void f(const A&amp; a, const A&amp; b) {...} Отметьте корректные варианты вызова функции: Выберете один или несколько ответов:</blockquote>
+<blockquote>
+<code>template void f(const A&amp; a, const A&amp; b) {...}</code>
+Отметьте корректные варианты вызова функции: Выберете один или несколько ответов:
 <ul>
 <li>a) f(2,3.3);</li>
 <li>b) f(2.2,1);</li>
 <li>c) int x=1; unsigned int y=2; f(x,y);</li>
 <li>d) int x=1; double y=2.2; f(x,y);</li>
 </ul>
+</blockquote>
 <p><strong>Вопрос 16:</strong></p>
 <blockquote>Отметьте варианты реализации шаблонной функции, для которых компилятор не будет выдавать ошибок в приведенном фрагменте: f(1); double d=5.5; f(d); Выберете один или несколько ответов:</blockquote>
 <ul>
@@ -202,7 +208,10 @@
 </blockquote>
 <p><strong>Вопрос 22:</strong></p>
 <blockquote>
-<p>class A { int m_a; public: A(int); void f(); }; class B public A { int m_b; public: B(int,int); virtual void f(); }; class C public B { int m_c; public: C(int,int,int); };</p>
+<code>class A { int m_a; public: A(int); void f(); }; 
+	class B public A { int m_b; public: B(int,int); virtual void f(); }; 
+	class C public B { int m_c; public: C(int,int,int); };
+</code>
 <p>Для каких классов компилятор сформирует таблицу виртуальных функций Выберете один или несколько ответов:</p>
 <ul>
 <li>a) C</li>
@@ -246,7 +255,10 @@
 </blockquote>
 <p><strong>Вопрос 27:</strong></p>
 <blockquote>
-<p>class A {... virtual void fA(); ...}; class B {... virtual void fB(); ...}; class C : public A, public B {};</p>
+<code>class A {... virtual void fA(); ...}; 
+	class B {... virtual void fB(); ...}; 
+	class C : public A, public B {};
+</code>
 <p>В каких вариантах будет сформирован ненулевой указатель pp?</p>
 <ul>
 <li>a) A* p= new C; C* pp= dynamic_cast&lt;C*&gt;(p);</li>

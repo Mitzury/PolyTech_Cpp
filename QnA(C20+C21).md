@@ -301,7 +301,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
  </blockquote>
  <p><strong>Вопрос 29:</strong></p>
 <blockquote>Отметьте варианты реализации шаблонной функции, для которых компилятор не будет выдавать ошибок в приведенном фрагменте:
-<em>double d = 5.5; </em><br /><em> f(&amp;d); </em><br /><em> f(d);</em> <br /> &nbsp; <br />Выберите один или несколько ответов:
+<code>double d = 5.5; </code><br /><code> f(&amp;d); </code><br /><code> f(d);</code> <br /> &nbsp; <br />Выберите один или несколько ответов:
 <ul>
 <li>a. template&lt;typename t&gt; void f(t* t) {...}</li>
 <li>b. template&lt;typename t&gt; void f(t t) {...}</li>
@@ -309,7 +309,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d. template&lt;typename t&gt; void f(const t&amp; t) {...} <br /><br /></li>
 </ul>
 </blockquote><p><strong>Вопрос 30:</strong></p>
-<blockquote><br /> <em>class a {}; </em><br /><em> class b : public a {}; </em><br /><em> viod main() { </em><br /><em> b b;</em><br /><em> }</em>
+<blockquote><br /> <code>class a {}; </code><br /><code> class b : public a {}; </code><br /><code> viod main() { </code><br /><code> b b;</code><br /><code> }</code>
 <br /> какие конструкторы и в каком порядке вызываются? <br /> выберите один ответ:
 <ul>
 <li>a. b</li>
@@ -317,7 +317,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>c. a b</li>
 </ul>
 </blockquote><p><strong>Вопрос 31:</strong></p>
-<blockquote><br /> <em>class a {}; </em><br /><em> class b : public a {}; </em><br /><em> viod main() { </em><br /><em> b b;</em><br /><em> }</em>
+<blockquote><br /> <code>class a {}; </code><br /><code> class b : public a {}; </code><br /><code> viod main() { </code><br /><code> b b;</code><br /><code> }</code>
 <br /> какие конструкторы и в каком порядке вызываются? <br /> выберите один ответ:
 <ul>
 <li>a. b</li>
@@ -333,7 +333,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d. тип возвращаемого деструктором значения - void</li>
 </ul>
 </blockquote><p><strong>Вопрос 33:</strong></p>
-<blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> a(int a); </em><br /><em> };</em>
+<blockquote><br /> <code>class a { int m_a;  public: a(int a); };</code>
 <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. a::a(int a) { m_a = a; }</li>
@@ -347,12 +347,12 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>c. всегда автоматически генерируется компилятором <br /><br /></li>
 </ul>
 </blockquote><p><strong>Вопрос 35:</strong></p>
-<blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> void f(); </em><br /><em> };</em>
+<blockquote><br /> <code>class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> void f(); </code><br /><code> };</code>
 <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
-<li><em>a. void func(a* p) { </em><br /><em> &nbsp; &nbsp;p-&gt;f(); </em><br /><em> }</em></li>
-<li><em>b. void a::f() { </em><br /><em> &nbsp; &nbsp;m_a++; </em><br /><em> }</em></li>
-<li><em>c. void func(a* p) { </em><br /><em> &nbsp; &nbsp;p-&gt;m_a++; </em><br /><em> }</em> <br /><br /></li>
+<li><code>a. void func(a* p) { </code><br /><code> &nbsp; &nbsp;p-&gt;f(); </code><br /><code> }</code></li>
+<li><code>b. void a::f() { </code><br /><code> &nbsp; &nbsp;m_a++; </code><br /><code> }</code></li>
+<li><code>c. void func(a* p) { </code><br /><code> &nbsp; &nbsp;p-&gt;m_a++; </code><br /><code> }</code> <br /><br /></li>
 </ul>
 </blockquote><p><strong>Вопрос 36:</strong></p>
 <blockquote>отметьте корректные варианты: <br /> выберите один или несколько ответов:
@@ -370,14 +370,14 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d. обобщенные типы</li>
 </ul>
 </blockquote><p><strong>Вопрос 38:</strong></p>
-<blockquote><br /> <em>a.h</em>
-<em> class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> void f(); </em><br /><em> };</em>
+<blockquote><br /> <code>a.h</code>
+<code> class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> void f(); </code><br /><code> };</code>
 ><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
-<li>a. a.cpp <br /> <em>void a::f() { &nbsp;}</em></li>
-<li>b. a.cpp <br /> <em>#include &ldquo;a.h&rdquo; </em><br /><em> void a::f() { }</em></li>
-<li>c. a.h <br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> void f(); </em><br /><em> }; </em><br /><em> void a::f() { }</em></li>
-<li>d. a.cpp <br /> <em>#include &ldquo;a.h&rdquo; </em><br /><em> void f() { &nbsp;}</em></li>
+<li>a. a.cpp <br /> <code>void a::f() { &nbsp;}</code></li>
+<li>b. a.cpp <br /> <code>#include &ldquo;a.h&rdquo; </code><br /><code> void a::f() { }</code></li>
+<li>c. a.h <br /> <code>class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> void f(); </code><br /><code> }; </code><br /><code> void a::f() { }</code></li>
+<li>d. a.cpp <br /> <code>#include &ldquo;a.h&rdquo; </code><br /><code> void f() { &nbsp;}</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 39:</strong></p>
 <blockquote>ключевые слова с++, которые относятся к механизму обработки исключений <br /> выберите один или несколько ответов:
@@ -388,7 +388,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d. exception</li>
 </ul>
 </blockquote><p><strong>Вопрос 40:</strong></p>
-<blockquote><em>class a { virtual void f(); }; </em><br /><em> class b : public a { &nbsp;}; </em><br /><em> &nbsp; </em><br /><em> int main() { </em><br /><em> a* pa = new b; </em><br /><em> bool b = typeid(*pa).before(typeid(a)); //? </em><br /><em> } </em><br /><em> &nbsp;</em> <br /> значение переменной "b&rdquo;: <br /> выберите один ответ:
+<blockquote><code>class a { virtual void f(); }; </code><br /><code> class b : public a { &nbsp;}; </code><br /><code> &nbsp; </code><br /><code> int main() { </code><br /><code> a* pa = new b; </code><br /><code> bool b = typeid(*pa).before(typeid(a)); //? </code><br /><code> } </code><br /><code> &nbsp;</code> <br /> значение переменной "b&rdquo;: <br /> выберите один ответ:
 <ul>
 <li>a. false</li>
 <li>b. true</li>
@@ -400,14 +400,14 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>b. зависит от их следования в списке инициализации</li>
 </ul>
 </blockquote><p><strong>Вопрос 42:</strong></p>
-<blockquote><em>class a { </em><br /><em> ... </em><br /><em> public: void f(); </em><br /><em> ... </em><br /><em> }; </em><br /><em> vector &lt;a*&gt; v; </em><br /><em> //формирование элементов вектора </em><br /><em> vector &lt;a*&gt;::iterator it = v.begin();</em> <br /> &nbsp; <br /> отметьте корректные варианты вызова метода a::f() <br /> выберите один или несколько ответов:
+<blockquote><code>class a { </code><br /><code> ... </code><br /><code> public: void f(); </code><br /><code> ... </code><br /><code> }; </code><br /><code> vector &lt;a*&gt; v; </code><br /><code> //формирование элементов вектора </code><br /><code> vector &lt;a*&gt;::iterator it = v.begin();</code> <br /> &nbsp; <br /> отметьте корректные варианты вызова метода a::f() <br /> выберите один или несколько ответов:
 <ul>
 <li>a. (*it)-&gt;f();</li>
 <li>b. (*it).f();</li>
 <li>c. (**it).f();</li>
 </ul>
 </blockquote><p><strong>Вопрос 43:</strong></p>
-<blockquote><br /> <em>a.h </em><br /><em> class a { </em><br /><em> ... </em><br /><em> public: </em><br /><em> a(int); </em><br /><em> };</em>
+<blockquote><br /> <code>a.h </code><br /><code> class a { </code><br /><code> ... </code><br /><code> public: </code><br /><code> a(int); </code><br /><code> };</code>
 <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. a* pa = new a();</li>
@@ -422,15 +422,15 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>b. нет</li>
 </ul>
 </blockquote><p><strong>Вопрос 45:</strong></p>
-<blockquote><br /> <em>class a {}; </em><br /><em> class b : public a {}; </em><br /><em> &nbsp; </em><br /><em> void f1(const a&amp;, const a&amp;); </em><br /><em> void f2(const b&amp;, const b&amp;);</em> <br /> &nbsp; <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<blockquote><br /> <code>class a {}; </code><br /><code> class b : public a {}; </code><br /><code> &nbsp; </code><br /><code> void f1(const a&amp;, const a&amp;); </code><br /><code> void f2(const b&amp;, const b&amp;);</code> <br /> &nbsp; <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
-<li>a. <em>const a a; </em><br /><em> const b b; </em><br /><em> f1(a, b);</em></li>
-<li>b. <em>a a; </em><br /><em> b b; </em><br /><em> f2(a, b);</em></li>
-<li>c. <em>a a; </em><br /><em> b b; </em><br /><em> f1(a, b);</em></li>
+<li>a. <code>const a a; </code><br /><code> const b b; </code><br /><code> f1(a, b);</code></li>
+<li>b. <code>a a; </code><br /><code> b b; </code><br /><code> f2(a, b);</code></li>
+<li>c. <code>a a; </code><br /><code> b b; </code><br /><code> f1(a, b);</code></li>
 </ul>
 <p>&nbsp;</p>
 </blockquote><p><strong>Вопрос 46:</strong></p>
-<blockquote><br /> <em>int ar[5] = {1, 2, 3, 4, 5}; </em><br /><em> vector&lt;int&gt; v;</em> <br /> &nbsp; <br /> отметьте корректные варианты: <br /> выберите один или несколько ответов:
+<blockquote><br /> <code>int ar[5] = {1, 2, 3, 4, 5}; </code><br /><code> vector&lt;int&gt; v;</code> <br /> &nbsp; <br /> отметьте корректные варианты: <br /> выберите один или несколько ответов:
 <ul>
 <li>a. copy(ar, ar + 5, inserter(v, v.begin()));</li>
 <li>b. copy(ar, ar + 5, back_inserter(v));</li>
@@ -465,7 +465,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d. можно перегрузить оператор \"+\" для типа double</li>
 </ul>
 </blockquote><p><strong>Вопрос 50:</strong></p>
-<blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> a(int); </em><br /><em> virtual void f(); </em><br /><em> }; </em><br /><em> class b : public a { </em><br /><em> int m_b; </em><br /><em> public: </em><br /><em> b(int, int); </em><br /><em> void f(); </em><br /><em> }; </em><br /><em> class c : public b { </em><br /><em> int m_c; </em><br /><em> public: </em><br /><em> c(int, int, int); </em><br /><em> void f(); </em><br /><em> };</em>
+<blockquote><br /> <code>class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> a(int); </code><br /><code> virtual void f(); </code><br /><code> }; </code><br /><code> class b : public a { </code><br /><code> int m_b; </code><br /><code> public: </code><br /><code> b(int, int); </code><br /><code> void f(); </code><br /><code> }; </code><br /><code> class c : public b { </code><br /><code> int m_c; </code><br /><code> public: </code><br /><code> c(int, int, int); </code><br /><code> void f(); </code><br /><code> };</code>
 <br /> для каких классов компилятор сформирует таблицу виртуальных функций <br /> выберите один или несколько ответов:
 <ul>
 <li>a. a</li>
@@ -473,7 +473,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>c. b</li>
 </ul>
 </blockquote><p><strong>Вопрос 51:</strong></p>
-<blockquote><br /> <em>class a { void f(); };</em> <br /> &nbsp; <br /> тип указателя this в методе f() выберите один или несколько ответов:
+<blockquote><br /> <code>class a { void f(); };</code> <br /> &nbsp; <br /> тип указателя this в методе f() выберите один или несколько ответов:
 <ul>
 <li>a. const a*</li>
 <li>b. a*</li>
@@ -490,7 +490,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>e. класс type_info</li>
 </ul>
 </blockquote><p><strong>Вопрос 53:</strong></p>
-<blockquote><br /> <em>class a {</em><br /><em> void f(); </em><br /><em> };</em> <br /> &nbsp; <br /> тип указателя this в методе f() <br /> выберите один или несколько ответов:
+<blockquote><br /> <code>class a {</code><br /><code> void f(); </code><br /><code> };</code> <br /> &nbsp; <br /> тип указателя this в методе f() <br /> выберите один или несколько ответов:
 <ul>
 <li>a. const a*</li>
 <li>b. a*</li>
@@ -506,7 +506,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d. move operator= всегда автоматически генерируется компилятором</li>
 </ul>
 </blockquote><p><strong>Вопрос 55:</strong></p>
-<blockquote><br /> <em>vector&lt;vector&lt;int&gt;&gt; v(10, vector&lt;int&gt;(10,1));</em>
+<blockquote><br /> <code>vector&lt;vector&lt;int&gt;&gt; v(10, vector&lt;int&gt;(10,1));</code>
 <br /> отметьте корректные варианты получения значений элементов <br /> выберите один или несколько ответов:
 <ul>
 <li>a. int x = v.at(1).at(1);</li>
@@ -526,14 +526,14 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </blockquote><p><strong>Вопрос 57:</strong></p>
 <blockquote><br /> в каких вариантах компилятор не выдаст ошибку? <br /> выберите один или несколько ответов:
 <ul>
-<li>a. <em>class a { &nbsp;}; </em><br /><em> class b : private a { &nbsp;}; </em><br /><em> int main() </em><br /><em> { </em><br /><em> a* p = new b; </em><br /><em> }</em></li>
-<li>b. <em>class a { }; </em><br /><em> class b : public a { &nbsp;}; </em><br /><em> int main() </em><br /><em> { </em><br /><em> a* p = new b; </em><br /><em> }</em></li>
-<li>c. <em>class a { &nbsp;virtual void f(); &nbsp;}; </em><br /><em> class b : public a { &nbsp;}; </em><br /><em> int main() </em><br /><em> { </em><br /><em> &nbsp;a* p1 = new b; </em><br /><em> &nbsp;b* p2 = dynamic_cast&lt;b*&gt;(p1); </em><br /><em> }</em></li>
-<li>d. <em>class a { &nbsp;virtual void f(); }; </em><br /><em> class b : public a { }; </em><br /><em> int main() </em><br /><em> { </em><br /><em> &nbsp;a* p1 = new a; </em><br /><em> &nbsp;b* p2 = dynamic_cast&lt;b*&gt;(p1); </em><br /><em> }</em></li>
-<li>e. <em>class a { &nbsp;}; </em><br /><em> class b : public a { &nbsp;}; </em><br /><em> int main() </em><br /><em> { </em><br /><em> b* p = new a; </em><br /><em> }</em> <br /><br /></li>
+<li>a. <code>class a { &nbsp;}; </code><br /><code> class b : private a { &nbsp;}; </code><br /><code> int main() </code><br /><code> { </code><br /><code> a* p = new b; </code><br /><code> }</code></li>
+<li>b. <code>class a { }; </code><br /><code> class b : public a { &nbsp;}; </code><br /><code> int main() </code><br /><code> { </code><br /><code> a* p = new b; </code><br /><code> }</code></li>
+<li>c. <code>class a { &nbsp;virtual void f(); &nbsp;}; </code><br /><code> class b : public a { &nbsp;}; </code><br /><code> int main() </code><br /><code> { </code><br /><code> &nbsp;a* p1 = new b; </code><br /><code> &nbsp;b* p2 = dynamic_cast&lt;b*&gt;(p1); </code><br /><code> }</code></li>
+<li>d. <code>class a { &nbsp;virtual void f(); }; </code><br /><code> class b : public a { }; </code><br /><code> int main() </code><br /><code> { </code><br /><code> &nbsp;a* p1 = new a; </code><br /><code> &nbsp;b* p2 = dynamic_cast&lt;b*&gt;(p1); </code><br /><code> }</code></li>
+<li>e. <code>class a { &nbsp;}; </code><br /><code> class b : public a { &nbsp;}; </code><br /><code> int main() </code><br /><code> { </code><br /><code> b* p = new a; </code><br /><code> }</code> <br /><br /></li>
 </ul>
 </blockquote><p><strong>Вопрос 58:</strong></p>
-<blockquote><br /> <em>class a { }; a a; void func() { }</em>
+<blockquote><br /> <code>class a { }; a a; void func() { }</code>
 <br /> когда будет вызван деструктор? <br /> выберите один ответ:
 <ul>
 <li>a. при завершении приложения</li>
@@ -556,7 +556,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d. при завершении приложения <br /><br /></li>
 </ul>
 </blockquote><p><strong>Вопрос 61:</strong></p>
-<blockquote><br /> <em>class a { ... }; </em><br /><em> a a; </em><br /><em> void func() </em><br /><em> { </em><br /><em> &hellip; </em><br /><em> }</em>
+<blockquote><br /> <code>class a { ... }; </code><br /><code> a a; </code><br /><code> void func() </code><br /><code> { </code><br /><code> &hellip; </code><br /><code> }</code>
 <br /> когда будет вызван деструктор? <br /> выберите один ответ:
 <ul>
 <li>a. при завершении приложения</li>
@@ -570,7 +570,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>b. осуществляется захват &laquo;сырой&raquo; (неинициализированной) памяти, а вызов конструктора происходит только при реальном добавлении элемента в контейнер <br /><br /></li>
 </ul>
 </blockquote><p><strong>Вопрос 63:</strong></p>
-<blockquote><br /> <em>class a { </em><br /><em> int x; </em><br /><em> protected: </em><br /><em> int y; </em><br /><em> public: </em><br /><em> void f(); </em><br /><em> &hellip; </em><br /><em> }; </em><br /><em> class b : public a {&hellip;};</em>
+<blockquote><br /> <code>class a { </code><br /><code> int x; </code><br /><code> protected: </code><br /><code> int y; </code><br /><code> public: </code><br /><code> void f(); </code><br /><code> &hellip; </code><br /><code> }; </code><br /><code> class b : public a {&hellip;};</code>
 <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. void func(b&amp; b) { b.y = 1; }</li>
@@ -578,18 +578,18 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>c. void func(b&amp; b) { b.x = 1; } <br /><br /></li>
 </ul>
 </blockquote><p><strong>Вопрос 64:</strong></p>
-<blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> a operator=(const a&amp;); </em><br /><em> };</em>
+<blockquote><br /> <code>class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> a operator=(const a&amp;); </code><br /><code> };</code>
 <br /> в каких примерах можно использовать реализованный оператор присваивания <br /> выберите один или несколько ответов:
 <ul>
-<li>a. <em>a a1(1), a2(2), a3; </em><br /><em> a3 = a2 = a1;</em></li>
-<li>b. <em>a a1(1), a2(2); </em><br /><em> a2 = a1;</em></li>
+<li>a. <code>a a1(1), a2(2), a3; </code><br /><code> a3 = a2 = a1;</code></li>
+<li>b. <code>a a1(1), a2(2); </code><br /><code> a2 = a1;</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 65:</strong></p>
 <blockquote><br /> выберите один или несколько ответов:
 <ul>
-<li>a. <em>void func(const a&amp;); </em><br /><em> void anotherfunc() { </em><br /><em> a a; </em><br /><em> func(a); </em><br /><em> }</em></li>
-<li>b. <em>void func(a&amp;); </em><br /><em> void anotherfunc() { </em><br /><em> const a a; </em><br /><em> func(a); </em><br /><em> }</em></li>
-<li>c. <em>void func(const a&amp;); </em><br /><em> void anotherfunc() {</em><br /><em> func(a()); </em><br /><em> }</em></li>
+<li>a. <code>void func(const a&amp;); </code><br /><code> void anotherfunc() { </code><br /><code> a a; </code><br /><code> func(a); </code><br /><code> }</code></li>
+<li>b. <code>void func(a&amp;); </code><br /><code> void anotherfunc() { </code><br /><code> const a a; </code><br /><code> func(a); </code><br /><code> }</code></li>
+<li>c. <code>void func(const a&amp;); </code><br /><code> void anotherfunc() {</code><br /><code> func(a()); </code><br /><code> }</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 66:</strong></p>
 <blockquote><br /> деструктор <br /> выберите один или несколько ответов:
@@ -602,16 +602,16 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </blockquote><p><strong>Вопрос 67:</strong></p>
 <blockquote><br /> какой из операторов присваивания &nbsp;более эффективен? <br /> выберите один ответ:
 <ul>
-<li>a. <em>class a { </em><br /><em> int m_a;</em><br /><em> public: </em><br /><em> a operator=(const a&amp;); </em><br /><em> };</em></li>
-<li>b. <em>class a { </em><br /><em> int m_a;</em><br /><em> public: </em><br /><em> a&amp; operator=(const a&amp;); </em><br /><em> };</em></li>
+<li>a. <code>class a { </code><br /><code> int m_a;</code><br /><code> public: </code><br /><code> a operator=(const a&amp;); </code><br /><code> };</code></li>
+<li>b. <code>class a { </code><br /><code> int m_a;</code><br /><code> public: </code><br /><code> a&amp; operator=(const a&amp;); </code><br /><code> };</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 68:</strong></p>
-<blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> a(int &nbsp;= 0); </em><br /><em> }; </em><br /><em> class b { </em><br /><em> int m_b; </em><br /><em> a m_a; </em><br /><em> public: </em><br /><em> b(const a&amp;, int b); </em><br /><em> };</em>
+<blockquote><br /> <code>class a { </code><br /><code> int m_a; </code><br /><code> public: </code><br /><code> a(int &nbsp;= 0); </code><br /><code> }; </code><br /><code> class b { </code><br /><code> int m_b; </code><br /><code> a m_a; </code><br /><code> public: </code><br /><code> b(const a&amp;, int b); </code><br /><code> };</code>
 <br /> отметьте корректные и эффективные варианты инициализации встроенного объекта <br /> выберите один или несколько ответов:
 <ul>
-<li>a. <em>b::b(const a&amp; ra, int b): m_a(ra) { </em><br /><em> }</em></li>
-<li>b.<em> b::b(const a&amp; ra, int b): m_a(ra.m_a) { </em><br /><em>}</em></li>
-<li>c. <em>b::b(const a&amp; ra, int b) { </em><br /><em> &nbsp; &nbsp;m_a = ra;</em><br /><em> }</em></li>
+<li>a. <code>b::b(const a&amp; ra, int b): m_a(ra) { </code><br /><code> }</code></li>
+<li>b.<code> b::b(const a&amp; ra, int b): m_a(ra.m_a) { </code><br /><code>}</code></li>
+<li>c. <code>b::b(const a&amp; ra, int b) { </code><br /><code> &nbsp; &nbsp;m_a = ra;</code><br /><code> }</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 69:</strong></p>
 <blockquote><br /> в качестве базового контейнера для<strong> std::priority_queue</strong> можно использовать: <br /> выберите один или несколько ответов:
@@ -623,63 +623,63 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </blockquote><p><strong>Вопрос 70:</strong></p>
 <blockquote><br /> выберите один или несколько ответов:
 <ul>
-<li>a. &nbsp;<em>try { </em><br /><em> } </em><br /><em> catch(int n) {}</em></li>
-<li>b.<em> try {</em><br /><em> } </em><br /><em> catch(int) &nbsp;{ &nbsp;}</em></li>
-<li>c.<em> try {</em><br /><em> } </em><br /><em> catch() {}</em></li>
-<li>d.<em> try { </em><br /><em> } </em><br /><em> catch() &nbsp;{ &nbsp;}</em></li>
+<li>a. &nbsp;<code>try { </code><br /><code> } </code><br /><code> catch(int n) {}</code></li>
+<li>b.<code> try {</code><br /><code> } </code><br /><code> catch(int) &nbsp;{ &nbsp;}</code></li>
+<li>c.<code> try {</code><br /><code> } </code><br /><code> catch() {}</code></li>
+<li>d.<code> try { </code><br /><code> } </code><br /><code> catch() &nbsp;{ &nbsp;}</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 71:</strong></p>
 <blockquote><br /> отметьте правильные варианты создания объектов <br /> выберите один или несколько ответов:
 <ul>
-<li>a. <em>vector&lt;int&gt; v(10,33); list&lt;int&gt; l(v.begin(), v.end());</em></li>
-<li>b. <em>vector&lt;int&gt; v(10,33); list&lt;int&gt; l(v);</em></li>
-<li>c. <em>list&lt;int&gt; l(10,33);</em></li>
-<li>d. <em>list&lt;int&gt; l();</em></li>
+<li>a. <code>vector&lt;int&gt; v(10,33); list&lt;int&gt; l(v.begin(), v.end());</code></li>
+<li>b. <code>vector&lt;int&gt; v(10,33); list&lt;int&gt; l(v);</code></li>
+<li>c. <code>list&lt;int&gt; l(10,33);</code></li>
+<li>d. <code>list&lt;int&gt; l();</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 72:</strong></p>
 <blockquote><br /> диапазон изменения данных от (-2) до (+1). <br /> какое из битовых полей удовлетворяет условию? <br /> выберите один ответ:
 <ul>
-<li>a. <em>class a { </em><br /><em> unsigned char x:2;</em><br /><em> };</em></li>
-<li>b. <em>class a { </em><br /><em> char x:1;</em><br /><em> };</em></li>
-<li>c. <em>class a { </em><br /><em> char x:2;</em><br /><em> };</em></li>
+<li>a. <code>class a { </code><br /><code> unsigned char x:2;</code><br /><code> };</code></li>
+<li>b. <code>class a { </code><br /><code> char x:1;</code><br /><code> };</code></li>
+<li>c. <code>class a { </code><br /><code> char x:2;</code><br /><code> };</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 73:</strong></p>
 <blockquote><br /><br /> выберите один или несколько ответов:
 <ul>
-<li>a. &nbsp;<em>try { </em><br /><em> ... </em><br /><em> } </em><br /><em> catch(int n) {...}</em></li>
-<li>b. <em>try { </em><br /><em> ... </em><br /><em> } </em><br /><em> catch(int) &nbsp;{ ... }</em></li>
-<li><em>c. try {</em> <br /> ... <br /> } <br /> catch() {...}</li>
-<li>d. <em>try { </em><br /><em> ... </em><br /><em> } </em><br /><em> catch(...) &nbsp;{ ... }</em></li>
+<li>a. &nbsp;<code>try { </code><br /><code> ... </code><br /><code> } </code><br /><code> catch(int n) {...}</code></li>
+<li>b. <code>try { </code><br /><code> ... </code><br /><code> } </code><br /><code> catch(int) &nbsp;{ ... }</code></li>
+<li><code>c. try {</code> <br /> ... <br /> } <br /> catch() {...}</li>
+<li>d. <code>try { </code><br /><code> ... </code><br /><code> } </code><br /><code> catch(...) &nbsp;{ ... }</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 74:</strong></p>
 <blockquote><br /> диапазон изменения данных от (-2) до (+1). <br /> какое из битовых полей удовлетворяет условию? <br /> выберите один ответ:
 <ul>
-<li>a.<em> class a { </em><br /><em> unsigned char x:2; </em><br /><em> &hellip; </em><br /><em> };</em></li>
-<li>b. <em>class a { </em><br /><em> char x:1; </em><br /><em> &hellip; </em><br /><em> };</em></li>
-<li>c. <em>class a { </em><br /><em> char x:2; </em><br /><em> &hellip; </em><br /><em> };</em></li>
+<li>a.<code> class a { </code><br /><code> unsigned char x:2; </code><br /><code> &hellip; </code><br /><code> };</code></li>
+<li>b. <code>class a { </code><br /><code> char x:1; </code><br /><code> &hellip; </code><br /><code> };</code></li>
+<li>c. <code>class a { </code><br /><code> char x:2; </code><br /><code> &hellip; </code><br /><code> };</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 75:</strong></p>
-<blockquote><br /> <em>class a { </em><br /><em> &hellip; </em><br /><em> void f() const; </em><br /><em> };</em>
+<blockquote><br /> <code>class a { </code><br /><code> &hellip; </code><br /><code> void f() const; </code><br /><code> };</code>
 <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. void a::f() const <br /> { <br /> &hellip; <br /> }</li>
 <li>b. void a::f() <br /> { <br /> &hellip; <br /> }</li>
 </ul>
 </blockquote><p><strong>Вопрос 76:</strong></p>
-<blockquote><br /> <em>vector&lt;int&gt; v(10,1); </em><br /><em> vector&lt;int&gt;::iterator it = v.begin();</em> <br /> &nbsp; <br /> отметьте корректные варианты получения значений элементов <br /> выберите один или несколько ответов:
+<blockquote><br /> <code>vector&lt;int&gt; v(10,1); </code><br /><code> vector&lt;int&gt;::iterator it = v.begin();</code> <br /> &nbsp; <br /> отметьте корректные варианты получения значений элементов <br /> выберите один или несколько ответов:
 <ul>
 <li>a. int x = *(it + 5);</li>
 <li>b. int x = *it;</li>
 <li>c. int x = *(v.end());</li>
 </ul>
 </blockquote><p><strong>Вопрос 77:</strong></p>
-<blockquote><br /> <em>class a { ... &nbsp;virtual void f(); ... }; </em><br /><em> class b : public a { ... }; </em><br /><em> &nbsp; </em><br /><em> int main() { </em><br /><em> a* pa = new b; </em><br /><em> bool b = typeid(*pa).before(typeid(b)); </em><br /><em> } </em><br /><em> &nbsp;</em> <br /> значение переменной "b&rdquo;: <br /> выберите один ответ:
+<blockquote><br /> <code>class a { ... &nbsp;virtual void f(); ... }; </code><br /><code> class b : public a { ... }; </code><br /><code> &nbsp; </code><br /><code> int main() { </code><br /><code> a* pa = new b; </code><br /><code> bool b = typeid(*pa).before(typeid(b)); </code><br /><code> } </code><br /><code> &nbsp;</code> <br /> значение переменной "b&rdquo;: <br /> выберите один ответ:
 <ul>
 <li>a. true</li>
 <li>b. false</li>
 </ul>
 </blockquote><p><strong>Вопрос 78:</strong></p>
-<blockquote><br /> <em>a.h </em><br /><em> class a { ... </em><br /><em> public: </em><br /><em> explicit a(int = 0); </em><br /><em> };</em>
+<blockquote><br /> <code>a.h </code><br /><code> class a { ... </code><br /><code> public: </code><br /><code> explicit a(int = 0); </code><br /><code> };</code>
 <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. int n = 1;a a = n;</li>
@@ -690,10 +690,10 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </blockquote><p><strong>Вопрос 79:</strong></p>
 <blockquote><br /> выберите один или несколько ответов:
 <ul>
-<li>a. <em>class a { &hellip; </em><br /><em> void f(); </em><br /><em> void f(int = 0); </em><br /><em> };</em></li>
-<li>b. <em>class a { &hellip; </em><br /><em> void f(); </em><br /><em> void f()const; </em><br /><em> };</em></li>
-<li>c. <em>class a { &hellip; </em><br /><em> void f(); </em><br /><em> int f(); </em><br /><em> };</em></li>
-<li>d. <em>class a { &hellip; </em><br /><em> void f(); </em><br /><em> void f(int); </em><br /><em> };</em></li>
+<li>a. <code>class a { &hellip; </code><br /><code> void f(); </code><br /><code> void f(int = 0); </code><br /><code> };</code></li>
+<li>b. <code>class a { &hellip; </code><br /><code> void f(); </code><br /><code> void f()const; </code><br /><code> };</code></li>
+<li>c. <code>class a { &hellip; </code><br /><code> void f(); </code><br /><code> int f(); </code><br /><code> };</code></li>
+<li>d. <code>class a { &hellip; </code><br /><code> void f(); </code><br /><code> void f(int); </code><br /><code> };</code></li>
 </ul>
 </blockquote><p><strong>Вопрос 80:</strong></p>
 <blockquote><br /> дано: <br /> class a { ... }; <br /> a a1, a2; <br /> для выражения a1 + &nbsp;a2: <br /> выберите один или несколько ответов:
@@ -703,7 +703,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>c. программист должен предоставить компилятору функцию с предопределенным именем <br /><br /></li>
 </ul>
 </blockquote><p><strong>Вопрос 81:</strong></p>
-<blockquote><br /><br /> <em>class a { &lt;простой&gt; }; </em><br /><em> class b: &nbsp;public a { &lt;сложный&gt; };</em> <br /> &nbsp; <br /> отметьте корректные утверждения <br /> выберите один или несколько ответов:
+<blockquote><br /><br /> <code>class a { &lt;простой&gt; }; </code><br /><code> class b: &nbsp;public a { &lt;сложный&gt; };</code> <br /> &nbsp; <br /> отметьте корректные утверждения <br /> выберите один или несколько ответов:
 <ul>
 <li>a. компилятор всегда автоматически вызывает оператор присваивания базового класса</li>
 <li>b. требуется реализовать оператор присваивания в классе b</li>
@@ -718,7 +718,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>c. public</li>
 </ul>
 </blockquote><p><strong>Вопрос 83:</strong></p>
-<blockquote><br /> <em>class out { </em><br /><em> class in { ... </em><br /><em> in(); </em><br /><em> }; </em><br /><em> ... </em><br /><em> out(); </em><br /><em> };</em>
+<blockquote><br /> <code>class out { </code><br /><code> class in { ... </code><br /><code> in(); </code><br /><code> }; </code><br /><code> ... </code><br /><code> out(); </code><br /><code> };</code>
 <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. out::out() { ... }</li>
@@ -735,9 +735,9 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d. set</li>
 </ul>
 </blockquote><p><strong>Вопрос 85:</strong></p>
-<blockquote><br /> <em>vector&lt;int&gt; v; </em><br /><em> v.reserve(10); </em><br /><em> v.push_back(33); </em><br /><em> size_t n = v.size();</em> <br /><br /><br /> значение переменной n?
+<blockquote><br /> <code>vector&lt;int&gt; v; </code><br /><code> v.reserve(10); </code><br /><code> v.push_back(33); </code><br /><code> size_t n = v.size();</code> <br /><br /><br /> значение переменной n?
 </blockquote><p><strong>Вопрос 86:</strong></p>
-<blockquote><br /> <em>class x { </em><br /><em> int m_x; </em><br /><em> void fx(y&amp; y); </em><br /><em> friend void y::fy1(x&amp; x); </em><br /><em> }; </em><br /><em> class y{ </em><br /><em> int m_y; </em><br /><em> void fy1(x&amp; x); </em><br /><em> void fy2(x&amp; x); </em><br /><em> };</em>
+<blockquote><br /> <code>class x { </code><br /><code> int m_x; </code><br /><code> void fx(y&amp; y); </code><br /><code> friend void y::fy1(x&amp; x); </code><br /><code> }; </code><br /><code> class y{ </code><br /><code> int m_y; </code><br /><code> void fy1(x&amp; x); </code><br /><code> void fy2(x&amp; x); </code><br /><code> };</code>
 <br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. void x::fx(y&amp; y) { y.m_y++; }</li>
@@ -787,15 +787,15 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>c) на закрывающую фигурную скобку функции, в которой находится оператор throw</li>
 </ul>
 </blockquote><p><strong>Вопрос 92:</strong></p>
-<blockquote><br /> куда происходит передача управления при выполнении оператора throw 1? выберете один или несколько ответов:
+<blockquote>куда происходит передача управления при выполнении оператора throw 1? выберете один или несколько ответов:
 <ul>
 <li>a) на открывающую фигурную скобку обработчика catch(int)</li>
 <li>b) на закрывающую фигурную скобку блока, в котором находится &nbsp; &nbsp;оператор throw</li>
-<li>c) на закрывающую фигурную скобку функции, в которой находится оператор throw <br /><br /></li>
+<li>c) на закрывающую фигурную скобку функции, в которой находится оператор throw</li>
 </ul>
 </blockquote><p><strong>Вопрос 93:</strong></p>
-<blockquote><br /> <em>class a { &nbsp;int m_a; public: &nbsp;a(int); &nbsp;void f(); }; class b public a { &nbsp;int m_b; public: &nbsp;b(int,int); &nbsp;virtual void f(); }; class c public b { &nbsp;int m_c; public: &nbsp;c(int,int,int); };</em>
-<br /> для каких классов компилятор сформирует таблицу виртуальных функций выберете один или несколько ответов:
+<blockquote><code>class a { &nbsp;int m_a; public: &nbsp;a(int); &nbsp;void f(); }; class b public a { &nbsp;int m_b; public: &nbsp;b(int,int); &nbsp;virtual void f(); }; class c public b { &nbsp;int m_c; public: &nbsp;c(int,int,int); };</code>
+для каких классов компилятор сформирует таблицу виртуальных функций выберете один или несколько ответов:
 <ul>
 <li>a) c</li>
 <li>b) a</li>

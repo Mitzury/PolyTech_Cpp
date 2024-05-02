@@ -274,3 +274,28 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <li>d) B* p= new C; A* pp= dynamic_cast&lt;A*&gt;(p);</li>
 </ul>
 </blockquote>
+<p><strong>Вопрос 28:</strong></p>
+<blockquote>
+<p>Отметьте варианты, в которых перегружен оператор приведения типа
+выберете один или несколько ответов:</p>
+<ul>
+<li>a)<code>
+ class a {
+  int m_a;
+ public:
+  operator int();
+  };</code>
+<li>b)<code>
+ class a {
+  char* p;
+ public:
+  operator const char*();
+  };</code>
+<li>c)<code>
+ class a {
+  int m_a;
+ public:
+  int operator();
+  };</code>
+ </ul>
+ </blockquote>

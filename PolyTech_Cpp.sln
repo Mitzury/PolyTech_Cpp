@@ -66,6 +66,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab5v2", "C200\Lab5v2\Lab5v2.vcxproj", "{59FF4786-EDCC-4E1A-A371-5FAAC3F401BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C210", "C210", "{0FD1D37D-2828-4059-804D-8970B9F6CCB4}"
+	ProjectSection(SolutionItems) = preProject
+		QnA(C20+C21).md = QnA(C20+C21).md
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab1", "C210\Lab1\Lab1.vcxproj", "{C90F9572-006C-4284-B831-38EAF873ACB7}"
 EndProject

@@ -49,12 +49,13 @@ B b; F (&b); }</code></p>
 </ul>
 </blockquote>
 <p><strong>Вопрос 5:</strong></p>
-<blockquote>Отметьте корректные варианты: Выберете один или несколько ответов:</blockquote>
+<blockquote>Отметьте корректные варианты: Выберете один или несколько ответов:
 <ul>
 <li>a) A.h class A{ ... public: virtual void VF()=0; }; A.cpp #include "A.h" void A::VF() {&lt;реализация&gt;}</li>
 <li>b) class A{ ... public: virtual void VF()=0; // релизации нет };</li>
 <li>c) class A{ ... public: virtual void VF()=0; {&lt;реализация&gt;} };</li>
 </ul>
+</blockquote>
 <p><strong>Вопрос 6:</strong></p>
 <blockquote><code>class A { ... public: A (int=0); };</code>
 <p>отметьте корректные варианты Выберете один или несколько ответов:</p>
@@ -118,12 +119,13 @@ B b; F (&b); }</code></p>
 </ul>
 </blockquote>
 <p><strong>Вопрос 12:</strong></p>
-<blockquote>Отметьте корректные утверждения: Выберете один или несколько ответов:</blockquote>
+<blockquote>Отметьте корректные утверждения: Выберете один или несколько ответов:
 <ul>
 <li>a) для std::deque реализованы методы push_back(), pop_back()</li>
 <li>b) для std::deque реализованы методы push_front(), pop_front()</li>
 <li>с) std::deque -это контейнер с последовательным доступом</li>
 </ul>
+</blockquote>
 <p><strong>Вопрос 13:</strong></p>
 <blockquote>
 <code>class A {... virtual void f(); ...}; class B : public A { ... }; class C : public B { ... };
@@ -158,12 +160,14 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote>
 <p><strong>Вопрос 16:</strong></p>
-<blockquote>Отметьте варианты реализации шаблонной функции, для которых компилятор не будет выдавать ошибок в приведенном фрагменте: f(1); double d=5.5; f(d); Выберете один или несколько ответов:</blockquote>
+<blockquote>Отметьте варианты реализации шаблонной функции, для которых компилятор не будет выдавать ошибок в приведенном фрагменте: f(1); double d=5.5; f(d); 
+Выберете один или несколько ответов:
 <ul>
 <li>a) template void f(const T&amp; t) {...}</li>
 <li>b) template void f(T t) {...}</li>
 <li>c) template void f(T&amp; t) {...}</li>
 </ul>
+</blockquote>
 <p><strong>Вопрос 17:</strong></p>
 <blockquote>Отметьте корректные варианты перегрузки префиксного оператора "++" Выберете один или несколько ответов:
 <ul>

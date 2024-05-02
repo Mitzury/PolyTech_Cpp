@@ -1,5 +1,6 @@
 <div class="markdown-heading">
 <h1 class="heading-element" tabindex="-1">QnA_Итоговое тестирование С20 + С21</h1>
+<i>Вопросы от апреля 2024. Некоторые ответы могут быть не точными</i>
 </div>
 <p><strong>Вопрос 1:</strong></p>
 <blockquote>Дан&nbsp;<code>class A { public void f(); }</code>
@@ -86,12 +87,13 @@ B b; F (&b); }</code></p>
 </ul>
 </blockquote>
 <p><strong>Вопрос 9:</strong></p>
-<blockquote>Отметьте варианты, в которых перегружен оператор приведения типа Выберете один или несколько ответов:</blockquote>
+<blockquote>Отметьте варианты, в которых перегружен оператор приведения типа Выберете один или несколько ответов:
 <ul>
 <li>a) class A { int m_a; public: operator int(); };</li>
 <li>b) class A { char* p; public: operator const char*(); };</li>
 <li>c) class A { int m_a; public: int operator(); };</li>
 </ul>
+</blockquote>
 <p><strong>Вопрос 10:</strong></p>
 <blockquote>
 	<code>int ar[10] ={8,9,7,6,4,1}; 

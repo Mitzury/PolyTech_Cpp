@@ -298,11 +298,10 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
   int operator();
   };</code>
  </ul>
- 
-
- </blockquote><p><strong>Вопрос 29:</strong></p>
+ </blockquote>
+ <p><strong>Вопрос 29:</strong></p>
 <blockquote>Отметьте варианты реализации шаблонной функции, для которых компилятор не будет выдавать ошибок в приведенном фрагменте:
-<blockquote><em>double d = 5.5; </em><br /><em> f(&amp;d); </em><br /><em> f(d);</em> <br /> &nbsp; <br />Выберите один или несколько ответов:
+<em>double d = 5.5; </em><br /><em> f(&amp;d); </em><br /><em> f(d);</em> <br /> &nbsp; <br />Выберите один или несколько ответов:
 <ul>
 <li>a. template&lt;typename t&gt; void f(t* t) {...}</li>
 <li>b. template&lt;typename t&gt; void f(t t) {...}</li>
@@ -311,7 +310,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 30:</strong></p>
 <blockquote><br /> <em>class a {}; </em><br /><em> class b : public a {}; </em><br /><em> viod main() { </em><br /><em> b b;</em><br /><em> }</em>
-<blockquote><br /> какие конструкторы и в каком порядке вызываются? <br /> выберите один ответ:
+<br /> какие конструкторы и в каком порядке вызываются? <br /> выберите один ответ:
 <ul>
 <li>a. b</li>
 <li>b. b a</li>
@@ -319,7 +318,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 31:</strong></p>
 <blockquote><br /> <em>class a {}; </em><br /><em> class b : public a {}; </em><br /><em> viod main() { </em><br /><em> b b;</em><br /><em> }</em>
-<blockquote><br /> какие конструкторы и в каком порядке вызываются? <br /> выберите один ответ:
+<br /> какие конструкторы и в каком порядке вызываются? <br /> выберите один ответ:
 <ul>
 <li>a. b</li>
 <li>b. b a</li>
@@ -335,7 +334,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 33:</strong></p>
 <blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> a(int a); </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. a::a(int a) { m_a = a; }</li>
 <li>b. a::a(int a) : m_a(a) { }</li>
@@ -349,7 +348,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 35:</strong></p>
 <blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> void f(); </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li><em>a. void func(a* p) { </em><br /><em> &nbsp; &nbsp;p-&gt;f(); </em><br /><em> }</em></li>
 <li><em>b. void a::f() { </em><br /><em> &nbsp; &nbsp;m_a++; </em><br /><em> }</em></li>
@@ -372,8 +371,8 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 38:</strong></p>
 <blockquote><br /> <em>a.h</em>
-<blockquote><em> class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> void f(); </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<em> class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> void f(); </em><br /><em> };</em>
+><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. a.cpp <br /> <em>void a::f() { &nbsp;}</em></li>
 <li>b. a.cpp <br /> <em>#include &ldquo;a.h&rdquo; </em><br /><em> void a::f() { }</em></li>
@@ -409,7 +408,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 43:</strong></p>
 <blockquote><br /> <em>a.h </em><br /><em> class a { </em><br /><em> ... </em><br /><em> public: </em><br /><em> a(int); </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. a* pa = new a();</li>
 <li>b. a a;</li>
@@ -440,7 +439,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 47:</strong></p>
 <blockquote><br /><br /> дано <br /> a a1, a2, a3;
-<blockquote><br /> отметьте примеры, в которых оператор можно перегрузить только глобальной функцией <br /> выберите один или несколько ответов:
+<br /> отметьте примеры, в которых оператор можно перегрузить только глобальной функцией <br /> выберите один или несколько ответов:
 <ul>
 <li>a. a3 = -a1;</li>
 <li>b. a3 += a2;</li>
@@ -467,7 +466,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 50:</strong></p>
 <blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> a(int); </em><br /><em> virtual void f(); </em><br /><em> }; </em><br /><em> class b : public a { </em><br /><em> int m_b; </em><br /><em> public: </em><br /><em> b(int, int); </em><br /><em> void f(); </em><br /><em> }; </em><br /><em> class c : public b { </em><br /><em> int m_c; </em><br /><em> public: </em><br /><em> c(int, int, int); </em><br /><em> void f(); </em><br /><em> };</em>
-<blockquote><br /> для каких классов компилятор сформирует таблицу виртуальных функций <br /> выберите один или несколько ответов:
+<br /> для каких классов компилятор сформирует таблицу виртуальных функций <br /> выберите один или несколько ответов:
 <ul>
 <li>a. a</li>
 <li>b. c</li>
@@ -508,7 +507,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 55:</strong></p>
 <blockquote><br /> <em>vector&lt;vector&lt;int&gt;&gt; v(10, vector&lt;int&gt;(10,1));</em>
-<blockquote><br /> отметьте корректные варианты получения значений элементов <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты получения значений элементов <br /> выберите один или несколько ответов:
 <ul>
 <li>a. int x = v.at(1).at(1);</li>
 <li>b. vector&lt;vector&lt;int&gt;&gt;::iterator it = v.begin(); int x = *(it + 1);</li>
@@ -535,7 +534,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 58:</strong></p>
 <blockquote><br /> <em>class a { }; a a; void func() { }</em>
-<blockquote><br /> когда будет вызван деструктор? <br /> выберите один ответ:
+<br /> когда будет вызван деструктор? <br /> выберите один ответ:
 <ul>
 <li>a. при завершении приложения</li>
 <li>b. никогда</li>
@@ -558,7 +557,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 61:</strong></p>
 <blockquote><br /> <em>class a { ... }; </em><br /><em> a a; </em><br /><em> void func() </em><br /><em> { </em><br /><em> &hellip; </em><br /><em> }</em>
-<blockquote><br /> когда будет вызван деструктор? <br /> выберите один ответ:
+<br /> когда будет вызван деструктор? <br /> выберите один ответ:
 <ul>
 <li>a. при завершении приложения</li>
 <li>b. никогда</li>
@@ -572,7 +571,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 63:</strong></p>
 <blockquote><br /> <em>class a { </em><br /><em> int x; </em><br /><em> protected: </em><br /><em> int y; </em><br /><em> public: </em><br /><em> void f(); </em><br /><em> &hellip; </em><br /><em> }; </em><br /><em> class b : public a {&hellip;};</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. void func(b&amp; b) { b.y = 1; }</li>
 <li>b. void func(b&amp; b) { b.f(); }</li>
@@ -580,7 +579,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 64:</strong></p>
 <blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> a operator=(const a&amp;); </em><br /><em> };</em>
-<blockquote><br /> в каких примерах можно использовать реализованный оператор присваивания <br /> выберите один или несколько ответов:
+<br /> в каких примерах можно использовать реализованный оператор присваивания <br /> выберите один или несколько ответов:
 <ul>
 <li>a. <em>a a1(1), a2(2), a3; </em><br /><em> a3 = a2 = a1;</em></li>
 <li>b. <em>a a1(1), a2(2); </em><br /><em> a2 = a1;</em></li>
@@ -608,7 +607,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 68:</strong></p>
 <blockquote><br /> <em>class a { </em><br /><em> int m_a; </em><br /><em> public: </em><br /><em> a(int &nbsp;= 0); </em><br /><em> }; </em><br /><em> class b { </em><br /><em> int m_b; </em><br /><em> a m_a; </em><br /><em> public: </em><br /><em> b(const a&amp;, int b); </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные и эффективные варианты инициализации встроенного объекта <br /> выберите один или несколько ответов:
+<br /> отметьте корректные и эффективные варианты инициализации встроенного объекта <br /> выберите один или несколько ответов:
 <ul>
 <li>a. <em>b::b(const a&amp; ra, int b): m_a(ra) { </em><br /><em> }</em></li>
 <li>b.<em> b::b(const a&amp; ra, int b): m_a(ra.m_a) { </em><br /><em>}</em></li>
@@ -661,7 +660,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 75:</strong></p>
 <blockquote><br /> <em>class a { </em><br /><em> &hellip; </em><br /><em> void f() const; </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. void a::f() const <br /> { <br /> &hellip; <br /> }</li>
 <li>b. void a::f() <br /> { <br /> &hellip; <br /> }</li>
@@ -681,7 +680,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 78:</strong></p>
 <blockquote><br /> <em>a.h </em><br /><em> class a { ... </em><br /><em> public: </em><br /><em> explicit a(int = 0); </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. int n = 1;a a = n;</li>
 <li>b. a a;</li>
@@ -720,7 +719,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 83:</strong></p>
 <blockquote><br /> <em>class out { </em><br /><em> class in { ... </em><br /><em> in(); </em><br /><em> }; </em><br /><em> ... </em><br /><em> out(); </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. out::out() { ... }</li>
 <li>b. in::in() { ... }</li>
@@ -739,7 +738,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 <blockquote><br /> <em>vector&lt;int&gt; v; </em><br /><em> v.reserve(10); </em><br /><em> v.push_back(33); </em><br /><em> size_t n = v.size();</em> <br /><br /><br /> значение переменной n?
 </blockquote><p><strong>Вопрос 86:</strong></p>
 <blockquote><br /> <em>class x { </em><br /><em> int m_x; </em><br /><em> void fx(y&amp; y); </em><br /><em> friend void y::fy1(x&amp; x); </em><br /><em> }; </em><br /><em> class y{ </em><br /><em> int m_y; </em><br /><em> void fy1(x&amp; x); </em><br /><em> void fy2(x&amp; x); </em><br /><em> };</em>
-<blockquote><br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
+<br /> отметьте корректные варианты <br /> выберите один или несколько ответов:
 <ul>
 <li>a. void x::fx(y&amp; y) { y.m_y++; }</li>
 <li>b. void y::fy1(x&amp; x) { x.m_x++; }</li>
@@ -796,7 +795,7 @@ int main() { A* pa= new C; bool b1= typeid(*pA) == typeid (C) ; //? bool b2= typ
 </ul>
 </blockquote><p><strong>Вопрос 93:</strong></p>
 <blockquote><br /> <em>class a { &nbsp;int m_a; public: &nbsp;a(int); &nbsp;void f(); }; class b public a { &nbsp;int m_b; public: &nbsp;b(int,int); &nbsp;virtual void f(); }; class c public b { &nbsp;int m_c; public: &nbsp;c(int,int,int); };</em>
-<blockquote><br /> для каких классов компилятор сформирует таблицу виртуальных функций выберете один или несколько ответов:
+<br /> для каких классов компилятор сформирует таблицу виртуальных функций выберете один или несколько ответов:
 <ul>
 <li>a) c</li>
 <li>b) a</li>

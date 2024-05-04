@@ -6,7 +6,10 @@
 // lambda 
 // template variable
 
-
+#include <iostream>
+#include <vector>
+#include <list>
+#include <string>
 int main()
 {
 	//Задание 1. 

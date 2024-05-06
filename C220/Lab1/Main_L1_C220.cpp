@@ -71,10 +71,12 @@ int main()
 		//распечатайте содержимое, например: A: any, apple, away
 	{
 		std::cout << "Chapter 3a: " << std::endl;
-
-		std::map<char, std::vector<std::string>> mapExample;
+		// Создаем map с ключами типа char, и значениями string
+		map<char, vector<string>> mapExample;
+		//Создается массив s, содержащий строки типа const char*
 		const char* s[] = { "apple", "apricot", "banana", "blueberry" };
 		for (auto str : s) {
+			// Добавляем текущей строке str в mapexample, используя первый символ строки str в качестве ключа.
 			mapExample[str[0]].push_back(str);
 		}
 		for (auto& [key, value] : mapExample) {

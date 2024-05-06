@@ -23,8 +23,6 @@ int main()
 #if 1
 	//Задание 1. 
 	{
-		std::cout << __cplusplus << std::endl;
-
 		std::cout << "Chapter 1: " << std::endl;
 		enum class months:unsigned char { January, February, March/*...*/ };
 		enum class weekDays { Monday, Tuesday /*...*/ };
@@ -58,12 +56,11 @@ int main()
 		for (auto& word : words) {
 			//std::transform(word.begin(), word.end(), word.begin(), ::toupper);
 			for (auto& c : word) {
-				c = std::toupper(c);
+				c = toupper(c);
 			}
 		}
 		PrintAnyCont(words);
 	}
-
 #endif
 #if 1
 	/**********************************************************/

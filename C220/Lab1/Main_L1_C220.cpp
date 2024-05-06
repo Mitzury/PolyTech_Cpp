@@ -10,28 +10,38 @@
 #include <vector>
 #include <list>
 #include <string>
+#include <algorithm>
+#include "T.h"
+#include <map>
+
+using namespace std;
+
 int main()
 {
+#if 1
 	//Задание 1. 
 	{
-		enum months { January, February, March/*...*/ };
-		enum weekDays { Monday, Tuesday /*...*/ };
+		std::cout << "Chapter 1: " << std::endl;
+		enum class months:char { January, February, March/*...*/ };
+		enum class weekDays { Monday, Tuesday /*...*/ };
 
-		months m = January;
+		//months m = January;
 		//а) уберите проблемы (это значит, что КОМПИЛЯТОР не
 		//должен позволять программисту осуществлять опасные
 		//сравнения!)
+		months m = months::January;
 
-		if (m == Monday) { /*...*/ }
+		//if (m == Monday) { cout << 1; }
 
 		//б) оптимизируйте использование памяти
-		months year[] = { January, February, March };
-		size_t n = sizeof(year); //???
-
-		__asm nop
+		months year[] = { months::January, months::February, months::March };
+		size_t n = sizeof(year); // int 12
+		std::cout << "Size of year array: " << n << " bytes" << std::endl;
+		std::cout << "Size of year array: " << sizeof(year) << " bytes" << std::endl; 
 	}
 
-
+#endif
+#if 1
 	/**********************************************************/
 		//Задание 2. Создайте и с помощью списка инициализации
 		//заполните значениями вектор с элементами - string
@@ -39,13 +49,16 @@ int main()
 		//верхний регистр а остальные символы должны остаться
 		//неизменными
 	{
-
-
-
-		__asm nop
+		std::cout << "Chapter 2: " << std::endl;
+		std::vector<string> words = { "hello", "world" };
+		for (auto& word : words) {
+			std::transform(word.begin(), word.end(), word.begin(), ::toupper);
+		}
+		PrintAnyCont(words);
 	}
 
-
+#endif
+#if 0
 	/**********************************************************/
 		///Задание 3. Создайте и заполните значениями
 		//map двумя способами (3а и 3б) таким образом, чтобы он содержал 
@@ -57,10 +70,19 @@ int main()
 		//С помощью range-based for и structured binding
 		//распечатайте содержимое, например: A: any, apple, away
 	{
+		std::cout << "Chapter 3a: " << std::endl;
 
+		std::map<char, std::vector<std::string>> mapExample;
+		const char* s[] = { "apple", "apricot", "banana", "blueberry" };
+		for (auto str : s) {
+			mapExample[str[0]].push_back(str);
+		}
+		for (auto& [key, value] : mapExample) {
+			std::sort(value.begin(), value.end());
+			std::cout << key << ": ";
+			PrintAnyCont(value);
+		}
 
-
-		__asm nop
 	}
 
 	//3б. Создайте пустой map и используйте заданный массив
@@ -262,7 +284,8 @@ int main()
 	*/
 
 		__asm nop
-	}
 
+	}
+#endif
 	return 0;
 }

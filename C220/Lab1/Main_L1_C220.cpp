@@ -23,6 +23,8 @@ int main()
 #if 1
 	//Задание 1. 
 	{
+		std::cout << __cplusplus << std::endl;
+
 		std::cout << "Chapter 1: " << std::endl;
 		enum class months:char { January, February, March/*...*/ };
 		enum class weekDays { Monday, Tuesday /*...*/ };

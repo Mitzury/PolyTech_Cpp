@@ -14,6 +14,7 @@
 #include <map>
 
 #include "T.h"
+#include <set>
 
 
 using namespace std;
@@ -55,8 +56,8 @@ int main()
 		std::vector<string> words = { "hello", "world" };
 		for (auto& word : words) {
 			//std::transform(word.begin(), word.end(), word.begin(), ::toupper);
-			for (auto& c : word) {
-				c = toupper(c);
+			for (auto& str : word) {
+				str = toupper(str);
 			}
 		}
 		PrintAnyCont(words);
@@ -74,19 +75,19 @@ int main()
 		//С помощью range-based for и structured binding
 		//распечатайте содержимое, например: A: any, apple, away
 	{
-		std::cout << "Chapter 3a: " << std::endl;
+		std::cout << "Chapter 3a: ";
 		// Создаем map с ключами типа char, и значениями string
-		map<char, vector<string>> mapExample;
-		//Создается массив s, содержащий строки типа const char*
-		const char* s[] = { "apple", "apricot", "banana", "blueberry" };
-		for (auto str : s) {
-			// Добавляем текущей строке str в mapexample, используя первый символ строки str в качестве ключа.
-			mapExample[str[0]].push_back(str);
-		}
-		for (auto& [key, value] : mapExample) {
-			std::sort(value.begin(), value.end());
-			std::cout << key << ": ";
-			PrintAnyCont(value);
+		std::map<char, set<string>> mapExample;
+
+		mapExample['A'] = { "away", "apple", "any" };
+		mapExample['B'] = { "ball", "banana", "brown" };
+		mapExample['C'] = { "cat", "car", "city" };
+
+		for (const auto& [key, value] : mapExample) {
+			std::cout << endl << key << ": ";
+			for (const auto& value : value) {
+				std::cout << value << " ";
+			}
 		}
 
 	}
@@ -95,12 +96,19 @@ int main()
 	//С помощью range-based for и structured binding
 	//распечатайте содержимое, например: A: any, apple, away
 	{
+		std::cout << "\nChapter 3b: ";
+		std::map<char, set<string>> mapExample;
 		//дано (например):
 		const char* s[] = { "yong", "away", "bar", "any", "son", "Apple" };
-
-
-
-		
+		for (auto str : s) {
+			mapExample[str[0]].insert(str);
+		}
+		for (const auto& [key, value] : mapExample) {
+			std::cout << endl << key << ": ";
+			for (const auto& value : value) { 
+				std::cout << value << ", ";
+			}
+		}
 	}
 
 #endif

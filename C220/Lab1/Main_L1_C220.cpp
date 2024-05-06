@@ -26,7 +26,7 @@ int main()
 		std::cout << __cplusplus << std::endl;
 
 		std::cout << "Chapter 1: " << std::endl;
-		enum class months:char { January, February, March/*...*/ };
+		enum class months:unsigned char { January, February, March/*...*/ };
 		enum class weekDays { Monday, Tuesday /*...*/ };
 
 		//months m = January;
@@ -39,7 +39,7 @@ int main()
 
 		//б) оптимизируйте использование памяти
 		months year[] = { months::January, months::February, months::March };
-		size_t n = sizeof(year); // int 12
+		size_t n = sizeof(year); // int 12 char (3)
 		std::cout << "Size of year array: " << n << " bytes" << std::endl;
 		std::cout << "Size of year array: " << sizeof(year) << " bytes" << std::endl; 
 	}
@@ -56,13 +56,16 @@ int main()
 		std::cout << "Chapter 2: " << std::endl;
 		std::vector<string> words = { "hello", "world" };
 		for (auto& word : words) {
-			std::transform(word.begin(), word.end(), word.begin(), ::toupper);
+			//std::transform(word.begin(), word.end(), word.begin(), ::toupper);
+			for (auto& c : word) {
+				c = std::toupper(c);
+			}
 		}
 		PrintAnyCont(words);
 	}
 
 #endif
-#if 0
+#if 1
 	/**********************************************************/
 		///Задание 3. Создайте и заполните значениями
 		//map двумя способами (3а и 3б) таким образом, чтобы он содержал 
@@ -90,20 +93,21 @@ int main()
 		}
 
 	}
-
 	//3б. Создайте пустой map и используйте заданный массив
 	//для выполнения задания.
 	//С помощью range-based for и structured binding
 	//распечатайте содержимое, например: A: any, apple, away
 	{
 		//дано (например):
-		const char* s[] = { "yong", "away", "bar", "any", "son", "apple" };
+		const char* s[] = { "yong", "away", "bar", "any", "son", "Apple" };
 
 
 
-		__asm nop
+		
 	}
 
+#endif
+#if 0
 
 	/*********************************************************/
 		//Задание 4. создать функцию для вывода на печать

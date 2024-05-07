@@ -1,4 +1,17 @@
 #pragma once
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include <string>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <cctype>
+#include <cmath>
+#include <functional>
+#include <type_traits>
+
 // Функция для печати элементов контейнера
 template<typename Container>
 void PrintAnyCont(const Container& cont) {

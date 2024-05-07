@@ -32,6 +32,7 @@ int main()
 //«адание 2. –еализуйте шаблон класса MyUniquePTR, который €вл€етс€ оберткой дл€ указател€ на объект любого типа.
 	//«адача Ц класс должен обеспечивать единоличное владение динамически создаваемым объектом.ѕроверить функционирование шаблона на примере MyString :
 	{
+		/*
 		MyUniquePTR<MyString> p1(new MyString(УabcФ));
 		std::cout << p1->GetString();
 		p1->SetNewString(УqwertyФ);
@@ -44,6 +45,7 @@ int main()
 		vector< MyUniquePTR< MyString >> v; //как проинициализировать???
 		list< MyUniquePTR< MyString >> l;
 		//как скопировать из v в l ???
+		*/
 	}
 	return 0;
 }

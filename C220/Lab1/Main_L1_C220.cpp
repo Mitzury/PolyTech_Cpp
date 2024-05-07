@@ -55,7 +55,7 @@ setlocale(LC_ALL, "Russian");
 		PrintAnyCont(words);
 	}
 #endif
-#if 0
+#if 1
 	/**********************************************************/
 		///Задание 3. Создайте и заполните значениями
 		//map двумя способами (3а и 3б) таким образом, чтобы он содержал 
@@ -123,7 +123,7 @@ setlocale(LC_ALL, "Russian");
 
 	}
 #endif
-#if 0
+#if 1
 	/********************************************************/
 	///Задание 5. 	
 	//Cоздать функцию для "отрицания" значений, например:
@@ -134,12 +134,15 @@ setlocale(LC_ALL, "Russian");
 		std::cout << "Chapter 5: " << std::endl;
 		std::vector<double> vd{ 1.1,2.2,3.3 };
 		NegateAll(vd);
+		PrintAnyCont(vd);
 
 		std::list<std::string> ls{ "aBc", "Qwerty", "n12" };
 		NegateAll(ls);
+		PrintAnyCont(ls);
 
 		int ar[]{ 1, 2, 3 };
 		NegateAll(ar);
+		PrintAnyCont(ar);
 
 
 	}

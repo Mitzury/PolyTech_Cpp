@@ -20,3 +20,9 @@ void PrintAnyCont(const Container& cont) {
     }
     std::cout << std::endl; // переход на новую строку
 }
+
+template<typename Cont>
+void NegateAll(Cont& cont)
+{
+    cout << "a";
+}

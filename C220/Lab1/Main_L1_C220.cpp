@@ -98,7 +98,7 @@ int main()
 		std::cout << "\nChapter 3b: ";
 		std::map<char, set<string>> mapExample;
 		//дано (например):
-		const char* s[] = { "yong", "away", "bar", "any", "son", "Apple" };
+		const char* s[] = { "yong", "away", "bar", "any", "son", "Apple", "Boris"};
 		for (auto str : s) {
 			mapExample[toupper(*str)].insert(str);
 		}

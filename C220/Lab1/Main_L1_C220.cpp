@@ -11,8 +11,8 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
+setlocale(LC_ALL, "Russian");
 #if 1
 	//Задание 1. 
 	{

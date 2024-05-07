@@ -12,7 +12,6 @@
 #include <string>
 #include <algorithm>
 #include <map>
-
 #include "T.h"
 #include <set>
 
@@ -101,7 +100,7 @@ int main()
 		//дано (например):
 		const char* s[] = { "yong", "away", "bar", "any", "son", "Apple" };
 		for (auto str : s) {
-			mapExample[str[0]].insert(str);
+			mapExample[toupper(*str)].insert(str);
 		}
 		for (const auto& [key, value] : mapExample) {
 			std::cout << endl << key << ": ";

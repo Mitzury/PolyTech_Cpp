@@ -8,6 +8,7 @@
 
 
 #include "T.h"
+#include <deque>
 
 using namespace std;
 
@@ -25,16 +26,13 @@ setlocale(LC_ALL, "Russian");
 		//должен позволять программисту осуществлять опасные
 		//сравнения!)
 		months m = months::January;
-
 		//if (m == Monday) { cout << 1; }
-
 		//б) оптимизируйте использование памяти
 		months year[] = { months::January, months::February, months::March };
 		size_t n = sizeof(year); // int 12 char (3)
 		std::cout << "Size of year array: " << n << " bytes" << std::endl;
 		std::cout << "Size of year array: " << sizeof(year) << " bytes" << std::endl; 
 	}
-
 #endif
 #if 1
 	/**********************************************************/
@@ -81,7 +79,6 @@ setlocale(LC_ALL, "Russian");
 				std::cout << value << " ";
 			}
 		}
-
 	}
 	//3б. Создайте пустой map и используйте заданный массив
 	//для выполнения задания.
@@ -120,7 +117,6 @@ setlocale(LC_ALL, "Russian");
 
 		std::initializer_list<int> il{ 3,4,5 };
 		PrintAnyCont(il);		
-
 	}
 #endif
 #if 1
@@ -143,28 +139,28 @@ setlocale(LC_ALL, "Russian");
 		int ar[]{ 1, -2, 3 };
 		NegateAll(ar);
 		PrintAnyCont(ar);
-
-
 	}
 #endif
-#if 0
+#if 1
 	/********************************************************/
 		//Задание 6. Реализовать функцию сортировки по модулю
 		//элементов последовательностей, заданных ниже
 		//Собственно для сортировки можно использовать обобщенный
 		//алгоритм sort(), а для задания условия - лямбда-функцию
 	{
+		std::cout << "Chapter 6: " << std::endl;
 		std::vector<double> vd = { -3.3,  2.2, -1.1 };
-		//absSort(vd);
-
+		std::cout << " Original" << std::endl; 
+		PrintAnyCont(vd);
+		absSort(vd);
+		std::cout << " Sorted" << std::endl;
+		PrintAnyCont(vd);
 
 		int ar[] = { -3, 2, -1 };
 		//absSort(ar);
-
-		__asm nop
 	}
-
-
+#endif
+#if 1
 	/********************************************************/
 		//Задание 7.
 		//Напишите функцию, которая будет формировать и
@@ -199,10 +195,9 @@ setlocale(LC_ALL, "Russian");
 		std::deque<const char*> d{ "111", "22" };
 		//??? = SumCont(s, d);
 
-		__asm nop
 	}
-
-
+#endif
+#if 0
 	/********************************************************/
 		//Задание 8. Реализуйте функцию, которая принимает следующие параметры:	
 		//сформированную последовательность любого типа с элементами любого типа, 

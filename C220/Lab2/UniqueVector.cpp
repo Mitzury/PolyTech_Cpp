@@ -21,7 +21,6 @@ public:
         : min_value(min), max_value(max) {
         add(init_list, size);
     }
-
     // Добавление значений из массива
     void add(const T new_values[], std::size_t size) {
         for (std::size_t i = 0; i < size; ++i) {
@@ -30,7 +29,6 @@ public:
             }
         }
     }
-
     // Добавление произвольного количества значений из диапазона итераторов
     template <typename InputIterator>
     void add(InputIterator first, InputIterator last) {
@@ -40,7 +38,6 @@ public:
             }
         }
     }
-
     // Удаление значений из массива
     void remove(const T to_remove[], std::size_t size) {
         for (std::size_t i = 0; i < size; ++i) {
@@ -50,7 +47,6 @@ public:
             }
         }
     }
-
     // Изменение диапазона
     void set_range(T min, T max) {
         min_value = min;
@@ -59,20 +55,17 @@ public:
             return value < min_value || value > max_value;
             }), values.end());
     }
-
     // Сортировка
     template <typename Comparator>
     void sort(Comparator comp) {
         std::sort(values.begin(), values.end(), comp);
     }
-
     // Доступ к вектору для копирования и других операций
     typename std::vector<T>::const_iterator begin() const { return values.cbegin(); }
     typename std::vector<T>::const_iterator end() const { return values.cend(); }
 
     // Запрет удаления
     ~UniqueVector() {}
-
     // Копирование и перемещение запрещены
     UniqueVector(const UniqueVector&) = delete;
     UniqueVector& operator=(const UniqueVector&) = delete;

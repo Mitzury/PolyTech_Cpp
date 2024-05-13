@@ -1,14 +1,10 @@
 //Лабораторная работа №2
 //initializer_list, move, default, delete, move итераторы
-
-
 #include <iostream>
 #include "UniqueVector.h"
 #include "UniqueVector.cpp"
 
-
 using namespace std;
-
 int main()
 {
 // Задание 1. Создайте класс, который должен предоставлять функциональность вектора с УНИКАЛЬНЫМИ значениями любого типа в заданном диапазоне.

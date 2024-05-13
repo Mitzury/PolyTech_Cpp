@@ -21,7 +21,6 @@ void PrintAnyCont(const Container& cont) {
     std::cout << std::endl; // переход на новую строку
 }
 
-///Exercise 5. 
 std::string operator-(const std::string& str)
 {
 	std::string s(str);
@@ -31,6 +30,8 @@ std::string operator-(const std::string& str)
 	}
 	return str;
 }
+
+// Функция для "инвертирования" значений в контейнере
 template<typename Cont>
 void NegateAll(Cont& cont)
 {
@@ -43,4 +44,12 @@ void NegateAll(Cont& cont)
 			(*it) = -(*it);
 		}
 	}
+}
+
+// Функция для сортировки контейнера по модулю элементов
+template<typename Container>
+void absSort(Container& container) {
+	std::sort(container.begin(), container.end(), [](const auto& a, const auto& b) {
+		return std::abs(a) < std::abs(b); // сравнение по абсолютному значению
+		});
 }

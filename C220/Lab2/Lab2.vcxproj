@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Main_L2_C220.cpp" />
     <ClCompile Include="UniqueVector.cpp" />
+    <ClCompile Include="UniqueVector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UniqueVector.h" />

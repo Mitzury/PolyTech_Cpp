@@ -1,8 +1,8 @@
 //Лабораторная работа №2
 //initializer_list, move, default, delete, move итераторы
 #include <iostream>
-#include "UniqueVector.h"
-#include "UniqueVector.cpp"
+//#include "UniqueVector.cpp"
+#include "UniqueVector2.cpp"
 
 using namespace std;
 int main()

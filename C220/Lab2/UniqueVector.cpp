@@ -17,20 +17,25 @@ private:
             (std::find(values.begin(), values.end(), value) == values.end());
     }
 
-public:
+public: // по ссылкам //inis list
     // Конструктор с диапазоном и списком инициализации
-    UniqueVector(T min, T max, const T init_list[], std::size_t size)
+    UniqueVector(const T& min, const T& max, std::initializer_list<T> init_list)
         : min_value(min), max_value(max) {
-        add(init_list, size);
+        values.reserve(init_list.size());
+        add(init_list);
+        
     }
     // Добавление значений из массива
-    void add(const T new_values[], std::size_t size) {
-        for (std::size_t i = 0; i < size; ++i) {
+    void add(std::initializer_list<T> init_list) {
+        values.reserve(init_list.size() + values.size());
+
+        for (init_ i = 0; i < size; ++i) {
             if (should_add_value(new_values[i])) {
                 values.push_back(new_values[i]);
             }
         }
     }
+    // operator << перегрузка
     template<typename Container>
     void PrintAnyCont(const Container& container) {
         for (const auto& element : container) {
@@ -74,11 +79,12 @@ public:
     typename std::vector<T>::const_iterator begin() const { return values.cbegin(); }
     typename std::vector<T>::const_iterator end() const { return values.cend(); }
 
-    // Запрет удаления
-    ~UniqueVector() {}
-    // Копирование и перемещение запрещены
-    UniqueVector(const UniqueVector&) = delete;
-    UniqueVector& operator=(const UniqueVector&) = delete;
-    UniqueVector(UniqueVector&&) = delete;
-    UniqueVector() = default; // Явно разрешаем компилятору сгенерировать деструктор
+
+    //// Запрет удаления
+    ~UniqueVector() 
+    //// Копирование и перемещение запрещены
+    //UniqueVector(const UniqueVector&) = delete;
+    //UniqueVector& operator=(const UniqueVector&) = delete;
+    //UniqueVector(UniqueVector&&) = delete;
+    //UniqueVector() = default; // Явно разрешаем компилятору сгенерировать деструктор
 };

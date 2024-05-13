@@ -210,7 +210,7 @@ setlocale(LC_ALL, "Russian");
 		std::vector<int> values{ 1,2,3,4,5 };
 		std::list<int> evens; //сюда четные
 		std::deque<int> odds; //а сюда нечетные
-
+		// отрицательные + параметр условие
 		partitionEvenOdd(values, evens, odds);
 		std::cout << "Чётные: ";
 		for (int val : evens) {

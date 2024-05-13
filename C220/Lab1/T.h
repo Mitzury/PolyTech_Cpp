@@ -97,6 +97,7 @@ int countUppercase(const std::string& str) {
 // Задание 10: Конвертация enum в строку и обратно
 enum class Color { Red, Green, Blue };
 
+// шаблонный мар + специализации под дни недели, цвета + шаблонные функции.
 std::string enumToString(Color color) {
 	switch (color) {
 	case Color::Red: return "Красный";

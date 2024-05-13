@@ -51,7 +51,8 @@ int main()
 		std::cout << "\n#Chapter: Sort values" << std::endl;
 		// Реализуйте метод сортировки, который будет принимать в качестве параметра условие сортировки(по возрастанию / по убыванию / по модулю…)
 		unique_vector.sort(std::greater<int>());
-
+		unique_vector.sort();
+		
 		unique_vector.PrintAnyCont(unique_vector);
 
 

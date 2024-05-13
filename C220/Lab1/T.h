@@ -21,8 +21,26 @@ void PrintAnyCont(const Container& cont) {
     std::cout << std::endl; // переход на новую строку
 }
 
+///Exercise 5. 
+std::string operator-(const std::string& str)
+{
+	std::string s(str);
+	for (auto& ch : s)
+	{
+		std::isupper(ch) ? std::tolower(ch) : std::toupper(ch);
+	}
+	return str;
+}
 template<typename Cont>
 void NegateAll(Cont& cont)
 {
-    cout << "a";
+	auto it = std::begin(cont);
+	auto it_end = std::end(cont);
+
+	{
+		for (; it != it_end; ++it)
+		{
+			(*it) = -(*it);
+		}
+	}
 }

@@ -140,7 +140,7 @@ setlocale(LC_ALL, "Russian");
 		NegateAll(ls);
 		PrintAnyCont(ls);
 
-		int ar[]{ 1, 2, 3 };
+		int ar[]{ 1, -2, 3 };
 		NegateAll(ar);
 		PrintAnyCont(ar);
 

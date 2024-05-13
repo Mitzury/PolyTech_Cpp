@@ -28,7 +28,7 @@ int main()
 	std::copy(my.begin(), my.end(), …);
 	*/
 	{
-		std::cout << "Chapter: Construct" << std::endl;
+		std::cout << "#Chapter: Construct" << std::endl;
 		int init_values[] = { 2, -1, 3, 33, 5, 2 };
 		UniqueVector<int> unique_vector(1, 10, init_values, 6);
 
@@ -36,7 +36,7 @@ int main()
 			std::cout << *it << " " ;
 		}
 
-		std::cout << "\nChapter: Additional values" << std::endl;
+		std::cout << "\n#Chapter: Additional values (1,4,7)" << std::endl;
 		// Реализуйте метод добавления любого количества значений(значения могут повторяться)
 		int additional_values[] = { 1, 4, 7 };
 		unique_vector.add(additional_values, 3);
@@ -45,7 +45,7 @@ int main()
 			std::cout << *it << " ";
 		}
 
-		std::cout << "\nChapter: Remove values" << std::endl;
+		std::cout << "\n#Chapter: Remove values (2,5)" << std::endl;
 		// Реализуйте метод удаления любого количества значений(значения могут повторяться)
 		int to_remove[] = { 2, 5 };
 		unique_vector.remove(to_remove, 2);
@@ -54,7 +54,7 @@ int main()
 			std::cout << *it << " ";
 		}
 
-		std::cout << "\nChapter: Sort values" << std::endl;
+		std::cout << "\n#Chapter: Sort values" << std::endl;
 		// Реализуйте метод сортировки, который будет принимать в качестве параметра условие сортировки(по возрастанию / по убыванию / по модулю…)
 		unique_vector.sort(std::greater<int>());
 
@@ -62,7 +62,7 @@ int main()
 			std::cout << *it << " ";
 		}
 
-		std::cout << "\nChapter: Copy values" << std::endl;
+		std::cout << "\n#Chapter: Copy values" << std::endl;
 		// Реализуйте возможность копирования из нашей структуры данных значения в другое хранилище, например:
 		std::vector<int> copy_vector(unique_vector.begin(), unique_vector.end());
 

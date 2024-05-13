@@ -31,6 +31,14 @@ public:
             }
         }
     }
+    template<typename Container>
+    void PrintAnyCont(const Container& container) {
+        for (const auto& element : container) {
+            std::cout << element << " ";
+        }
+        std::cout << std::endl;
+    }
+
     // Добавление произвольного количества значений из диапазона итераторов
     template <typename InputIterator>
     void add(InputIterator first, InputIterator last) {

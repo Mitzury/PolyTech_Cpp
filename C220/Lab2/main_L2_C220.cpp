@@ -1,8 +1,8 @@
 //Лабораторная работа №2
 //initializer_list, move, default, delete, move итераторы
 #include <iostream>
-//#include "UniqueVector.cpp"
-#include "UniqueVector2.cpp"
+#include "UniqueVector.cpp"
+//#include "UniqueVector2.cpp"
 
 using namespace std;
 int main()
@@ -32,43 +32,36 @@ int main()
 		int init_values[] = { 2, -1, 3, 33, 5, 2 };
 		UniqueVector<int> unique_vector(1, 10, init_values, 6);
 
-		for (typename std::vector<int>::const_iterator it = unique_vector.begin(); it != unique_vector.end(); ++it) {
-			std::cout << *it << " " ;
-		}
+		unique_vector.PrintAnyCont(unique_vector);
 
 		std::cout << "\n#Chapter: Additional values (1,4,7)" << std::endl;
 		// Реализуйте метод добавления любого количества значений(значения могут повторяться)
 		int additional_values[] = { 1, 4, 7 };
 		unique_vector.add(additional_values, 3);
 
-		for (typename std::vector<int>::const_iterator it = unique_vector.begin(); it != unique_vector.end(); ++it) {
-			std::cout << *it << " ";
-		}
+		unique_vector.PrintAnyCont(unique_vector);
 
 		std::cout << "\n#Chapter: Remove values (2,5)" << std::endl;
 		// Реализуйте метод удаления любого количества значений(значения могут повторяться)
 		int to_remove[] = { 2, 5 };
 		unique_vector.remove(to_remove, 2);
 
-		for (typename std::vector<int>::const_iterator it = unique_vector.begin(); it != unique_vector.end(); ++it) {
-			std::cout << *it << " ";
-		}
+		unique_vector.PrintAnyCont(unique_vector);
 
 		std::cout << "\n#Chapter: Sort values" << std::endl;
 		// Реализуйте метод сортировки, который будет принимать в качестве параметра условие сортировки(по возрастанию / по убыванию / по модулю…)
 		unique_vector.sort(std::greater<int>());
 
-		for (typename std::vector<int>::const_iterator it = unique_vector.begin(); it != unique_vector.end(); ++it) {
-			std::cout << *it << " ";
-		}
+		unique_vector.PrintAnyCont(unique_vector);
+
 
 		std::cout << "\n#Chapter: Copy values" << std::endl;
 		// Реализуйте возможность копирования из нашей структуры данных значения в другое хранилище, например:
 		std::vector<int> copy_vector(unique_vector.begin(), unique_vector.end());
 
-		for (typename std::vector<int>::const_iterator it = unique_vector.begin(); it != unique_vector.end(); ++it) {
-			std::cout << *it << " ";
-		}
+		unique_vector.PrintAnyCont(unique_vector);
+
+
 	}
 //Задание 2. Реализуйте шаблон класса MyUniquePTR, который является оберткой для указателя на объект любого типа.
 	//Задача – класс должен обеспечивать единоличное владение динамически создаваемым объектом.Проверить функционирование шаблона на примере MyString :

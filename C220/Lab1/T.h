@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <iostream>
 #include <vector>
@@ -12,13 +12,13 @@
 #include <functional>
 #include <type_traits>
 
-// Функция для печати элементов контейнера
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРµС‡Р°С‚Рё СЌР»РµРјРµРЅС‚РѕРІ РєРѕРЅС‚РµР№РЅРµСЂР°
 template<typename Container>
 void PrintAnyCont(const Container& cont) {
-    for (const auto& elem : cont) { // итерация по контейнеру
-        std::cout << elem << " "; // вывод элемента
+    for (const auto& elem : cont) { // РёС‚РµСЂР°С†РёСЏ РїРѕ РєРѕРЅС‚РµР№РЅРµСЂСѓ
+        std::cout << elem << " "; // РІС‹РІРѕРґ СЌР»РµРјРµРЅС‚Р°
     }
-    std::cout << std::endl; // переход на новую строку
+    std::cout << std::endl; // РїРµСЂРµС…РѕРґ РЅР° РЅРѕРІСѓСЋ СЃС‚СЂРѕРєСѓ
 }
 
 
@@ -31,7 +31,7 @@ std::string operator-(const std::string& str)
 	}
 	return str;
 }
-// Функция для "инвертирования" значений в контейнере
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ "РёРЅРІРµСЂС‚РёСЂРѕРІР°РЅРёСЏ" Р·РЅР°С‡РµРЅРёР№ РІ РєРѕРЅС‚РµР№РЅРµСЂРµ
 template<typename Cont>
 void NegateAll(Cont& cont)
 {
@@ -46,35 +46,43 @@ void NegateAll(Cont& cont)
 	}
 }
 
-// Функция для сортировки контейнера по модулю элементов
+// Р—Р°РґР°РЅРёРµ 6: Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РєРѕРЅС‚РµР№РЅРµСЂР° РїРѕ РјРѕРґСѓР»СЋ СЌР»РµРјРµРЅС‚РѕРІ
+//РњРѕРґСѓР»СЊ С‡РёСЃР»Р° вЂ” СЌС‚Рѕ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ РЅСѓР»СЏ РґРѕ РґР°РЅРЅРѕРіРѕ С‡РёСЃР»Р°.РќР°РїСЂРёРјРµСЂ,
+//РўРѕ РµСЃС‚СЊ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ С‚РѕС‡РєРё в€’5 РґРѕ РЅСѓР»СЏ СЂР°РІРЅРѕ 5.
 template<typename Container>
 void absSort(Container& container) {
 	std::sort(container.begin(), container.end(), [](const auto& a, const auto& b) {
-		return std::abs(a) < std::abs(b); // сравнение по абсолютному значению
+		return std::abs(a) < std::abs(b); // СЃСЂР°РІРЅРµРЅРёРµ РїРѕ Р°Р±СЃРѕР»СЋС‚РЅРѕРјСѓ Р·РЅР°С‡РµРЅРёСЋ
 		});
 }
 
+// Р—Р°РґР°РЅРёРµ 7: РЎСѓРјРјРёСЂРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ СЂР°Р·РЅРѕС‚РёРїРЅС‹С… РєРѕРЅС‚РµР№РЅРµСЂРѕРІ
+template <typename Container1, typename Container2>
+auto sumContainers(const Container1& container1, const Container2& container2) {
+	
+}
 
-// Задание 8: Разделение элементов на чётные и нечётные
+
+// Р—Р°РґР°РЅРёРµ 8: Р Р°Р·РґРµР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РЅР° С‡С‘С‚РЅС‹Рµ Рё РЅРµС‡С‘С‚РЅС‹Рµ
 template <typename Container, typename Od, typename Do>
 void partitionEvenOdd(const Container& values, Od& evens, Do& odds) {
-	// Используем алгоритм std::partition_copy для разделения элементов на четные и нечетные.
-	// Он принимает итераторы, задающие диапазон элементов, функциональный объект-предикат и 
-	// контейнеры для сохранения результатов.
-	// Четные элементы будут записываться в evens, нечетные - в odds.
+	// РСЃРїРѕР»СЊР·СѓРµРј Р°Р»РіРѕСЂРёС‚Рј std::partition_copy РґР»СЏ СЂР°Р·РґРµР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РЅР° С‡РµС‚РЅС‹Рµ Рё РЅРµС‡РµС‚РЅС‹Рµ.
+	// РћРЅ РїСЂРёРЅРёРјР°РµС‚ РёС‚РµСЂР°С‚РѕСЂС‹, Р·Р°РґР°СЋС‰РёРµ РґРёР°РїР°Р·РѕРЅ СЌР»РµРјРµРЅС‚РѕРІ, С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹Р№ РѕР±СЉРµРєС‚-РїСЂРµРґРёРєР°С‚ Рё 
+	// РєРѕРЅС‚РµР№РЅРµСЂС‹ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ.
+	// Р§РµС‚РЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ Р±СѓРґСѓС‚ Р·Р°РїРёСЃС‹РІР°С‚СЊСЃСЏ РІ evens, РЅРµС‡РµС‚РЅС‹Рµ - РІ odds.
 	std::partition_copy(values.begin(), values.end(), std::back_inserter(evens), std::back_inserter(odds), [](int x) {
 		return x % 2 == 0;
 		});
 }
 
 
-//// Задание 9: Подсчёт букв в верхнем регистре
+//// Р—Р°РґР°РЅРёРµ 9: РџРѕРґСЃС‡С‘С‚ Р±СѓРєРІ РІ РІРµСЂС…РЅРµРј СЂРµРіРёСЃС‚СЂРµ
 //int countUppercase(const std::string& str) {
 //	return std::count_if(str.begin(), str.end(), [](unsigned char c) {
 //		return std::isupper(c);
 //		});
 //}
-// Задание 9: Подсчёт букв в верхнем регистре
+// Р—Р°РґР°РЅРёРµ 9: РџРѕРґСЃС‡С‘С‚ Р±СѓРєРІ РІ РІРµСЂС…РЅРµРј СЂРµРіРёСЃС‚СЂРµ
 int countUppercase(const std::string& str) {
 	int upperCount = 0;
 	std::for_each(str.begin(), str.end(), [&upperCount](unsigned char c) {
@@ -86,29 +94,29 @@ int countUppercase(const std::string& str) {
 }
 
 
-// Задание 10: Конвертация enum в строку и обратно
+// Р—Р°РґР°РЅРёРµ 10: РљРѕРЅРІРµСЂС‚Р°С†РёСЏ enum РІ СЃС‚СЂРѕРєСѓ Рё РѕР±СЂР°С‚РЅРѕ
 enum class Color { Red, Green, Blue };
 
 std::string enumToString(Color color) {
 	switch (color) {
-	case Color::Red: return "Красный";
-	case Color::Green: return "Зелёный";
-	case Color::Blue: return "Синий";
-	default: return "Неизвестный";
+	case Color::Red: return "РљСЂР°СЃРЅС‹Р№";
+	case Color::Green: return "Р—РµР»С‘РЅС‹Р№";
+	case Color::Blue: return "РЎРёРЅРёР№";
+	default: return "РќРµРёР·РІРµСЃС‚РЅС‹Р№";
 	}
 }
 
 Color stringToEnum(const std::string& str) {
-	// Создаем статическую инициализированную map, которая связывает строковые значения с 
-	// соответствующими значениями перечисления color.
+	// РЎРѕР·РґР°РµРј СЃС‚Р°С‚РёС‡РµСЃРєСѓСЋ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅРЅСѓСЋ map, РєРѕС‚РѕСЂР°СЏ СЃРІСЏР·С‹РІР°РµС‚ СЃС‚СЂРѕРєРѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ СЃ 
+	// СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРјРё Р·РЅР°С‡РµРЅРёСЏРјРё РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ color.
 	static const std::unordered_map<std::string, Color> map = {
-		{"Красный", Color::Red},
-		{"Зелёный", Color::Green},
-		{"Синий", Color::Blue}
+		{"РљСЂР°СЃРЅС‹Р№", Color::Red},
+		{"Р—РµР»С‘РЅС‹Р№", Color::Green},
+		{"РЎРёРЅРёР№", Color::Blue}
 	};
 	auto it = map.find(str);
 	if (it != map.end()) {
 		return it->second;
 	}
-	throw std::invalid_argument("Неверная строка цвета");
+	throw std::invalid_argument("РќРµРІРµСЂРЅР°СЏ СЃС‚СЂРѕРєР° С†РІРµС‚Р°");
 }

@@ -285,14 +285,28 @@ setlocale(LC_ALL, "Russian");
 		//шаблонной переменной (в частности вспомните о возможности специ€лизации шаблонной переменной)
 		//***********
 	{
-		std::cout << "Chapter 10: " << std::endl;
+		std::cout << "\nChapter 10: " << std::endl;
 		Color color = Color::Green;
 		std::string colorStr = enumToString(color);
 		std::cout << "Enum в строку: " << colorStr << std::endl;
 		std::string str = "—иний";
 		try {
-			Color newColor = stringToEnum(str);
+			Color newColor = stringToEnum<Color>(str);
 			std::cout << "—трока в enum: " << enumToString(newColor) << std::endl;
+		}
+		catch (const std::invalid_argument& e) {
+			std::cerr << e.what() << std::endl;
+		}
+
+		// ѕример использовани€ дл€ дней недели
+		day dayValue = day::friday;
+		std::string dayStr = enumToString(dayValue);
+		std::cout << "Enum в строку (день недели): " << dayStr << std::endl;
+
+		str = "среда";
+		try {
+			day newDay = stringToEnum<day>(str);
+			std::cout << "—трока в Enum (день недели): " << enumToString(newDay) << std::endl;
 		}
 		catch (const std::invalid_argument& e) {
 			std::cerr << e.what() << std::endl;

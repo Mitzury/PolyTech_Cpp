@@ -116,21 +116,19 @@ int countUppercase(const std::string& str) {
 
 
 // Задание 10: Конвертация enum в строку и обратно
+// Перечисление цвета
 enum class Color { Red, Green, Blue };
+// Перечисление для дней недели
+enum class day { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
 
-// шаблонный мар + специализации под дни недели, цвета + шаблонные функции.
-std::string enumToString(Color color) {
-	switch (color) {
-	case Color::Red: return "Красный";
-	case Color::Green: return "Зелёный";
-	case Color::Blue: return "Синий";
-	default: return "Неизвестный";
-	}
-}
+// Шаблонные функции для конвертации enum в строку и обратно
+template<typename T>
+std::string enumToString(T value);
+template<typename T>
+T stringToEnum(const std::string& str);
 
-Color stringToEnum(const std::string& str) {
-	// Создаем статическую инициализированную map, которая связывает строковые значения с 
-	// соответствующими значениями перечисления color.
+template<>
+Color stringToEnum<Color>(const std::string& str) {
 	static const std::unordered_map<std::string, Color> map = {
 		{"Красный", Color::Red},
 		{"Зелёный", Color::Green},
@@ -141,4 +139,47 @@ Color stringToEnum(const std::string& str) {
 		return it->second;
 	}
 	throw std::invalid_argument("Неверная строка цвета");
+}
+
+// Специализация для Color
+template<>
+std::string enumToString<Color>(Color color) {
+	switch (color) {
+	case Color::Red: return "Красный";
+	case Color::Green: return "Зелёный";
+	case Color::Blue: return "Синий";
+	default: return "Неизвестный";
+	}
+}
+// Специализация для day
+template<>
+std::string enumToString<day>(day day) {
+	switch (day) {
+	case day::monday: return "понедельник";
+	case day::tuesday: return "вторник";
+	case day::wednesday: return "среда";
+	case day::thursday: return "четверг";
+	case day::friday: return "пятница";
+	case day::saturday: return "суббота";
+	case day::sunday: return "воскресенье";
+	default: return "неизвестный";
+	}
+}
+
+template<>
+day stringToEnum<day>(const std::string& str) {
+	static const std::unordered_map<std::string, day> map = {
+		{"понедельник", day::monday},
+		{"вторник", day::tuesday},
+		{"среда", day::wednesday},
+		{"четверг", day::thursday},
+		{"пятница", day::friday},
+		{"суббота", day::saturday},
+		{"воскресенье", day::sunday}
+	};
+	auto it = map.find(str);
+	if (it != map.end()) {
+		return it->second;
+	}
+	throw std::invalid_argument("неверная строка дня недели");
 }

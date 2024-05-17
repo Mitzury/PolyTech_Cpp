@@ -161,7 +161,7 @@ setlocale(LC_ALL, "Russian");
 		PrintAnyCont(ar);
 	}
 #endif
-#if 1
+#if 0
 	/********************************************************/
 		//Задание 7.
 		//Напишите функцию, которая будет формировать и
@@ -178,16 +178,15 @@ setlocale(LC_ALL, "Russian");
 		//алгоритмов copy() и transform(), в котором 
 		//трансформирующее действие удобно в свою очередь
 		//задавать лямбда-функцией
-
 		//например:
 	{
 		std::cout << "\nChapter 7: " << std::endl;
 		std::vector<int> v{ 1,2,3,4 };
 		std::list<double> l{ 1.1, 2.2, 3.3, 4.4, 5.5 };
 
-		//auto summed1 = sumContainers(v, l);
-		//PrintAnyCont(summed1);
-
+		auto res = sumContainers(v, l);
+		PrintAnyCont(res);
+		
 		//std::list<int> ll{ 1, 2, 3, 4, 5, 6, 7, 8 };
 		//double ar[] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
 		//auto summed2 = sumContainers(ll, ar); 
@@ -211,11 +210,15 @@ setlocale(LC_ALL, "Russian");
 		//Исходная последовательность при этом не меняется
 	{
 		//Например 1:
+		std::cout << "\nChapter 8.1: " << std::endl;
 		std::vector<int> values{ 1,2,3,4,5 };
+		std::cout << " Original vector: " << std::endl;
+		PrintAnyCont(values);
 		std::list<int> evens; //сюда четные
 		std::deque<int> odds; //а сюда нечетные
-		// отрицательные + параметр условие
-		partitionEvenOdd(values, evens, odds);
+
+		// Разделение значений на четные и нечетные с использованием лямбда-функции
+		Separate(values, evens, odds, [](int x) { return x % 2 == 0; });
 		std::cout << "Чётные: ";
 		for (int val : evens) {
 			std::cout << val << " ";
@@ -225,17 +228,24 @@ setlocale(LC_ALL, "Russian");
 			std::cout << val << " ";
 		}
 		std::cout << std::endl;
-
-		//Separate(v, l, d, <условие>);
-
-
 	}
 	{
-		//2.
-		//Разложить согласно условию: те значения, которые попадают в заданный диапазон, в один //контейнер, остальные - в другой
-		double ar[] = { 0.8, 1.1, 33.3, -4.1, 5.5 };
+		std::cout << "\nChapter 8.2: " << std::endl;
+		//2. Разложить согласно условию: те значения, которые попадают в заданный диапазон, 
+		// в один контейнер, остальные - в другой
+		double values[] = { 0.8, 1.1, 33.3, -4.1, 5.5 };
 		std::set<double> s; //сюда те, которые попадают в [0,6]
 		std::vector<double> v; //сюда остальные
+		int start = 0, end = 6;
+		std::cout << " Original: " << std::endl;
+		PrintAnyCont(values);
+
+		Separate(values, s, v, [start, end](const auto a) {return a >= start && a <= end; });
+		std::cout << " in diap " << std::endl;
+		PrintAnyCont(s);
+		std::cout << " out diap " << std::endl;
+		PrintAnyCont(v);
+
 	}
 #endif
 #if 1

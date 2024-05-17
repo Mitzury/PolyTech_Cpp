@@ -56,8 +56,7 @@ void NegateAll(Cont& cont)
 //	}
 //};
 template<typename Container>
-void absSort(Container& cont)
-{
+void absSort(Container& cont) {
 	auto it = std::begin(cont);
 	auto itEnd = std::end(cont);
 
@@ -66,21 +65,37 @@ void absSort(Container& cont)
 			return std::abs(elem1) < std::abs(elem2);
 		});
 }
-// Задание 7: Суммирование элементов разнотипных контейнеров
-template <typename Container1, typename Container2>
-auto sumContainers(const Container1& container1, const Container2& container2) {
-	
-}
+//// Задание 7: Суммирование элементов разнотипных контейнеров
+//template<typename T, typename T2>
+//auto sumContainers(const T& l1, const T2& l2) {
+//	// Определяем размер нового контейнера - 
+//	// он равен максимальному размеру из двух переданных контейнеров
+//	auto max_size = std::max(size(l1), size(l2));
+//	// Создаем новый контейнер, который будет хранить суммы элементов
+//	// Вектор выбран как универсальный контейнер подходящий для большинства ситуаций
+//	vector<decltype(*begin(l1) + *begin(l2))> res(max_size);
+//	// Копируем элементы из первого контейнера в новый
+//	copy(cbegin(l1), cend(l1), res.begin());
+//	// Складываем элементы из второго контейнера с элементами нового контейнера
+//   // Используем функцию transform, которая применяет заданную операцию к каждому элементу диапазона
+//	transform(cbegin(l2), cend(l2), res.begin(), res.begin(), [](auto a, auto b) {return b + a; });
+//
+//	return res;
+//
+//}
+
 // Задание 8: Разделение элементов на чётные и нечётные
-template <typename Container, typename Od, typename Do>
-void partitionEvenOdd(const Container& values, Od& evens, Do& odds) {
-	// Используем алгоритм std::partition_copy для разделения элементов на четные и нечетные.
-	// Он принимает итераторы, задающие диапазон элементов, функциональный объект-предикат и 
-	// контейнеры для сохранения результатов.
-	// Четные элементы будут записываться в evens, нечетные - в odds.
-	std::partition_copy(values.begin(), values.end(), std::back_inserter(evens), std::back_inserter(odds), [](int x) {
-		return x % 2 == 0;
-		});
+// Шаблонная функция для разделения элементов контейнера на две группы
+
+template<typename T, typename T2, typename T3, typename P>
+void Separate(const T& l1, T2& l2, T3& l3, P pred) {
+	for (const auto& elem : l1)
+	{
+		if (pred(elem))
+			l2.insert(end(l2), elem);
+		else
+			l3.insert(end(l3), elem);
+	};
 }
 //// Задание 9: Подсчёт букв в верхнем регистре
 //int countUppercase(const std::string& str) {

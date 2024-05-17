@@ -42,7 +42,7 @@ setlocale(LC_ALL, "Russian");
 		//верхний регистр а остальные символы должны остаться
 		//неизменными
 	{
-		std::cout << "Chapter 2: " << std::endl;
+		std::cout << "\nChapter 2: " << std::endl;
 		std::vector<string> words = { "hello", "world" };
 		for (auto& word : words) {
 			//std::transform(word.begin(), word.end(), word.begin(), ::toupper);
@@ -65,7 +65,7 @@ setlocale(LC_ALL, "Russian");
 		//С помощью range-based for и structured binding
 		//распечатайте содержимое, например: A: any, apple, away
 	{
-		std::cout << "Chapter 3a: ";
+		std::cout << "\nChapter 3a: ";
 		// Создаем map с ключами типа char, и значениями string
 		std::map<char, set<string>> mapExample;
 
@@ -105,7 +105,7 @@ setlocale(LC_ALL, "Russian");
 	//Задание 4. создать функцию для вывода на печать
 	//элементов последовательностей, заданных ниже:
 	{
-		std::cout << "\nChapter 4b: " << endl;
+		std::cout << "\nChapter 4: " << endl;
 		std::vector<double> vd = { 1.1,2.2,3.3 };
 		PrintAnyCont(vd);
 
@@ -127,7 +127,7 @@ setlocale(LC_ALL, "Russian");
 	//изменение объектов типа std::string может выглядеть "aBc1" -> "AbC1"
 	//элементов последовательностей, заданных ниже:
 	{
-		std::cout << "Chapter 5: " << std::endl;
+		std::cout << "\nChapter 5: " << std::endl;
 		std::vector<double> vd{ 1.1,2.2,3.3 };
 		NegateAll(vd);
 		PrintAnyCont(vd);
@@ -146,19 +146,22 @@ setlocale(LC_ALL, "Russian");
 		//Собственно для сортировки можно использовать обобщенный
 		//алгоритм sort(), а для задания условия - лямбда-функцию
 	{
-		std::cout << "Chapter 6: " << std::endl;
+		std::cout << "\nChapter 6: " << std::endl;
 		std::vector<double> vd = { -3.3,  2.2, -1.1 };
-		std::cout << " Original" << std::endl; 
+		std::cout << " Original vector" << std::endl; 
 		PrintAnyCont(vd);
 		absSort(vd);
-		std::cout << " Sorted" << std::endl;
+		std::cout << " Sorted vector" << std::endl;
 		PrintAnyCont(vd);
-
+		std::cout << " Original Arr" << std::endl;
 		int ar[] = { -3, 2, -1 };
-		//absSort(ar);
+		PrintAnyCont(ar);
+		absSort(ar);
+		std::cout << " Sorted Arr" << std::endl;
+		PrintAnyCont(ar);
 	}
 #endif
-#if 0
+#if 1
 	/********************************************************/
 		//Задание 7.
 		//Напишите функцию, которая будет формировать и
@@ -178,6 +181,7 @@ setlocale(LC_ALL, "Russian");
 
 		//например:
 	{
+		std::cout << "\nChapter 7: " << std::endl;
 		std::vector<int> v{ 1,2,3,4 };
 		std::list<double> l{ 1.1, 2.2, 3.3, 4.4, 5.5 };
 

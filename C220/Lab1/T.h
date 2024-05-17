@@ -20,8 +20,6 @@ void PrintAnyCont(const Container& cont) {
     }
     std::cout << std::endl; // переход на новую строку
 }
-
-
 std::string operator-(const std::string& str)
 {
 	std::string s(str);
@@ -45,24 +43,34 @@ void NegateAll(Cont& cont)
 		}
 	}
 }
-
 // Задание 6: Функция для сортировки контейнера по модулю элементов
 //Модуль числа — это расстояние от нуля до данного числа.Например,
 //То есть расстояние от точки −5 до нуля равно 5.
+//template<typename T>
+//class AbsForSort
+//{
+//public:
+//	bool operator()(const T& elem1, const T& elem2) const
+//	{
+//		return std::abs(elem1) < std::abs(elem2);
+//	}
+//};
 template<typename Container>
-void absSort(Container& container) {
-	std::sort(container.begin(), container.end(), [](const auto& a, const auto& b) {
-		return std::abs(a) < std::abs(b); // сравнение по абсолютному значению
+void absSort(Container& cont)
+{
+	auto it = std::begin(cont);
+	auto itEnd = std::end(cont);
+
+	std::sort(it, itEnd, [](auto elem1, auto elem2) -> bool
+		{
+			return std::abs(elem1) < std::abs(elem2);
 		});
 }
-
 // Задание 7: Суммирование элементов разнотипных контейнеров
 template <typename Container1, typename Container2>
 auto sumContainers(const Container1& container1, const Container2& container2) {
 	
 }
-
-
 // Задание 8: Разделение элементов на чётные и нечётные
 template <typename Container, typename Od, typename Do>
 void partitionEvenOdd(const Container& values, Od& evens, Do& odds) {
@@ -74,8 +82,6 @@ void partitionEvenOdd(const Container& values, Od& evens, Do& odds) {
 		return x % 2 == 0;
 		});
 }
-
-
 //// Задание 9: Подсчёт букв в верхнем регистре
 //int countUppercase(const std::string& str) {
 //	return std::count_if(str.begin(), str.end(), [](unsigned char c) {

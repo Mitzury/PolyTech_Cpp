@@ -161,7 +161,7 @@ setlocale(LC_ALL, "Russian");
 		PrintAnyCont(ar);
 	}
 #endif
-#if 0
+#if 1
 	/********************************************************/
 		//Задание 7.
 		//Напишите функцию, которая будет формировать и
@@ -184,18 +184,18 @@ setlocale(LC_ALL, "Russian");
 		std::vector<int> v{ 1,2,3,4 };
 		std::list<double> l{ 1.1, 2.2, 3.3, 4.4, 5.5 };
 
-		auto res = sumContainers(v, l);
-		PrintAnyCont(res);
+		auto summed1 = sumContainers(v, l);
+		PrintAnyCont(summed1);
 		
-		//std::list<int> ll{ 1, 2, 3, 4, 5, 6, 7, 8 };
-		//double ar[] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
-		//auto summed2 = sumContainers(ll, ar); 
-		//PrintAnyCont(summed2);
+		std::list<int> ll{ 1, 2, 3, 4, 5, 6, 7, 8 };
+		double ar[] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+		auto summed2 = sumContainers(ll, ar); 
+		PrintAnyCont(summed2);
 
-		//std::set<std::string> s{ "abc", "qwerty", "my" };
-		//std::deque<const char*> d{ "111", "22" };
-		//auto summed3 = sumContainers(s, d);
-		//PrintAnyCont(summed3);
+		std::set<std::string> s{ "abc", "qwerty", "my" };
+		std::deque<const char*> d{ "111", "22" };
+		auto summed3 = sumContainers(s, d);
+		PrintAnyCont(summed3);
 
 	}
 #endif

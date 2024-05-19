@@ -286,31 +286,18 @@ setlocale(LC_ALL, "Russian");
 		//***********
 	{
 		std::cout << "\nChapter 10: " << std::endl;
-		Color color = Color::Green;
-		std::string colorStr = enumToString(color);
-		std::cout << "Enum в строку: " << colorStr << std::endl;
-		std::string str = "Синий";
+		Color color;
+
 		try {
-			Color newColor = stringToEnum<Color>(str);
-			std::cout << "Строка в enum: " << enumToString(newColor) << std::endl;
+			color = stringToEnum<Color>("blue");
+			std::cout << "Строка в enum: " << enumToString(color) << std::endl;
 		}
 		catch (const std::invalid_argument& e) {
 			std::cerr << e.what() << std::endl;
 		}
+		auto Str = enumToString(color);
+		std::cout << "Enum в строку: " << Str << std::endl;
 
-		// Пример использования для дней недели
-		day dayValue = day::friday;
-		std::string dayStr = enumToString(dayValue);
-		std::cout << "Enum в строку (день недели): " << dayStr << std::endl;
-
-		str = "среда";
-		try {
-			day newDay = stringToEnum<day>(str);
-			std::cout << "Строка в Enum (день недели): " << enumToString(newDay) << std::endl;
-		}
-		catch (const std::invalid_argument& e) {
-			std::cerr << e.what() << std::endl;
-		}
 	}
 #endif
 	return 0;

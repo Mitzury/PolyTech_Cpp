@@ -117,69 +117,31 @@ int countUppercase(const std::string& str) {
 
 // Задание 10: Конвертация enum в строку и обратно
 // Перечисление цвета
-enum class Color { Red, Green, Blue };
+enum class Color : char { Red, Green, Blue };
 // Перечисление для дней недели
-enum class day { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
+enum class day : char { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
 
-// Шаблонные функции для конвертации enum в строку и обратно
+template<typename T> std::map<std::string, T> my_map;
+
+template<> std::map<std::string, Color> my_map<Color> {
+	{"red", Color::Red },
+	{ "green", Color::Green },
+	{ "blue", Color::Blue }
+};
+
 template<typename T>
-std::string enumToString(T value);
+T stringToEnum(const std::string& str)
+{
+	return my_map<T>.at(str);
+}
+
 template<typename T>
-T stringToEnum(const std::string& str);
-
-template<>
-Color stringToEnum<Color>(const std::string& str) {
-	static const std::unordered_map<std::string, Color> map = {
-		{"Красный", Color::Red},
-		{"Зелёный", Color::Green},
-		{"Синий", Color::Blue}
-	};
-	auto it = map.find(str);
-	if (it != map.end()) {
-		return it->second;
+std::string enumToString(const T& t)
+{
+	for (const auto& [f, s] : my_map<T>)
+	{
+		if (s == t)
+			return f;
 	}
-	throw std::invalid_argument("Неверная строка цвета");
-}
-
-// Специализация для Color
-template<>
-std::string enumToString<Color>(Color color) {
-	switch (color) {
-	case Color::Red: return "Красный";
-	case Color::Green: return "Зелёный";
-	case Color::Blue: return "Синий";
-	default: return "Неизвестный";
-	}
-}
-// Специализация для day
-template<>
-std::string enumToString<day>(day day) {
-	switch (day) {
-	case day::monday: return "понедельник";
-	case day::tuesday: return "вторник";
-	case day::wednesday: return "среда";
-	case day::thursday: return "четверг";
-	case day::friday: return "пятница";
-	case day::saturday: return "суббота";
-	case day::sunday: return "воскресенье";
-	default: return "неизвестный";
-	}
-}
-
-template<>
-day stringToEnum<day>(const std::string& str) {
-	static const std::unordered_map<std::string, day> map = {
-		{"понедельник", day::monday},
-		{"вторник", day::tuesday},
-		{"среда", day::wednesday},
-		{"четверг", day::thursday},
-		{"пятница", day::friday},
-		{"суббота", day::saturday},
-		{"воскресенье", day::sunday}
-	};
-	auto it = map.find(str);
-	if (it != map.end()) {
-		return it->second;
-	}
-	throw std::invalid_argument("неверная строка дня недели");
+	throw std::out_of_range("no element");
 }

@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -128,10 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main_L2_C220.cpp" />
-    <ClCompile Include="UniqueVector.cpp" />
+    <ClCompile Include="MyString.cpp" />
     <ClCompile Include="UniqueVector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyString.h" />
+    <ClInclude Include="MyUniquePTR.h" />
     <ClInclude Include="UniqueVector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

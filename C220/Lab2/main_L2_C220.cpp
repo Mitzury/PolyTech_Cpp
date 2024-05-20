@@ -94,17 +94,33 @@ int main()
 		v.emplace_back(MyUniquePTR<MyString>(new MyString("abc")));
 		v.emplace_back(MyUniquePTR<MyString>(new MyString("cde")));
 		v.emplace_back(MyUniquePTR<MyString>(new MyString("efg")));
+
 		// В результате данных действий, в векторе v будут храниться указатели на объекты типа mystring, 
 		// обернутые в класс myuniqueptr<mystring>.
 		// Каждый объект mystring будет содержать соответствующую строку
 
+		std::cout << "\nVector V:" << std::endl;
+		// напечатать содержимое вектора v
+		for (const auto& element : v) {
+			std::cout << element->GetString() << std::endl;
+		}
 
 		//list<MyUniquePTR<MyString>> l;
 		//как скопировать из v в l ???
 		list<MyUniquePTR<MyString>> l(make_move_iterator(v.begin()), make_move_iterator(v.end()));
 
-		for (auto& n : l)cout << n->GetString() << "\n";
-		cout << "\n";
+		std::cout << "\nList l:" << std::endl;
+		// напечатать содержимое лист l
+		for (const auto& element : l) {
+			std::cout << element->GetString() << std::endl;
+		}
+
+		std::cout << "\nVector V:" << std::endl;
+		// напечатать содержимое вектора v
+		for (const auto& element : v) {
+			std::cout << element->GetString() << std::endl;
+		}
+
 		for (auto& n : v)cout << n->GetString() << "\n";
 
 

@@ -7,19 +7,19 @@ using namespace std;
 MyString::MyString(const char* str) {
     m_str = new char[strlen(str) + 1];
     strcpy(m_str, str);
-    std::cout << "Constructor called" << std::endl;
+    //std::cout << "Constructor called" << std::endl;
 }
 // Копирующий конструктор: MyString(const MyString& other) - создает копию строки из другого объекта MyString, 
 // также выделяя новую динамическую память.
 MyString::MyString(const MyString& other) {
     m_str = new char[strlen(other.m_str) + 1];
     strcpy(m_str, other.m_str);
-    std::cout << "Copy constructor called" << std::endl;
+    //std::cout << "Copy constructor called" << std::endl;
 }
 // Деструктор (MyString::~MyString()): Освобождает выделенную динамическую память при уничтожении объекта.
 MyString::~MyString() {
     delete[] m_str;
-    std::cout << "Destructor called" << std::endl;
+    //std::cout << "Destructor called" << std::endl;
 }
 // Метод GetString() const: возвращает указатель на строку.
 const char* MyString::GetString() const {

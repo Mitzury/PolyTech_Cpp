@@ -69,9 +69,14 @@ int main()
 	{
 		std::cout << "\nChapter: 2" << std::endl;
 		MyUniquePTR<MyString> p1(new MyString("abc"));
+		std::cout << "\np1:" << std::endl;
 		std::cout << p1->GetString();
 		p1->SetNewString("qwerty");
+		std::cout << "\np1 after set new string:" << std::endl;
+		std::cout << p1->GetString(); 
 		MyString  s2 = *p1;
+		std::cout << "\ns2:" << std::endl;
+		std::cout << s2.GetString();
 
 		//MyUniquePTR<MyString> p2=p1; //здесь компилятор должен выдавать ошибку 
 		// предпринята попытка ссылки на удаленную функцию
@@ -81,8 +86,8 @@ int main()
 		MyUniquePTR<MyString> p2 = std::move(p1);
 
 		// Проверка оператора проверки наличия
-		if (p1) {
-			std::cout << "p1 содержит объект!" << std::endl;
+		if (!p1) {
+			std::cout << "\np1 не содержит объект!" << std::endl;
 		}
 
 		MyUniquePTR<MyString> p3(new MyString("vvv"));

@@ -2,8 +2,8 @@
 //initializer_list, move, default, delete, move итераторы
 
 
-#include "UniqueVector.h"
-//#include "UniqueVector2.cpp"
+//#include "UniqueVector.h"
+#include "UniqueVector2.h"
 
 #include "MyString.h"
 #include "MyUniquePTR.h"

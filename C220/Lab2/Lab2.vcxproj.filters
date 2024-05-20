@@ -18,9 +18,6 @@
     <ClCompile Include="Main_L2_C220.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="UniqueVector2.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="MyString.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -33,6 +30,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="MyUniquePTR.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="UniqueVector2.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

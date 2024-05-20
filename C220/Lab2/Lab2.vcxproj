@@ -129,12 +129,12 @@
   <ItemGroup>
     <ClCompile Include="Main_L2_C220.cpp" />
     <ClCompile Include="MyString.cpp" />
-    <ClCompile Include="UniqueVector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyString.h" />
     <ClInclude Include="MyUniquePTR.h" />
     <ClInclude Include="UniqueVector.h" />
+    <ClInclude Include="UniqueVector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

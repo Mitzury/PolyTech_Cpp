@@ -1,14 +1,14 @@
+#pragma once
 #include <vector>
 #include <algorithm>
 #include <iostream>
 #include <iterator>
 
 template <typename T>
-class UniqueVector : public std::vector<T> {
+class UniqueVector : protected std::vector<T> {
 private:
     T min_value;
     T max_value;
-
     // Проверка диапазона и уникальности
     bool should_add_value(const T& value) const {
         return (value >= min_value && value <= max_value) &&
@@ -64,12 +64,13 @@ public:
     void copy_to(OutputIterator result) const {
         std::copy(this->begin(), this->end(), result);
     }
-    // Копирование и перемещение запрещены
-    UniqueVector(const UniqueVector&) = delete;
-    UniqueVector& operator=(const UniqueVector&) = delete;
-    UniqueVector(UniqueVector&&) = delete;
-    UniqueVector& operator=(UniqueVector&&) = delete;
-    // Конструктор по умолчанию
-    UniqueVector() = default;
 
+    template <typename Comparator>
+    void sort(Comparator comp) {
+        std::sort(this->begin(), this->end(), comp);
+    }
+    template <typename OutputIterator>
+    void copy_to(OutputIterator result) const {
+        std::copy(this->begin(), this->end(), result);
+    }
 };

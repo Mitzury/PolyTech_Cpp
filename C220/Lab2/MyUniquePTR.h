@@ -35,6 +35,7 @@ public:
     // Оператор разыменования
     T& operator*() const {
         return *ptr;
+        // if null
     }
     // Оператор доступа к членам объекта
     T* operator->() const {

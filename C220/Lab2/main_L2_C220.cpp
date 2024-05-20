@@ -53,9 +53,16 @@ int main()
 		std::cout << "\n#Chapter: Sort values" << std::endl;
 		// Реализуйте метод сортировки, который будет принимать в качестве параметра условие сортировки
 		// (по возрастанию / по убыванию / по модулю…)
-		unique_vector.sort(std::greater<int>());
+		//unique_vector.sort(std::greater<int>());
+		std::cout << "\n  Greater" << std::endl;
+		unique_vector.sort([](const auto a, const auto b) {return a < b; });
 		std::cout << unique_vector << std::endl;
-
+		std::cout << "\n  Lower" << std::endl;
+		unique_vector.sort([](const auto a, const auto b) {return a > b; });
+		std::cout << unique_vector << std::endl;
+		std::cout << "\n  ABS" << std::endl;
+		unique_vector.sort([](const auto a, const auto b) {return abs(a) < abs(b);});
+		std::cout << unique_vector << std::endl;
 
 		std::cout << "\n#Chapter: Copy values" << std::endl;
 		// Реализуйте возможность копирования из нашей структуры данных значения в другое хранилище, например:

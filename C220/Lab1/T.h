@@ -124,7 +124,7 @@ enum class day : char { monday, tuesday, wednesday, thursday, friday, saturday, 
 template<typename T> std::map<std::string, T> my_map;
 
 template<> std::map<std::string, Color> my_map<Color> {
-	{"red", Color::Red },
+	{ "red", Color::Red },
 	{ "green", Color::Green },
 	{ "blue", Color::Blue }
 };

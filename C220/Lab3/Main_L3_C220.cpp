@@ -48,25 +48,42 @@ int main()
 	MyQueue<MyString>  q1{ MyString("AAA"), MyString("qwerty") };
 
 	////использование MyQueue в диапазонном for:
-	cout << "Выводим разработанный класс" << endl;
+	cout << endl << "Выводим разработанный класс" << endl;
 	q1.print();
 
-	cout << endl;
 
-	cout << "Добавляем елементы методом push()" << endl;
+	cout << endl << "Добавляем елементы методом push()" << endl;
 	MyString s("abc");
 	q1.push(s);
 	q1.push(MyString("123"));
 	q1.print(); 
 
 
-
+	cout << endl << "Присваиваем q2 = q1" << endl;
 	MyQueue <MyString> q2 = q1; 
-	MyQueue <MyString> q22 = std::move(q1); 
+	q2.print();
+	q1.print();
+
+	cout << endl << "Перемещаем move q21 = q1" << endl;
+	MyQueue <MyString> q21 = std::move(q1); 
+	q1.print();
+	q21.print();
+
+
 	MyQueue <MyString> q3{ 10, MyString("!") }; //очередь должна содержать 10 элементов со строкой «!» 
+	cout << endl << "Очередь должна содержать 10 элементов со строкой «!» " << endl;
+	q3.print();
+	cout << endl << "Присваиваем q1 = q3" << endl;
 	q1 = q3;
+	q1.print();
+
 	q2 = MyQueue < MyString >(5, MyString(" ? "));
+	cout << endl << "Очередь должна содержать 5 элементов со строкой «?» " << endl;
+	q2.print();
+
+	cout << endl << "Оператор присваивания по списку инициализации " << endl;
 	q1 = { MyString("bbb"), MyString("ssss")};
+	q1.print();
 
 
 	return 0;

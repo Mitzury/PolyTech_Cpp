@@ -5,41 +5,52 @@
 #include <algorithm>
 #include <iterator>
 
+// Данный код представляет собой реализацию шаблонного класса myqueue, 
+// который представляет собой очередь на основе динамического массива.
+// В классе myqueue реализованы основные операции добавления и удаления элементов, 
+// а также реализованы итераторы для обхода элементов очереди.
+
 template<typename T>
 class MyQueue {
-	T* mm_pp{};
-	size_t mm_nn{}; 
-	size_t mm_cap{}; 
-	size_t mm_first{};
-	const size_t delta{ 2 }; 
+	T* mm_pp{};					// указатель на массив элементов очереди
+	size_t mm_nn{};				// количество элементов в очереди
+	size_t mm_cap{};			// максимальная емкость очереди
+	size_t mm_first{};			// индекс первого элемента в очереди
+	const size_t delta{ 2 };	// размер увеличения емкости при переполнении
 
+	// вложенный класс итератора
 	class iterator {
 		const MyQueue<T>* m_pQ; 
 		int m_i;
 	public:
+		// чтобы для работы с очередью можно было использовать алгоритмы STL вводим псевдонимы
 		using iterator_category = std::forward_iterator_tag;
 		using value_type = T;
 		using difference_type = ptrdiff_t;
 		using pointer = T*;
 		using reference = T&;
 
-		
 		iterator() :m_pQ(nullptr), m_i(0) {};
+		// конструктор итератора с указателем на очередь и индексом элемента
 		iterator(const MyQueue& m_q, size_t q_n) :m_pQ(&m_q), m_i(q_n) {};
 
-		iterator& operator++ ()
-		{
+		// перегрузка оператора инкремента для перемещения на следующий элемент
+		iterator& operator++ () {
 			m_i++;
 			return *this;
 		};
 
+		// перегрузка оператора разыменования для доступа к элементу
 		T& operator* () { return m_pQ->mm_pp[m_i % (m_pQ->mm_cap)]; };
 
+		// перегрузка оператора неравенства для сравнения двух итераторов
 		bool operator!= (const iterator& in) const {
 			return m_pQ != in.m_pQ || m_i != in.m_i;
 		};
 	};
 public:
+	// методы для получения итераторов на начало и конец очереди,
+	// а также константные версии для использования в алгоритмах
 	iterator begin() { return iterator(*this, mm_first); }
 	
 	iterator end() {

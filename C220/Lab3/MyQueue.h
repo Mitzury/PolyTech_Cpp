@@ -99,8 +99,7 @@ public:
 			mm_pp[i] = node;
 	};
 
-	MyQueue& operator= (const MyQueue& in)
-	{
+	MyQueue& operator= (const MyQueue& in) {
 		if (mm_cap < in.mm_nn)
 		{
 			delete[] mm_pp;
@@ -113,8 +112,7 @@ public:
 		std::copy(in.cbegin(), in.cend(), mm_pp);
 		return *this;
 	};
-	MyQueue& operator= (MyQueue&& in)
-	{
+	MyQueue& operator= (MyQueue&& in) {
 		if (&in == this) return *this;
 		delete[] mm_pp;
 		mm_pp = in.mm_pp;

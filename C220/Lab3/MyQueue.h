@@ -169,14 +169,7 @@ public:
 		mm_pp[(mm_first + mm_nn) % mm_cap] = in;
 		mm_nn++; // Увеличиваем счетчик элементов контейнера.
 	};
-	void push(T&& in) {
-	// Проверяем, достигли ли текущий размер контейнера его максимальной вместимости.
-		if (mm_cap == mm_nn) {
-			addCapacity(delta); // Если достигли, увеличиваем вместимость контейнера на delta.
-		}
-		mm_pp[(mm_first + mm_nn) % mm_cap] = std::move(in);
-		mm_nn++;
-	};
+
 
 	// Инициализация функции pop() для извлечения элемента из очереди
 	T pop() {
@@ -196,7 +189,8 @@ public:
 
 	void print() {
 		std::cout << "\tКоличество э-тов очереди = " << mm_nn << " / ";
-		std::cout << "Максимальная емкость =  " << mm_cap << std::endl;
+		std::cout << "Максимальная емкость =  " << mm_cap << " / ";
+		std::cout << "mm_first =  " << mm_first << std::endl;
 		for (const auto& item : *this) {
 			std::cout << item <<" ";
 		}

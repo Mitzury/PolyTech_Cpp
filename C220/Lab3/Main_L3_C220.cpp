@@ -73,7 +73,9 @@ int main() {
 	q3.print();
 	cout << endl << "Присваиваем q1 = q3" << endl;
 	q1 = q3;
+	q3.push("k");
 	q1.print();
+	q3.print();
 
 	q2 = MyQueue < MyString >(5, MyString(" ? "));
 	cout << endl << "Очередь должна содержать 5 элементов со строкой «?» " << endl;

@@ -15,7 +15,7 @@ class MyQueue {
 	size_t mm_nn{};				// количество элементов в очереди
 	size_t mm_cap{};			// максимальная емкость очереди
 	size_t mm_first{};			// индекс первого элемента в очереди
-	const size_t delta{ 2 };	// размер увеличения емкости при переполнении
+	const size_t delta{ 1 };	// размер увеличения емкости при переполнении
 
 	// вложенный класс итератора
 	class iterator {
@@ -59,6 +59,7 @@ public:
 	iterator cbegin() const { return iterator(*this, mm_first); }
 	iterator cend() const { return iterator(*this, mm_first + mm_nn); }
 
+	// Создаем пустую очередь.
 	MyQueue() = default;
 	~MyQueue() { delete[] mm_pp; };
 
@@ -186,7 +187,6 @@ public:
 		mm_first = (mm_first + 1) % mm_cap;
 	// Уменьшаем количество элементов в очереди
 		mm_nn--;
-		mm_cap--;
 	// Возвращаем извлеченное значение
 		return tmp;
 	};

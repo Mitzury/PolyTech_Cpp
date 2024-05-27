@@ -11,9 +11,10 @@ MyString::MyString() {
     m_pStr[0] = '\0';       // Устанавливаем нулевой символ
 };
 
-MyString::MyString(const char* inc) {
-    m_pStr = new char[strlen(inc) + 1];
-    strcpy(m_pStr, inc);
+// Конструктор с параметром
+MyString::MyString(const char* str) {
+    m_pStr = new char[strlen(str) + 1];
+    strcpy(m_pStr, str);
 
 };
 // конструктор перемещения класса mystring

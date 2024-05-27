@@ -18,7 +18,7 @@ MyString::MyString(const char* str) {
 
 };
 // конструктор перемещения класса mystring
-MyString::MyString(MyString&& in) noexcept {
+MyString::MyString(MyString&& in) {
     m_pStr = in.m_pStr;
     in.m_pStr = 0;
 };
@@ -85,17 +85,7 @@ std::ostream& operator<<(std::ostream& os, const MyString& s)
     os << s.GetString();
     return os;
 }
-void UniStr(MyString& dist, int c, MyString* a, ...)
-{
 
-    MyString** p = &a;
-    for (int i = 0; i < c; i++)
-    {
-
-        dist.AddStr((*p)->GetString());
-        p += 1;//sizeof(MyString);
-    }
-}
 MyString& MyString::operator=(const MyString& in) {
     delete[] m_pStr;
     m_pStr = new char[strlen(in.m_pStr) + 1];

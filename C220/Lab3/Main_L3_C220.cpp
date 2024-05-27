@@ -37,17 +37,15 @@ q1 = { MyString(УbbbФ), MyString(УssssФ) };
 */
 
 #include <iostream>
-
 #include "MyString.h"
 #include "MyQueue.h"
 
-int main()
-{
+int main() {
 	setlocale(LC_ALL, "Ru");
 	using namespace std;
 	MyQueue<MyString>  q1{ MyString("AAA"), MyString("qwerty") };
 
-	////использование MyQueue в диапазонном for:
+	// »спользование MyQueue в диапазонном for:
 	cout << endl << "¬ыводим разработанный класс" << endl;
 	q1.print();
 

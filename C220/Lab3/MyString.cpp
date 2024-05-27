@@ -37,7 +37,6 @@ MyString::MyString(const MyString& scopy) {
 
 MyString::~MyString() {
     delete[] m_pStr;
-    m_pStr = nullptr;
 };
 
 const char* MyString::GetString() const {

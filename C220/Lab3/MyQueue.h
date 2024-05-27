@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <utility>
-
 #include <iostream>
 #include <algorithm>
 #include <iterator>
@@ -39,10 +38,8 @@ class MyQueue {
 			m_i++;
 			return *this;
 		};
-
 		// перегрузка оператора разыменования для доступа к элементу
 		T& operator* () { return m_pQ->mm_pp[m_i % (m_pQ->mm_cap)]; };
-
 		// перегрузка оператора неравенства для сравнения двух итераторов
 		bool operator!= (const iterator& in) const {
 			return m_pQ != in.m_pQ || m_i != in.m_i;
@@ -194,11 +191,12 @@ public:
 	};
 
 	void print() {
+		std::cout << "\tКоличество э-тов очереди = " << mm_nn << " / ";
+		std::cout << "Максимальная емкость =  " << mm_cap << std::endl;
 		for (const auto& item : *this) {
-			std::cout << item << " ";
+			std::cout << item <<" ";
 		}
 		std::cout << std::endl;
 	}
-
 };
 

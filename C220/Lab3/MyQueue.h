@@ -111,36 +111,36 @@ public:
 	};
 
 	// оператор присваивания
-	MyQueue& operator= (const MyQueue& in) {
-		// Проверяем, достаточно ли памяти для копирования элементов из объекта in
-		if (mm_cap < in.mm_nn)
+	MyQueue& operator= (const MyQueue& que) {
+		// Проверяем, достаточно ли памяти для копирования элементов из объекта
+		if (mm_cap < que.mm_nn)
 		{
 			delete[] mm_pp;				// Освобождаем ранее выделенную память
-			mm_pp = new T[in.mm_nn];	// Выделяем новую память
-			mm_cap = in.mm_nn;			// Обновляем значение вместимости
+			mm_pp = new T[que.mm_nn];	// Выделяем новую память
+			mm_cap = que.mm_nn;			// Обновляем значение вместимости
 		}
 		mm_first = 0;					// Обнуляем указатель на первый элемент
-		mm_nn = in.mm_nn;				// Устанавливаем новое значение количества элементов
+		mm_nn = que.mm_nn;				// Устанавливаем новое значение количества элементов
 
-		std::copy(in.cbegin(), in.cend(), mm_pp);
+		std::copy(que.cbegin(), que.cend(), mm_pp);
 		return *this;
 	};
 
-	MyQueue& operator= (MyQueue&& in) {
-		// Проверяем, не является ли объект in самим собой
-		if (&in == this) {
+	MyQueue& operator= (MyQueue&& que) {
+		// Проверяем, не является ли объект que самим собой
+		if (&que == this) {
 			return *this;
 		}
 		delete[] mm_pp;					// Освобождаем ранее выделенную память
-		mm_pp = in.mm_pp;
-		mm_nn = in.mm_nn;
-		mm_cap = in.mm_cap;
-		mm_first = in.mm_first;
+		mm_pp = que.mm_pp;
+		mm_nn = que.mm_nn;
+		mm_cap = que.mm_cap;
+		mm_first = que.mm_first;
 
-		in.mm_pp = nullptr;
-		in.mm_nn = 0;
-		in.mm_cap = 0;
-		in.mm_first = 0;
+		que.mm_pp = nullptr;
+		que.mm_nn = 0;
+		que.mm_cap = 0;
+		que.mm_first = 0;
 		return *this;
 	};
 

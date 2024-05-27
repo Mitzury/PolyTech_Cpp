@@ -82,7 +82,11 @@ int main() {
 	cout << endl << "ќператор присваивани€ по списку инициализации " << endl;
 	q1 = { MyString("bbb"), MyString("ssss")};
 	q1.print();
-
+	MyString k("abc");
+	q1.push(k);
+	q1.print();
+	q1.pop();
+	q1.print();
 
 	return 0;
 };

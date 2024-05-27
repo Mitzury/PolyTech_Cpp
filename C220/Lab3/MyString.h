@@ -6,10 +6,7 @@ public:
 	MyString();
 	/*explicit*/ MyString(const char*);
 	MyString(const MyString&);
-	MyString(MyString&& in) noexcept {
-		m_pStr = in.m_pStr;
-		in.m_pStr = 0;
-	};
+	MyString(MyString&& in) noexcept;
 	~MyString();
 	const char* GetString() const;
 	void SetNewString(const char*);

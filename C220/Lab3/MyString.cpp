@@ -5,12 +5,10 @@
 #include <cstdarg>
 #include <ostream>
 
-
-const char* MyString::err = "UB EMPTY STRING- nullptr string";
-
+// Конструктор по умолчанию
 MyString::MyString() {
-    m_pStr = new char[1];
-    m_pStr[0] = '\0';
+    m_pStr = new char[1];   // Выделяем память для одного символа
+    m_pStr[0] = '\0';       // Устанавливаем нулевой символ
 };
 
 MyString::MyString(const char* inc) {
@@ -18,10 +16,15 @@ MyString::MyString(const char* inc) {
     strcpy(m_pStr, inc);
 
 };
+// конструктор перемещения класса mystring
+MyString::MyString(MyString&& in) noexcept {
+    m_pStr = in.m_pStr;
+    in.m_pStr = 0;
+};
+
 
 MyString::MyString(const MyString& scopy) {
     if (scopy.m_pStr && strlen(scopy.m_pStr)) {
-        //if (!m_pStr) delete[]m_pStr;
         m_pStr = new char[strlen(scopy.m_pStr) + 1];
         strcpy(m_pStr, scopy.m_pStr);
     }
@@ -38,7 +41,7 @@ MyString::~MyString() {
 
 const char* MyString::GetString() const {
     if (this == nullptr)
-        return MyString::err;
+        return "empty string";
     return m_pStr;
 };
 

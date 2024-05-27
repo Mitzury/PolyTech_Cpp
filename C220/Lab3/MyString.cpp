@@ -63,7 +63,7 @@ void MyString::SetNewString(const char* newstr) {
     }
 
 }
-void MyString::AddStr(const char* newstr)
+void MyString::addString(const char* newstr)
 {
     if (strlen(newstr))
 

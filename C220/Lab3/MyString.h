@@ -9,7 +9,7 @@ public:
 	~MyString();
 	const char* GetString() const;
 	void SetNewString(const char*);
-	void AddStr(const char*);
+	void addString(const char*);
 	MyString& operator=(const MyString& in);
 	MyString& operator=(MyString&& in) noexcept;
 	friend std::ostream& operator<<(std::ostream& os, const MyString& s);

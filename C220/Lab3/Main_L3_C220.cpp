@@ -46,7 +46,7 @@ int main() {
 	MyQueue<MyString>  q1{ MyString("AAA"), MyString("qwerty") };
 
 	// Использование MyQueue в диапазонном for:
-	cout << endl << "Выводим разработанный класс" << endl;
+	cout << "Выводим разработанный класс" << endl;
 	q1.print();
 
 

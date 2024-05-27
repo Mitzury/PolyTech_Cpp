@@ -11,10 +11,10 @@
 
 template<typename T>
 class MyQueue {
-	T* mm_pp{};					// указатель на массив элементов очереди
-	size_t mm_nn{};				// количество элементов в очереди
-	size_t mm_cap{};			// максимальная емкость очереди
-	size_t mm_first{};			// индекс первого элемента в очереди
+	T* m_pp = nullptr;			// указатель на массив элементов очереди
+	size_t m_nn = 0;			// количество элементов в очереди
+	size_t m_cap = 0;			// максимальная емкость очереди
+	size_t m_first = 0;			// индекс первого элемента в очереди
 	const size_t delta = 1 ;	// размер увеличения емкости при переполнении
 
 	// вложенный класс итератора
@@ -39,7 +39,8 @@ class MyQueue {
 			return *this;
 		};
 		// перегрузка оператора разыменования для доступа к элементу
-		T& operator* () { return m_pQ->mm_pp[m_i % (m_pQ->mm_cap)]; };
+		// Возвращаем элемент массива m_pp по индексу m_i, учитывая размер массива m_cap
+		T& operator* () { return m_pQ->m_pp[m_i % (m_pQ->m_cap)]; };
 		// перегрузка оператора неравенства для сравнения двух итераторов
 		bool operator!= (const iterator& in) const {
 			return m_pQ != in.m_pQ || m_i != in.m_i;
@@ -50,79 +51,79 @@ public:
 	// а также константные версии для использования в алгоритмах
 	// Методы begin() и end() возвращают итераторы,
 	// с помощью которых можно проходить по элементам коллекции от начала до конца.
-	iterator begin() { return iterator(*this, mm_first); }
-	iterator end() { return iterator(*this, mm_first + mm_nn); }
+	iterator begin() { return iterator(*this, m_first); }
+	iterator end() { return iterator(*this, m_first + m_nn); }
 
 	//Методы cbegin() и cend() являются константными версиями методов begin() и end().
 	// Они также возвращают итераторы, но с этими итераторами нельзя изменять элементы коллекции.
 	// Они используются, когда нужно только просмотреть элементы коллекции без возможности изменения.
-	iterator cbegin() const { return iterator(*this, mm_first); }
-	iterator cend() const { return iterator(*this, mm_first + mm_nn); }
+	iterator cbegin() const { return iterator(*this, m_first); }
+	iterator cend() const { return iterator(*this, m_first + m_nn); }
 
 	// Создаем пустую очередь.
 	MyQueue() = default;
-	~MyQueue() { delete[] mm_pp; };
+	~MyQueue() { delete[] m_pp; };
 
-	MyQueue(const MyQueue& que) : mm_first(0), mm_cap(que.mm_nn), mm_nn(que.mm_nn) {
+	MyQueue(const MyQueue& que) : m_first(0), m_cap(que.m_nn), m_nn(que.m_nn) {
 		
-		mm_pp = new T[que.mm_nn];
-		for (size_t i = 0; i < que.mm_nn; i++)
-			mm_pp[i] = que.mm_pp[(que.mm_first + i) % que.mm_cap];
+		m_pp = new T[que.m_nn];
+		for (size_t i = 0; i < que.m_nn; i++)
+			m_pp[i] = que.m_pp[(que.m_first + i) % que.m_cap];
 	}
 
 
 	// конструктор перемещения для класса myqueue.
 	MyQueue(MyQueue&& que) {
-		mm_pp = que.mm_pp;
-		mm_nn = que.mm_nn;
-		mm_cap = que.mm_cap;
-		mm_first = que.mm_first;
+		m_pp = que.m_pp;
+		m_nn = que.m_nn;
+		m_cap = que.m_cap;
+		m_first = que.m_first;
 
-		que.mm_pp = nullptr;
-		que.mm_nn = 0;
-		que.mm_cap = 0;
-		que.mm_first = 0;
+		que.m_pp = nullptr;
+		que.m_nn = 0;
+		que.m_cap = 0;
+		que.m_first = 0;
 	};
 
 	// Создаем конструктор с использованием списка инициализации
-	MyQueue(std::initializer_list<T> il) :mm_nn(il.size()), mm_cap(il.size()) {
+	MyQueue(std::initializer_list<T> il) :m_nn(il.size()), m_cap(il.size()) {
 		// Выделяем память для массива элементов
-		mm_pp = new T[il.size()];
+		m_pp = new T[il.size()];
 		size_t i = 0;
 		// Копируем элементы из списка инициализации в массив
-		std::copy(il.begin(), il.end(), mm_pp);
+		std::copy(il.begin(), il.end(), m_pp);
 	};
 
 	// Конструктор класса, принимающий размер очереди и начальный элемент
 	MyQueue(size_t n, const T& node) {
 		// Размер очереди
-		mm_nn = n;
+		m_nn = n;
 		// Емкость очереди
-		mm_cap = n;
+		m_cap = n;
 		// Индекс первого элемента в очереди
-		mm_first = 0;
+		m_first = 0;
 		// Указатель на массив элементов очереди
-		mm_pp = new T[n];
+		m_pp = new T[n];
 
 		// Заполняем очередь начальным элементом
 		for (size_t i = 0; i < n; i++) {
-			mm_pp[i] = node;
+			m_pp[i] = node;
 		}
 	};
 
 	// оператор присваивания
 	MyQueue& operator= (const MyQueue& que) {
 		// Проверяем, достаточно ли памяти для копирования элементов из объекта
-		if (mm_cap < que.mm_nn)
+		if (m_cap < que.m_nn)
 		{
-			delete[] mm_pp;				// Освобождаем ранее выделенную память
-			mm_pp = new T[que.mm_nn];	// Выделяем новую память
-			mm_cap = que.mm_nn;			// Обновляем значение вместимости
+			delete[] m_pp;				// Освобождаем ранее выделенную память
+			m_pp = new T[que.m_nn];	// Выделяем новую память
+			m_cap = que.m_nn;			// Обновляем значение вместимости
 		}
-		mm_first = 0;					// Обнуляем указатель на первый элемент
-		mm_nn = que.mm_nn;				// Устанавливаем новое значение количества элементов
+		m_first = 0;					// Обнуляем указатель на первый элемент
+		m_nn = que.m_nn;				// Устанавливаем новое значение количества элементов
 
-		std::copy(que.cbegin(), que.cend(), mm_pp);
+		std::copy(que.cbegin(), que.cend(), m_pp);
 		return *this;
 	};
 
@@ -131,70 +132,73 @@ public:
 		if (&que == this) {
 			return *this;
 		}
-		delete[] mm_pp;					// Освобождаем ранее выделенную память
-		mm_pp = que.mm_pp;
-		mm_nn = que.mm_nn;
-		mm_cap = que.mm_cap;
-		mm_first = que.mm_first;
+		delete[] m_pp;					// Освобождаем ранее выделенную память
+		m_pp = que.m_pp;
+		m_nn = que.m_nn;
+		m_cap = que.m_cap;
+		m_first = que.m_first;
 
-		que.mm_pp = nullptr;
-		que.mm_nn = 0;
-		que.mm_cap = 0;
-		que.mm_first = 0;
+		que.m_pp = nullptr;
+		que.m_nn = 0;
+		que.m_cap = 0;
+		que.m_first = 0;
 		return *this;
 	};
 
 	void addCapacity(size_t n) { 
 	// Создание нового динамического массива с увеличенной ёмкостью
-		T* newArr = new T[mm_cap + n];
+		T* newArr = new T[m_cap + n];
 		size_t i{ 0 };
 		for (auto& j : *this)
 		{
 			newArr[i] = j;
 			i++;
 		}
-		delete[] mm_pp;
-		mm_pp = newArr;
-		mm_first = 0;
-		mm_cap += n;
+		delete[] m_pp;
+		m_pp = newArr;
+		m_first = 0;
+		m_cap += n;
 	}
 
 	void push(const T& in) {
 	// Проверяем, достигли ли текущий размер контейнера его максимальной вместимости.
-		if (mm_cap == mm_nn) {
+		if (m_cap == m_nn) {
 			addCapacity(delta); // Если достигли, увеличиваем вместимость контейнера на delta.
 		}
-	// Добавляем элемент в контейнер по формуле (mm_first + mm_nn) % mm_cap,
+	// Добавляем элемент в контейнер по формуле (m_first + m_nn) % m_cap,
 	// чтобы обеспечить кольцевой буфер.
-		mm_pp[(mm_first + mm_nn) % mm_cap] = in;
-		mm_nn++; // Увеличиваем счетчик элементов контейнера.
+		m_pp[(m_first + m_nn) % m_cap] = in;
+		m_nn++; // Увеличиваем счетчик элементов контейнера.
 	};
 
 
 	// Инициализация функции pop() для извлечения элемента из очереди
 	T pop() {
-	// Проверяем, пуста ли очередь
-		if (mm_nn == 0) {
-			throw "empty queue"; // Выбрасываем исключение, если очередь пуста
-		}
+		try {
 	// Сохраняем значение первого элемента во временную переменную
-		T tmp = std::move(mm_pp[mm_first]);
+		T tmp = std::move(m_pp[m_first]);
 	// Обновляем индекс первого элемента
-		mm_first = (mm_first + 1) % mm_cap;
+		m_first = (m_first + 1) % m_cap;
 	// Уменьшаем количество элементов в очереди
-		mm_nn--;
+		if (m_nn > 0) {
+			m_nn--;
+		}
 	// Возвращаем извлеченное значение
 		return tmp;
+		}
+		catch (const char* ex) {
+			// Обработка исключений
+			std::cout << "Exception caught: " << ex << std::endl;
+		}
 	};
 
 	void print() {
-		std::cout << "\tКоличество э-тов очереди = " << mm_nn << " / ";
-		std::cout << "Максимальная емкость =  " << mm_cap << " / ";
-		std::cout << "mm_first =  " << mm_first << std::endl;
+		std::cout << "\tКоличество э-тов очереди = " << m_nn << " / ";
+		std::cout << "Максимальная емкость =  " << m_cap << " / ";
+		std::cout << "m_first =  " << m_first << std::endl;
 		for (const auto& item : *this) {
 			std::cout << item <<" ";
 		}
 		std::cout << std::endl;
 	}
 };
-

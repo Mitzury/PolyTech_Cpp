@@ -15,7 +15,7 @@ class MyQueue {
 	size_t mm_nn{};				// количество элементов в очереди
 	size_t mm_cap{};			// максимальная емкость очереди
 	size_t mm_first{};			// индекс первого элемента в очереди
-	const size_t delta{ 1 };	// размер увеличения емкости при переполнении
+	const size_t delta = 1 ;	// размер увеличения емкости при переполнении
 
 	// вложенный класс итератора
 	class iterator {
@@ -63,22 +63,25 @@ public:
 	MyQueue() = default;
 	~MyQueue() { delete[] mm_pp; };
 
-	MyQueue(const MyQueue& in) : mm_first(0), mm_cap(in.mm_nn), mm_nn(in.mm_nn) {
-		mm_pp = new T[in.mm_nn];
-		for (size_t i = 0; i < in.mm_nn; i++)
-			mm_pp[i] = in.mm_pp[(in.mm_first + i) % in.mm_cap];
+	MyQueue(const MyQueue& que) : mm_first(0), mm_cap(que.mm_nn), mm_nn(que.mm_nn) {
+		
+		mm_pp = new T[que.mm_nn];
+		for (size_t i = 0; i < que.mm_nn; i++)
+			mm_pp[i] = que.mm_pp[(que.mm_first + i) % que.mm_cap];
 	}
-	// конструктор перемещения для класса myqueue.
-	MyQueue(MyQueue&& in) {
-		mm_pp = in.mm_pp;
-		mm_nn = in.mm_nn;
-		mm_cap = in.mm_cap;
-		mm_first = in.mm_first;
 
-		in.mm_pp = nullptr;
-		in.mm_nn = 0;
-		in.mm_cap = 0;
-		in.mm_first = 0;
+
+	// конструктор перемещения для класса myqueue.
+	MyQueue(MyQueue&& que) {
+		mm_pp = que.mm_pp;
+		mm_nn = que.mm_nn;
+		mm_cap = que.mm_cap;
+		mm_first = que.mm_first;
+
+		que.mm_pp = nullptr;
+		que.mm_nn = 0;
+		que.mm_cap = 0;
+		que.mm_first = 0;
 	};
 
 	// Создаем конструктор с использованием списка инициализации

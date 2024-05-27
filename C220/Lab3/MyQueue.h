@@ -51,70 +51,86 @@ class MyQueue {
 public:
 	// методы для получения итераторов на начало и конец очереди,
 	// а также константные версии для использования в алгоритмах
+	// Методы begin() и end() возвращают итераторы,
+	// с помощью которых можно проходить по элементам коллекции от начала до конца.
 	iterator begin() { return iterator(*this, mm_first); }
-	
-	iterator end() {
-		return iterator(*this, mm_first + mm_nn);
-	}
+	iterator end() { return iterator(*this, mm_first + mm_nn); }
 
+	//Методы cbegin() и cend() являются константными версиями методов begin() и end().
+	// Они также возвращают итераторы, но с этими итераторами нельзя изменять элементы коллекции.
+	// Они используются, когда нужно только просмотреть элементы коллекции без возможности изменения.
 	iterator cbegin() const { return iterator(*this, mm_first); }
-	iterator cend() const {
-		return iterator(*this, mm_first + mm_nn);
-	}
+	iterator cend() const { return iterator(*this, mm_first + mm_nn); }
 
 	MyQueue() = default;
 	~MyQueue() { delete[] mm_pp; };
 
-	MyQueue(const MyQueue& in) : mm_first(0), mm_cap(in.mm_nn), mm_nn(in.mm_nn)
-	{
+	MyQueue(const MyQueue& in) : mm_first(0), mm_cap(in.mm_nn), mm_nn(in.mm_nn) {
 		mm_pp = new T[in.mm_nn];
-
 		for (size_t i = 0; i < in.mm_nn; i++)
 			mm_pp[i] = in.mm_pp[(in.mm_first + i) % in.mm_cap];
 	}
-	MyQueue(MyQueue&& in) :mm_pp(in.mm_pp),
-		mm_nn(in.mm_nn),
-		mm_cap(in.mm_cap),
-		mm_first(in.mm_first)
-	{
+	// конструктор перемещения для класса myqueue.
+	MyQueue(MyQueue&& in) {
+		mm_pp = in.mm_pp;
+		mm_nn = in.mm_nn;
+		mm_cap = in.mm_cap;
+		mm_first = in.mm_first;
+
 		in.mm_pp = nullptr;
 		in.mm_nn = 0;
 		in.mm_cap = 0;
 		in.mm_first = 0;
 	};
 
-	MyQueue(std::initializer_list<T> il) :mm_nn(il.size()), mm_cap(il.size())
-	{
+	// Создаем конструктор с использованием списка инициализации
+	MyQueue(std::initializer_list<T> il) :mm_nn(il.size()), mm_cap(il.size()) {
+		// Выделяем память для массива элементов
 		mm_pp = new T[il.size()];
 		size_t i = 0;
-
+		// Копируем элементы из списка инициализации в массив
 		std::copy(il.begin(), il.end(), mm_pp);
-		
-
 	};
-	MyQueue(size_t n, const T& node) :mm_nn(n), mm_cap(n), mm_first(0)
-	{
+
+	// Конструктор класса, принимающий размер очереди и начальный элемент
+	MyQueue(size_t n, const T& node) {
+		// Размер очереди
+		mm_nn = n;
+		// Емкость очереди
+		mm_cap = n;
+		// Индекс первого элемента в очереди
+		mm_first = 0;
+		// Указатель на массив элементов очереди
 		mm_pp = new T[n];
-		for (size_t i = 0; i < n; i++)
+
+		// Заполняем очередь начальным элементом
+		for (size_t i = 0; i < n; i++) {
 			mm_pp[i] = node;
+		}
 	};
 
+	// оператор присваивания
 	MyQueue& operator= (const MyQueue& in) {
+		// Проверяем, достаточно ли памяти для копирования элементов из объекта in
 		if (mm_cap < in.mm_nn)
 		{
-			delete[] mm_pp;
-			mm_pp = new T[in.mm_nn];
-			mm_cap = in.mm_nn;
+			delete[] mm_pp;				// Освобождаем ранее выделенную память
+			mm_pp = new T[in.mm_nn];	// Выделяем новую память
+			mm_cap = in.mm_nn;			// Обновляем значение вместимости
 		}
-		mm_first = 0;
-		mm_nn = in.mm_nn;
+		mm_first = 0;					// Обнуляем указатель на первый элемент
+		mm_nn = in.mm_nn;				// Устанавливаем новое значение количества элементов
 
 		std::copy(in.cbegin(), in.cend(), mm_pp);
 		return *this;
 	};
+
 	MyQueue& operator= (MyQueue&& in) {
-		if (&in == this) return *this;
-		delete[] mm_pp;
+		// Проверяем, не является ли объект in самим собой
+		if (&in == this) {
+			return *this;
+		}
+		delete[] mm_pp;					// Освобождаем ранее выделенную память
 		mm_pp = in.mm_pp;
 		mm_nn = in.mm_nn;
 		mm_cap = in.mm_cap;
@@ -127,12 +143,13 @@ public:
 		return *this;
 	};
 
-	void addCapasity(size_t n) { 
+	void addCapacity(size_t n) { 
+	// Создание нового динамического массива с увеличенной ёмкостью
 		T* newArr = new T[mm_cap + n];
 		size_t i{ 0 };
-		for (auto& no : *this)
+		for (auto& j : *this)
 		{
-			newArr[i] = no;
+			newArr[i] = j;
 			i++;
 		}
 		delete[] mm_pp;
@@ -142,15 +159,24 @@ public:
 	}
 
 	void push(const T& in) {
-		if (mm_cap == mm_nn) addCapasity(delta);
+	// Проверяем, достигли ли текущий размер контейнера его максимальной вместимости.
+		if (mm_cap == mm_nn) {
+			addCapacity(delta); // Если достигли, увеличиваем вместимость контейнера на delta.
+		}
+	// Добавляем элемент в контейнер по формуле (mm_first + mm_nn) % mm_cap,
+	// чтобы обеспечить кольцевой буфер.
 		mm_pp[(mm_first + mm_nn) % mm_cap] = in;
-		mm_nn++;
+		mm_nn++; // Увеличиваем счетчик элементов контейнера.
 	};
 	void push(T&& in) {
-		if (mm_cap == mm_nn) addCapasity(delta);
+	// Проверяем, достигли ли текущий размер контейнера его максимальной вместимости.
+		if (mm_cap == mm_nn) {
+			addCapacity(delta); // Если достигли, увеличиваем вместимость контейнера на delta.
+		}
 		mm_pp[(mm_first + mm_nn) % mm_cap] = std::move(in);
 		mm_nn++;
 	};
+
 	T pop() {
 		if (mm_nn == 0) throw "queue emty";
 		T tmp1 = std::move(mm_pp[mm_first]);

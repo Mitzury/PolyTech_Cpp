@@ -17,7 +17,10 @@ private:
 
 public:
     UniqueVector() = delete;                           // создает объект класса uniquevector с пустым вектором.
-    UniqueVector(const UniqueVector&) = default;        // Конструктор копирования
+    UniqueVector(const UniqueVector& inp)
+    {
+     
+    }//= default;        // Конструктор копирования
     UniqueVector& operator=(const UniqueVector&) = default;  // Оператор присваивания 
     UniqueVector(UniqueVector&&) = default;             // Конструктор перемещения
     UniqueVector& operator=(UniqueVector&&) = default;  // Оператор перемещения

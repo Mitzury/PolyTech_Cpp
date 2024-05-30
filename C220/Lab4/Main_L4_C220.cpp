@@ -1,46 +1,220 @@
-#include <string>
-#include <iostream>
-#include <cstdint>
-#include <algorithm>
-#include <iterator>
-#include <memory>
+#include <string>       
+#include <iostream>   
+#include <cstdint>      
+#include <algorithm>    
+#include <iterator>     
+#include <memory>      
+#include <bitset>       
 
-#include "T.h"
-#include <vector>
-#include <list>
-#include <deque>
-#include <set>
-#include <array>
-#include <stack>
-#include <queue>
+#include <vector>       
+#include <list>         
+#include <deque>       
+#include <set>          
+#include <array>        
+#include <type_traits>  
+
+#include <stack>        
+#include <queue>       
+
+#include "MyArray.h"
 
 using namespace std;
 
-int main() {
-	setlocale(LC_ALL, "Ru");
-	using namespace std;
-//////////////////////////////////////////////////////////////////////////////////////////////
-//Задание 1. Реализуйте вычисление факториала с помощью constexpr-функции.
-//
-//Подсказки/напоминания: 
-//		- constexpr – функция должна состоять из единственной инструкции return <выражение>; (пока!)
-//		- но это выражение может включать вызов другой constexpr – функции, в частности рекурсивный
-//		  вызов 
-//		- если параметр рекурсивной constexpr- функции - это константа, компилятор вычислит результат
-//		  на этапе компиляции
 
-//Проверьте тот факт, что компилятор вычисляет значение на этапе компиляции 
-// (если в качестве параметра используется константа, известная компилятору на этапе компиляции).
-//	Для проверки достаточно создать встроенный массив с размерностью, вычисляемой
-//	посредством constexpr-функции:
-	{	
+//Задание 1 
+constexpr int factorial(int n) {
+	// Функция для вычисления факториала числа n
+	return (n <= 1) ? 1 : (n * factorial(n - 1));
+}
+
+//Задание 2a. 
+constexpr int binary_literal(const char* str) {
+	int result = 0;   // Инициализация переменной для хранения результата
+	while (*str) {    // Пока не достигнут конец строки
+		result = (result << 1) + (*str++ - '0');  // Побитовый сдвиг влево на 1 и добавление нового бита
+	}
+	return result;    // Возвращение результата
+}
+constexpr int operator "" _b(const char* str, size_t) {
+	return binary_literal(str);  // Используеm ранее определенную функцию binary_literal для преобразования двоичной строки в целое число
+}
+
+
+//Задание 2b. 
+std::string to_binary_string(int value) {
+	std::string binary;                         // Создание строки для хранения двоичного представления
+	const int num_bits = sizeof(int) * CHAR_BIT; // Вычисление количества бит в целом числе
+
+	for (int i = num_bits - 1; i >= 0; --i) {   // Перебор всех битов числа, начиная с самого старшего
+		binary.push_back(((value >> i) & 1) ? '1' : '0');  // Получение i-го бита числа и добавление его в строку
+	}
+
+	return "0b" + binary;   // Возвращение строки с добавленным префиксом "0b", обозначающим двоичное число
+}
+std::string operator""_toBinStr(unsigned long long num) {
+	return to_binary_string(static_cast<int>(num));  // Используеm ранее определенную функцию to_binary_string для конвертации числа в двоичную строку
+}
+
+
+//Задание 3 
+template<typename T>
+class Range {
+private:
+	T min_value;        // Минимальное значение диапазона
+	T max_value;        // Максимальное значение диапазона
+
+public:
+	constexpr Range(T min, T max) : min_value(min), max_value(max) {}  // Конструктор класса
+
+	constexpr T getMin() const { return min_value; }   // Метод для получения минимального значения диапазона
+	constexpr T getMax() const { return max_value; }   // Метод для получения максимального значения диапазона
+
+	constexpr bool isInRange(T value) const {
+		// Метод для проверки, находится ли переданное значение в пределах диапазона
+		return (value >= min_value && value <= max_value);
+	}
+	constexpr T clamp(T value) const {
+		// Метод для "зажатия" значения в пределах диапазона
+		return (value < min_value) ? min_value : (value > max_value) ? max_value : value;
+	}
+};
+
+
+
+//Задание 4 
+template<typename T>
+void printSequence(const T& container) {
+	// Функция для вывода элементов контейнера
+	for (const auto& item : container) {  // Перебор всех элементов контейнера
+		if constexpr (std::is_pointer_v<typename T::value_type>) {
+			// Если элемент контейнера является указателем
+			std::cout << *item << " ";   // Вывод значения, на которое указывает указатель
+		}
+		else {
+			std::cout << item << " ";    // Вывод значения
+		}
+	}
+	std::cout << std::endl;  // Переход на новую строку
+}
+
+template<typename T, size_t N>
+void printSequence(const T(&arr)[N]) {
+	// Функция для вывода элементов массива фиксированного размера
+
+	for (const auto& item : arr) {  // Перебор всех элементов массива
+		std::cout << item << " ";   // Вывод элемента
+	}
+
+	std::cout << std::endl;  // Переход на новую строку
+}
+
+//Задание 5
+template<typename T1, typename T2>
+auto add(T1 a, T2 b) {
+	// Функция для сложения двух значений или прибавления скаляра к каждому элементу вектора
+
+	if constexpr (std::is_same<T1, std::vector<T2>>::value) {
+		// Если первый аргумент является вектором с элементами типа T2
+		for (auto& element : a) {     // Перебор всех элементов вектора
+			element += b;             // Добавление второго аргумента к каждому элементу вектора
+		}
+		return a;   // Возвращение измененного вектора
+	}
+	else {
+		return a + b;   // Возвращение результата сложения двух значений
+	}
+}
+
+
+
+template <typename T>
+void printValue(const T& value) {
+	// Функция для вывода значения, разыменовывая указатель, если это необходимо
+
+	if constexpr (std::is_pointer_v<T>) {
+		// Если тип T является указателем
+		std::cout << *value << " ";   // Вывод значения, на которое указывает указатель
+	}
+	else {
+		std::cout << value << " ";    // Вывод значения
+	}
+}
+
+
+//Задание 6 
+template <typename T>
+void printAdapter(std::stack<T> stack) {
+	// Функция для вывода элементов стека
+	while (!stack.empty()) {       // Пока стек не пуст
+		printValue(stack.top());   // Вывод верхнего элемента стека
+		stack.pop();               // Удаление верхнего элемента стека
+	}
+	std::cout << std::endl;        // Переход на новую строку
+}
+
+template <typename T>
+void printAdapter1(T adapter) {
+
+	// Функция для вывода элементов стека
+	while (!adapter.empty()) {       // Пока стек не пуст
+		printValue(*adapter);   // Вывод верхнего элемента стека
+		stack.pop();               // Удаление верхнего элемента стека
+	}
+	std::cout << std::endl;        // Переход на новую строку
+}
+
+//template <typename T>
+//void printAdapter(std::queue<T> queue) {
+//	// Функция для вывода элементов очереди
+//	while (!queue.empty()) {           // Пока очередь не пуста
+//		printValue(queue.front());     // Вывод элемента, находящегося в начале очереди
+//		queue.pop();                   // Удаление элемента из начала очереди
+//	}
+//	std::cout << std::endl;            // Переход на новую строку
+//}
+
+
+//Задание 7 
+template <typename T>
+constexpr auto Smth() {
+	// Функция, возвращающая разные значения в зависимости от типа T
+
+	if constexpr (std::is_same_v<T, int>) {
+		return 1;                        // Если T - int, возвращаем целочисленное значение 1
+	}
+	else if constexpr (std::is_same_v<T, double>) {
+		return 2.2;                      // Если T - double, возвращаем вещественное значение 2.2
+	}
+	else if constexpr (std::is_same_v<T, std::string>) {
+		return "string_value";           // Если T - std::string, возвращаем строковое значение "string_value"
+	}
+}
+
+
+int main() {
+	//////////////////////////////////////////////////////////////////////////////////////////////
+		//Задание 1. Реализуйте вычисление факториала с помощью constexpr-функции.
+		//
+		//Подсказки/напоминания: 
+		//		- constexpr – функция должна состоять из единственной инструкции return <выражение>; (пока!)
+		//		- но это выражение может включать вызов другой constexpr – функции, в частности рекурсивный
+		//		  вызов 
+		//		- если параметр рекурсивной constexpr- функции - это константа, компилятор вычислит результат
+		//		  на этапе компиляции
+
+		//Проверьте тот факт, что компилятор вычисляет значение на этапе компиляции (если в качестве
+		//				параметра используется константа, известная компилятору на этапе компиляции).
+		//				Для проверки достаточно создать встроенный массив с размерностью, вычисляемой
+		//				посредством constexpr-функции:
+
+	{	//Например:
 		cout << endl << "Chapter 1: " << endl;
 		// Примеры использования constexpr-функции для вычисления факториала
 		// Создание встроенного массива с размерностью, вычисленной constexpr-функцией
 		int ar[factorial(3)];
 
 		// Вычисление факториала на этапе компиляции и сохранение результата в константу
-		constexpr int n = factorial(5); 
+		constexpr int n = factorial(5);
 		// Создание встроенного массива с вычисленным значением размерности
 		int ar1[n];
 
@@ -51,7 +225,7 @@ int main() {
 
 		// Необходимо присваивание результата constexpr-функции переменной для использования в операции
 		constexpr int n2 = factorial(m);
-	} 
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//Задание 2a. Перевод с помощью пользовательского литерала из двоичного представления строкового
@@ -70,10 +244,11 @@ int main() {
 
 	{
 		cout << endl << "Chapter 2a: " << endl;
-		constexpr int num = "100000000"_b;
+		constexpr int num = "100000000"_b;  // Конвертация двоичной строки в число
 
-		std::cout << "Decimal: " << num << std::endl;
-		std::cout << "Binary prefix: " << std::hex << "0b" << num << std::endl;
+		std::cout << "Decimal: " << num << std::endl;  // Вывод числа в десятичной системе счисления
+		std::cout << "Binary prefix: " << std::hex << "0b" << num << std::endl;  // Вывод числа в двоичной системе счисления с префиксом "0b"
+
 
 	}
 
@@ -86,8 +261,11 @@ int main() {
 
 	{
 		cout << endl << "Chapter 2b: " << endl;
-		string sBin = 256_toBinStr;
-		std::cout << sBin << std::endl;
+
+		std::string sBin = 256_toBinStr;  // Конвертация числа 256 в его двоичное представление в виде строки
+
+		std::cout << sBin << std::endl;   // Вывод двоичного представления числа 256
+
 	}
 
 
@@ -107,17 +285,17 @@ int main() {
 
 	{
 		cout << endl << "Chapter 3: " << endl;
-		constexpr Range<int> intRange(0, 100);
+		constexpr Range<int> intRange(0, 100);   // Создание объекта класса Range с диапазоном от 0 до 100 для типа int
 
-		constexpr int minValue = intRange.getMin();
-		constexpr int maxValue = intRange.getMax();
-		constexpr bool inRange = intRange.isInRange(50);
-		constexpr int clampedValue = intRange.clamp(150);
+		constexpr int minValue = intRange.getMin();   // Получение минимального значения из диапазона
+		constexpr int maxValue = intRange.getMax();   // Получение максимального значения из диапазона
+		constexpr bool inRange = intRange.isInRange(50);   // Проверка, находится ли значение 50 в диапазоне
+		constexpr int clampedValue = intRange.clamp(150);  // "Зажатие" значения 150 в пределах диапазона
 
-		std::cout << "Min value: " << minValue << std::endl;
-		std::cout << "Max value: " << maxValue << std::endl;
-		std::cout << "Is 50 in range: " << std::boolalpha << inRange << std::endl;
-		std::cout << "Clamped value of 150: " << clampedValue << std::endl;
+		std::cout << "Min value: " << minValue << std::endl;   // Вывод минимального значения диапазона
+		std::cout << "Max value: " << maxValue << std::endl;   // Вывод максимального значения диапазона
+		std::cout << "Is 50 in range: " << std::boolalpha << inRange << std::endl;  // Вывод результата проверки на принадлежность значения 50 диапазону
+		std::cout << "Clamped value of 150: " << clampedValue << std::endl;   // Вывод "зажатого" значения 150 в пределах диапазона
 
 
 	}
@@ -131,42 +309,44 @@ int main() {
 	*/
 	{
 		cout << endl << "Chapter 4: " << endl;
-		vector<int> vec = { 1, 2, 3, 4, 5 };
-		list<double> lst = { 1.1, 2.2, 3.3, 4.4, 5.5 };
-		deque<std::string> deq = { "one", "two", "three" };
-		set<char> st = { 'a', 'b', 'c' };
-		array<float, 3> arr = { 1.1f, 2.2f, 3.3f };
-		int arr2[] = { 1, 2, 3, 4, 5 };
+		vector<int> vec = { 1, 2, 3, 4, 5 };                         // Создание вектора с целыми числами
+		list<double> lst = { 1.1, 2.2, 3.3, 4.4, 5.5 };              // Создание двусвязного списка с вещественными числами
+		deque<std::string> deq = { "one", "two", "three" };          // Создание дека со строками
+		set<char> st = { 'a', 'b', 'c' };                            // Создание множества символов
+		array<float, 3> arr = { 1.1f, 2.2f, 3.3f };                 // Создание массива с вещественными числами
+		int arr2[] = { 1, 2, 3, 4, 5 };                              // Создание обычного массива с целыми числами
 
-		printSequence(vec);
-		printSequence(lst);
-		printSequence(deq);
-		printSequence(st);
-		printSequence(arr);
-		printSequence(arr2);
+		printSequence(vec);                                         // Вывод элементов вектора
+		printSequence(lst);                                         // Вывод элементов списка
+		printSequence(deq);                                         // Вывод элементов дека
+		printSequence(st);                                          // Вывод элементов множества
+		printSequence(arr);                                         // Вывод элементов массива
+		printSequence(arr2);                                        // Вывод элементов обычного массива
+
+
 	}
+
 	/***************************************************************/
 	//Задание 5.
 		/* Реализуйте шаблон функции сложения двух значений.
-		Если первое слагаемое является вектором, то все элементы вектора нужно увеличить 
-		на значение второго параметра. 
-		При этом элементы вектора и второй параметр должны быть одного и того же типа.
+		Если первое слагаемое является вектором, то все элементы вектора нужно увеличить на значение второго параметра. При этом элементы вектора и второй параметр должны быть одного и того же типа.
 		Подсказки: if constexpr, is_same
 		*/
 	{
 		cout << endl << "Chapter 5: " << endl;
-		std::vector<int> vec = { 1, 2, 3, 4, 5 };
-		int scalar = 10;
+		std::vector<int> vec = { 1, 2, 3, 4, 5 };   // Создание вектора с целыми числами
+		int scalar = 10;                            // Скалярное значение для сложения
 
-		auto result_vec = add(vec, scalar);
-		for (auto element : result_vec) {
-			std::cout << element << " ";
+		auto result_vec = add(vec, scalar);         // Сложение скаляра с каждым элементом вектора
+		for (auto element : result_vec) {           // Перебор результата
+			std::cout << element << " ";            // Вывод каждого элемента результата
 		}
-		std::cout << std::endl;
+		std::cout << std::endl;                     // Переход на новую строку
 
-		int x = 5, y = 7;
-		auto result_scalar = add(x, y);
-		std::cout << result_scalar << std::endl;
+		int x = 5, y = 7;                           // Создание двух целых чисел
+		auto result_scalar = add(x, y);             // Сложение двух чисел
+		std::cout << result_scalar << std::endl;     // Вывод результата сложения
+
 	}
 
 
@@ -177,19 +357,23 @@ int main() {
 	Предусмотрите вывод значений, если в адаптере хранятся указатели.
 	*/
 	{
-		std::stack<int> intStack;
-		intStack.push(1);
-		intStack.push(2);
-		intStack.push(3);
-		std::cout << "Stack: ";
-		printAdapter(intStack);
+		cout << endl << "Chapter 6: " << endl;
+		std::stack<int> intStack;              // Создание стека с целыми числами
+		intStack.push(1);                      // Добавление элемента в стек
+		intStack.push(2);                      // Добавление элемента в стек
+		intStack.push(3);                      // Добавление элемента в стек
+		std::cout << "Stack: ";                // Вывод сообщения о типе структуры данных
+		printAdapter(intStack);                // Вывод элементов стека
 
-		std::queue<double> doubleQueue;
-		doubleQueue.push(1.1);
-		doubleQueue.push(2.2);
-		doubleQueue.push(3.3);
-		std::cout << "Queue: ";
-		printAdapter(doubleQueue);
+		std::queue<double> doubleQueue;        // Создание очереди с вещественными числами
+		doubleQueue.push(1.1);                 // Добавление элемента в очередь
+		doubleQueue.push(2.2);                 // Добавление элемента в очередь
+		doubleQueue.push(3.3);                 // Добавление элемента в очередь
+		std::cout << "Queue: ";                // Вывод сообщения о типе структуры данных
+		printAdapter(doubleQueue);             // Вывод элементов очереди
+
+
+
 	}
 
 	/***************************************************************/
@@ -200,6 +384,18 @@ int main() {
 	//constexpr int res1 = /*<вызов Smth()>;*/ //res1 = 1
 	//constexpr double res2 = /*<вызов Smth()>; */ //res2 = 2.2
 	//  /*constexpr???*/ std::string res3 = /*<вызов Smth()>; */ //res3 = "abc"
+
+	{
+		cout << endl << "Chapter 7: " << endl;
+		constexpr int res1 = Smth<int>();              // Вызов функции Smth для типа int
+		constexpr double res2 = Smth<double>();        // Вызов функции Smth для типа double
+		std::string res3 = Smth<std::string>();        // Вызов функции Smth для типа std::string
+
+		std::cout << "res1: " << res1 << "\n";         // Вывод результата для типа int
+		std::cout << "res2: " << res2 << "\n";         // Вывод результата для типа double
+		std::cout << "res3: " << res3 << "\n";         // Вывод результата для типа std::string
+
+	}
 
 
 	//***************************************************************/
@@ -215,24 +411,38 @@ int main() {
 				…
 				public:
 				MyArray(const T*[, возможно другие параметры]);
-
-
 			};
-
 		*/
 		/*
 		//Требуется обеспечить работоспособность приведенных примеров использования.
 			{
 				MyArray<int, 5> ar1;//MyArray<int,5>
-MyArray<char, 5> ar2{"ABCqwerty"};//MyArray<char,5>
-
+				MyArray<char, 5> ar2{"ABCqwerty"};//MyArray<char,5>
 				MyArray ar3{"ABC"}; //MyArray<char,4>
-
-int ar[] = { 1,2,3 };
+				int ar[] = { 1,2,3 };
 				MyArray ar4{ ar };
-
 			}
 		*/
+	{
+		cout << endl << "Chapter 8: " << endl;
+		MyArray<int, 5> ar1;                                    // Создание объекта MyArray с целыми числами и размером 5
+		MyArray<char, 5> ar2 = makeMyArray<char, 5>({ 'A', 'B', 'C', 'D', 'E' });  // Создание объекта MyArray с символами и размером 5, заполненного значениями из списка инициализации
+
+		MyArray<char, 4> ar3 = makeMyArray<char, 4>({ 'A', 'B', 'C' });    // Создание объекта MyArray с символами и размером 4, заполненного значениями из списка инициализации
+		int ar[] = { 1,2,3 };                                               // Обычный массив с целыми числами
+		MyArray<int, 3> ar4{ ar };                                          // Создание объекта MyArray с целыми числами и размером 3, заполненного значениями из обычного массива
+
+		ar1.print();                                             // Вывод элементов объекта MyArray ar1
+		ar2.print();                                             // Вывод элементов объекта MyArray ar2
+		ar3.print();                                             // Вывод элементов объекта MyArray ar3
+		ar4.print();                                             // Вывод элементов объекта MyArray ar4
+
+		std::cout << "Size of ar4: " << ar4.getSize() << std::endl;            // Вывод размера объекта MyArray ar4
+		std::cout << "Element at index 1 of ar4: " << ar4[1] << std::endl;     // Вывод элемента с индексом 1 объекта MyArray ar4
 
 
+
+	}
+
+	return 0;
 }

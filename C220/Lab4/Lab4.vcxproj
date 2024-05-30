@@ -131,7 +131,8 @@
     <ClCompile Include="Main_L4_C220.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="T.h" />
+    <ClInclude Include="Range.h" />
+    <ClInclude Include="MyArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

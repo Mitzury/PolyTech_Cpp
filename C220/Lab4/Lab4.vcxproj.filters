@@ -20,7 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="T.h">
+    <ClInclude Include="MyArray.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Range.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

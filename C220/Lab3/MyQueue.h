@@ -15,11 +15,11 @@ class MyQueue {
 	size_t m_nn = 0;			// количество элементов в очереди
 	size_t m_cap = 0;			// максимальная емкость очереди
 	size_t m_first = 0;			// индекс первого элемента в очереди
-	const size_t delta = 1 ;	// размер увеличения емкости при переполнении
+	const size_t delta = 1;	// размер увеличения емкости при переполнении
 
 	// вложенный класс итератора
 	class iterator {
-		const MyQueue<T>* m_pQ; 
+		const MyQueue<T>* m_pQ;
 		int m_i;
 	public:
 		// чтобы для работы с очередью можно было использовать алгоритмы STL вводим псевдонимы
@@ -54,6 +54,10 @@ public:
 	iterator begin() { return iterator(*this, m_first); }
 	iterator end() { return iterator(*this, m_first + m_nn); }
 
+	iterator begin() const { return iterator(*this, m_first); }
+	iterator end() const { return iterator(*this, m_first + m_nn); }
+
+
 	//Методы cbegin() и cend() являются константными версиями методов begin() и end().
 	// Они также возвращают итераторы, но с этими итераторами нельзя изменять элементы коллекции.
 	// Они используются, когда нужно только просмотреть элементы коллекции без возможности изменения.
@@ -65,7 +69,7 @@ public:
 	~MyQueue() { delete[] m_pp; };
 
 	MyQueue(const MyQueue& que) : m_first(0), m_cap(que.m_nn), m_nn(que.m_nn) {
-		
+
 		m_pp = new T[que.m_nn];
 		for (size_t i = 0; i < que.m_nn; i++)
 			m_pp[i] = que.m_pp[(que.m_first + i) % que.m_cap];
@@ -145,13 +149,17 @@ public:
 		return *this;
 	};
 
-	void addCapacity(size_t n) { 
-	// Создание нового динамического массива с увеличенной ёмкостью
+	void addCapacity(size_t n) {
+		// Создание нового динамического массива с увеличенной ёмкостью
 		T* newArr = new T[m_cap + n];
 		size_t i{ 0 };
-		for (auto& j : *this)
-		{
-			newArr[i] = j;
+		//for (auto& j : *this)
+		//{
+		//	newArr[i] = j;
+		//	i++;
+		//}
+		for (auto it = begin(); it != end(); ++it) {
+			newArr[i] = *it;
 			i++;
 		}
 		delete[] m_pp;
@@ -161,12 +169,12 @@ public:
 	}
 
 	void push(const T& in) {
-	// Проверяем, достигли ли текущий размер контейнера его максимальной вместимости.
+		// Проверяем, достигли ли текущий размер контейнера его максимальной вместимости.
 		if (m_cap == m_nn) {
 			addCapacity(delta); // Если достигли, увеличиваем вместимость контейнера на delta.
 		}
-	// Добавляем элемент в контейнер по формуле (m_first + m_nn) % m_cap,
-	// чтобы обеспечить кольцевой буфер.
+		// Добавляем элемент в контейнер по формуле (m_first + m_nn) % m_cap,
+		// чтобы обеспечить кольцевой буфер.
 		m_pp[(m_first + m_nn) % m_cap] = in;
 		m_nn++; // Увеличиваем счетчик элементов контейнера.
 	};
@@ -174,31 +182,38 @@ public:
 
 	// Инициализация функции pop() для извлечения элемента из очереди
 	T pop() {
-		try {
-	// Сохраняем значение первого элемента во временную переменную
-		T tmp = std::move(m_pp[m_first]);
-	// Обновляем индекс первого элемента
-		m_first = (m_first + 1) % m_cap;
-	// Уменьшаем количество элементов в очереди
 		if (m_nn > 0) {
+
+			// Сохраняем значение первого элемента во временную переменную
+			T tmp = std::move(m_pp[m_first]);
+			// Обновляем индекс первого элемента
+			m_first = (m_first + 1) % m_cap;
+			// Уменьшаем количество элементов в очереди
 			m_nn--;
-		}
-	// Возвращаем извлеченное значение
-		return tmp;
-		}
-		catch (const char* ex) {
-			// Обработка исключений
-			std::cout << "Exception caught: " << ex << std::endl;
+
+			// Возвращаем извлеченное значение
+			return tmp;
 		}
 	};
 
-	void print() {
+	void print() const {
 		std::cout << "\tКоличество э-тов очереди = " << m_nn << " / ";
 		std::cout << "Максимальная емкость =  " << m_cap << " / ";
 		std::cout << "m_first =  " << m_first << std::endl;
 		for (const auto& item : *this) {
-			std::cout << item <<" ";
+			std::cout << item << " ";
 		}
 		std::cout << std::endl;
 	}
+	//void print() const {
+	//	std::cout << "Queue: ";
+	//	// Создаем объекты итератора для первого и последнего элементов очереди
+	//	iterator begin(*this, m_first);
+	//	iterator end(*this, m_first + m_nn);
+	//	// Итерируемся по очереди и выводим элементы на экран
+	//	for (iterator it = begin; it != end; ++it) {
+	//		std::cout << *it << " ";
+	//	}
+	//	std::cout << std::endl;
+	//}
 };

@@ -6,14 +6,19 @@
 #include <memory>
 
 #include "T.h"
+#include <vector>
+#include <list>
+#include <deque>
+#include <set>
+#include <array>
+#include <stack>
+#include <queue>
 
 using namespace std;
 
-constexpr int factorial(int n) {
-	return (n <= 1) ? 1 : n * factorial(n - 1);
-}
-
 int main() {
+	setlocale(LC_ALL, "Ru");
+	using namespace std;
 //////////////////////////////////////////////////////////////////////////////////////////////
 //Задание 1. Реализуйте вычисление факториала с помощью constexpr-функции.
 //
@@ -28,8 +33,8 @@ int main() {
 // (если в качестве параметра используется константа, известная компилятору на этапе компиляции).
 //	Для проверки достаточно создать встроенный массив с размерностью, вычисляемой
 //	посредством constexpr-функции:
-
 	{	
+		cout << endl << "Chapter 1: " << endl;
 		// Примеры использования constexpr-функции для вычисления факториала
 		// Создание встроенного массива с размерностью, вычисленной constexpr-функцией
 		int ar[factorial(3)];
@@ -64,11 +69,11 @@ int main() {
 	//		  компилятор вычислит результат вызова рекурсивной функции на этапе компиляции)
 
 	{
-		size_t operator""_b(const char* dec);
+		cout << endl << "Chapter 2a: " << endl;
+		constexpr int num = "100000000"_b;
 
-		auto a = 100000000_b;
-		auto b = 0_b;
-
+		std::cout << "Decimal: " << num << std::endl;
+		std::cout << "Binary prefix: " << std::hex << "0b" << num << std::endl;
 
 	}
 
@@ -80,10 +85,9 @@ int main() {
 	//Подсказка: количество разрядов в байте определяет константа CHAR_BIT - <cstdint>
 
 	{
-		std::string operator""_toBinStr(unsigned long long in);
-
-		std::string sBin= 256_toBinStr;
-
+		cout << endl << "Chapter 2b: " << endl;
+		string sBin = 256_toBinStr;
+		std::cout << sBin << std::endl;
 	}
 
 
@@ -102,11 +106,18 @@ int main() {
 	//Проверьте тот факт, что компилятор вычисляет значение на этапе компиляции. 
 
 	{
+		cout << endl << "Chapter 3: " << endl;
+		constexpr Range<int> intRange(0, 100);
 
-		constexpr int a = MultiValue(1, 2).getMax(); // 2
-		constexpr int a1 = MultiValue(1, 8).getMin(); // 1
-		constexpr bool a2 = MultiValue(1, 3).isIn(2); // true
-		constexpr int a3 = MultiValue(1, 2).inInD(5); // 2
+		constexpr int minValue = intRange.getMin();
+		constexpr int maxValue = intRange.getMax();
+		constexpr bool inRange = intRange.isInRange(50);
+		constexpr int clampedValue = intRange.clamp(150);
+
+		std::cout << "Min value: " << minValue << std::endl;
+		std::cout << "Max value: " << maxValue << std::endl;
+		std::cout << "Is 50 in range: " << std::boolalpha << inRange << std::endl;
+		std::cout << "Clamped value of 150: " << clampedValue << std::endl;
 
 
 	}
@@ -119,17 +130,43 @@ int main() {
 	Подсказки: if constexpr
 	*/
 	{
+		cout << endl << "Chapter 4: " << endl;
+		vector<int> vec = { 1, 2, 3, 4, 5 };
+		list<double> lst = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+		deque<std::string> deq = { "one", "two", "three" };
+		set<char> st = { 'a', 'b', 'c' };
+		array<float, 3> arr = { 1.1f, 2.2f, 3.3f };
+		int arr2[] = { 1, 2, 3, 4, 5 };
 
+		printSequence(vec);
+		printSequence(lst);
+		printSequence(deq);
+		printSequence(st);
+		printSequence(arr);
+		printSequence(arr2);
 	}
-
 	/***************************************************************/
 	//Задание 5.
 		/* Реализуйте шаблон функции сложения двух значений.
-		Если первое слагаемое является вектором, то все элементы вектора нужно увеличить на значение второго параметра. При этом элементы вектора и второй параметр должны быть одного и того же типа.
+		Если первое слагаемое является вектором, то все элементы вектора нужно увеличить 
+		на значение второго параметра. 
+		При этом элементы вектора и второй параметр должны быть одного и того же типа.
 		Подсказки: if constexpr, is_same
 		*/
 	{
+		cout << endl << "Chapter 5: " << endl;
+		std::vector<int> vec = { 1, 2, 3, 4, 5 };
+		int scalar = 10;
 
+		auto result_vec = add(vec, scalar);
+		for (auto element : result_vec) {
+			std::cout << element << " ";
+		}
+		std::cout << std::endl;
+
+		int x = 5, y = 7;
+		auto result_scalar = add(x, y);
+		std::cout << result_scalar << std::endl;
 	}
 
 
@@ -140,7 +177,19 @@ int main() {
 	Предусмотрите вывод значений, если в адаптере хранятся указатели.
 	*/
 	{
+		std::stack<int> intStack;
+		intStack.push(1);
+		intStack.push(2);
+		intStack.push(3);
+		std::cout << "Stack: ";
+		printAdapter(intStack);
 
+		std::queue<double> doubleQueue;
+		doubleQueue.push(1.1);
+		doubleQueue.push(2.2);
+		doubleQueue.push(3.3);
+		std::cout << "Queue: ";
+		printAdapter(doubleQueue);
 	}
 
 	/***************************************************************/

@@ -5,6 +5,8 @@
 #include <iterator>
 #include <memory>
 
+#include "T.h"
+
 using namespace std;
 
 constexpr int factorial(int n) {
@@ -62,7 +64,10 @@ int main() {
 	//		  компилятор вычислит результат вызова рекурсивной функции на этапе компиляции)
 
 	{
+		size_t operator""_b(const char* dec);
 
+		auto a = 100000000_b;
+		auto b = 0_b;
 
 
 	}
@@ -75,7 +80,9 @@ int main() {
 	//Подсказка: количество разрядов в байте определяет константа CHAR_BIT - <cstdint>
 
 	{
-		//std::string sBin= 256_toBinStr;
+		std::string operator""_toBinStr(unsigned long long in);
+
+		std::string sBin= 256_toBinStr;
 
 	}
 
@@ -95,6 +102,11 @@ int main() {
 	//Проверьте тот факт, что компилятор вычисляет значение на этапе компиляции. 
 
 	{
+
+		constexpr int a = MultiValue(1, 2).getMax(); // 2
+		constexpr int a1 = MultiValue(1, 8).getMin(); // 1
+		constexpr bool a2 = MultiValue(1, 3).isIn(2); // true
+		constexpr int a3 = MultiValue(1, 2).inInD(5); // 2
 
 
 	}

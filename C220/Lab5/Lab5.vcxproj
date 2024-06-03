@@ -129,6 +129,10 @@
   <ItemGroup>
     <ClCompile Include="Main_L5_C220.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="human.h" />
+    <ClInclude Include="T.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

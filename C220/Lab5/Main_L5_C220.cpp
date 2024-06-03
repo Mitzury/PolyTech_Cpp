@@ -4,7 +4,11 @@
 #include <set>
 #include <algorithm>
 #include <string>
+#include <fstream>
+#include <list>
 
+#include "T.h"
+#include "human.h"
 
 int main() {
 	setlocale(LC_ALL, "Ru");
@@ -76,40 +80,62 @@ int main() {
 				std::cout << *str << std::endl;
 			}
 		}
+		//1.d - динамический массив объектов	
+		//Создайте unique_ptr, который является оберткой для динамического массива
+		//с элементами std::string
+		//С помощью unique_ptr::operator[] заполните обернутый массив значениями
+		//Когда происходит освобождения памяти?
+		{
+			cout << "\t Chapter 1d: " << endl;
+			std::unique_ptr<std::string[]> arr(new std::string[3]);
+			// Заполняем массив значениями с помощью operator[]
+			arr[0] = "Hello";
+			arr[1] = "World";
+			arr[2] = "!";
+			// Выводим элементы массива
+			for (int i = 0; i < 3; ++i) {
+				std::cout << arr[i] << std::endl;
+			}
+			// Память автоматически освобождается при выходе из области видимост
 
-		{//1.d - динамический массив объектов	
-
-		 //Создайте unique_ptr, который является оберткой для динамического массива
-		 //с элементами std::string
-		 //С помощью unique_ptr::operator[] заполните обернутый массив значениями
-		 //Когда происходит освобождения памяти?
-
-		
 		}
-
-		{//1.e - массивы динамических объектов и пользовательская delete-функция (функтор)
-		 //Задан стековый массив указателей на динамически созданные объекты
-		 //Создайте unique_ptr для такого массива
-		 //Реализуйте пользовательскую delete-функцию (функтор) для корректного 
-		 //освобождения памяти
-
+		//1.e - массивы динамических объектов и пользовательская delete-функция (функтор)
+		//Задан стековый массив указателей на динамически созданные объекты
+		//Создайте unique_ptr для такого массива
+		//Реализуйте пользовательскую delete-функцию (функтор) для корректного 
+		//освобождения памяти
+		{
+			cout << "\t Chapter 1e: " << endl;
 			std::string* arStrPtr[] = { new std::string("aa"), new std::string("bb"), new std::string("cc") };
+
+			// Пример использования указателей:
+			for (int i = 0; i < 3; i++) {
+				std::cout << *arStrPtr[i] << std::endl;
+			}
+
 
 			
 		}
+		//1.f Создайте и заполните вектор, содержащий unique_ptr для указателей на std::string
+		//Посредством алгоритма copy() скопируйте элементы вектора в пустой список с элементами 
+		//того же типа
+		//Подсказка: перемещающие итераторы и шаблон std::make_move_iterator
+		{
+			vector<std::unique_ptr<string>> v;
 
-		{//1.f Создайте и заполните вектор, содержащий unique_ptr для указателей на std::string
-			//Посредством алгоритма copy() скопируйте элементы вектора в пустой список с элементами 
-			//того же типа
-			//Подсказка: перемещающие итераторы и шаблон std::make_move_iterator
+			v.push_back(std::unique_ptr<std::string>(new std::string("aa")));
+			v.push_back(std::unique_ptr<std::string>(new std::string("bb")));//так 
+			v.push_back(std::make_unique<std::string>(std::string("cc")));//  и так 
 
-		
+			std::list<std::unique_ptr<std::string>> lv(v.size());
+
+			std::copy(std::make_move_iterator(v.begin()),
+				std::make_move_iterator(v.end()),
+				lv.begin());
+
 
 		}
-	
-
 	}
-
 	////////////////////////////////////////////////////////////////////////////////
 	//Задание 2.shared_ptr + пользовательская delete-функция 
 
@@ -122,23 +148,43 @@ int main() {
 	//в. Последний владелец указателя должен закрыть файл
 
 	//Подсказка: имитировать порядок записи можно с помощью функции rand()
-	/*
-	{
-
 	//"писатели":
 	//Создать writer1, writer2
+	{
+	cout << "\t Chapter 2: " << endl;
+	std::shared_ptr<std::ofstream> logFile(new ofstream("log.txt"));
+	// Проверяем, удалось ли открыть файл
+	if (!logFile || !logFile->is_open()) {
+		std::cerr << "Error: Unable to open file for writing!" << std::endl;
+		return 1;
+	}
+	// Создаем "писателей"
+	std::string writer1 = "Writer 1";
+	std::string writer2 = "Writer 2";
+	// Задаем количество итераций
+	int iterations = 10;
+	// Имитируем случайный порядок записи
+	for (int i = 0; i < iterations; ++i) {
+		// Случайным образом выбираем, какой писатель будет писать
+		int randomWriter = rand() % 2;
 
+		// Пишем в файл в зависимости от результата выбора
+		if (randomWriter == 0) {
+			writeToLogFile(logFile, writer1);
+		}
+		else {
+			writeToLogFile(logFile, writer2);
+		}
+	}
+	// Последний владелец закрывает файл
+	logFile->close();
 
-
-
+	std::cout << "Writing to file completed successfully!" << std::endl;
 	//заданное число итераций случайным образом позволяем одному из "писателей" записать в файл
 	//свою строчку
 
 
-	__asm nop
 	}//закрытие файла???
-
-	*/
 	/***************************************************************/
 	//Задание 3.
 	{
@@ -147,42 +193,87 @@ int main() {
 		//До завершения фрагмента строки должны существовать в единственном экземпляре.
 		//Требуется обеспечить манипулирование строками а) без копирования и б) без изменения порядка
 		//элементов в массиве!
-
 		//В std::set "складываем" по алфавиту обертки для строк, которые содержат только буквы 
-
-
-	
 		/******************************************************************************************/
-
 		//В std::vector "складываем" обертки для строк, которые содержат только цифры 
 		//Выводим на экран
 		//Находим сумму
-
 		//std::vector<std::shared_ptr < std::string>>
-
 		/******************************************************************************************/
 		//сюда "складываем" обертки для строк, которые не содержат ни символов букв, ни символов цифр
 		//и просто выводим
 
+		cout << "\t Chapter 3: " << endl;
+		std::set<AlphabeticalString> alphabeticalSet;
+		std::vector<std::shared_ptr<NumericString>> numericVector;
+		std::vector<std::string> otherStrings;
 
+		for (const auto& str : strings) {
+			bool isAlphabetical = true;
+			bool isNumeric = true;
+			for (char ch : str) {
+				if (!std::isalpha(ch)) {
+					isAlphabetical = false;
+				}
+				if (!std::isdigit(ch)) {
+					isNumeric = false;
+				}
+			}
+			if (isAlphabetical) {
+				alphabeticalSet.insert(AlphabeticalString(str));
+			}
+			else if (isNumeric) {
+				numericVector.push_back(std::make_shared<NumericString>(str));
+			}
+			else {
+				otherStrings.push_back(str);
+			}
+		}
+		// Вывод отсортированных по алфавиту строк, содержащих только буквы
+		std::cout << "Alphabetical Strings:" << std::endl;
+		for (const auto& str : alphabeticalSet) {
+			std::cout << str.value << std::endl;
+		}
+		std::cout << std::endl;
+		// Вывод строк, содержащих только цифры, и их суммы
+		std::cout << "Numeric Strings:" << std::endl;
+		int sum = 0;
+		for (const auto& ptr : numericVector) {
+			std::cout << ptr->value << " Sum of digits: " << ptr->sumDigits() << std::endl;
+			sum += ptr->sumDigits();
+		}
+		std::cout << "Total sum of digits: " << sum << std::endl;
+		// Вывод остальных строк
+		std::cout << "Other Strings:" << std::endl;
+		for (const auto& str : otherStrings) {
+			std::cout << str << std::endl;
+		}
 	}
-
-
 	/******************************************************************************************/
 	//Задание 4. 
 	{
-		//Дано:
+	//Дано:
+		cout << "\t Chapter 4: " << endl;
 		std::string ar[] = { "my","Hello", "World" };
 		std::vector < std::shared_ptr<std::string>> v = { std::make_shared<std::string>("good"), std::make_shared<std::string>("bye") };
 
-
-
-		//а) Требуется добавить в вектор обертки для элементов массива, НЕ копируя элементы массива! 
-		//б) Отсортировать вектор по алфавиту и вывести на экран
+	//а) Требуется добавить в вектор обертки для элементов массива, НЕ копируя элементы массива! 
+		// Добавляем в вектор обертки для элементов массива, не копируя элементы массива
+		for (const auto& str : ar) {
+			v.push_back(std::make_shared<std::string>(str));
+		}
+	//б) Отсортировать вектор по алфавиту и вывести на экран
+		// Сортируем вектор по алфавиту
+		std::sort(v.begin(), v.end(), [](const std::shared_ptr<std::string>& a, const std::shared_ptr<std::string>& b) {
+			return *a < *b;
+			}); 
 		//в) Обеспечить корректное освобождение памяти
-
-
-	
+		// Выводим отсортированный вектор на экран
+		std::cout << "Sorted Vector:" << std::endl;
+		for (const auto& ptr : v) {
+			std::cout << *ptr << std::endl;
+		}
+		v.clear();
 	}
 	/***************************************************************/
 		//Задание 5. shared_ptr и weak_ptr
@@ -191,31 +282,38 @@ int main() {
 		//возможно признак: жив или уже нет...
 		//родители - shared_ptr (родители не всегда известны...)
 		//дети - контейнер из weak_ptr (чтобы избежать циклических зависимостей)
-
 		//Методы класса human:
 		//конструктор - для инициализации имени и признака
 		//конструктор копирования, оператор присваивания, move ???
 		//статический метод child() - 
 		//				должен создать создать и вернуть обертку для родившегося человека
 		//				+ сформировать все связи ребенка с родителями и наоборот
-
 		//Ввести возможность распечатать генеалогическое дерево для указанного индивидума
 
 	{
 		//История должна с кого-то начинаться => "Жили-были дед да баба, например, Адам и Ева"
 		//(то есть на самом деле два деда и две бабы):
-
-
 		//std::shared_ptr<human> grandM1(new human("Eva"));
 		//...
-
 		//у них появились дети - child():
-
-
 		//а у детей в свою очередь свои дети:
-
-
 		//...
+
+		// Создаем "деда" и "бабу" - начало истории
+		cout << "\t Chapter 5: " << endl;
+		std::shared_ptr<human> grandpaAdam(new human("Adam"));
+		std::shared_ptr<human> grandmaEva(new human("Eva"));
+
+		// Создаем их детей
+		std::shared_ptr<human> father = human::child("Father", grandpaAdam, grandmaEva);
+		std::shared_ptr<human> mother = human::child("Mother", nullptr, nullptr); // Матери может быть неизвестна
+
+		// Создаем их ребенка
+		std::shared_ptr<human> child = human::child("Child", father, mother);
+
+		// Печатаем генеалогическое дерево для ребенка
+		std::cout << "Family Tree for Child:" << std::endl;
+		child->printFamilyTree();
 
 	}
 

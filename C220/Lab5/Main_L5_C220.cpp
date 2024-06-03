@@ -313,19 +313,29 @@ int main() {
 		// Создаем "деда" и "бабу" - начало истории
 		cout << "\t ************** " << endl;
 		cout << "\t Chapter 5: " << endl;
-		std::shared_ptr<human> grandpaAdam(new human("Adam"));
-		std::shared_ptr<human> grandmaEva(new human("Eva"));
-
-		// Создаем их детей
-		std::shared_ptr<human> father = human::child("Father", grandpaAdam, grandmaEva);
-		std::shared_ptr<human> mother = human::child("Mother", nullptr, nullptr); // Матери может быть неизвестна
+		std::shared_ptr<human> Adam(new human("Адам"));
+		std::shared_ptr<human> Eva(new human("Ева"));
 
 		// Создаем их ребенка
-		std::shared_ptr<human> child = human::child("Child", father, mother);
+		std::shared_ptr<human> child1 = human::child("Авель", Adam, Eva);
+		std::shared_ptr<human> child2 = human::child("Каин", Adam, Eva);
+		std::shared_ptr<human> child3 = human::child("Сиф", Adam, Eva);
+
+		std::shared_ptr<human> Enoh = human::child("Енох", child3, nullptr);
+		std::shared_ptr<human> Noeh = human::child("Ной", Enoh, nullptr);
+		std::shared_ptr<human> Sim = human::child("Сим", Noeh, nullptr);
+		std::shared_ptr<human> Avraam = human::child("Авраам", Sim, nullptr);
+
+		std::shared_ptr<human> Sara(new human("Сара"));
+		std::shared_ptr<human> Iisaak = human::child("Исаак", Avraam, Sara);
 
 		// Печатаем генеалогическое дерево для ребенка
-		std::cout << "Family Tree for Child:" << std::endl;
-		child->printFamilyTree();
+		std::cout << "«Адам познал Еву, жену свою; и она зачала,\n"
+			"и родила Каина, и сказала: приобрела я человека от Господа.\n"
+			"И еще родила брата его, Авеля. И был Авель пастырь овец, \n"
+			"а Каин был земледелец» (Быт.4: 1-2)." << std::endl;
+
+		Adam->printFamilyTree();
 
 	}
 

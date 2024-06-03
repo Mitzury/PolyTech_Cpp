@@ -1,13 +1,13 @@
 #pragma once
 
-
+using namespace std;
 class human {
 private:
-	std::string name;
+	string name;
 	bool alive;
-	std::shared_ptr<human> father;
-	std::shared_ptr<human> mother;
-	std::vector<std::weak_ptr<human>> children;
+	shared_ptr<human> father;
+	shared_ptr<human> mother;
+	vector<weak_ptr<human>> children;
 
 public:
 	// Конструктор

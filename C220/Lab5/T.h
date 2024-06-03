@@ -10,6 +10,16 @@ struct Deleter {
 	}
 };
 
+// 1.e
+template<typename T>
+void printContainer(const T& container) {
+	std::cout << "Container: ";
+	for (const auto& element : container) {
+		std::cout << *element << " ";
+	}
+	std::cout << std::endl;
+}
+
 
 void writeToLogFile(std::shared_ptr<std::ofstream> file, const std::string& data) {
 	if (file && file->is_open()) {

@@ -29,13 +29,43 @@ public:
 
 	// Метод для печати генеалогического дерева для данного индивидуума
 	void printFamilyTree(int level = 0) const {
-		std::cout << std::string(level, ' ') << name;
+		// Выводим имя индивидуума с отступом, зависящим от уровня в дереве
+		cout << string(level, ' ') << name;
+		// Если индивидуум не жив, выводим пометку о смерти
 		if (!alive) {
-			std::cout << " (deceased)";
+			cout << " (deceased)";
 		}
-		std::cout << std::endl;
+		if (father) {
+			cout << " [Отец: " << father->name << "]";
+		}
+		if (mother) {
+			cout << " [Мать: " << mother->name << "]";
+		}
+		// Переходим на новую строку
+		cout << endl;
+		// Рекурсивно вызываем метод для печати генеалогического дерева каждого ребенка
 		for (const auto& child : children) {
+			// выводим имена обоих родителей, если они есть
 			child.lock()->printFamilyTree(level + 2);
+		}
+	}
+
+	// метод для обратного вывода генеалогического дерева для данного индивидуума
+	void printReverseFamilyTree(int level = 0) const {
+		// выводим имя индивидуума с отступом, зависящим от уровня в дереве
+		cout << string(level, ' ') << name;
+		// если индивидуум не жив, выводим пометку о смерти
+		if (!alive) {
+			cout << " (deceased)";
+		}
+		// переходим на новую строку
+		cout << endl;
+		// рекурсивно вызываем метод для обратного вывода генеалогического дерева каждого родителя
+		if (father) {
+			father->printReverseFamilyTree(level + 2);
+		}
+		if (mother) {
+			mother->printReverseFamilyTree(level + 2);
 		}
 	}
 };

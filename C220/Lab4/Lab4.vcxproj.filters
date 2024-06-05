@@ -26,5 +26,8 @@
     <ClInclude Include="Range.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="print.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

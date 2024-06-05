@@ -17,6 +17,8 @@
 #include <queue>       
 
 #include "MyArray.h"
+#include "print.h"
+#include "Range.h"
 
 using namespace std;
 
@@ -27,85 +29,28 @@ constexpr int factorial(int n) {
 	return (n <= 1) ? 1 : (n * factorial(n - 1));
 }
 
-//Задание 2a. 
-constexpr int binary_literal(const char* str) {
+//Задание 2a.
+constexpr int operator "" _b(const char* str, size_t) {
 	int result = 0;   // Инициализация переменной для хранения результата
+	// цикл, который пробегает по каждому символу строки.
+	// Внутри цикла происходит побитовый сдвиг влево каждой итерацией, 
+	// а затем добавление нового бита, вычисленного путем вычитания символа '0' 
+	// из текущего символа строки.
 	while (*str) {    // Пока не достигнут конец строки
 		result = (result << 1) + (*str++ - '0');  // Побитовый сдвиг влево на 1 и добавление нового бита
 	}
 	return result;    // Возвращение результата
 }
-constexpr int operator "" _b(const char* str, size_t) {
-	return binary_literal(str);  // Используеm ранее определенную функцию binary_literal для преобразования двоичной строки в целое число
-}
-
-
-//Задание 2b. 
-std::string to_binary_string(int value) {
-	std::string binary;                         // Создание строки для хранения двоичного представления
-	const int num_bits = sizeof(int) * CHAR_BIT; // Вычисление количества бит в целом числе
-
-	for (int i = num_bits - 1; i >= 0; --i) {   // Перебор всех битов числа, начиная с самого старшего
-		binary.push_back(((value >> i) & 1) ? '1' : '0');  // Получение i-го бита числа и добавление его в строку
-	}
-
-	return "0b" + binary;   // Возвращение строки с добавленным префиксом "0b", обозначающим двоичное число
-}
+// Задание 2b.
 std::string operator""_toBinStr(unsigned long long num) {
-	return to_binary_string(static_cast<int>(num));  // Используеm ранее определенную функцию to_binary_string для конвертации числа в двоичную строку
-}
+	const int num_bits = sizeof(int) * CHAR_BIT; // Вычисление количества бит в целом числе
+	// Перед строкой двоичного представления добавляем префикс "0b"
+	std::string str = "0b";
+	for (int i = num_bits - 1; i >= 0; --i)
+		// Получаем бит на позиции i и добавляем его в строку
+		str.push_back(((num >> i) & 1) == 1 ? '1' : '0');
 
-
-//Задание 3 
-template<typename T>
-class Range {
-private:
-	T min_value;        // Минимальное значение диапазона
-	T max_value;        // Максимальное значение диапазона
-
-public:
-	constexpr Range(T min, T max) : min_value(min), max_value(max) {}  // Конструктор класса
-
-	constexpr T getMin() const { return min_value; }   // Метод для получения минимального значения диапазона
-	constexpr T getMax() const { return max_value; }   // Метод для получения максимального значения диапазона
-
-	constexpr bool isInRange(T value) const {
-		// Метод для проверки, находится ли переданное значение в пределах диапазона
-		return (value >= min_value && value <= max_value);
-	}
-	constexpr T clamp(T value) const {
-		// Метод для "зажатия" значения в пределах диапазона
-		return (value < min_value) ? min_value : (value > max_value) ? max_value : value;
-	}
-};
-
-
-
-//Задание 4 
-template<typename T>
-void printSequence(const T& container) {
-	// Функция для вывода элементов контейнера
-	for (const auto& item : container) {  // Перебор всех элементов контейнера
-		if constexpr (std::is_pointer_v<typename T::value_type>) {
-			// Если элемент контейнера является указателем
-			std::cout << *item << " ";   // Вывод значения, на которое указывает указатель
-		}
-		else {
-			std::cout << item << " ";    // Вывод значения
-		}
-	}
-	std::cout << std::endl;  // Переход на новую строку
-}
-
-template<typename T, size_t N>
-void printSequence(const T(&arr)[N]) {
-	// Функция для вывода элементов массива фиксированного размера
-
-	for (const auto& item : arr) {  // Перебор всех элементов массива
-		std::cout << item << " ";   // Вывод элемента
-	}
-
-	std::cout << std::endl;  // Переход на новую строку
+	return str;
 }
 
 //Задание 5
@@ -124,55 +69,6 @@ auto add(T1 a, T2 b) {
 		return a + b;   // Возвращение результата сложения двух значений
 	}
 }
-
-
-
-template <typename T>
-void printValue(const T& value) {
-	// Функция для вывода значения, разыменовывая указатель, если это необходимо
-
-	if constexpr (std::is_pointer_v<T>) {
-		// Если тип T является указателем
-		std::cout << *value << " ";   // Вывод значения, на которое указывает указатель
-	}
-	else {
-		std::cout << value << " ";    // Вывод значения
-	}
-}
-
-
-//Задание 6 
-template <typename T>
-void printAdapter(std::stack<T> stack) {
-	// Функция для вывода элементов стека
-	while (!stack.empty()) {       // Пока стек не пуст
-		printValue(stack.top());   // Вывод верхнего элемента стека
-		stack.pop();               // Удаление верхнего элемента стека
-	}
-	std::cout << std::endl;        // Переход на новую строку
-}
-
-template <typename T>
-void printAdapter1(T adapter) {
-
-	// Функция для вывода элементов стека
-	while (!adapter.empty()) {       // Пока стек не пуст
-		printValue(*adapter);   // Вывод верхнего элемента стека
-		stack.pop();               // Удаление верхнего элемента стека
-	}
-	std::cout << std::endl;        // Переход на новую строку
-}
-
-//template <typename T>
-//void printAdapter(std::queue<T> queue) {
-//	// Функция для вывода элементов очереди
-//	while (!queue.empty()) {           // Пока очередь не пуста
-//		printValue(queue.front());     // Вывод элемента, находящегося в начале очереди
-//		queue.pop();                   // Удаление элемента из начала очереди
-//	}
-//	std::cout << std::endl;            // Переход на новую строку
-//}
-
 
 //Задание 7 
 template <typename T>
@@ -244,31 +140,22 @@ int main() {
 
 	{
 		cout << endl << "Chapter 2a: " << endl;
-		constexpr int num = "100000000"_b;  // Конвертация двоичной строки в число
-
+		int num = "100000000"_b;  // Конвертация двоичной строки в число
 		std::cout << "Decimal: " << num << std::endl;  // Вывод числа в десятичной системе счисления
 		std::cout << "Binary prefix: " << std::hex << "0b" << num << std::endl;  // Вывод числа в двоичной системе счисления с префиксом "0b"
-
-
 	}
-
 	//Задание 2b. Перевод в строковое двоичное представление, например: 256 -> "0b100000000"
 	//Так как строка может быть любой длины, логичнее и проще возвращать объект std::string
 	//=> возвращаемое значение не может быть constexpr!
 	//Подсказка: манипулятора std::bin пока нет => преобразование в двоичную строку
 	//придется делать вручную
 	//Подсказка: количество разрядов в байте определяет константа CHAR_BIT - <cstdint>
-
 	{
 		cout << endl << "Chapter 2b: " << endl;
-
 		std::string sBin = 256_toBinStr;  // Конвертация числа 256 в его двоичное представление в виде строки
-
 		std::cout << sBin << std::endl;   // Вывод двоичного представления числа 256
 
 	}
-
-
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//Задание 3. constexpr - объекты 
 	//Создать класс (шаблон класса?) для хранения и манипулирования диапазоном значений.
@@ -280,12 +167,10 @@ int main() {
 	//							если принадлежит диапазону, то его и возвращаем
 	//							если меньше минимального значения, возвращаем минимальное
 	//							если больше максимального значения, возвращаем максимальное
-
 	//Проверьте тот факт, что компилятор вычисляет значение на этапе компиляции. 
-
 	{
 		cout << endl << "Chapter 3: " << endl;
-		constexpr Range<int> intRange(0, 100);   // Создание объекта класса Range с диапазоном от 0 до 100 для типа int
+		constexpr Range<int> intRange(0,100);   // Создание объекта класса Range с диапазоном от 0 до 100 для типа int
 
 		constexpr int minValue = intRange.getMin();   // Получение минимального значения из диапазона
 		constexpr int maxValue = intRange.getMax();   // Получение максимального значения из диапазона
@@ -296,8 +181,6 @@ int main() {
 		std::cout << "Max value: " << maxValue << std::endl;   // Вывод максимального значения диапазона
 		std::cout << "Is 50 in range: " << std::boolalpha << inRange << std::endl;  // Вывод результата проверки на принадлежность значения 50 диапазону
 		std::cout << "Clamped value of 150: " << clampedValue << std::endl;   // Вывод "зажатого" значения 150 в пределах диапазона
-
-
 	}
 	/***************************************************************/
 //Задание 4.
@@ -323,9 +206,7 @@ int main() {
 		printSequence(arr);                                         // Вывод элементов массива
 		printSequence(arr2);                                        // Вывод элементов обычного массива
 
-
 	}
-
 	/***************************************************************/
 	//Задание 5.
 		/* Реализуйте шаблон функции сложения двух значений.
@@ -348,8 +229,6 @@ int main() {
 		std::cout << result_scalar << std::endl;     // Вывод результата сложения
 
 	}
-
-
 	/***************************************************************/
 //Задание 6.
 	/* 	Реализуйте шаблон функции вывода на печать значений элементов любого адаптера (stack, queue, priority_queue)
@@ -372,10 +251,12 @@ int main() {
 		std::cout << "Queue: ";                // Вывод сообщения о типе структуры данных
 		printAdapter(doubleQueue);             // Вывод элементов очереди
 
-
+		std::priority_queue<int> priorityQueue;
+		priorityQueue.push(3);
+		std::cout << "Priority Queue: ";
+		printAdapter(priorityQueue);
 
 	}
-
 	/***************************************************************/
 //Задание 7.
 	/* 	Реализуйте шаблон constexpr функции Smth(), которая должна возвращать значения разного типа
@@ -384,7 +265,6 @@ int main() {
 	//constexpr int res1 = /*<вызов Smth()>;*/ //res1 = 1
 	//constexpr double res2 = /*<вызов Smth()>; */ //res2 = 2.2
 	//  /*constexpr???*/ std::string res3 = /*<вызов Smth()>; */ //res3 = "abc"
-
 	{
 		cout << endl << "Chapter 7: " << endl;
 		constexpr int res1 = Smth<int>();              // Вызов функции Smth для типа int
@@ -396,8 +276,6 @@ int main() {
 		std::cout << "res3: " << res3 << "\n";         // Вывод результата для типа std::string
 
 	}
-
-
 	//***************************************************************/
 	//Задание 8.
 
@@ -425,12 +303,11 @@ int main() {
 		*/
 	{
 		cout << endl << "Chapter 8: " << endl;
-		MyArray<int, 5> ar1;                                    // Создание объекта MyArray с целыми числами и размером 5
-		MyArray<char, 5> ar2 = makeMyArray<char, 5>({ 'A', 'B', 'C', 'D', 'E' });  // Создание объекта MyArray с символами и размером 5, заполненного значениями из списка инициализации
-
-		MyArray<char, 4> ar3 = makeMyArray<char, 4>({ 'A', 'B', 'C' });    // Создание объекта MyArray с символами и размером 4, заполненного значениями из списка инициализации
-		int ar[] = { 1,2,3 };                                               // Обычный массив с целыми числами
-		MyArray<int, 3> ar4{ ar };                                          // Создание объекта MyArray с целыми числами и размером 3, заполненного значениями из обычного массива
+		MyArray<int, 5> ar1; //MyArray<int,5>
+		MyArray<char, 5> ar2{ "ABCqwerty" };//MyArray<char,5>
+		MyArray<char, 4> ar3{ "abc" };
+		int ar[] = { 1,2,3 };
+		MyArray<int, 3> ar4{ ar };
 
 		ar1.print();                                             // Вывод элементов объекта MyArray ar1
 		ar2.print();                                             // Вывод элементов объекта MyArray ar2
@@ -439,8 +316,6 @@ int main() {
 
 		std::cout << "Size of ar4: " << ar4.getSize() << std::endl;            // Вывод размера объекта MyArray ar4
 		std::cout << "Element at index 1 of ar4: " << ar4[1] << std::endl;     // Вывод элемента с индексом 1 объекта MyArray ar4
-
-
 
 	}
 

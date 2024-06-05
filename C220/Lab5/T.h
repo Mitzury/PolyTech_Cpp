@@ -1,14 +1,13 @@
 #pragma once
 
-struct Deleter {
+// Функтор для удаления элементов из массива указателей
+struct ArrayDeleter {
 	template<typename T>
 	void operator()(T* ptr) const {
-		if (ptr) {
-			delete ptr;
-			ptr = nullptr;
-		}
+		delete ptr;
 	}
 };
+
 
 // 1.e
 template<typename T>

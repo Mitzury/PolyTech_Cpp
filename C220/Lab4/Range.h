@@ -3,8 +3,9 @@
 template<typename T>
 class Range {
 private:
-    T min_value;         // Минимальное значение диапазона
-    T max_value;        // Максимальное значение диапазона
+    T min_value = {};       // Минимальное значение диапазона
+    T max_value{};       // Максимальное значение диапазона
+    //T max_value = T();
 public:
     // Конструктор класса
     constexpr Range(T min, T max) : min_value(min), max_value(max) {}

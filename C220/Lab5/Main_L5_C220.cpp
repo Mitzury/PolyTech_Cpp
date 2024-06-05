@@ -115,7 +115,11 @@ int main() {
 			string* arStrPtr[] = { new std::string("aa"), new std::string("bb"), new std::string("cc") };
 			// Вычисление количества элементов в массиве
 			size_t n = sizeof(arStrPtr) / sizeof(arStrPtr[0]);
-	
+				for (int i = 0; i < 3; i++) {
+					std::cout << *arStrPtr[i] << std::endl;
+				}
+			auto lambda = [n](std::string* (arStrPtr)[]) {for (size_t i = 0; i < n; ++i) { delete (arStrPtr)[i]; }};
+
 		}
 		//1.f Создайте и заполните вектор, содержащий unique_ptr для указателей на std::string
 		//Посредством алгоритма copy() скопируйте элементы вектора в пустой список с элементами 
@@ -271,7 +275,7 @@ int main() {
 	//а) Требуется добавить в вектор обертки для элементов массива, НЕ копируя элементы массива! 
 		// Добавляем в вектор обертки для элементов массива, не копируя элементы массива
 		for (const auto& str : ar) {
-			v.push_back(std::make_shared<std::string>(str));
+			v.push_back(std:: make_shared<std::string>(str));
 		}
 	//б) Отсортировать вектор по алфавиту и вывести на экран
 		// Сортируем вектор по алфавиту

@@ -55,3 +55,32 @@ struct NumericString {
 		return sum;
 	}
 };
+
+class Delete {
+	std::string file;
+public:
+	Delete(const std::string& s) : file(s) { }
+	void operator()(std::ofstream* p){
+		p->close();
+		delete p;
+	}
+};
+
+int calculateDigitsSum(const std::string& str) {
+	int sum = 0;
+	for (char c : str) {
+		if (std::isdigit(c)) {
+			sum += c - '0';
+		}
+	}
+	return sum;
+}
+
+// или создать функтор
+class Functor {
+public:
+	Functor() {}
+	void operator()(std::string*) const {}
+};
+
+//сделать делетер л€бмдой

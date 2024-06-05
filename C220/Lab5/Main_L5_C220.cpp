@@ -115,11 +115,15 @@ int main() {
 			string* arStrPtr[] = { new std::string("aa"), new std::string("bb"), new std::string("cc") };
 			// Вычисление количества элементов в массиве
 			size_t n = sizeof(arStrPtr) / sizeof(arStrPtr[0]);
-				for (int i = 0; i < 3; i++) {
-					std::cout << *arStrPtr[i] << std::endl;
-				}
+			// Создаем лямбда-функцию, которая будет удалять элементы массива
+			// что делает компилятор в терминах комплиятора при лямбде [] .. [n]
 			auto lambda = [n](std::string* (arStrPtr)[]) {for (size_t i = 0; i < n; ++i) { delete (arStrPtr)[i]; }};
-
+			// Создаем умный указатель, который будет хранить массив указателей и использовать лямбда-функцию для удаления
+			std::unique_ptr<std::string* [], decltype(lambda)> unique_p(arStrPtr, lambda);
+			
+			for (int i = 0; i < n; ++i) {
+				std::cout << *(unique_p[i]) << std::endl;
+			}
 		}
 		//1.f Создайте и заполните вектор, содержащий unique_ptr для указателей на std::string
 		//Посредством алгоритма copy() скопируйте элементы вектора в пустой список с элементами 
@@ -139,10 +143,10 @@ int main() {
 
 			printContainer(vector);
 			// Создаем список unique_ptr<string> размером, равным размеру вектора
-			list<unique_ptr<string>> list(vector.size()); 
+			list<unique_ptr<string>> list; 
 
 			// Копируем элементы из вектора в список с помощью move_iterator
-			copy(std::make_move_iterator(vector.begin()), std::make_move_iterator(vector.end()), list.begin());
+			copy(std::make_move_iterator(vector.begin()), std::make_move_iterator(vector.end()), back_inserter(list));
 
 			printContainer(list);
 
@@ -195,9 +199,26 @@ int main() {
 	std::cout << "Writing to file completed successfully!" << std::endl;
 	//заданное число итераций случайным образом позволяем одному из "писателей" записать в файл
 	//свою строчку
+	/***************************************************************/
+	{
+		cout << "\t Chapter 2: " << endl;
+		std::string file("file.txt");
+		// Создаем объект shared_ptr, который будет управлять открытым файлом,
+		// и передаем ему конструктором указатель на новый объект ofstream, открывающий указанный файл
+		std::shared_ptr<std::ofstream> sh1(new std::ofstream(file), Delete(file));
+		// Записываем текст "text1" в файл, используя разыменование указателя sh1
+		*sh1 << "sh1" << std::endl;
+		// Создаем новый shared_ptr sh2, указывающий на тот же открытый файл
+		auto sh2 = sh1;
+		// Записываем текст "text2" в файл, используя разыменование указателя sh2
+		*sh2 << "sh2" << std::endl; 
+		// Создаем новый shared_ptr sh3, указывающий на тот же открытый файл
+		auto sh3 = sh2;
+		// Записываем текст "text3" в файл, используя разыменование указателя sh3
+		*sh3 << "sh3" << std::endl; 
+	} // продублировать чтобы ofstream локально
 
-
-	}//закрытие файла???
+	}//закрытие файла??? автоматическое освобождение ресурсов (закрытие файла) при выходе из области видимости
 	/***************************************************************/
 	//Задание 3.
 	{
@@ -217,51 +238,47 @@ int main() {
 		//и просто выводим
 		cout << "\t ************** " << endl;
 		cout << "\t Chapter 3: " << endl;
-		std::set<AlphabeticalString> alphabeticalSet;
-		std::vector<std::shared_ptr<NumericString>> numericVector;
-		std::vector<std::string> otherStrings;
 
-		for (const auto& str : strings) {
-			bool isAlphabetical = true;
-			bool isNumeric = true;
-			for (char ch : str) {
-				if (!std::isalpha(ch)) {
-					isAlphabetical = false;
+		// обебрнуть shared_ptr 
+
+		std::set<std::string> alphabetStrings;
+		std::vector<std::string> numericStrings;
+		std::vector<std::shared_ptr <std::string>> xz;
+
+		for (const std::string& str : strings) {
+			bool isOnlyLetters = true;
+			bool isOnlyDigits = true;
+			// Проверяем, содержит ли строка только буквы или только цифры
+			for (char c : str) {
+				if (!std::isalpha(c)) {
+					isOnlyLetters = false;
 				}
-				if (!std::isdigit(ch)) {
-					isNumeric = false;
+				if (!std::isdigit(c)) {
+					isOnlyDigits = false;
 				}
 			}
-			if (isAlphabetical) {
-				alphabeticalSet.insert(AlphabeticalString(str));
+			// Добавляем обертки в соответствующий контейнер
+			if (isOnlyLetters) {
+				alphabetStrings.insert(str);
 			}
-			else if (isNumeric) {
-				numericVector.push_back(std::make_shared<NumericString>(str));
-			}
-			else {
-				otherStrings.push_back(str);
+			if (isOnlyDigits) {
+				numericStrings.push_back(str);
 			}
 		}
 		// Вывод отсортированных по алфавиту строк, содержащих только буквы
 		std::cout << "Вывод отсортированных по алфавиту строк, содержащих только буквы:" << std::endl;
-		for (const auto& str : alphabeticalSet) {
-			std::cout << str.value << std::endl;
-		}
-		std::cout << std::endl;
+		for (const std::string& str : alphabetStrings) {
+			std::cout << str << std::endl;
+		} 
+
 		// Вывод строк, содержащих только цифры, и их суммы
 		std::cout << "Вывод строк, содержащих только цифры, и их суммы:" << std::endl;
-		int sum = 0;
-
-		for (const auto& ptr : numericVector) {
-			std::cout << ptr->value << "Вывод строк, содержащих только цифры, и их суммы: " << ptr->sumDigits() << std::endl;
-			sum += ptr->sumDigits();
-		}
-		std::cout << "Total sum of digits: " << sum << std::endl;
-		// Вывод остальных строк
-		std::cout << "Other Strings:" << std::endl;
-		for (const auto& str : otherStrings) {
+		int digitsSum = 0;
+		for (const std::string& str : numericStrings) {
 			std::cout << str << std::endl;
+			digitsSum += calculateDigitsSum(str);
 		}
+		std::cout << "Sum of all digits: " << digitsSum << std::endl;
 	}
 	/******************************************************************************************/
 	//Задание 4. 
@@ -274,14 +291,20 @@ int main() {
 
 	//а) Требуется добавить в вектор обертки для элементов массива, НЕ копируя элементы массива! 
 		// Добавляем в вектор обертки для элементов массива, не копируя элементы массива
-		for (const auto& str : ar) {
-			v.push_back(std:: make_shared<std::string>(str));
-		}
+		for (int i = 0; i < std::size(ar); ++i)
+			v.push_back(std::shared_ptr<std::string>(&ar[i], Functor()));
+
 	//б) Отсортировать вектор по алфавиту и вывести на экран
 		// Сортируем вектор по алфавиту
-		std::sort(v.begin(), v.end(), [](const std::shared_ptr<std::string>& a, const std::shared_ptr<std::string>& b) {
+		std::sort(v.begin(), v.end(), 
+			[](const std::shared_ptr<std::string>& a, const std::shared_ptr<std::string>& b) {
 			return *a < *b;
-			}); 
+			});
+		for (const auto& element : v) {
+			std::cout << *element << " ";
+		}
+		std::cout << std::endl;
+
 		//в) Обеспечить корректное освобождение памяти
 		// Выводим отсортированный вектор на экран
 		std::cout << "Sorted Vector:" << std::endl;
@@ -289,6 +312,7 @@ int main() {
 			std::cout << *ptr << std::endl;
 		}
 		v.clear();
+		
 	}
 	/***************************************************************/
 		//Задание 5. shared_ptr и weak_ptr
@@ -340,7 +364,7 @@ int main() {
 			"а Каин был земледелец» (Быт.4: 1-2)." << endl;
 
 		Adam->printFamilyTree();
-		//Noeh->printReverseFamilyTree();
+
 	}
 
 	return 0;

@@ -7,8 +7,6 @@ struct ArrayDeleter {
 		delete ptr;
 	}
 };
-
-
 // 1.e
 template<typename T>
 void printContainer(const T& container) {
@@ -18,17 +16,12 @@ void printContainer(const T& container) {
 	}
 	std::cout << std::endl;
 }
-
-
 void writeToLogFile(std::shared_ptr<std::ofstream> file, const std::string& data) {
 	if (file && file->is_open()) {
 		*file << data << std::endl;
 	}
 }
-
-
 // Задание 3.
-
 bool isAlphaString(const std::shared_ptr<std::string>& str) {
 	return std::all_of(str->begin(), str->end(), [](unsigned char c) { return std::isalpha(c); });
 }
@@ -39,7 +32,6 @@ bool isOtherString(const std::shared_ptr<std::string>& str) {
 	return std::none_of(str->begin(), str->end(), [](unsigned char c) { return std::isalnum(c); });
 }
 
-
 class Delete {
 	std::string file;
 public:
@@ -49,7 +41,6 @@ public:
 		delete p;
 	}
 };
-
 int calculateDigitsSum(const std::string& str) {
 	int sum = 0;
 	for (char c : str) {
@@ -66,5 +57,7 @@ public:
 	Functor() {}
 	void operator()(std::string*) const {}
 };
-
 //сделать делетер лябмдой
+
+
+void NotDeleter(std::string* p) {} 

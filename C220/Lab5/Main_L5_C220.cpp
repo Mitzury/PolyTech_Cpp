@@ -244,7 +244,6 @@ int main() {
 	//Задание 3.
 	{
 		//Дан массив элементов типа string
-		std::string strings[] = { "abc", "123", "qwerty", "#$%" };
 		//До завершения фрагмента строки должны существовать в единственном экземпляре.
 		//Требуется обеспечить манипулирование строками а) без копирования и б) без изменения порядка
 		//элементов в массиве!
@@ -254,56 +253,63 @@ int main() {
 		//Выводим на экран
 		//Находим сумму
 		//std::vector<std::shared_ptr < std::string>>
-		/******************************************************************************************/
 		//сюда "складываем" обертки для строк, которые не содержат ни символов букв, ни символов цифр
 		//и просто выводим
 		cout << "\t ************** " << endl;
 		cout << "\t Chapter 3: " << endl;
 
-		// обернуть shared_ptr 
-		size_t n = sizeof(strings) / sizeof(strings[0]); 
-		vector<shared_ptr<string>> stringPtrs; 
-		for (size_t i = 0; i < n; ++i) { 
-			stringPtrs.push_back(make_shared<string>(strings[i]));
+		std::string strings[] = { "abc", "123", "qwerty", "#$%" };
+		const size_t size = sizeof(strings) / sizeof(strings[0]);
+
+		// Создаем массив shared_ptr для хранения строк
+		std::shared_ptr<std::string> sharedStrings[size];
+		// Заполняем массив sharedStrings данными из strings
+		for (size_t i = 0; i < size; i++) {
+			sharedStrings[i] = std::shared_ptr<std::string>(&strings[i], [](std::string*) {});
 		}
 
-		auto comp = [](const std::shared_ptr<std::string>& a, const std::shared_ptr<std::string>& b) {
-			return *a < *b;
-			};
+		// Создаем контейнеры для хранения оберток строк
+		std::set<std::string> letters; 
+		std::vector<std::string> digits; 
+		std::vector<std::shared_ptr<std::string>> nonAlphanumeric;
 
-		std::set<std::shared_ptr<std::string>, decltype(comp)> alphaSet(comp);
-		std::vector<std::shared_ptr<std::string>> digitVector;
-		std::vector<std::shared_ptr<std::string>> otherVector;
-
-		for (const auto& sptr : stringPtrs) {
-			if (isAlphaString(sptr)) {
-				alphaSet.insert(sptr);
+		// разделяем строки на группы в зависимости от их содержимого
+		for (size_t i = 0; i < size; i++) {
+			std::string& str = *sharedStrings[i];
+			char firstChar = str[0];
+			if (isalpha(firstChar)) {
+				letters.insert(str);
 			}
-			else if (isDigitString(sptr)) {
-				digitVector.push_back(sptr);
+			else if (isdigit(firstChar)) {
+				digits.push_back(str);
 			}
-			else if (isOtherString(sptr)) {
-				otherVector.push_back(sptr);
+			else {
+				nonAlphanumeric.push_back(sharedStrings[i]);
 			}
 		}
-
-		std::cout << "Strings with only letters (sorted):" << std::endl;
-		for (const auto& s : alphaSet) {
-			std::cout << *s << std::endl;
+		// выводим результаты
+		std::cout << "Letters:" << std::endl;
+		for (const std::string& letter : letters) {
+			std::cout << letter << std::endl;
 		}
-
-		std::cout << "Вывод строк, содержащих только цифры:" << std::endl;
+		std::cout << "Digits:" << std::endl;
+		for (const std::string& digit : digits) {
+			std::cout << digit << std::endl;
+		}
 		int sum = 0;
-		for (const auto& s : digitVector) {
-			std::cout << *s << std::endl;
-			sum += std::stoi(*s);
+		for (const std::string& digit : digits) {
+			for (char c : digit) {
+				if (isdigit(c)) {
+					sum += c - '0'; // Преобразуем символ в цифру и прибавляем к сумме
+				}
+			}
 		}
-		std::cout << "и их суммы: " << sum << std::endl;
+		std::cout << "Total digits count: " << sum << std::endl;
+		std::cout << "Non-Alphanumeric:" << std::endl;
+		for (const std::shared_ptr<std::string>& nonalpha : nonAlphanumeric) {
+			std::cout << *nonalpha << std::endl;
+		}
 
-		std::cout << "Вывод отсортированных по алфавиту строк, содержащих только буквы:" << std::endl;
-		for (const auto& s : otherVector) {
-			std::cout << *s << std::endl;
-		}
 	}
 	/******************************************************************************************/
 	//Задание 4. 

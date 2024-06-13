@@ -300,7 +300,7 @@ int main() {
 		for (const std::string& digit : digits) {
 			for (char c : digit) {
 				if (isdigit(c)) {
-					sum += c - '0'; // Преобразуем символ в цифру и прибавляем к сумме
+					sum += c - '0'; // Преобразуем символ в цифру и прибавляем к сумме 1 - 49, 2 - 50, 3 - 51
 				}
 			}
 		}

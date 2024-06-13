@@ -265,7 +265,7 @@ int main() {
 		std::shared_ptr<std::string> sharedStrings[size];
 		// «аполн€ем массив sharedStrings данными из strings
 		for (size_t i = 0; i < size; i++) {
-			sharedStrings[i] = std::shared_ptr<std::string>(&strings[i], [](std::string*) {});
+			sharedStrings[i] = std::shared_ptr<std::string>(&strings[i], [](std::string*) {}); 
 		}
 
 		// —оздаем контейнеры дл€ хранени€ оберток строк

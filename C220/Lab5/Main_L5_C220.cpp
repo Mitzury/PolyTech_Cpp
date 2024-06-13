@@ -116,7 +116,14 @@ int main() {
 			// Вычисление количества элементов в массиве
 			size_t n = sizeof(arStrPtr) / sizeof(arStrPtr[0]);
 			// Создаем лямбда-функцию, которая будет удалять элементы массива
-			// что делает компилятор в терминах комплиятора при лямбде [] .. [n]
+			// что делает компилятор в терминах комплиятора при лямбде [] .. [n]?
+			// [] : Пустые квадратные скобки означают, что лямбда - функция не захватывает никакие переменные 
+			// из окружающего контекста. Лямбда не имеет доступа к локальным переменным или аргументам, 
+			// объявленным вне её тела.
+			// [n] : В квадратных скобках указывается, что лямбда захватывает переменную n по значению. 
+			// Это означает, что при создании лямбда - функции создается копия переменной n, 
+			// и внутри лямбда - функции используется эта копия.
+
 			auto lambda = [n](std::string* (arStrPtr)[]) {for (size_t i = 0; i < n; ++i) { delete (arStrPtr)[i]; }};
 			// Создаем умный указатель, который будет хранить массив указателей и использовать лямбда-функцию для удаления
 			std::unique_ptr<std::string* [], decltype(lambda)> unique_p(arStrPtr, lambda);
@@ -201,7 +208,7 @@ int main() {
 	//свою строчку
 	/***************************************************************/
 	{
-		cout << "\t Chapter 2: " << endl;
+		cout << "\t Chapter 2 ver2: " << endl;
 		std::string file("file.txt");
 		// Создаем объект shared_ptr, который будет управлять открытым файлом,
 		// и передаем ему конструктором указатель на новый объект ofstream, открывающий указанный файл
@@ -216,7 +223,21 @@ int main() {
 		auto sh3 = sh2;
 		// Записываем текст "text3" в файл, используя разыменование указателя sh3
 		*sh3 << "sh3" << std::endl; 
+		// sh1, sh2 и sh3 выходят из области видимости, вызывается пользовательская функция удаления
 	} // продублировать чтобы ofstream локально
+
+	// Второй способ: Использование стандартного деструктора ofstream
+	{
+		std::cout << "\t Chapter 2 (local ofstream): " << std::endl;
+		std::string file("file_local.txt");
+		// Создаем объект ofstream и записываем в файл
+		std::ofstream ofs(file);
+
+		ofs << "sh1" << std::endl;
+		ofs << "sh2" << std::endl;
+		ofs << "sh3" << std::endl;
+	}
+
 
 	}//закрытие файла??? автоматическое освобождение ресурсов (закрытие файла) при выходе из области видимости
 	/***************************************************************/
@@ -239,46 +260,50 @@ int main() {
 		cout << "\t ************** " << endl;
 		cout << "\t Chapter 3: " << endl;
 
-		// обебрнуть shared_ptr 
+		// обернуть shared_ptr 
+		size_t n = sizeof(strings) / sizeof(strings[0]); 
+		vector<shared_ptr<string>> stringPtrs; 
+		for (size_t i = 0; i < n; ++i) { 
+			stringPtrs.push_back(make_shared<string>(strings[i]));
+		}
 
-		std::set<std::string> alphabetStrings;
-		std::vector<std::string> numericStrings;
-		std::vector<std::shared_ptr <std::string>> xz;
+		auto comp = [](const std::shared_ptr<std::string>& a, const std::shared_ptr<std::string>& b) {
+			return *a < *b;
+			};
 
-		for (const std::string& str : strings) {
-			bool isOnlyLetters = true;
-			bool isOnlyDigits = true;
-			// Проверяем, содержит ли строка только буквы или только цифры
-			for (char c : str) {
-				if (!std::isalpha(c)) {
-					isOnlyLetters = false;
-				}
-				if (!std::isdigit(c)) {
-					isOnlyDigits = false;
-				}
+		std::set<std::shared_ptr<std::string>, decltype(comp)> alphaSet(comp);
+		std::vector<std::shared_ptr<std::string>> digitVector;
+		std::vector<std::shared_ptr<std::string>> otherVector;
+
+		for (const auto& sptr : stringPtrs) {
+			if (isAlphaString(sptr)) {
+				alphaSet.insert(sptr);
 			}
-			// Добавляем обертки в соответствующий контейнер
-			if (isOnlyLetters) {
-				alphabetStrings.insert(str);
+			else if (isDigitString(sptr)) {
+				digitVector.push_back(sptr);
 			}
-			if (isOnlyDigits) {
-				numericStrings.push_back(str);
+			else if (isOtherString(sptr)) {
+				otherVector.push_back(sptr);
 			}
 		}
-		// Вывод отсортированных по алфавиту строк, содержащих только буквы
+
+		std::cout << "Strings with only letters (sorted):" << std::endl;
+		for (const auto& s : alphaSet) {
+			std::cout << *s << std::endl;
+		}
+
+		std::cout << "Вывод строк, содержащих только цифры:" << std::endl;
+		int sum = 0;
+		for (const auto& s : digitVector) {
+			std::cout << *s << std::endl;
+			sum += std::stoi(*s);
+		}
+		std::cout << "и их суммы: " << sum << std::endl;
+
 		std::cout << "Вывод отсортированных по алфавиту строк, содержащих только буквы:" << std::endl;
-		for (const std::string& str : alphabetStrings) {
-			std::cout << str << std::endl;
-		} 
-
-		// Вывод строк, содержащих только цифры, и их суммы
-		std::cout << "Вывод строк, содержащих только цифры, и их суммы:" << std::endl;
-		int digitsSum = 0;
-		for (const std::string& str : numericStrings) {
-			std::cout << str << std::endl;
-			digitsSum += calculateDigitsSum(str);
+		for (const auto& s : otherVector) {
+			std::cout << *s << std::endl;
 		}
-		std::cout << "Sum of all digits: " << digitsSum << std::endl;
 	}
 	/******************************************************************************************/
 	//Задание 4. 

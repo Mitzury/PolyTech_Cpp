@@ -1,12 +1,31 @@
 #pragma once
 
-// Функтор для удаления элементов из массива указателей
-struct ArrayDeleter {
-	template<typename T>
-	void operator()(T* ptr) const {
-		delete ptr;
+// Функция для проверки, является ли значение цифрой
+bool isDigit(const std::string& st)
+{
+	for (char a : st)
+		if (!isdigit(a))
+			return false;
+	return true;
+}
+
+bool isLetter(const std::string& st)
+{
+	for (char a : st)
+		if (!isalpha(a))
+			return false;
+	return true;
+}
+// функция, которая проверяет, является ли символ не буквой и не цифрой
+bool isOther(const std::string& st) {
+	for (char a : st) {
+		// Проверяем, не является ли символ буквой или цифрой
+		if (!isalpha(a) && !isdigit(a)) {
+			return true;
+		}
 	}
-};
+	return false;
+}
 // 1.e
 template<typename T>
 void printContainer(const T& container) {
@@ -21,16 +40,16 @@ void writeToLogFile(std::shared_ptr<std::ofstream> file, const std::string& data
 		*file << data << std::endl;
 	}
 }
-// Задание 3.
-bool isAlphaString(const std::shared_ptr<std::string>& str) {
-	return std::all_of(str->begin(), str->end(), [](unsigned char c) { return std::isalpha(c); });
-}
-bool isDigitString(const std::shared_ptr<std::string>& str) {
-	return std::all_of(str->begin(), str->end(), [](unsigned char c) { return std::isdigit(c); });
-}
-bool isOtherString(const std::shared_ptr<std::string>& str) {
-	return std::none_of(str->begin(), str->end(), [](unsigned char c) { return std::isalnum(c); });
-}
+//// Задание 3.
+//bool isAlphaString(const std::shared_ptr<std::string>& str) {
+//	return std::all_of(str->begin(), str->end(), [](unsigned char c) { return std::isalpha(c); });
+//}
+//bool isDigitString(const std::shared_ptr<std::string>& str) {
+//	return std::all_of(str->begin(), str->end(), [](unsigned char c) { return std::isdigit(c); });
+//}
+//bool isOtherString(const std::shared_ptr<std::string>& str) {
+//	return std::none_of(str->begin(), str->end(), [](unsigned char c) { return std::isalnum(c); });
+//}
 
 class Delete {
 	std::string file;
@@ -41,23 +60,3 @@ public:
 		delete p;
 	}
 };
-int calculateDigitsSum(const std::string& str) {
-	int sum = 0;
-	for (char c : str) {
-		if (std::isdigit(c)) {
-			sum += c - '0';
-		}
-	}
-	return sum;
-}
-
-// или создать функтор
-class Functor {
-public:
-	Functor() {}
-	void operator()(std::string*) const {}
-};
-//сделать делетер лябмдой
-
-
-void NotDeleter(std::string* p) {} 

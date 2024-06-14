@@ -9,6 +9,7 @@
 
 #include "T.h"
 #include "human.h"
+#include "Writter.h"
 
 int main() {
 	setlocale(LC_ALL, "Ru");
@@ -224,18 +225,19 @@ int main() {
 		// Записываем текст "text3" в файл, используя разыменование указателя sh3
 		*sh3 << "sh3" << std::endl; 
 		// sh1, sh2 и sh3 выходят из области видимости, вызывается пользовательская функция удаления
-	} // продублировать чтобы ofstream локально
-
+	} 
+	// продублировать чтобы ofstream локально
 	// Второй способ: Использование стандартного деструктора ofstream
 	{
 		std::cout << "\t Chapter 2 (local ofstream): " << std::endl;
-		std::string file("file_local.txt");
+		std::string file("file_locgal.txt");
 		// Создаем объект ofstream и записываем в файл
 		std::ofstream ofs(file);
 
 		ofs << "sh1" << std::endl;
 		ofs << "sh2" << std::endl;
 		ofs << "sh3" << std::endl;
+		
 	}
 
 
@@ -258,57 +260,48 @@ int main() {
 		cout << "\t ************** " << endl;
 		cout << "\t Chapter 3: " << endl;
 
-		std::string strings[] = { "abc", "123", "qwerty", "#$%" };
+		std::string strings[] = { "qwerty", "abc", "123", "321", "#$%" };
 		const size_t size = sizeof(strings) / sizeof(strings[0]);
 
-		// Создаем массив shared_ptr для хранения строк
-		std::shared_ptr<std::string> sharedStrings[size];
-		// Заполняем массив sharedStrings данными из strings
+		// Создаем вектор указателей на строки с использованием shared_ptr
+		std::vector<std::shared_ptr<std::string>> stringPtrs;
 		for (size_t i = 0; i < size; i++) {
-			sharedStrings[i] = std::shared_ptr<std::string>(&strings[i], [](std::string*) {}); 
+			stringPtrs.push_back(std::shared_ptr<std::string>(&strings[i], [](std::string*){}));
 		}
 
-		// Создаем контейнеры для хранения оберток строк
-		std::set<std::string> letters; 
-		std::vector<std::string> digits; 
-		std::vector<std::shared_ptr<std::string>> nonAlphanumeric;
+		//std::set<std::shared_ptr<std::string>> letters; 
+		std::vector<std::shared_ptr<std::string>> digits; 
+		std::vector<std::shared_ptr<std::string>> nan;
 
-		// разделяем строки на группы в зависимости от их содержимого
-		for (size_t i = 0; i < size; i++) {
-			std::string& str = *sharedStrings[i];
-			char firstChar = str[0];
-			if (isalpha(firstChar)) {
-				letters.insert(str);
+		auto sort = [](const std::shared_ptr<std::string>& a, 
+			const std::shared_ptr<std::string>& b) 
+			{return *a < *b; }; 
+
+		std::set<std::shared_ptr<std::string>, decltype(sort)> letters(sort);
+
+		for (auto it = stringPtrs.cbegin(); it != stringPtrs.cend(); ++it) {
+			if (isDigit(**it)) {
+				digits.push_back(*it);
 			}
-			else if (isdigit(firstChar)) {
-				digits.push_back(str);
+			if (isLetter(**it)) {
+				letters.insert(*it);
 			}
-			else {
-				nonAlphanumeric.push_back(sharedStrings[i]);
+			if (isOther(**it)) {
+				nan.push_back(*it);
 			}
+			
 		}
-		// выводим результаты
-		std::cout << "Letters:" << std::endl;
-		for (const std::string& letter : letters) {
-			std::cout << letter << std::endl;
+		std::cout << "Digits:  ";
+		printContainer(digits);
+		std::cout << "Letters:  ";
+		printContainer(letters);
+		std::cout << "NaN:  ";
+		printContainer(nan);
+		size_t sum = 0;
+		for (const std::shared_ptr<std::string>& st : digits) {
+			sum += stoi(*st);
 		}
-		std::cout << "Digits:" << std::endl;
-		for (const std::string& digit : digits) {
-			std::cout << digit << std::endl;
-		}
-		int sum = 0;
-		for (const std::string& digit : digits) {
-			for (char c : digit) {
-				if (isdigit(c)) {
-					sum += c - '0'; // Преобразуем символ в цифру и прибавляем к сумме 1 - 49, 2 - 50, 3 - 51
-				}
-			}
-		}
-		std::cout << "Total digits count: " << sum << std::endl;
-		std::cout << "Non-Alphanumeric:" << std::endl;
-		for (const std::shared_ptr<std::string>& nonalpha : nonAlphanumeric) {
-			std::cout << *nonalpha << std::endl;
-		}
+		std::cout << "Sum= " << sum << "\n";
 
 	}
 	/******************************************************************************************/
@@ -322,8 +315,28 @@ int main() {
 
 	//а) Требуется добавить в вектор обертки для элементов массива, НЕ копируя элементы массива! 
 		// Добавляем в вектор обертки для элементов массива, не копируя элементы массива
+		int a;
+		a = 1;
+		auto lm = [&a](string* ptr) {};
+
+		class functor {
+		private:
+			int &a;
+		public:
+			functor() = default;
+			functor(int& a) : a(a) { };
+				//this->a = a;
+			//};
+			void operator()(string* ptr) const {};
+		};
+
+
 		for (int i = 0; i < std::size(ar); ++i)
-			v.push_back(std::shared_ptr<std::string>(&ar[i], Functor()));
+			v.push_back(std::shared_ptr<std::string>(&ar[i], lm));
+
+
+
+
 
 	//б) Отсортировать вектор по алфавиту и вывести на экран
 		// Сортируем вектор по алфавиту

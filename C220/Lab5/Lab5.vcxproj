@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="human.h" />
     <ClInclude Include="T.h" />
+    <ClInclude Include="Writter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
